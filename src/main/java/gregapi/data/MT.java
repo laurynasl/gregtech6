@@ -2569,7 +2569,7 @@ public class MT {
 			Au                              .addOreByProducts(Cu                    , Ni                        , OREMATS.Cinnabar      );
 			Ag                              .addOreByProducts(Pb                    , S                         , OREMATS.Bromargyrite  );
 			Ke                              .addOreByProducts(Sn                    , TiO2                      , Fe2O3                 );
-			Monazite                        .addOreByProducts(Th                    , Nd                        , RareEarth             );
+			Monazite                        .addOreByProducts(/*Th                    ,*/ Nd                        , RareEarth             );
 			Forcicium                       .addOreByProducts(Th                    , Nd                        , RareEarth             );
 			Forcillium                      .addOreByProducts(Th                    , Nd                        , RareEarth             );
 			FakeOsmium                      .addOreByProducts(Fe2O3                 , Sn                        , Cr                    );
@@ -2649,7 +2649,7 @@ public class MT {
 			OREMATS.Spodumene               .addOreByProducts(Al2O3                 , LiCl                      );
 			Co_60                           .addOreByProducts(OREMATS.Cobaltite     , Co                        );
 			Zr                              .addOreByProducts(TiO2                  , Hf                        );
-			Zircon                          .addOreByProducts(TiO2                  , Hf                        , OREMATS.Uraninite     );
+			Zircon                          .addOreByProducts(TiO2                  , Hf                        /*, OREMATS.Uraninite*/     );
 			Eudialyte                       .addOreByProducts(Zircon                , RareEarth                 , Hf                    , Ta                    , Nb                    , Pb                    );
 			Azurite                         .addOreByProducts(Zircon                , OREMATS.Malachite         , Hf                    ); // TODO: Niccolite
 			OREMATS.DiduraniumTrioxide      .addOreByProducts(Dn                    , Tn                        );
