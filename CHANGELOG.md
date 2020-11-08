@@ -10,12 +10,12 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 
 
 6.14.03: (Not released yet, happens whenever a Bugfix needs to be released, Bear is still testing GT6, while I'm working on GT6 again for some dumb reason)
-Nothing (I tend to only add finished Stuff to the Changelog).
+[FIXED] Colorless Sapphire Boule Recipe was producing at a wrong rate.
 
 
-6.14.02: (Not released yet, going to be released soon)
+6.14.02:
 [NOTE] The Default Config Pack updated to disable Netherlicious Quartz Generation and some other random things.
-[NOTE] I would recommend updating Netherlicious by the way, if you have it.
+[NOTE] I would recommend updating Netherlicious to 2.2.0 or later, if you have it, by the way.
 [FIXED] An Problem where GT-Fast-Leaf-Decay caused GT6 Trees to lose most of their Leaves when Non-GT6-Logs were harvested closeby.
 [FIXED] An Issue with Trees generating in Snowy Biomes. Only affected the Bottom-most Log of Rubber Trees being misplaced by Snow Layers.
 [FIXED] A lot about the Custom Gearbox was not always working like intended, especially not the internal Axle.
@@ -24,6 +24,7 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 [FIXED] Charge Speed of GT6 Tools in Battery Boxes.
 [FIXED] Battery Boxes now no longer accept Energy in large bursts. Small bursts may still happen, because I cant set the Energy-Consumption-per-Tick Limiter to a Value lower than what it can actually charge.
 [FIXED] Recipe Replacer did not always know what a vanilla wooden Stick is, since I added a ton of different Wood Materials.
+[FIXED] Sealed Barrels and Drums were still able to be filled or drained through Tap, Funnel and Item-Use.
 [REMOVED] Some of the Tools that did not make proper sense like the Flint Club, Sword and Hoe.
 [CHANGED] The Durability of Bronze Tools got buffed to be more than Wrought Iron, but less than Steel.
 [CHANGED] Many GT6 Wood Tools are now properly craftable. Wooden Clubs are made by putting a Log or Beam on a Stick in a 2x2.
@@ -39,6 +40,7 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 [CHANGED] Blaze Powder and its Thermal Expansion equivalents are now considered a Tiny Pile of Dust instead of a full Pile of Dust. All Recipes should have been adjusted to take this into account.
 [ADDED] Basalz, Blizz and Blitz Powder can now be used for different ways to obtain some Potions in the Distillery.
 [ADDED] Blaze/Blizz/Blitz/Basalz Bumblebees that produce Combs that yield their respective Rods and Dust, this makes it possible to obtain those Mob Drops in Peaceful (or in general since those TE Mobs are way too rare, and yes I know Blaze is already doable with regular Nether Bumbles). Spoiler alert do not continue reading if you wanna find out the combo yourself, it is the combination of the highest Tiers of YRATILIM&YTSORFXDNEXREHTENXDENOTS (you have to read those in reverse, and replace the X-es with Slashes).
+[ADDED] Slimeballs made with Borax and Glue. Borax now also generates as small Ores and is byproduct of regular Salt (NaCl).
 [ADDED] Certain Materials prevent Items from burning in Lava/Fire. Netherite, Blaze, Fiery Steel and Efrine being an example of Materials like that. It is enough to have even the tiniest Amount of such a Material in the Item to prevent it from burning in Lava. You could for example slap a Refactory Wax Cover on a GT6 Block and its fully Lava Proof whenever you drop it.
 [ADDED] Basalt and Blackstone Generator Module since those two Rock Types are just as infinite as Stone.
 [ADDED] Wooden Bucket Recipe with Gold Plate, to make it easier to get from the Nuggets in the Nether.

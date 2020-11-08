@@ -127,6 +127,7 @@ public enum OD {
 	, slimeballPink
 	, slimeballRice
 	, slimeballSwet
+	, slimeballBorax
 	, itemGrassTall
 	, itemGrass
 	, itemGrassDry
@@ -184,6 +185,7 @@ public enum OD {
 	, blockCandle
 	, blockTorch
 	, blockSoulTorch
+	, blockShadowTorch
 	, blockFoxfireTorch
 	, listAllmeatsubstitute
 	;

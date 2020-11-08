@@ -48,8 +48,9 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addAutoBlackListing("gemLapis");
 		OreDictManager.INSTANCE.addAutoBlackListing("gemEnderEye");
 		OreDictManager.INSTANCE.addAutoBlackListing("gemEnderPearl");
-		OreDictManager.INSTANCE.addAutoBlackListing("gemNetherQuartz");
 		OreDictManager.INSTANCE.addAutoBlackListing("gemNetherStar");
+		OreDictManager.INSTANCE.addAutoBlackListing("gemNetherQuartz");
+		OreDictManager.INSTANCE.addAutoBlackListing("gemQuartz");
 		OreDictManager.INSTANCE.addAutoBlackListing("ingotIron");
 		OreDictManager.INSTANCE.addAutoBlackListing("ingotGold");
 		OreDictManager.INSTANCE.addAutoBlackListing("nuggetGold");
@@ -325,7 +326,6 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("oreGreenMiddleGem"       , "oreGreenMiddle");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("oreCrimsonMiddleGem"     , "oreCrimsonMiddle");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("oreEndium"               , "oreEndEndium");
-		OreDictManager.INSTANCE.addReRegistrationWithReversal("oreNetherQuartz"         , "oreNetherrackNetherQuartz");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("oreBasalticMineralSand"  , "oreSandBasalticMineralSand");
 		
 		
@@ -484,7 +484,7 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistration("gemChargedCertusQuartz"          , OD.itemCertusQuartz);
 		OreDictManager.INSTANCE.addReRegistration("gemCertusQuartz"                 , OD.itemCertusQuartz);
 		OreDictManager.INSTANCE.addReRegistration("gemNetherQuartz"                 , OD.itemNetherQuartz);
-		OreDictManager.INSTANCE.addReRegistration("gemAnyQuartz"                    , OD.craftingQuartz);
+		OreDictManager.INSTANCE.addReRegistration("gemQuartz"                       , OD.craftingQuartz);
 		OreDictManager.INSTANCE.addReRegistration("itemCertusQuartz"                , OD.craftingQuartz);
 		OreDictManager.INSTANCE.addReRegistration("itemNetherQuartz"                , OD.craftingQuartz);
 		OreDictManager.INSTANCE.addReRegistration("gemMalachite"                    , "dyeMixableGreen");

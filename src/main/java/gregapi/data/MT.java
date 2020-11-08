@@ -1344,7 +1344,8 @@ public class MT {
 	Gloomstone              = glowstone     ( 8456, "Gloomstone"            , SET_REDSTONE          ,  19, 250, 255, 255)                                                                                                                                           .uumMcfg( 0, Phosphorite    , 5*U, Au               , 3*U, SiO2             , 1*U, He               , 1*U)                                                  .aspects(TC.LUX, 2, TC.SENSUS, 1, TC.SPIRITUS, 1).heat(500, 600),
 	
 	
-	NetherQuartz            = quartz        ( 8346, "Nether Quartz"                                 , 230, 210, 210, 255, CRYSTALLISABLE, "Quartz")                                                                                                                 .uumMcfg( 0, SiO2           , 1*U)                                                                                                                          .aspects(TC.POTENTIA, 1, TC.VITREUS                  , 1).qual(1, 2.5, 32, 1),
+	NetherQuartz            = quartz        ( 8346, "Nether Quartz"                                 , 230, 210, 210, 255, CRYSTALLISABLE)                                                                                                                           .uumMcfg( 0, SiO2           , 1*U)                                                                                                                          .aspects(TC.POTENTIA, 1, TC.VITREUS                  , 1).qual(1, 2.5, 32, 1),
+	VoidQuartz              = quartz        ( 8457, "Void Quartz"                                   , 183, 120, 212, 255, CRYSTALLISABLE)                                                                                                                           .uumMcfg( 0, SiO2           , 1*U)                                                                                                                          .aspects(TC.POTENTIA, 1, TC.VITREUS, 1, TC.VACUOS    , 1).qual(1, 2.5, 48, 1),
 	SunnyQuartz             = quartz        ( 8393, "Sunny Quartz"                                  , 255, 255, 200, 255, CRYSTALLISABLE)                                                                                                                           .uumMcfg( 0, SiO2           , 1*U)                                                                                                                          .aspects(TC.POTENTIA, 1, TC.VITREUS, 1, TC.LUX       , 1).qual(1, 2.5, 32, 1),
 	LavenderQuartz          = quartz        ( 8394, "Lavender Quartz"                               , 255, 200, 255, 255, CRYSTALLISABLE)                                                                                                                           .uumMcfg( 0, SiO2           , 1*U)                                                                                                                          .aspects(TC.POTENTIA, 1, TC.VITREUS, 1, TC.SENSUS    , 1).qual(1, 2.5, 32, 1),
 	RedQuartz               = quartz        ( 8395, "Red Quartz"                                    , 255, 210, 210, 255, CRYSTALLISABLE)                                                                                                                           .uumMcfg( 0, SiO2           , 1*U)                                                                                                                          .aspects(TC.POTENTIA, 1, TC.VITREUS, 1, TC.MACHINA   , 1).qual(1, 2.5, 32, 1),
@@ -1726,10 +1727,12 @@ public class MT {
 			Amber                   .setOreMultiplier( 2);
 			Zircon                  .setOreMultiplier( 2);
 			Draconium               .setOreMultiplier( 2);
+			OREMATS.Borax           .setOreMultiplier( 2);
 			OREMATS.Cassiterite     .setOreMultiplier( 2);
 			OREMATS.Malachite       .setOreMultiplier( 2);
 			OREMATS.Bastnasite      .setOreMultiplier( 3);
 			Monazite                .setOreMultiplier( 2);
+			VoidQuartz              .setOreMultiplier( 2);
 			NetherQuartz            .setOreMultiplier( 2);
 			CertusQuartz            .setOreMultiplier( 2);
 			ChargedCertusQuartz     .setOreMultiplier( 2);
@@ -1850,6 +1853,7 @@ public class MT {
 			
 			
 			Efrine                  .put(MD.NeLi, COMMON_ORE);
+			VoidCrystal             .put(MD.NeLi, COMMON_ORE);
 			Gloomstone              .put(MD.NeLi, COMMON_ORE);
 			OatAbyssal              .put(MD.NeLi);
 			Basalt                  .put(MD.NeLi);
@@ -2589,7 +2593,7 @@ public class MT {
 			OREMATS.Pinalite                .addOreByProducts(OREMATS.Tungstate     , Pb                        );
 			Nd                              .addOreByProducts(Monazite              , RareEarth                 );
 			OREMATS.Bastnasite              .addOreByProducts(Monazite              , RareEarth                 , Nd                    );
-			NaCl                            .addOreByProducts(KCl                   , KIO3                      );
+			NaCl                            .addOreByProducts(KCl                   , KIO3                      , OREMATS.Borax         );
 			KCl                             .addOreByProducts(KIO3                  , NaCl                      );
 			KIO3                            .addOreByProducts(NaCl                  , KCl                       );
 			Glowstone                       .addOreByProducts(Redstone              , Au                        , Gloomstone            );
@@ -2602,7 +2606,8 @@ public class MT {
 			Efrine                          .addOreByProducts(SoulSand              , Be                        , OREMATS.Pentlandite   , Zircon);
 			AncientDebris                   .addOreByProducts(SoulSand              , Efrine                    , OREMATS.Huebnerite    );
 			SoulSand                        .addOreByProducts(Coal                  , NetherQuartz              , Niter                 , Gloomstone);
-			NetherQuartz                    .addOreByProducts(Netherrack            , OREMATS.Barite            , Efrine                );
+			NetherQuartz                    .addOreByProducts(Netherrack            , OREMATS.Barite            , Efrine                , VoidQuartz);
+			VoidQuartz                      .addOreByProducts(Netherrack            , OREMATS.Barite            , Efrine                , NetherQuartz);
 			Quartzite                       .addOreByProducts(CertusQuartz          , OREMATS.Barite            , Fe2O3                 );
 			MilkyQuartz                     .addOreByProducts(CertusQuartz          , OREMATS.Barite            );
 			CertusQuartz                    .addOreByProducts(MilkyQuartz           , OREMATS.Barite            );
@@ -2689,7 +2694,7 @@ public class MT {
 			Graphite                        .addOreByProducts(C                     );
 			CaCO3                           .addOreByProducts(OREMATS.Malachite     );
 			OREMATS.Gypsum                  .addOreByProducts(S                     , Asbestos                  , Soapstone             , Talc);
-			OREMATS.Borax                   .addOreByProducts(B                     );
+			OREMATS.Borax                   .addOreByProducts(B                     , NaCl                      );
 			Netherrack                      .addOreByProducts(S                     );
 			Flint                           .addOreByProducts(Obsidian              );
 			NaNO3                           .addOreByProducts(KNO3                  , Niter                     );

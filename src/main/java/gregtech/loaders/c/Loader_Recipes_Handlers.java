@@ -418,7 +418,7 @@ public class Loader_Recipes_Handlers implements Runnable {
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(plate                   ,  9, blockPlate                , 1, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(plateGem                ,  9, blockPlateGem             , 1, F));
 		
-		for (int tBig = 1; tBig <= 16; tBig++) for (int tSmall = tBig+1; tSmall <= 16; tSmall++) if (tBig % tSmall == 0) {
+		for (int tBig = 1; tBig <= 16; tBig++) for (int tSmall = 1; tSmall < tBig; tSmall++) if (tBig % tSmall == 0) {
 		int tAmount = tBig/tSmall;
 		RM.Loom       .add(new RecipeMapHandlerPrefix(wireGt[tSmall-1], tAmount, NF, 16, 0, 64, NF, wireGt[tBig-1], 1, ST.tag(tBig), NI, F, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator.add(new RecipeMapHandlerPrefix(wireGt[tBig-1], 1, NF, 16, 16, 0, NF, wireGt[tSmall-1], tAmount, NI, NI, T, F, F, ANTIMATTER.NOT));
@@ -477,6 +477,7 @@ public class Loader_Recipes_Handlers implements Runnable {
 		RM.Bath         .add(new RecipeMapHandlerMaterial(MT.Ni                     , FL.Mana_TE        .make(  50)     ,   0, 144, NF, MT.Ardite               , NI, T, tConditionP));
 		RM.Bath         .add(new RecipeMapHandlerMaterial(MT.MilkyQuartz            , FL.Mana_TE        .make(   1)     ,   0, 144, NF, MT.NetherQuartz         , NI, T, tConditionP));
 		RM.Bath         .add(new RecipeMapHandlerMaterial(MT.NetherQuartz           , FL.Mana_TE        .make(   1)     ,   0, 144, NF, MT.CertusQuartz         , NI, T, tConditionP));
+		RM.Bath         .add(new RecipeMapHandlerMaterial(MT.VoidQuartz             , FL.Mana_TE        .make(   1)     ,   0, 144, NF, MT.CertusQuartz         , NI, T, tConditionP));
 		}
 		RM.Bath         .add(new RecipeMapHandlerMaterial(MT.Pb                     , MT.Midasium       .liquid(U4, T)  ,   0, 144, NF, MT.Au                   , NI, T, tConditionP));
 		for (OreDictMaterial tMat : ANY.Fe.mToThis) {
@@ -498,6 +499,7 @@ public class Loader_Recipes_Handlers implements Runnable {
 		
 		tConditionP = new And(SIMPLIFIABLE, ingotHot.NOT);
 		
+		RM.Generifier   .add(new RecipeMapHandlerMaterial(MT.VoidQuartz             , NF                                ,   0,   1, NF, MT.NetherQuartz         , NI, T, tConditionP));
 		RM.Generifier   .add(new RecipeMapHandlerMaterial(MT.NetherQuartz           , NF                                ,   0,   1, NF, MT.MilkyQuartz          , NI, T, tConditionP));
 		RM.Generifier   .add(new RecipeMapHandlerMaterial(MT.CertusQuartz           , NF                                ,   0,   1, NF, MT.MilkyQuartz          , NI, T, tConditionP));
 		RM.Generifier   .add(new RecipeMapHandlerMaterial(MT.ChargedCertusQuartz    , NF                                ,   0,   1, NF, MT.CertusQuartz         , NI, T, tConditionP));
