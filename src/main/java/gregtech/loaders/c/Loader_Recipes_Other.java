@@ -31,7 +31,6 @@ import gregapi.data.FL;
 import gregapi.data.IL;
 import gregapi.data.MT;
 import gregapi.data.OD;
-import gregapi.data.OP;
 import gregapi.data.RM;
 import gregapi.data.TD;
 import gregapi.oredict.OreDictMaterial;
@@ -567,7 +566,7 @@ public class Loader_Recipes_Other implements Runnable {
 		}
 		}
 		
-		RM.Lightning    .addRecipe2(T, 16, 2048, ST.tag(0), gem.mat(MT.CertusQuartz, 1), gem.mat(MT.ChargedCertusQuartz, 1));
+		RM.Lightning    .addRecipe2(T, 16, 2048, ST.tag(1), gem.mat(MT.CertusQuartz, 1), gem.mat(MT.ChargedCertusQuartz, 1));
 		
 		for (byte i = 0; i < 16; i++) {
 		RM.Press        .addRecipeX(T, 16,   16, ST.array(ST.tag(1), OM.dust(MT.Dynamite, U*1), plantGtFiber.mat(MT.DATA.Dye_Materials[15-i], 1)), IL.Dynamite.get(1));
@@ -607,8 +606,6 @@ public class Loader_Recipes_Other implements Runnable {
 		
 		RM.Centrifuge   .addRecipe0(T, 64,   16, MT.FishOil.liquid( U2, T), MT.Hg.liquid(U144, F), ZL_IS);
 		
-		if (FL.Slime_Pink.exists())
-		RM.Coagulator   .addRecipe0(T,  0,  256, FL.Slime_Pink.make(100), NF, OP.nugget.mat(MT.MeatRaw, 1));
 		RM.Coagulator   .addRecipe0(T,  0,  256, FL.Latex.make(L/9), NF, nugget.mat(MT.Rubber, 1));
 		
 		for (FluidStack tFluid : FL.array(MT.He.gas(U, T), MT.Ne.gas(U, T), MT.Ar.gas(U, T), MT.Kr.gas(U, T), MT.Xe.gas(U, T), MT.Rn.gas(U, T))) if (tFluid != null) {
