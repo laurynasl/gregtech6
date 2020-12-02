@@ -5,14 +5,17 @@ This is the most recent Changelog. It also contains some of the changes inside t
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.14.05: (Not released yet, happens whenever a Bugfix needs to be released, Bear is still testing GT6, while I'm working on GT6 again for some dumb reason)
+6.14.05: (Not released yet, happens whenever a Bugfix needs to be released, Bear is still testing GT6, while I'm working on my Life and things)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.14.04: (Not released yet, happens whenever a Bugfix needs to be released, Bear is still testing GT6, while I'm working on GT6 again for some dumb reason)
+6.14.04: (Not released yet, happens whenever a Bugfix needs to be released, Bear is still testing GT6, while I'm working on my Life and things)
+[NOTE] The URL leading to the Supporter Lists links to something that runs on a different Subdomain, so that it is easier to distinguish the traffic when using something like Pi-Hole as your DNS and Adblocker, as I happen to do since last Release. This probably doesn't matter to you though.
 [IMPROVED] Ores that generate between two Stone Layers are now no longer stopped by other Mods equal Blocks (like comparing GT Marble with Chisel Marble, both should obviously count as Marble, which they did not before)
+[IMPROVED] Basic Machine Input Tanks now have Capacities based off the actual Recipe Inputs. That way a single huge Recipe wont mess up automation of the many smaller ones.
 [FIXED] Some minor Inconsistencies.
 [FIXED] Insanely large Capacity Pipes had Integer Overflow Issues.
+[FIXED] Miniature Portals for the ExtraSimple fork of ExtraUtilities.
 
 
 6.14.03:
@@ -1178,7 +1181,7 @@ And I need certain things to be fixed before I can work properly again, otherwis
 
 
 6.09.00:
-[NOTE] GregTech-6 is now OpenSource (LGPLv3) and on git.gregtech.overminddl1.com. Don't worry, I will still be working on GT6 myself, this is just an upgrade. ;D
+[NOTE] GregTech-6 is now OpenSource (LGPLv3) and on https://github.com/GregTech6/gregtech6 . Don't worry, I will still be working on GT6 myself, this is just an upgrade. ;D
 [NOTE] Some GT6 Addons like QwerTech or GT Weapons Works will need to be recompiled in order to work with this Version.
 [BROKEN] IC2 Sounds are currently not available due to going OpenSource, and IC2 obviously not being OpenSource. (I had to copy their Sound Files to make shit work, because they clearly didn't care to make things proper)
 [BROKEN AND FIXED LATER] WAILA is somehow no longer able to display the Name of my Blocks. I wonder if it is because the WAILA API is inside the new Dev Environment, because I never did WAILA Compatibility at all.
@@ -1188,7 +1191,7 @@ And I need certain things to be fixed before I can work properly again, otherwis
 [ADDED] My own selfmade Wrench and Screwdriver Sounds.
 
 
-//=== Version Number Jump because of going OpenSource at git.gregtech.overminddl1.com and some resulting refactoring - Don't worry, I will still be working on GT6 myself. ;D ===//
+//=== Version Number Jump because of going OpenSource at https://github.com/GregTech6/gregtech6 and some resulting refactoring - Don't worry, I will still be working on GT6 myself. ;D ===//
 
 
 6.08.04:
