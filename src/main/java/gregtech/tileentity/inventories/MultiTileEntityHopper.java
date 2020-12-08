@@ -61,7 +61,7 @@ import net.minecraft.world.World;
  */
 public class MultiTileEntityHopper extends TileEntityBase09FacingSingle implements ITileEntityAdjacentInventoryUpdatable {
 	public boolean mExactMode = F;
-	public byte mMode = 0, mCheck = 0;
+	public byte mMode = 0, mCheck = 3;
 	
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
@@ -168,7 +168,7 @@ public class MultiTileEntityHopper extends TileEntityBase09FacingSingle implemen
 			int tMovedItems = 0;
 			if (mCheck > 0) {
 				mCheck--;
-			} else if ((mCheck == 0 || mInventoryChanged || mBlockUpdated) && !hasRedstoneIncoming()) {
+			} else if ((mCheck == 0 || mInventoryChanged || mBlockUpdated || (mCheck < 0 && SERVER_TIME % 20 == 0)) && !hasRedstoneIncoming()) {
 				if (!SIDES_TOP[mFacing] && !invempty()) {
 					DelegatorTileEntity tDelegator = getAdjacentTileEntity(mFacing);
 					if (tDelegator.getBlock() instanceof BlockRailBase) {
