@@ -320,8 +320,6 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("blockFrezarite"          , "blockIngotFrozenIron");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("blockKreknorite"         , "blockIngotKreknorite");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("blockBedrockium"         , "blockIngotBedrockium");
-		OreDictManager.INSTANCE.addReRegistrationWithReversal("oreTritanium"            , "oreTritaniumElemental");
-		OreDictManager.INSTANCE.addReRegistrationWithReversal("oreDuranium"             , "oreDuraniumElemental");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("oreAquaMiddleGem"        , "oreAquaMiddle");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("oreGreenMiddleGem"       , "oreGreenMiddle");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("oreCrimsonMiddleGem"     , "oreCrimsonMiddle");
@@ -593,6 +591,7 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistration("ingotAlumite"                    , OD.craftingPistonIngot);
 		OreDictManager.INSTANCE.addReRegistration("ingotAluminium"                  , OD.craftingPistonIngot);
 		OreDictManager.INSTANCE.addReRegistration("ingotAluminiumAlloy"             , OD.craftingPistonIngot);
+		OreDictManager.INSTANCE.addReRegistration("ingotBronze"                     , OD.craftingPistonIngot);
 		OreDictManager.INSTANCE.addReRegistration("ingotNickel"                     , OD.craftingPistonIngot);
 		OreDictManager.INSTANCE.addReRegistration("ingotInvar"                      , OD.craftingPistonIngot);
 		OreDictManager.INSTANCE.addReRegistration("ingotTitanium"                   , OD.craftingPistonIngot);
