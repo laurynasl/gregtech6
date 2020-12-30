@@ -2585,9 +2585,9 @@ public class MT {
 			
 			S                               .addOreByProducts(Pyrite                    , OREMATS.Sphalerite        , OREMATS.Cinnabar      , MT.OREMATS.Chalcopyrite, MT.OREMATS.Arsenopyrite, OREMATS.Galena      , OREMATS.Stibnite      , OREMATS.Gypsum);
 			Se                              .addOreByProducts(Pyrite                    , OREMATS.Galena            , OREMATS.Sphalerite    , In                    , Ga                    , Cd                    );
-			OREMATS.Chalcopyrite            .addOreByProducts(Pyrite                    , Co                        , Cd                    , Au                    , OREMATS.Sperrylite    , OREMATS.Stannite      , In                    );
+			OREMATS.Chalcopyrite            .addOreByProducts(Pyrite                    , OREMATS.Cobaltite                        , Cd                    , Au                    , OREMATS.Sperrylite    , OREMATS.Stannite      , In                    );
 			OREMATS.Sperrylite              .addOreByProducts(Sb                        , Cu                        , Fe2O3                 , Rh                    , Pt                    );
-			OREMATS.Pentlandite             .addOreByProducts(Fe2O3                     , S                         , Co                    , OREMATS.Sperrylite    , OREMATS.Gypsum        );
+			OREMATS.Pentlandite             .addOreByProducts(Fe2O3                     , S                         , OREMATS.Cobaltite                    , OREMATS.Sperrylite    , OREMATS.Gypsum        );
 			OREMATS.Sphalerite              .addOreByProducts(Cd                        , Ga                        , Zn                    , OREMATS.Kesterite     , Se                    , In                    );
 			OREMATS.Tetrahedrite            .addOreByProducts(Cu                        , Sb                        , Zn                    , OREMATS.Kesterite     );
 			Pyrite                          .addOreByProducts(S                         , Phosphorus                , Fe2O3                 , OREMATS.Stannite      , Se                    );
@@ -2601,9 +2601,9 @@ public class MT {
 			Ti                              .addOreByProducts(Fe2O3                     , Nb                        , OREMATS.Tantalite     , Zircon                );
 			Fe2O3                           .addOreByProducts(OREMATS.Ilmenite          , OREMATS.Magnetite         , MnO2                  , ClayRed               );
 			OREMATS.Zeolite                 .addOreByProducts(Na                        , K                         , Ca                    , Mg                    );
-			OREMATS.YellowLimonite          .addOreByProducts(Ni                        , OREMATS.BrownLimonite     , Co                    );
-			Cu                              .addOreByProducts(Co                        , Au                        , Ni                    );
-			Ni                              .addOreByProducts(Co                        , Pt                        , Fe2O3                 );
+			OREMATS.YellowLimonite          .addOreByProducts(Ni                        , OREMATS.BrownLimonite     , OREMATS.Cobaltite                    );
+			Cu                              .addOreByProducts(OREMATS.Cobaltite                        , Au                        , Ni                    );
+			Ni                              .addOreByProducts(OREMATS.Cobaltite                        , Pt                        , Fe2O3                 );
 			OREMATS.Stannite                .addOreByProducts(Ge                        , Pyrite                    , OREMATS.Kesterite     );
 			OREMATS.Kesterite               .addOreByProducts(Ge                        , Pyrite                    , OREMATS.Stannite      );
 			OREMATS.GlauconiteSand          .addOreByProducts(Na                        , Al2O3                     , Fe2O3                 );
@@ -2731,7 +2731,7 @@ public class MT {
 			Lazurite                        .addOreByProducts(Sodalite                  , Lapis                     );
 			Sodalite                        .addOreByProducts(Lazurite                  , Lapis                     );
 			OREMATS.Spodumene               .addOreByProducts(Al2O3                     , LiCl                      );
-			Co_60                           .addOreByProducts(OREMATS.Cobaltite         , Co                        );
+			Co_60                           .addOreByProducts(OREMATS.Cobaltite         , OREMATS.Cobaltite                        );
 			Zr                              .addOreByProducts(TiO2                      , Hf                        );
 			Zircon                          .addOreByProducts(TiO2                      , Hf                        /*, OREMATS.Uraninite*/     );
 			Eudialyte                       .addOreByProducts(Zircon                    , RareEarth                 , Hf                    , Ta                    , Nb                    , Pb                    );
@@ -2766,9 +2766,9 @@ public class MT {
 			Niter                           .addOreByProducts(KNO3                      , NaNO3                     );
 			Hf                              .addOreByProducts(Zircon                    );
 			Mg                              .addOreByProducts(Olivine                   );
-			OREMATS.Cobaltite               .addOreByProducts(Co                        );
+			OREMATS.Cobaltite               .addOreByProducts(OREMATS.Arsenopyrite                        );
 			Co                              .addOreByProducts(OREMATS.Cobaltite         );
-			Ardite                          .addOreByProducts(Co                        );
+			Ardite                          .addOreByProducts(OREMATS.Cobaltite                        );
 			Obsidian                        .addOreByProducts(Olivine                   );
 			Redrock                         .addOreByProducts(ClayBrown                 );
 			Limestone                       .addOreByProducts(CaCO3                     );
@@ -2831,7 +2831,7 @@ public class MT {
 			Sanguinite                      .addOreByProducts(Hg                        );
 			Vyroxeres                       .addOreByProducts(Ir                        );
 			Eximite                         .addOreByProducts(Pd                        );
-			Prometheum                      .addOreByProducts(Co                        );
+			Prometheum                      .addOreByProducts(OREMATS.Cobaltite                        );
 			Ignatius                        .addOreByProducts(Se                        , In);
 			Vulcanite                       .addOreByProducts(OREMATS.Wolframite        );
 			DeepIron                        .addOreByProducts(Fe2O3                     );
