@@ -123,8 +123,7 @@ public class GT_API_Post extends Abstract_Mod {
 		new LoaderItemData().run();
 		new LoaderUnificationTargets().run();
 		
-		//if (MD.MET.mLoaded) {
-		if (true) {
+		if (MD.MET.mLoaded) {
 			MT.OREMATS.Bauxite      .addOreByProducts(MT.Alduorite      );
 			MT.OREMATS.Chalcopyrite .addOreByProducts(MT.Infuscolium    );
 			MT.OREMATS.Scheelite    .addOreByProducts(MT.Rubracium      );
@@ -144,8 +143,7 @@ public class GT_API_Post extends Abstract_Mod {
 			MT.Fe2O3                .addOreByProducts(MT.DeepIron       );
 			MT.OREMATS.Magnetite    .addOreByProducts(MT.ShadowIron     );
 		}
-		//if (MD.Mek.mLoaded) {
-		if (true) {
+		if (MD.Mek.mLoaded) {
 			MT.OREMATS.Galena.addOreByProducts(MT.FakeOsmium);
 			MT.OREMATS.Magnetite.addOreByProducts(MT.FakeOsmium);
 			MT.OREMATS.Ferrovanadium.addOreByProducts(MT.FakeOsmium);
@@ -157,8 +155,7 @@ public class GT_API_Post extends Abstract_Mod {
 			MT.OREMATS.Cobaltite.addOreByProducts(MT.Ardite);
 			MT.FakeOsmium.addOreByProducts(MT.Ardite);
 		}
-		//if (MD.RP.mLoaded) {
-		if (true) {
+		if (MD.RP.mLoaded) {
 			MT.Monazite.addOreByProducts(MT.Nikolite);
 			MT.OREMATS.Bastnasite.addOreByProducts(MT.Nikolite);
 		}
