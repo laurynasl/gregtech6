@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 GregTech-6 Team
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -373,8 +373,14 @@ public class LanguageHandler {
 		if (aMaterial == MT.Pyrite) {
 			if (aPrefix.contains(TD.Prefix.ORE))                            return aPrefix.mMaterialPre + MT.Au.mNameLocal + aPrefix.mMaterialPost;
 		} else
+		if (aMaterial == MT.MgCO3) {
+			if (aPrefix.containsAny(TD.Prefix.ORE, TD.Prefix.ORE_PROCESSING_BASED)) return aPrefix.mMaterialPre + "Magnesite" + aPrefix.mMaterialPost;
+		} else
 		if (aMaterial == MT.Asbestos) {
 			if (aPrefix.containsAny(TD.Prefix.ORE, TD.Prefix.ORE_PROCESSING_BASED)) return aPrefix.mMaterialPre + "Chrysotile" + aPrefix.mMaterialPost;
+		} else
+		if (aMaterial == MT.AlO3H3) {
+			if (aPrefix.containsAny(TD.Prefix.ORE, TD.Prefix.ORE_PROCESSING_BASED)) return aPrefix.mMaterialPre + "Gibbsite" + aPrefix.mMaterialPost;
 		} else
 		if (aMaterial == MT.Au) {
 			if (aPrefix == OP.plantGtBlossom)                               return "Aurelia Leaf";

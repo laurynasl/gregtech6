@@ -1,28 +1,44 @@
 This is the most recent Changelog. It also contains some of the changes inside the >>>UPCOMING<<< Versions (most of the time). This is for 1.7.10 btw.
 
 
-6.14.07: (Not released yet, happens whenever a Bugfix needs to be released, Bear is still testing GT6, while I'm working on my Game)
+6.14.09: (Not released yet, happens whenever a Bugfix needs to be released, Bear is still testing GT6, while I'm working on my Game)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.14.06: (Not released yet, happens whenever a Bugfix needs to be released, Bear is still testing GT6 even though he cant Stream at the moment, while I'm working on my Life and things)
+6.14.08: (Not released yet, happens whenever a Bugfix needs to be released, Bear is still testing GT6, while I'm working on my Game)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.14.05: (Not released yet, gonna be the last release of 2020, lets hope 2020 doesn't continue, Bear is still testing GT6 even though he cant Stream at the moment, while I'm working on some of my Backlog)
+6.14.07: (Not released yet, happens whenever a Bugfix needs to be released, Bear is still testing GT6 even though he cant Stream at the moment, while I'm working on my Life and things)
+[NOTE] I've been indirectly asked through bear, to make GT6 Tools compatible with "Progressive Automation", but it only accepts Vanilla alike Tools, meaning that will never really work. But my Wrench can harvest all of its Machines now at the very least.
+[IMPROVED] Advanced Crafting Table now consumes Items in a better order. Also fixed a brand new Bug I caused earlier.
+[FIXED] Magnesite and Magnesium Carbonate are now the same Material, like they should have been.
+[FIXED] The Collect Sound for autocollecting Tools is now matching the vanilla Sound in Pitch and Volume.
+[FIXED] Battery Boxes were not able to charge Tools unless a Battery was inside of them to make them able to accept Power. (their internal buffer would eventually reach zero when charging tools only)
+[CHANGED] Air Vents now do 256000L per 360 ticks at a time, instead of only 16000. They have an Offset for ticking too now, so you can use multiple Vents on one Pipe/Drum/etc now.
+[ADDED] Iron and Hydrochloric Acid now have a few more Chemical Reactions. This might make Iron Extraction from Hematite and Limonite easier.
+
+
+6.14.06:
+[NOTE] Hindsight is 2020, and I did fuckup my fix for the Water Generation Bug last year, so here we go with the first Release of 2021. XD
+[FIXED] Rivers, Oceans and Swamps generated partially at XZ 0,0 to XZ 15,15 because I forgot an Offset. This also caused the first layer of those Waters to be at the wrong height.
+
+
+6.14.05:
+[BROKEN] DO NOT USE!
 [FIXED] The Explosion Sound does no longer spam for Machines in the Rain and similar if you turned off those Explosions. Instead it waits a bit before it sends that Sound again.
 [FIXED] Buildcraft Wrench Stuff can now be Sneak Rightclicked with an Electric GT6 Wrench without switching Modes, as long as the target is a TileEntity.
 [FIXED] You know how you can open Pipes to Air Blocks? Well I added that functionality for Liquid and Gas Blocks too, so that is now fixed.
-[FIXED] Rivers, Oceans and Swamps generated partially at XZ 0,0 to XZ 15,15 because I forgot an Offset. This also caused the first layer of those Waters to be at the wrong height.
 [CHANGED] All Fluorite Byproducts to use the more colorful Versions of Fluorite.
 [CHANGED] Also changed the Byproducts of Naquadah, Trinium, Duranium, Tritanium and Dilithium containing Ores. Desh has related Byproducts to those three now.
-[ADDED] A few more Recipes for Wooden Stuff.
+[ADDED] A few more Recipes for Wooden Stuff like Rings, Item Casings and Stuff.
 [ADDED] One more Icon to the Warning Sign Cover. It's that Checkerboard-ish Circle that is usually on Crashtest Dummies.
 [ADDED] Builders Wand. Pretty much is doing what the ones of other Mods do too. It places Blocks! It can also destroy Thaumcraft Nodes like the Crowbar does. Why? Because it's a neat Easter Egg, and if a Node happens to be in the way while building, you can just go smack it with the Wand.
 [ADDED] Clay Molds for everything that is mentioned in the Molds Book, that way you can actually craft them without having to magically know all the Chiseling Shapes for Molds.
 
 
 6.14.04:
+[BROKEN] DO NOT USE!
 [NOTE] Released a tiny bit early due to testing GitHub Actions to Release GT6 instead of using a Solution on our own Server.
 [NOTE] The URL leading to the Supporter Lists links to something that runs on a different Subdomain, so that it is easier to distinguish the traffic when using something like Pi-Hole as your DNS and Adblocker, as I happen to do since last Release. This probably doesn't matter to you though. The old Link is ofcourse still usable.
 [IMPROVED] Ores that generate between two Stone Layers are now no longer stopped by other Mods equal Blocks (like comparing GT Marble with Chisel Marble, both should obviously count as Marble, which they did not before)
