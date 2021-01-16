@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 GregTech-6 Team
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -111,7 +111,7 @@ public enum IL implements IItemContainer {
 	BOTA_Livingrock, BOTA_Granite, BOTA_Diorite, BOTA_Andesite, BOTA_Basalt, BOTA_Granite_Smooth, BOTA_Diorite_Smooth, BOTA_Andesite_Smooth, BOTA_Basalt_Smooth, BOTA_Granite_Bricks, BOTA_Diorite_Bricks, BOTA_Andesite_Bricks, BOTA_Basalt_Bricks, BOTA_Granite_Chiseled, BOTA_Diorite_Chiseled, BOTA_Andesite_Chiseled, BOTA_Basalt_Chiseled, BOTA_Prismarine, BOTA_Prismarine_Bricks, BOTA_Prismarine_Dark,
 	ALF_LivingCobble, ALF_DreamWood, ALF_DreamSapling, ALF_DreamLeaves, ALF_Ice, ALF_Gateway_Core,
 	TC_Cinderpearl, TC_Shimmerleaf, TC_Vishroom,
-	TC_Greatwood_Log, TC_Greatwood_Planks, TC_Silverwood_Log, TC_Silverwood_Planks,
+	TC_Greatwood_Log, TC_Greatwood_Planks, TC_Greatwood_Sapling, TC_Silverwood_Log, TC_Silverwood_Planks, TC_Silverwood_Sapling,
 	TC_Nugget_Chicken, TC_Nugget_Beef, TC_Nugget_Pork, TC_Nugget_Fish, TC_Triple_Meat_Treat,
 	TC_Warded_Glass, TC_Block_Air,
 	TC_Thaumometer,
@@ -230,7 +230,7 @@ public enum IL implements IItemContainer {
 	Ceramic_Bowl, Ceramic_Bowl_Raw,
 	Measuring_Pot, Measuring_Pot_Raw,
 	Ceramic_Jug, Ceramic_Jug_Raw,
-	Porcelain_Cup,
+	Porcelain_Cup, Porcelain_Cup_Raw,
 	Compound_Bronze, Compound_Brass, Compound_BismuthBronze,
 	Pellet_Wood,
 	Bag_Sap_Resin,
@@ -361,7 +361,7 @@ public enum IL implements IItemContainer {
 	Bale_Wheat, Bale_Barley, Bale_Rye, Bale_Oats, Bale_AbyssalOats, Bale_Rice,
 	Grass, Grass_Dry, Grass_Moldy, Grass_Rotten, Bale, Bale_Dry, Bale_Moldy, Bale_Rotten,
 	Bark_Dry, Beam, Plank, Plank_Slab, Plank_Stairs, Treated_Planks, Treated_Planks_Slab,
-	Mud_Ball, Clay_Ball_Brown, Clay_Ball_Red,
+	Mud_Ball, Clay_Ball_Brown, Clay_Ball_Red, Clay_Ball_Yellow, Clay_Ball_Blue, Clay_Ball_White,
 	Remains_Plant, Remains_Fruit, Remains_Veggie, Remains_Nut,
 	Schematic, Schematic_Crafting, Schematic_1by1, Schematic_2by2, Schematic_3by3,
 	Electrode_FR_Copper, Electrode_FR_Tin, Electrode_FR_Bronze, Electrode_FR_Iron, Electrode_FR_Gold, Electrode_FR_Diamond, Electrode_FR_Obsidian, Electrode_FR_Blaze, Electrode_FR_Rubber, Electrode_FR_Emerald, Electrode_FR_Apatite, Electrode_FR_Lapis, Electrode_FR_Ender,

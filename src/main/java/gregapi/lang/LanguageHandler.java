@@ -472,6 +472,13 @@ public class LanguageHandler {
 		if (aMaterial == MT.Sugar) {
 			if (aPrefix == OP.gemChipped)                                   return "Sugar Cubes";
 		} else
+		if (aMaterial == MT.Ceramic) {
+			if (aPrefix == OP.scrapGt)                                      return "Brittle Ceramic Scraps";
+			if (aPrefix.mNameInternal.startsWith("dust"))                   return aPrefix.mMaterialPre + "Dry Clay Powder";
+		} else
+		if (ANY.Clay.mToThis.contains(aMaterial)) {
+			if (aPrefix.mNameInternal.startsWith("dust"))                   return aPrefix.mMaterialPre + aMaterial.mNameLocal + " Powder";
+		} else
 		if (aMaterial == MT.Dilithium) {
 			if (aPrefix.mNameInternal.startsWith("gem"))                    return aPrefix.mMaterialPre + aMaterial.mNameLocal + " Crystal";
 		} else
@@ -482,7 +489,7 @@ public class LanguageHandler {
 			if (aPrefix == OP.plantGtFiber)                                 return aMaterial.mNameLocal + " String";
 			if (aPrefix.mNameInternal.startsWith("dust"))                   return aPrefix.mMaterialPre + aMaterial.mNameLocal + " Dye";
 		} else
-		if (aMaterial == MT.Wax || aMaterial == MT.WaxMagic || aMaterial == MT.WaxAmnesic || aMaterial == MT.WaxSoulful || aMaterial == MT.WaxBee || aMaterial == MT.WaxRefractory || aMaterial == MT.WaxPlant || aMaterial == MT.WaxParaffin || aMaterial == MT.Ash || aMaterial == MT.DarkAsh || aMaterial == MT.VolcanicAsh || aMaterial == MT.ArcaneAsh || aMaterial == MT.ArcaneCompound || aMaterial == MT.OREMATS.Vermiculite || aMaterial == MT.OREMATS.Bentonite || aMaterial == MT.OREMATS.Kaolinite || aMaterial == MT.Talc || aMaterial == MT.OREMATS.BasalticMineralSand || aMaterial == MT.OREMATS.GraniticMineralSand || aMaterial == MT.OREMATS.GarnetSand || aMaterial == MT.SluiceSand || aMaterial == MT.OREMATS.QuartzSand || aMaterial == MT.OREMATS.Pitchblende || aMaterial == MT.OREMATS.FullersEarth || aMaterial == MT.RareEarth || aMaterial == MT.Oilsands) {
+		if (aMaterial == MT.Wax || aMaterial == MT.WaxMagic || aMaterial == MT.WaxAmnesic || aMaterial == MT.WaxSoulful || aMaterial == MT.WaxBee || aMaterial == MT.WaxRefractory || aMaterial == MT.WaxPlant || aMaterial == MT.WaxParaffin || aMaterial == MT.Ash || aMaterial == MT.DarkAsh || aMaterial == MT.VolcanicAsh || aMaterial == MT.ArcaneAsh || aMaterial == MT.ArcaneCompound || aMaterial == MT.OREMATS.Vermiculite || aMaterial == MT.Talc || aMaterial == MT.OREMATS.Magnetite || aMaterial == MT.OREMATS.BasalticMineralSand || aMaterial == MT.OREMATS.GraniticMineralSand || aMaterial == MT.OREMATS.GarnetSand || aMaterial == MT.SluiceSand || aMaterial == MT.OREMATS.QuartzSand || aMaterial == MT.OREMATS.Pitchblende || aMaterial == MT.Bentonite || aMaterial == MT.Palygorskite || aMaterial == MT.RareEarth || aMaterial == MT.Oilsands) {
 			if (aPrefix.mNameInternal.startsWith("ore"))                    return aPrefix.mMaterialPre + aMaterial.mNameLocal;
 			if (aPrefix.mNameInternal.startsWith("dust"))                   return aPrefix.mMaterialPre + aMaterial.mNameLocal;
 			if (aPrefix == OP.crushed)                                      return "Ground " + aMaterial.mNameLocal;
