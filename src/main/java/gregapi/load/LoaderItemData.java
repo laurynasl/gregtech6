@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 GregTech-6 Team
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -811,7 +811,56 @@ public class LoaderItemData implements Runnable {
 		
 		for (byte i = 0; i < 16; i++) OM.reg(OP.dyeMixable.mNameInternal + DYE_OREDICTS_POST[i], ST.make(Items.dye, 1, i));
 		
-		OM.reg(OP.stone, MT.GraniteBlack                        , ST.make(MD.PFAA, "strongStone", 1,  3)); // actually Gray
+		if (MD.PFAA.mLoaded) {
+			OM.reg(OD.itemClay              , ST.make(MD.PFAA, "earthyClump", 1, 45));
+			OM.reg(OD.itemClay              , ST.make(MD.PFAA, "earthyClump", 1, 47));
+			OM.reg(OD.itemClay              , ST.make(MD.PFAA, "earthyClump", 1, 48));
+			OM.reg(OD.itemClay              , ST.make(MD.PFAA, "earthyClump", 1, 49));
+			
+			OM.data(MD.PFAA, "earthyClump", 1,  37, MT.OREMATS.YellowLimonite, U);
+			OM.data(MD.PFAA, "earthyClump", 1,  45, MT.ClayBrown             , U);
+			OM.data(MD.PFAA, "earthyClump", 1,  46, MT.OREMATS.Bauxite       , U);
+			OM.data(MD.PFAA, "earthyClump", 1,  47, MT.Bentonite             , U);
+			OM.data(MD.PFAA, "earthyClump", 1,  48, MT.Palygorskite          , U);
+			OM.data(MD.PFAA, "earthyClump", 1,  49, MT.Kaolinite             , U);
+			OM.data(MD.PFAA, "earthyClump", 1,  50, MT.OREMATS.BrownLimonite , U);
+			OM.data(MD.PFAA, "earthyClump", 1,  51, MT.OREMATS.YellowLimonite, U);
+			OM.data(MD.PFAA, "earthyClump", 1,  52, MT.OREMATS.Vermiculite   , U);
+			
+			for (String tName : new String [] {"weakStone", "weakRubble"}) {
+				OM.reg(OP.stone, MT.Stone                       , ST.make(MD.PFAA, tName, 1,  0)); // Breccia
+				OM.reg(OP.stone, MT.Stone                       , ST.make(MD.PFAA, tName, 1,  1)); // Claystone
+				OM.reg(OP.stone, MT.Stone                       , ST.make(MD.PFAA, tName, 1,  2)); // Carbonatite
+				OM.reg(OP.stone, MT.Stone                       , ST.make(MD.PFAA, tName, 1,  3)); // Conglomerate
+				OM.reg(OP.stone, MT.Shale                       , ST.make(MD.PFAA, tName, 1,  4));
+			}
+			for (String tName : new String [] {"mediumStone", "mediumCobble", "mediumStoneBrick"}) {
+				OM.reg(OP.stone, MT.Limestone                   , ST.make(MD.PFAA, tName, 1,  0));
+				OM.reg(OP.stone, MT.Stone                       , ST.make(MD.PFAA, tName, 1,  1)); // Light Red/Pink Schist
+				OM.reg(OP.stone, MT.Stone                       , ST.make(MD.PFAA, tName, 1,  2)); // Serpentite
+				OM.reg(OP.stone, MT.Slate                       , ST.make(MD.PFAA, tName, 1,  3));
+				OM.reg(OP.stone, MT.Stone                       , ST.make(MD.PFAA, tName, 1,  4)); // Skarn
+			}
+			for (String tName : new String [] {"strongStone", "strongCobble", "strongStoneBrick"}) {
+				OM.reg(OP.stone, MT.Andesite                    , ST.make(MD.PFAA, tName, 1,  0));
+				OM.reg(OP.stone, MT.Basalt                      , ST.make(MD.PFAA, tName, 1,  1));
+				OM.reg(OP.stone, MT.Gneiss                      , ST.make(MD.PFAA, tName, 1,  2));
+				OM.reg(OP.stone, MT.GraniteBlack                , ST.make(MD.PFAA, tName, 1,  3)); // actually Gray
+				OM.reg(OP.stone, MT.Greenschist                 , ST.make(MD.PFAA, tName, 1,  4));
+				OM.reg(OP.stone, MT.Marble                      , ST.make(MD.PFAA, tName, 1,  5));
+				OM.reg(OP.stone, MT.Stone                       , ST.make(MD.PFAA, tName, 1,  6)); // Pegmatite
+				OM.reg(OP.stone, MT.Rhyolite                    , ST.make(MD.PFAA, tName, 1,  7));
+				OM.reg(OP.stone, MT.Sand                        , ST.make(MD.PFAA, tName, 1,  8)); // Normal Sandstone
+				OM.reg(OP.stone, MT.Sand                        , ST.make(MD.PFAA, tName, 1,  9)); // Red Sandstone
+			}
+			for (String tName : new String [] {"veryStrongStone", "veryStrongCobble", "veryStrongStoneBrick"}) {
+				OM.reg(OP.stone, MT.Diorite                     , ST.make(MD.PFAA, tName, 1,  0));
+				OM.reg(OP.stone, MT.Gabbro                      , ST.make(MD.PFAA, tName, 1,  1));
+				OM.reg(OP.stone, MT.Stone                       , ST.make(MD.PFAA, tName, 1,  2)); // Hornfels
+				OM.reg(OP.stone, MT.Stone                       , ST.make(MD.PFAA, tName, 1,  3)); // Peridotite
+				OM.reg(OP.stone, MT.Quartzite                   , ST.make(MD.PFAA, tName, 1,  4));
+			}
+		}
 		
 		if (MD.UB.mLoaded) {
 			for (String tName : new String [] {"sedimentaryStone"}) {
@@ -859,7 +908,7 @@ public class LoaderItemData implements Runnable {
 				OM.reg(OP.stone, MT.Quartzite                   , ST.make(MD.UB, tName, 1,  3));
 				OM.reg(OP.stone, MT.Blueschist                  , ST.make(MD.UB, tName, 1,  4));
 				OM.reg(OP.stone, MT.Greenschist                 , ST.make(MD.UB, tName, 1,  5));
-				OM.reg(OP.stone, MT.Soapstone                   , ST.make(MD.UB, tName, 1,  6));
+				OM.reg(OP.stone, MT.Talc                        , ST.make(MD.UB, tName, 1,  6));
 				OM.reg(OP.stone, MT.Migmatite                   , ST.make(MD.UB, tName, 1,  7));
 				OM.reg(OP.stone, MT.Gneiss                      , ST.make(MD.UB, tName, 1,  8));
 				OM.reg(OP.stone, MT.Eclogite                    , ST.make(MD.UB, tName, 1,  9));
@@ -867,7 +916,7 @@ public class LoaderItemData implements Runnable {
 				OM.reg(OP.stone, MT.Quartzite                   , ST.make(MD.UB, tName, 1, 11));
 				OM.reg(OP.stone, MT.Blueschist                  , ST.make(MD.UB, tName, 1, 12));
 				OM.reg(OP.stone, MT.Greenschist                 , ST.make(MD.UB, tName, 1, 13));
-				OM.reg(OP.stone, MT.Soapstone                   , ST.make(MD.UB, tName, 1, 14));
+				OM.reg(OP.stone, MT.Talc                        , ST.make(MD.UB, tName, 1, 14));
 				OM.reg(OP.stone, MT.Migmatite                   , ST.make(MD.UB, tName, 1, 15));
 			}
 		}

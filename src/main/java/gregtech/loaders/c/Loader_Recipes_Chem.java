@@ -312,8 +312,8 @@ public class Loader_Recipes_Chem implements Runnable {
 		RM.Distillery       .addRecipe1(T, 16,  24, ST.tag(1), FL.BiomassIC2    .make( 40), MT.Glycerol.liquid(U50, F), FL.DistW.make(20));
 		
 		
-		RM.DistillationTower.addRecipe0(F, 64,  16                               , FL.array(FL.Biomass       .make( 80)), FL.array(FL.Reikanol.make(20, FL.BioEthanol), MT.Glycerol.liquid(U50, F), FL.Methane.make(4), FL.DistW.make(50)), ZL_IS);
-		RM.DistillationTower.addRecipe0(F, 64,  16                               , FL.array(FL.BiomassIC2    .make( 80)), FL.array(FL.Reikanol.make(20, FL.BioEthanol), MT.Glycerol.liquid(U50, F), FL.Methane.make(4), FL.DistW.make(50)), ZL_IS);
+		RM.DistillationTower.addRecipe0(F, 64,  16, new long[] { 500,  500,  500}, FL.array(FL.Biomass       .make( 80)), FL.array(FL.Reikanol.make(20, FL.BioEthanol), MT.Glycerol.liquid(U50, F), FL.Methane.make(4), FL.DistW.make(50)), ZL_IS);
+		RM.DistillationTower.addRecipe0(F, 64,  16, new long[] { 500,  500,  500}, FL.array(FL.BiomassIC2    .make( 80)), FL.array(FL.Reikanol.make(20, FL.BioEthanol), MT.Glycerol.liquid(U50, F), FL.Methane.make(4), FL.DistW.make(50)), ZL_IS);
 		RM.DistillationTower.addRecipe0(F, 64, 512, new long[] {9000, 9000, 9000}, FL.array(FL.Oil_ExtraHeavy.make( 50)), FL.array(FL.Fuel.make(70), FL.Diesel.make(45), FL.Kerosine.make(40), FL.Petrol.make(35), FL.Propane.make(10), FL.Butane.make(10), FL.lube(100)), dustTiny.mat(MT.WaxParaffin, 1), dustTiny.mat(MT.Asphalt, 1), dustTiny.mat(MT.PetCoke, 1));
 		RM.DistillationTower.addRecipe0(F, 64, 384, new long[] {7000, 7000, 7000}, FL.array(FL.Oil_Heavy     .make( 50)), FL.array(FL.Fuel.make(60), FL.Diesel.make(35), FL.Kerosine.make(35), FL.Petrol.make(30), FL.Propane.make(15), FL.Butane.make(15), FL.lube( 80)), dustTiny.mat(MT.WaxParaffin, 1), dustTiny.mat(MT.Asphalt, 1), dustTiny.mat(MT.PetCoke, 1)); if (FL.Oil_Heavy2.exists())
 		RM.DistillationTower.addRecipe0(F, 64, 384, new long[] {7000, 7000, 7000}, FL.array(FL.Oil_Heavy2    .make( 50)), FL.array(FL.Fuel.make(60), FL.Diesel.make(35), FL.Kerosine.make(35), FL.Petrol.make(30), FL.Propane.make(15), FL.Butane.make(15), FL.lube( 80)), dustTiny.mat(MT.WaxParaffin, 1), dustTiny.mat(MT.Asphalt, 1), dustTiny.mat(MT.PetCoke, 1));
@@ -357,6 +357,7 @@ public class Loader_Recipes_Chem implements Runnable {
 		
 		for (String tOxygen : FluidsGT.OXYGEN) if (FL.exists(tOxygen)) {
 		RM.Roasting     .addRecipe1(T, 16,  512, OM.dust(MT.Pyrite                  ), FL.make(tOxygen,  1334), MT.SO2.gas( 6*U3 , F), OM.dust(MT.Fe,   U3 ));
+		RM.Roasting     .addRecipe1(T, 16,  512, OM.dust(MT.OREMATS.Realgar         ), FL.make(tOxygen,  1000), MT.SO2.gas( 3*U2 , F), OM.dust(MT.As,   U2 ));
 		RM.Roasting     .addRecipe1(T, 16,  512, OM.dust(MT.OREMATS.Sphalerite      ), FL.make(tOxygen,  1000), MT.SO2.gas( 3*U2 , F), OM.dust(MT.Zn,   U2 ));
 		RM.Roasting     .addRecipe1(T, 16,  512, OM.dust(MT.OREMATS.Molybdenite     ), FL.make(tOxygen,  1334), MT.SO2.gas( 6*U3 , F), OM.dust(MT.Mo,   U3 ));
 		RM.Roasting     .addRecipe1(T, 16,  512, OM.dust(MT.OREMATS.Stibnite        ), FL.make(tOxygen,  1200), MT.SO2.gas( 9*U5 , F), OM.dust(MT.Sb, 2*U5 ));
@@ -389,6 +390,7 @@ public class Loader_Recipes_Chem implements Runnable {
 		
 		for (String tAir : FluidsGT.AIR) if (FL.exists(tAir)) {
 		RM.Roasting     .addRecipe1(T, 16,  512, tChances, OM.dust(MT.Pyrite              ), FL.make(tAir, 6000), MT.SO2.gas( 6*U3 , F), OM.dust(MT.Fe,   U3 ));
+		RM.Roasting     .addRecipe1(T, 16,  512, tChances, OM.dust(MT.OREMATS.Realgar     ), FL.make(tAir, 4000), MT.SO2.gas( 3*U2 , F), OM.dust(MT.As,   U2 ));
 		RM.Roasting     .addRecipe1(T, 16,  512, tChances, OM.dust(MT.OREMATS.Sphalerite  ), FL.make(tAir, 4000), MT.SO2.gas( 3*U2 , F), OM.dust(MT.Zn,   U2 ));
 		RM.Roasting     .addRecipe1(T, 16,  512, tChances, OM.dust(MT.OREMATS.Molybdenite ), FL.make(tAir, 6000), MT.SO2.gas( 6*U3 , F), OM.dust(MT.Mo,   U3 ));
 		RM.Roasting     .addRecipe1(T, 16,  512, tChances, OM.dust(MT.OREMATS.Stibnite    ), FL.make(tAir, 5000), MT.SO2.gas( 9*U5 , F), OM.dust(MT.Sb, 2*U5 ));
