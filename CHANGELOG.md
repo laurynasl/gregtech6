@@ -1,15 +1,31 @@
 This is the most recent Changelog. It also contains some of the changes inside the >>>UPCOMING<<< Versions (most of the time). This is for 1.7.10 btw.
 
 
-6.14.09: (Not released yet, happens whenever a Bugfix needs to be released, Bear is still testing GT6, while I'm working on my Game)
+6.14.11: (Not released yet, released whenever it needs to be)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.14.08: (Not released yet, happens whenever a Bugfix needs to be released, Bear is still testing GT6, while I'm working on my Game)
+6.14.10: (Not released yet, released whenever it needs to be)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.14.07: (Not released yet, happens whenever a Bugfix needs to be released, Bear is still testing GT6 even though he cant Stream at the moment, while I'm working on my Life and things)
+6.14.09: (Not released yet, released whenever it needs to be)
+[COMPAT] Aroma1997's Mining Dimension is now Compatible with my Worldgen.
+[FIXED] Chainsaws used WAY too much durability for Treecapitation!
+[FIXED] Worldgeneration in different Dimensions had the same RNG as on the Overworld. Now the Seed is being XOR-ed with the Dimension ID to prevent that. This has the convenient Side Effect of the Overworld staying the same as before, because it's ID is Zero.
+[CHANGED] Blue Steel is Red Steel now and vice versa. This should fix my ages old fuckup of the Recipes. Everything should still be the same as before when it comes to Stats, just the Color of the Material changed. If you used Matter Fabricators to make Red/Blue Steel for some reason, you may need to check the USB Stick with the Recipe.
+[ADDED] Barbecue Sauce (BBQ Sauce), because why not.
+[ADDED] Axes, Saws and Chainsaws can now place Saplings too. They will still place Workbenches if Saplings cant be placed.
+[ADDED] Tooltip for Covers that can be controlled with the Cover Controller Cover. In case of Covers where the Cover Controller Cover is required (such as Shutter Cover), it will be Cyan instead of Dark Gray to make it easier to see.
+
+
+6.14.08:
+[FIXED] Some Issue where the World somehow doesn't load.
+[ADDED] HSS-based Recipes for Railcraft Rails.
+
+
+6.14.07:
+[BROKEN] You might not be able to actually launch the Game on certain Computers. Nothing corrupting. ^^
 [NOTE] I've been indirectly asked through bear, to make GT6 Tools compatible with "Progressive Automation", but it only accepts Vanilla alike Tools, meaning that will never really work. But my Wrench can harvest all of its Machines now at the very least.
 [COMPAT] Per Fabrica Ad Astra (PFAA)
 If CustomOreGen is not installed, PFAA still works, this means PFAA Blocks exist but they wont generate. Because of this likely intended thing, I will now generate the 25 PFAA Rock Types with my own Stone Layer System alongside the other Stuff, if PFAA is installed without CustomOreGen.
@@ -22,7 +38,8 @@ I made sure all Ores actually work. Realgar (Red Gem Ore made of Arsenic + Sulfu
 [FIXED] Aqua Regia Processing Ores emitted too much Water, effectively turning Oxygen into Hydrogen.
 [CHANGED] Air Vents now do 256000L per 360 ticks at a time, instead of only 16000. They have an Offset for ticking too now, so you can use multiple Vents on one Pipe/Drum/etc now.
 [CHANGED] There is now more Galena Veins in the World, and visible on the Surface in Mountains.
-[CHANGED] A bunch of Ores, that I deemed way too useless years ago, has been added back. None of them are required for anything, old Worlds are safe as always. ;)
+[CHANGED] A bunch of Ores, that I deemed way too useless years ago, has been added back. None of them are required for anything, old Worlds are safe as always.
+[ADDED] NEI Handler for putting Toolheads on Handles. I used the Machine Recipe Handler and Fake Recipes for that one.
 [ADDED] Arsenic can now be used to make Poison and Harming Potions.
 [ADDED] Crushed Purified Biotite can now be heated in the Dryer to make Argon Gas from it. It is mostly a Byproduct of other Ores like Asbestos though,
 [ADDED] Gypsum, Trona and Mirabilite now have Recipes to create them by mixing some Chemicals with Water (They can be dried back too). Perlite now has a drying Recipe that turns it into Obsidian aswell.

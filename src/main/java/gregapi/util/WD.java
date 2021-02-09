@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 GregTech-6 Team
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -195,6 +195,9 @@ public class WD {
 	
 	public static boolean dimENVM(World aWorld) {return aWorld != null && dimENVM(aWorld.provider);}
 	public static boolean dimENVM(WorldProvider aProvider) {return MD.ENVM.mLoaded && "WorldProviderCaves".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	
+	public static boolean dimAROMA(World aWorld) {return aWorld != null && dimAROMA(aWorld.provider);}
+	public static boolean dimAROMA(WorldProvider aProvider) {return MD.AROMA_MINING.mLoaded && "WorldProviderMiner".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
 	
 	public static boolean dimAETHER(World aWorld) {return aWorld != null && dimAETHER(aWorld.provider);}
 	public static boolean dimAETHER(WorldProvider aProvider) {return MD.AETHER.mLoaded && "WorldProviderAether".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
@@ -423,7 +426,7 @@ public class WD {
 		return T;
 	}
 	
-	public static Random random(World aWorld, long aChunkX, long aChunkZ) {return random(aChunkX, aChunkZ, aWorld.getSeed());}
+	public static Random random(World aWorld, long aChunkX, long aChunkZ) {return random(aChunkX, aChunkZ, aWorld.getSeed() ^ aWorld.provider.dimensionId);}
 	public static Random random(long aSeed, long aChunkX, long aChunkZ) {
 		Random rRandom = new Random(aSeed);
 		for (int i = 0; i < 50; i++) rRandom.nextInt(0x00ffffff);
@@ -432,7 +435,7 @@ public class WD {
 		return rRandom;
 	}
 	
-	public static int random(World aWorld, int aX, int aY, int aZ, int aBound) {return random(aWorld.getSeed(), aX, aY, aZ, aBound);}
+	public static int random(World aWorld, int aX, int aY, int aZ, int aBound) {return random(aWorld.getSeed() ^ aWorld.provider.dimensionId, aX, aY, aZ, aBound);}
 	public static int random(long aSeed, int aX, int aY, int aZ, int aBound) {
 		Random rRandom = new Random(aSeed);
 		for (int i = 0; i < 10; i++) rRandom.nextInt(0x00ffffff);
