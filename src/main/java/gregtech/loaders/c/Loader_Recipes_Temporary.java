@@ -229,13 +229,13 @@ public class Loader_Recipes_Temporary implements Runnable {
 			CR.shaped(IL.Torch.get(4), DEF_NAC, "X", "S", 'X', IL.NeLi_ShroomLight, 'S', OD.stickAnyWood);
 			
 			CR.shapeless(IL.NeLi_Torch_Soul  .get(4), DEF_NCC, new Object[] {OD.soulsand              , OD.blockTorch, OD.blockTorch, OD.blockTorch, OD.blockTorch});
-			CR.shapeless(IL.NeLi_Torch_Soul  .get(4), DEF_NCC, new Object[] {IL.NeLi_Wither_Rose      , OD.blockTorch, OD.blockTorch, OD.blockTorch, OD.blockTorch});
+			CR.shapeless(IL.NeLi_Torch_Soul  .get(4), DEF_NCC, new Object[] {OD.flowerWither          , OD.blockTorch, OD.blockTorch, OD.blockTorch, OD.blockTorch});
 			CR.shapeless(IL.NeLi_Torch_Soul  .get(3), DEF_NCC, new Object[] {OD.soulsand              , OD.blockTorch, OD.blockTorch, OD.blockTorch});
-			CR.shapeless(IL.NeLi_Torch_Soul  .get(3), DEF_NCC, new Object[] {IL.NeLi_Wither_Rose      , OD.blockTorch, OD.blockTorch, OD.blockTorch});
+			CR.shapeless(IL.NeLi_Torch_Soul  .get(3), DEF_NCC, new Object[] {OD.flowerWither          , OD.blockTorch, OD.blockTorch, OD.blockTorch});
 			CR.shapeless(IL.NeLi_Torch_Soul  .get(2), DEF_NCC, new Object[] {OD.soulsand              , OD.blockTorch, OD.blockTorch});
-			CR.shapeless(IL.NeLi_Torch_Soul  .get(2), DEF_NCC, new Object[] {IL.NeLi_Wither_Rose      , OD.blockTorch, OD.blockTorch});
+			CR.shapeless(IL.NeLi_Torch_Soul  .get(2), DEF_NCC, new Object[] {OD.flowerWither          , OD.blockTorch, OD.blockTorch});
 			CR.shapeless(IL.NeLi_Torch_Soul  .get(1), DEF_NCC, new Object[] {OD.soulsand              , OD.blockTorch});
-			CR.shapeless(IL.NeLi_Torch_Soul  .get(1), DEF_NCC, new Object[] {IL.NeLi_Wither_Rose      , OD.blockTorch});
+			CR.shapeless(IL.NeLi_Torch_Soul  .get(1), DEF_NCC, new Object[] {OD.flowerWither          , OD.blockTorch});
 			CR.shapeless(IL.NeLi_Torch_Fox   .get(4), DEF_NCC, new Object[] {IL.NeLi_Foxfire_Powder   , OD.blockTorch, OD.blockTorch, OD.blockTorch, OD.blockTorch});
 			CR.shapeless(IL.NeLi_Torch_Fox   .get(4), DEF_NCC, new Object[] {IL.NeLi_Foxfire_Lily     , OD.blockTorch, OD.blockTorch, OD.blockTorch, OD.blockTorch});
 			CR.shapeless(IL.NeLi_Torch_Fox   .get(3), DEF_NCC, new Object[] {IL.NeLi_Foxfire_Powder   , OD.blockTorch, OD.blockTorch, OD.blockTorch});
@@ -409,15 +409,17 @@ public class Loader_Recipes_Temporary implements Runnable {
 		if (MD.NePl.mLoaded) {
 			CR.delate(MD.NePl, "SoulTorch", "NetheriteIngot", "ItemNetheriteSword", "NetheritePickaxe", "ItemNetheriteShovel", "ItemNetheriteAxe", "ItemNetheriteHoe", "NetheriteHelm", "NetheriteChest", "NetheriteLegg", "NetheriteBoots");
 			
-			RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_sword     , 1, 0), MT.Netherite.liquid(2*U4, T), NF, ST.make(MD.NePl, "ItemNetheriteSword" , 1, 0));
-			RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_pickaxe   , 1, 0), MT.Netherite.liquid(3*U4, T), NF, ST.make(MD.NePl, "NetheritePickaxe"   , 1, 0));
-			RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_shovel    , 1, 0), MT.Netherite.liquid(1*U4, T), NF, ST.make(MD.NePl, "ItemNetheriteShovel", 1, 0));
-			RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_axe       , 1, 0), MT.Netherite.liquid(3*U4, T), NF, ST.make(MD.NePl, "ItemNetheriteAxe"   , 1, 0));
-			RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_hoe       , 1, 0), MT.Netherite.liquid(2*U4, T), NF, ST.make(MD.NePl, "ItemNetheriteHoe"   , 1, 0));
-			RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_helmet    , 1, 0), MT.Netherite.liquid(5*U4, T), NF, ST.make(MD.NePl, "NetheriteHelm"      , 1, 0));
-			RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_chestplate, 1, 0), MT.Netherite.liquid(8*U4, T), NF, ST.make(MD.NePl, "NetheriteChest"     , 1, 0));
-			RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_leggings  , 1, 0), MT.Netherite.liquid(7*U4, T), NF, ST.make(MD.NePl, "NetheriteLegg"      , 1, 0));
-			RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_boots     , 1, 0), MT.Netherite.liquid(4*U4, T), NF, ST.make(MD.NePl, "NetheriteBoots"     , 1, 0));
+			if (ST.invalid(ST.make(MD.EtFu, "netherite_sword", 1, 0))) {
+				RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_sword     , 1, 0), MT.Netherite.liquid(2*U4, T), NF, ST.make(MD.NePl, "ItemNetheriteSword" , 1, 0));
+				RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_pickaxe   , 1, 0), MT.Netherite.liquid(3*U4, T), NF, ST.make(MD.NePl, "NetheritePickaxe"   , 1, 0));
+				RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_shovel    , 1, 0), MT.Netherite.liquid(1*U4, T), NF, ST.make(MD.NePl, "ItemNetheriteShovel", 1, 0));
+				RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_axe       , 1, 0), MT.Netherite.liquid(3*U4, T), NF, ST.make(MD.NePl, "ItemNetheriteAxe"   , 1, 0));
+				RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_hoe       , 1, 0), MT.Netherite.liquid(2*U4, T), NF, ST.make(MD.NePl, "ItemNetheriteHoe"   , 1, 0));
+				RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_helmet    , 1, 0), MT.Netherite.liquid(5*U4, T), NF, ST.make(MD.NePl, "NetheriteHelm"      , 1, 0));
+				RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_chestplate, 1, 0), MT.Netherite.liquid(8*U4, T), NF, ST.make(MD.NePl, "NetheriteChest"     , 1, 0));
+				RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_leggings  , 1, 0), MT.Netherite.liquid(7*U4, T), NF, ST.make(MD.NePl, "NetheriteLegg"      , 1, 0));
+				RM.Bath.addRecipe1(T, 0, 128, ST.make(Items.diamond_boots     , 1, 0), MT.Netherite.liquid(4*U4, T), NF, ST.make(MD.NePl, "NetheriteBoots"     , 1, 0));
+			}
 			
 			RM.biomass(ST.make(MD.NePl, "WarpedFungus" , 8, W));
 			RM.biomass(ST.make(MD.NePl, "CrimsonFungus", 8, W));
@@ -428,10 +430,14 @@ public class Loader_Recipes_Temporary implements Runnable {
 			RM.smash(IL.NePl_Quartz_Bricks.get(1), OP.gem.mat(MT.NetherQuartz, 4), 4);
 			
 			if (!MD.NeLi.mLoaded) {
-				CR.shapeless(IL.NePl_Torch.get(4), DEF_NCC, new Object[] {OD.soulsand, OD.blockTorch, OD.blockTorch, OD.blockTorch, OD.blockTorch});
-				CR.shapeless(IL.NePl_Torch.get(3), DEF_NCC, new Object[] {OD.soulsand, OD.blockTorch, OD.blockTorch, OD.blockTorch});
-				CR.shapeless(IL.NePl_Torch.get(2), DEF_NCC, new Object[] {OD.soulsand, OD.blockTorch, OD.blockTorch});
-				CR.shapeless(IL.NePl_Torch.get(1), DEF_NCC, new Object[] {OD.soulsand, OD.blockTorch});
+				CR.shapeless(IL.NePl_Torch.get(4), DEF_NCC, new Object[] {OD.soulsand    , OD.blockTorch, OD.blockTorch, OD.blockTorch, OD.blockTorch});
+				CR.shapeless(IL.NePl_Torch.get(4), DEF_NCC, new Object[] {OD.flowerWither, OD.blockTorch, OD.blockTorch, OD.blockTorch, OD.blockTorch});
+				CR.shapeless(IL.NePl_Torch.get(3), DEF_NCC, new Object[] {OD.soulsand    , OD.blockTorch, OD.blockTorch, OD.blockTorch});
+				CR.shapeless(IL.NePl_Torch.get(3), DEF_NCC, new Object[] {OD.flowerWither, OD.blockTorch, OD.blockTorch, OD.blockTorch});
+				CR.shapeless(IL.NePl_Torch.get(2), DEF_NCC, new Object[] {OD.soulsand    , OD.blockTorch, OD.blockTorch});
+				CR.shapeless(IL.NePl_Torch.get(2), DEF_NCC, new Object[] {OD.flowerWither, OD.blockTorch, OD.blockTorch});
+				CR.shapeless(IL.NePl_Torch.get(1), DEF_NCC, new Object[] {OD.soulsand    , OD.blockTorch});
+				CR.shapeless(IL.NePl_Torch.get(1), DEF_NCC, new Object[] {OD.flowerWither, OD.blockTorch});
 				
 				RM.Boxinator.addRecipe2(T, 16, 16, ST.make(Items.netherbrick, 2, 0), ST.make(Items.nether_wart, 2, 0), ST.make(MD.NePl, "RedBricks", 1, 0));
 				
@@ -464,22 +470,22 @@ public class Loader_Recipes_Temporary implements Runnable {
 			RM.packunpack(ST.make(MD.PFAA, "earthyClump", 4, 47), ST.make(MD.PFAA, "weakOreClay", 1,  1));
 			RM.packunpack(ST.make(MD.PFAA, "earthyClump", 4, 48), ST.make(MD.PFAA, "weakOreClay", 1,  2));
 			RM.packunpack(ST.make(MD.PFAA, "earthyClump", 4, 49), ST.make(MD.PFAA, "weakOreClay", 1,  3));
-			RM.RollBender.addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 1, 45), OP.plate.mat(MT.ClayBrown   , 1));
-			RM.RollBender.addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 1, 47), OP.plate.mat(MT.Bentonite   , 1));
-			RM.RollBender.addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 1, 48), OP.plate.mat(MT.Palygorskite, 1));
-			RM.RollBender.addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 1, 49), OP.plate.mat(MT.Kaolinite   , 1));
-			RM.Compressor.addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 4, 45), ST.make(MD.PFAA, "weakClay"   , 1,  0));
-			RM.Compressor.addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 4, 47), ST.make(MD.PFAA, "weakOreClay", 1,  1));
-			RM.Compressor.addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 4, 48), ST.make(MD.PFAA, "weakOreClay", 1,  2));
-			RM.Compressor.addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 4, 49), ST.make(MD.PFAA, "weakOreClay", 1,  3));
-			RM.Mortar    .addRecipe1(T, 16, 16, ST.make(MD.PFAA, "earthyClump", 1, 45), OM.dust(MT.ClayBrown));
-			RM.Mortar    .addRecipe1(T, 16, 16, ST.make(MD.PFAA, "earthyClump", 1, 47), OM.dust(MT.Bentonite));
-			RM.Mortar    .addRecipe1(T, 16, 16, ST.make(MD.PFAA, "earthyClump", 1, 48), OM.dust(MT.Palygorskite));
-			RM.Mortar    .addRecipe1(T, 16, 16, ST.make(MD.PFAA, "earthyClump", 1, 49), OM.dust(MT.Kaolinite));
-			RM.Mortar    .addRecipe1(T, 16, 64, ST.make(MD.PFAA, "weakClay"   , 1,  0), OM.dust(MT.ClayBrown, U*4));
-			RM.Mortar    .addRecipe1(T, 16, 64, ST.make(MD.PFAA, "weakOreClay", 1,  1), OM.dust(MT.Bentonite, U*4));
-			RM.Mortar    .addRecipe1(T, 16, 64, ST.make(MD.PFAA, "weakOreClay", 1,  2), OM.dust(MT.Palygorskite, U*4));
-			RM.Mortar    .addRecipe1(T, 16, 64, ST.make(MD.PFAA, "weakOreClay", 1,  3), OM.dust(MT.Kaolinite, U*4));
+			RM.RollingMill.addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 1, 45), OP.plate.mat(MT.ClayBrown   , 1));
+			RM.RollingMill.addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 1, 47), OP.plate.mat(MT.Bentonite   , 1));
+			RM.RollingMill.addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 1, 48), OP.plate.mat(MT.Palygorskite, 1));
+			RM.RollingMill.addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 1, 49), OP.plate.mat(MT.Kaolinite   , 1));
+			RM.Compressor .addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 4, 45), ST.make(MD.PFAA, "weakClay"   , 1,  0));
+			RM.Compressor .addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 4, 47), ST.make(MD.PFAA, "weakOreClay", 1,  1));
+			RM.Compressor .addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 4, 48), ST.make(MD.PFAA, "weakOreClay", 1,  2));
+			RM.Compressor .addRecipe1(T, 16, 32, ST.make(MD.PFAA, "earthyClump", 4, 49), ST.make(MD.PFAA, "weakOreClay", 1,  3));
+			RM.Mortar     .addRecipe1(T, 16, 16, ST.make(MD.PFAA, "earthyClump", 1, 45), OM.dust(MT.ClayBrown));
+			RM.Mortar     .addRecipe1(T, 16, 16, ST.make(MD.PFAA, "earthyClump", 1, 47), OM.dust(MT.Bentonite));
+			RM.Mortar     .addRecipe1(T, 16, 16, ST.make(MD.PFAA, "earthyClump", 1, 48), OM.dust(MT.Palygorskite));
+			RM.Mortar     .addRecipe1(T, 16, 16, ST.make(MD.PFAA, "earthyClump", 1, 49), OM.dust(MT.Kaolinite));
+			RM.Mortar     .addRecipe1(T, 16, 64, ST.make(MD.PFAA, "weakClay"   , 1,  0), OM.dust(MT.ClayBrown, U*4));
+			RM.Mortar     .addRecipe1(T, 16, 64, ST.make(MD.PFAA, "weakOreClay", 1,  1), OM.dust(MT.Bentonite, U*4));
+			RM.Mortar     .addRecipe1(T, 16, 64, ST.make(MD.PFAA, "weakOreClay", 1,  2), OM.dust(MT.Palygorskite, U*4));
+			RM.Mortar     .addRecipe1(T, 16, 64, ST.make(MD.PFAA, "weakOreClay", 1,  3), OM.dust(MT.Kaolinite, U*4));
 			
 			
 			

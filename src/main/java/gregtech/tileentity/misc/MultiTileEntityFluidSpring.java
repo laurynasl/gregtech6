@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2019 Gregorius Techneticies
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -39,6 +39,7 @@ import gregapi.render.ITexture;
 import gregapi.tileentity.base.TileEntityBase04MultiTileEntities;
 import gregapi.tileentity.data.ITileEntitySurface;
 import gregapi.util.UT;
+import gregapi.util.WD;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -104,7 +105,7 @@ public class MultiTileEntityFluidSpring extends TileEntityBase04MultiTileEntitie
 				if (tBlock instanceof BlockFluidFinite) {
 					if (tAbove == tBlock) {
 						worldObj.setBlock(xCoord, yCoord+1, zCoord, tBlock, UT.Code.bind4(getMetaDataAtSide(SIDE_UP)+8), 3);
-					} else if (tAbove.isAir(worldObj, xCoord, yCoord+1, zCoord)) {
+					} else if (WD.anywater(tAbove) || tAbove.isAir(worldObj, xCoord, yCoord+1, zCoord)) {
 						worldObj.setBlock(xCoord, yCoord+1, zCoord, tBlock, 7, 3);
 					}
 				} else {
@@ -125,7 +126,7 @@ public class MultiTileEntityFluidSpring extends TileEntityBase04MultiTileEntitie
 						} else {
 							worldObj.setBlock(xCoord, yCoord+1, zCoord, tBlock, 0, 3);
 						}
-					} else if (tAbove.isAir(worldObj, xCoord, yCoord+1, zCoord)) {
+					} else if (WD.anywater(tAbove) || tAbove.isAir(worldObj, xCoord, yCoord+1, zCoord)) {
 						worldObj.setBlock(xCoord, yCoord+1, zCoord, tBlock, 0, 3);
 					}
 				}

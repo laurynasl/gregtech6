@@ -10,13 +10,27 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 
 
 6.14.09: (Not released yet, released whenever it needs to be)
+[NOTE] The Default Config Pack updated to disable Fastcrafts Chunk Culling, so that Ocean Floors are now rendering properly again. Set "enableCullingTweaks" to false in the "config/fastcraft.ini" File, if you experience this Issue.
 [COMPAT] Aroma1997's Mining Dimension is now Compatible with my Worldgen.
+[COMPAT] Et Futurum Requiem is now supported properly and up to date. Its Netherite Items and Ore Blocks are preferred over the ones of Netherite Plus. https://www.curseforge.com/minecraft/mc-mods/et-futurum-requiem/files
+[FIXED] Biome dependent Stone LAyer Ores were not generating at all, due to me forgetting to Lowercase the Biome Names.
+[FIXED] Infinite Worldgen Loop with Oceans, because I forgot to set the Block Update Flag to 2 during Worldgen, because ofcourse I left it to default when I fixed another Ocean related Bug...
+[FIXED] Coal and Oil Shale Stone Layer Ore Blocks were flammable t othe point of burning up way too much. Now they are still flammable but Fire wont spread to them.
+[FIXED] Railcraft Crowbars should now be able to remove Covers again, even if they dont use the overlay for technical reasons.
+[FIXED] Applied Energistics Quartz Cutter in Advanced Crafting Tables.
+[FIXED] Forestry Backpacks didn't work with Autocollecting Tools, because the Magnetic Autocollect did not throw an Item Collect Event.
 [FIXED] Chainsaws used WAY too much durability for Treecapitation!
+[FIXED] Pipes were not able to fill Molds at all due to some stupid Bug.
 [FIXED] Worldgeneration in different Dimensions had the same RNG as on the Overworld. Now the Seed is being XOR-ed with the Dimension ID to prevent that. This has the convenient Side Effect of the Overworld staying the same as before, because it's ID is Zero.
+[CHANGED] Barrels and Drums did not have the same Melting Points that Pipes have. I fixed that. Metal Drums now have 1.25 times more Heat Resistance, while Wooden Barrels and Plastic Cans got a properly assigned fixed Value, which in most cases should not make them burn up.
 [CHANGED] Blue Steel is Red Steel now and vice versa. This should fix my ages old fuckup of the Recipes. Everything should still be the same as before when it comes to Stats, just the Color of the Material changed. If you used Matter Fabricators to make Red/Blue Steel for some reason, you may need to check the USB Stick with the Recipe.
+[CHANGED] Oil and Natural Gas can now pass through Water. In the case of Oil this will result in Buildcraft alike Oil Fountains or puddles in the Ocean, should you be super lucky. If not, just dig a tunnel down and it happens too. XD
+[ADDED] Railcrafts Firestones now work as Fuel in Solid Burning Boxes and can also light TNT, Burning Boxes, Coke Ovens and the likes. Please be aware that Burning Boxes need the Firestone to he hoppered in to work, since they otherwise work like Flint and Steel.
+[ADDED] In a potentially failing attempt of fixing the Nichrome Issue in Stainless Steel, I added a Version of the Recipe that takes Nichrome instead of Invar, which is ofcourse in the proper ratios. I do not know how well that will work for people using the Crucible, but better than nothing. I did the same for Ultimet and Signalum too.
 [ADDED] Barbecue Sauce (BBQ Sauce), because why not.
 [ADDED] Axes, Saws and Chainsaws can now place Saplings too. They will still place Workbenches if Saplings cant be placed.
 [ADDED] Tooltip for Covers that can be controlled with the Cover Controller Cover. In case of Covers where the Cover Controller Cover is required (such as Shutter Cover), it will be Cyan instead of Dark Gray to make it easier to see.
+[ADDED] Config to make it possible to disable specific Ores in Stone Layers from generating.
 
 
 6.14.08:
@@ -133,7 +147,7 @@ Please take note that I changed the Electrolyzation Output of Clay, and that Van
 [ADDED] Lumium Shelves and Stuff. Now there actually is a proper Glow in the Dark Material available. (remember it can be painted)
 [ADDED] Gloomstone from Netherlicious as a Material, which can do pretty much anything Glowstone can do. Similar to GalaxySpace Glowstone Variants.
 [ADDED] Netherquartz now generates in large flat Layers in the Nether. The old GT5 Veins and the Small Ores for Netherquartz wont generate anymore.
-[ADDED] Sulfide Ore Crystals now generate on the Nether ceiling so that it is now possible to actually live in the Nether with most of GT6s Features.
+[ADDED] Sulfide Ore Crystals now generate on the Nether ceiling so that it is now possible to actually live in the Nether with most of GT6s Features. This is enough Resources and Byproducts for removing the old GT5 Style Veins from the Nether.
 [ADDED] Netherite Version of the Mortar, because most usable Mortar Materials, including Iron, are too hard to come by in the Nether.
 [ADDED] Magnalium Rail Set. Same Cart Speed and Explosion Resistance as the Steel Rail Set. Big Upgrade from Aluminium, which is basically garbage Tier.
 [ADDED] Mining Tools which can place Torches, now can plug leaking Liquids like Lava with mostly non-valuable mined Blocks from your Inventory. Just rightclick either next to or into the Liquid Block that is coming at you.
@@ -1340,7 +1354,7 @@ Added Miniature Aether Portal, 128m Error Margin and 1:1 Distance. Requires a GT
 [CHANGED] Thaumcraft Aluminium Duplication now costs Lucrum instead of Ignis.
 [CHANGED] The "Auto Redstone Machine Switch" Cover can now use Redstone Pulse Inputs as "produce one Process" Signal. A constant Redstone Signal will be "produce until Redstone turns off, but finish the last Process at least". Remember that certain Machines do multiple things in parallel, and they will still do that with this Cover regardless.
 [CHANGED] When Railcraft is not installed, all Rails cost Treated Sticks instead of Regular Wooden Sticks.
-[ADDED] Materials that can be used for Flint & Tinder. Mainly Gold, Cobalt, Nickel and Arsenic.
+[ADDED] Materials that can be used for Flint and Tinder. Mainly Gold, Cobalt, Nickel and Arsenic.
 
 
 6.07.22:

@@ -36,7 +36,7 @@ import net.minecraft.world.World;
 
 public class BlockRockOres extends BlockBaseMeta {
 	public static byte[] HARVEST_LEVELS = {0, 0, 1, 1, 2, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0};
-	public static int[] BURN_LEVELS = {100, 100, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	public static int[] BURN_LEVELS = {30, 30, 0, 0, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	public static float[] HARDNESS_LEVELS = {0.5F, 0.5F, 1.0F, 1.0F, 2.0F, 0.5F, 0.5F, 1.0F, 1.0F, 0.5F, 0.5F, 0.5F, 0.5F, 0.5F, 0.5F, 0.5F};
 	
 	public BlockRockOres(String aUnlocalised) {
@@ -99,7 +99,7 @@ public class BlockRockOres extends BlockBaseMeta {
 	@Override public String getHarvestTool(int aMeta) {return TOOL_pickaxe;}
 	@Override public int getHarvestLevel(int aMeta) {return HARVEST_LEVELS[aMeta];}
 	@Override public int getFlammability(byte aMeta) {return BURN_LEVELS[aMeta];}
-	@Override public int getFireSpreadSpeed(byte aMeta) {return BURN_LEVELS[aMeta];}
+	@Override public int getFireSpreadSpeed(byte aMeta) {return 0;}
 	@Override public float getBlockHardness(World aWorld, int aX, int aY, int aZ) {return Blocks.stone.getBlockHardness(aWorld, aX, aY, aZ) * HARDNESS_LEVELS[WD.meta(aWorld, aX, aY, aZ)];}
 	@Override public float getExplosionResistance(byte aMeta) {return Blocks.stone.getExplosionResistance(null);}
 }

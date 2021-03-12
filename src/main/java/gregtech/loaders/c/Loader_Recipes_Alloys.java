@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 GregTech-6 Team
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -50,8 +50,9 @@ public class Loader_Recipes_Alloys implements Runnable {
 		mix(tIron                   ,  1, "molten.aluminium"      ,  1, "molten.chromium"       ,  1                              , "molten.kanthal"          ,  3);
 		mix(tIron                   ,  1, "molten.tin"            ,  1                                                            , "molten.tinalloy"         ,  2);
 		mix(tIron                   ,  1, "molten.gold"           ,  1                                                            , "molten.angmallen"        ,  2);
-		mix(tIron                   ,  4, "molten.invar"          ,  3, "molten.chromium"       ,  1, "molten.manganese"      ,  1, "molten.stainlesssteel"   ,  9);
 		mix(tIron                   ,  6, "molten.nickel"         ,  1, "molten.chromium"       ,  1, "molten.manganese"      ,  1, "molten.stainlesssteel"   ,  9);
+		mix(tIron                   ,  4, "molten.invar"          ,  3, "molten.chromium"       ,  1, "molten.manganese"      ,  1, "molten.stainlesssteel"   ,  9);
+		mix(tIron                   , 24, "molten.nichrome"       ,  5, "molten.chromium"       ,  3, "molten.manganese"      ,  4, "molten.stainlesssteel"   , 36);
 		mix(tIron                   ,  1, "molten.electrotine"    ,  8                                                            , "molten.electrotinealloy" ,  1);
 		}
 		for (String tSteel : new String[] {"molten.steel", "molten.meteoricsteel", "molten hsla", "molten.knightmetal"}) {
@@ -79,6 +80,7 @@ public class Loader_Recipes_Alloys implements Runnable {
 		mix("molten.brass"          ,  7, "molten.aluminium"      ,  1, "molten.cobalt"         ,  1                              , "molten.cobaltbrass"      ,  9);
 		mix("molten.brass"          ,  4, "molten.bismuth"        ,  1                                                            , "molten.bismuthbronze"    ,  5);
 		mix("molten.cobalt"         ,  5, "molten.chromium"       ,  2, "molten.nickel"         ,  1, "molten.molybdenum"     ,  1, "molten.ultimet"          ,  9);
+		mix("molten.cobalt"         , 20, "molten.chromium"       ,  7, "molten.nichrome"       ,  5, "molten.molybdenum"     ,  4, "molten.ultimet"          , 36);
 		mix("molten.osmiumelemental",  1, "molten.iridium"        ,  1                                                            , "molten.osmiridium"       ,  2);
 		mix("molten.tungstensteel"  ,  5, "molten.chromium"       ,  1, "molten.molybdenum"     ,  2, "molten.vanadium"       ,  1, "molten.hssg"             ,  9);
 		mix("molten.hssg"           ,  6, "molten.cobalt"         ,  1, "molten.manganese"      ,  1, "molten.silicon"        ,  1, "molten.hsse"             ,  9);

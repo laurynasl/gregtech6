@@ -97,19 +97,19 @@ import net.minecraftforge.oredict.OreDictionary;
 public class CS {
 	/** The Object containing the actual Mod GregTech and its API. */
 	public static Abstract_Mod GT, GAPI, GAPI_POST;
-
-	// unused: A, D, E, G, H, I, J, K, M, N, O, P, Q, R, S
-
+	
+	// unused: A, D, E, G, H, I, J, K, M, N, O, P, Q, R, S, X, Y, Z
+	
 	/** Because "true" and "false" are too long. Some Programmers might wanna kill me for that, but this looks much better than true and false, and also it is better to have something that is not 4 and 5 Characters long, because of symmetry */
 	public static final boolean T = true, F = false;
-
+	
 	/** Character Set with all Numbers */
 	public static final HashSet<Character> Ch_N = new HashSet<>(Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'));
 	/** Character Set with all lowercased Characters */
 	public static final HashSet<Character> Ch_L = new HashSet<>(Arrays.asList('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'));
 	/** Character Set with all uppercased Characters */
 	public static final HashSet<Character> Ch_U = new HashSet<>(Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'));
-
+	
 	/** The first 32 Bits */
 	public static final int[] B = {1<<0,1<<1,1<<2,1<<3,1<<4,1<<5,1<<6,1<<7,1<<8,1<<9,1<<10,1<<11,1<<12,1<<13,1<<14,1<<15,1<<16,1<<17,1<<18,1<<19,1<<20,1<<21,1<<22,1<<23,1<<24,1<<25,1<<26,1<<27,1<<28,1<<29,1<<30,1<<31};
 
@@ -163,7 +163,7 @@ public class CS {
 
 	/** The long Names for the Voltages */
 	public static final String[] VOLTAGE_NAMES = {"Ultra Low Voltage", "Low Voltage", "Medium Voltage", "High Voltage", "Extreme Voltage", "Insane Voltage", "Ludicrous Voltage", "ZPM Voltage", "Ultimate Voltage", "Post Ultimate Voltage 1", "Post Ultimate Voltage 2", "Post Ultimate Voltage 3", "Post Ultimate Voltage 4", "Post Ultimate Voltage 5", "Omega Voltage", "Omega Voltage"};
-
+	
 	/** The short Names for the USB Sticks */
 	public static final String[] OD_USB_STICKS = {"gt:usbstick0", "gt:usbstick1", "gt:usbstick2", "gt:usbstick3", "gt:usbstick4", "gt:usbstick5", "gt:usbstick6", "gt:usbstick7", "gt:usbstick8", "gt:usbstick9"};
 	/** The short Names for the USB Cables */
@@ -172,8 +172,8 @@ public class CS {
 	public static final String[] OD_USB_DRIVES = {"gt:usbdrive0", "gt:usbdrive1", "gt:usbdrive2", "gt:usbdrive3", "gt:usbdrive4", "gt:usbdrive5", "gt:usbdrive6", "gt:usbdrive7", "gt:usbdrive8", "gt:usbdrive9"};
 	/** The short Names for the Circuits */
 	public static final String[] OD_CIRCUITS = {"gt:circuit0", "gt:circuit1", "gt:circuit2", "gt:circuit3", "gt:circuit4", "gt:circuit5", "gt:circuit6", "gt:circuit7", "gt:circuit8", "gt:circuit9"};
-
-	/** Subtext Numbers. */
+	
+	/** Subtext Numbers from 0 to 1000. */
 	public static final String[] NUM_SUB = {
 	  "\u2080", "\u2081", "\u2082", "\u2083", "\u2084", "\u2085", "\u2086", "\u2087", "\u2088", "\u2089"
 	, "\u2081\u2080", "\u2081\u2081", "\u2081\u2082", "\u2081\u2083", "\u2081\u2084", "\u2081\u2085", "\u2081\u2086", "\u2081\u2087", "\u2081\u2088", "\u2081\u2089"
@@ -207,7 +207,7 @@ public class CS {
 	, "\u2082\u2089\u2080", "\u2082\u2089\u2081", "\u2082\u2089\u2082", "\u2082\u2089\u2083", "\u2082\u2089\u2084", "\u2082\u2089\u2085", "\u2082\u2089\u2086", "\u2082\u2089\u2087", "\u2082\u2089\u2088", "\u2082\u2089\u2089"
 	, "\u2083\u2080\u2080\u208A"
 	};
-
+	
 	/** The value of how many Voltz/Mekanism Joules are worth an EU. */
 	public static final int  J_PER_EU = 10;
 	/** The value of how many RF are worth an MJ. */
@@ -841,7 +841,7 @@ public class CS {
 	, DIM_NETHER = -1
 	, DIM_END = 1
 	, DIM_ENVM = -2
-	, DIM_AROMA = 6 // Collides with Aether by default
+	, DIM_AROMA = -6 // Collides with Aether by default
 	, DIM_MOON = 2
 	, DIM_MARS = 3
 	, DIM_ASTEROIDS = 4
@@ -880,13 +880,15 @@ public class CS {
 	, GEN_ATUM          = new ArrayListNoNulls<>()
 	, GEN_DEEPDARK      = new ArrayListNoNulls<>()
 	, GEN_ENVM          = new ArrayListNoNulls<>()
+	, GEN_ENVM_GT       = new ArrayListNoNulls<>()
 	, GEN_AROMA         = new ArrayListNoNulls<>()
+	, GEN_AROMA_GT      = new ArrayListNoNulls<>()
 	, GEN_ALFHEIM       = new ArrayListNoNulls<>()
 	, GEN_TROPICS       = new ArrayListNoNulls<>()
 	, GEN_CANDY         = new ArrayListNoNulls<>()
-	, GEN_GEMS[]        = new List[] {GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_AROMA, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_MARS, GEN_AETHER}
-	, GEN_FLOOR[]       = new List[] {GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_AROMA, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_MARS, GEN_DEEPDARK, GEN_TFC, GEN_NETHER, GEN_MOON, GEN_TWILIGHT, GEN_ALFHEIM, GEN_TROPICS, GEN_CANDY}
-	, GEN_ALL[]         = new List[] {GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_AROMA, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_MARS, GEN_DEEPDARK, GEN_TFC, GEN_NETHER, GEN_MOON, GEN_TWILIGHT, GEN_ALFHEIM, GEN_TROPICS, GEN_CANDY, GEN_AETHER, GEN_END, GEN_PLANETS, GEN_ASTEROIDS}
+	, GEN_GEMS[]        = new List[] {GEN_OVERWORLD        , GEN_PFAA, GEN_ENVM,              GEN_AROMA,               GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_MARS, GEN_AETHER}
+	, GEN_FLOOR[]       = new List[] {GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_ENVM_GT, GEN_AROMA, GEN_AROMA_GT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_MARS, GEN_DEEPDARK, GEN_TFC, GEN_NETHER, GEN_MOON, GEN_TWILIGHT, GEN_ALFHEIM, GEN_TROPICS, GEN_CANDY}
+	, GEN_ALL[]         = new List[] {GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_ENVM_GT, GEN_AROMA, GEN_AROMA_GT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_MARS, GEN_DEEPDARK, GEN_TFC, GEN_NETHER, GEN_MOON, GEN_TWILIGHT, GEN_ALFHEIM, GEN_TROPICS, GEN_CANDY, GEN_AETHER, GEN_END, GEN_PLANETS, GEN_ASTEROIDS}
 	;
 	
 	/** Lists of all the active Large Ore Vein generation by Dimension Type, these are getting initialised in Load! */
@@ -1380,7 +1382,7 @@ public class CS {
 				try {aNBT = CompressedStreamTools.read(aTargetFile);} catch (Throwable e) {e.printStackTrace(ERR);}
 				for (int i = 0; i < Integer.MAX_VALUE; i++) {
 					if (!aNBT.hasKey(""+i)) break;
-					FluidTankGT tTank = new FluidTankGT(Long.MAX_VALUE).setPreventDraining().setVoidExcess();
+					FluidTankGT tTank = new FluidTankGT().setPreventDraining().setVoidExcess();
 					tTank.readFromNBT(aNBT, ""+i);
 					if (!tTank.has()) continue;
 					GARBAGE_FLUIDS.add(tTank);
@@ -1480,6 +1482,8 @@ public class CS {
 		public static final ItemStackSet<ItemStackContainer> DEBUG_ITEMS = new ItemStackSet<>();
 		public static final ItemStackSet<ItemStackContainer> AMMO_ITEMS = new ItemStackSet<>();
 		public static final ItemStackSet<ItemStackContainer> NON_AUTO_INSERT_ITEMS = new ItemStackSet<>();
+		public static final ItemStackSet<ItemStackContainer> CONTAINER_DURABILITY = new ItemStackSet<>();
+		public static final ItemStackSet<ItemStackContainer> SPECIAL_CASE_TOOLS = new ItemStackSet<>();
 		public static final ItemStackSet<ItemStackContainer> SHOW_RESISTANCE = new ItemStackSet<>();
 		public static final ItemStackSet<ItemStackContainer> RECIPE_REMOVED_USE_TRASH_BIN_INSTEAD = new ItemStackSet<>();
 		public static final ItemStackSet<ItemStackContainer> NEI_DONT_SHOW_FLUIDS = new ItemStackSet<>();

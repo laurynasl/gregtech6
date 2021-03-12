@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 GregTech-6 Team
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -344,11 +344,13 @@ public class MultiTileEntityPipeFluid extends TileEntityBase10ConnectorRendered 
 			// No Tank? Nothing to do then.
 			if (aAdjacentTanks[tSide] == null) continue;
 			// Check if the Tank can be filled with this Fluid.
-			if (aAdjacentTanks[tSide].mTileEntity.fill(aAdjacentTanks[tSide].getForgeSideOfTileEntity(), aTank.make(1), F) > 0) {
+			if (aAdjacentTanks[tSide].mTileEntity.fill(aAdjacentTanks[tSide].getForgeSideOfTileEntity(), aTank.make(1), F) > 0 || aAdjacentTanks[tSide].mTileEntity.fill(aAdjacentTanks[tSide].getForgeSideOfTileEntity(), aTank.get(Long.MAX_VALUE), F) > 0) {
 				// Add to a random Position in the List.
 				tTanks.add(rng(tTanks.size()+1), aAdjacentTanks[tSide]);
 				// One more Target.
 				tTargetCount++;
+				// Done everything.
+				continue;
 			}
 		}
 		// No Targets? Nothing to do then.
@@ -360,7 +362,7 @@ public class MultiTileEntityPipeFluid extends TileEntityBase10ConnectorRendered 
 		// Check if we are empty.
 		if (aTank.isEmpty()) return;
 		// Distribute to Tanks afterwards.
-		for (DelegatorTileEntity tTank : tTanks) mTransferredAmount += aTank.remove(FL.fill_(tTank, aTank.get(tAmount), T));
+		for (DelegatorTileEntity tTank : tTanks) mTransferredAmount += aTank.remove(FL.fill(tTank, aTank.get(tAmount), T));
 		// Check if we are empty.
 		if (aTank.isEmpty()) return;
 		// No Targets? Nothing to do then.

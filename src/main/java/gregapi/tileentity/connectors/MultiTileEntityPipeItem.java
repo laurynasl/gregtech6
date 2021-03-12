@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2019 Gregorius Techneticies
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -224,7 +224,7 @@ public class MultiTileEntityPipeItem extends TileEntityBase10ConnectorRendered i
 	public boolean insertItemStackIntoTileEntity(Object aSender, byte aSide) {
 		if (!FACE_CONNECTED[aSide][mDisabledOutputs] && canEmitItemsTo(aSide, aSender)) {
 			DelegatorTileEntity<TileEntity> tDelegator = getAdjacentTileEntity(aSide);
-			if (tDelegator.mTileEntity != null && !(tDelegator.mTileEntity instanceof TileEntityBase09Connector)) {
+			if (ST.canConnect(tDelegator) && !(tDelegator.mTileEntity instanceof TileEntityBase09Connector)) {
 				if ((!(tDelegator.mTileEntity instanceof TileEntityHopper) && !(tDelegator.mTileEntity instanceof TileEntityDispenser)) || getMetaDataAtSide(aSide) != tDelegator.mSideOfTileEntity) {
 					// special cases for the win...
 					CoverData tCovers = getCoverData();

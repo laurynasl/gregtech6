@@ -146,6 +146,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
+import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -634,8 +635,9 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 									aEvent.player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, Math.max(140, ((tEffect = aEvent.player.getActivePotionEffect(Potion.moveSlowdown))==null?0:tEffect.getDuration())), 3));
 								}
 								if (tCrazyJ1984 && !tStack.hasTagCompound() && tData.hasValidPrefixData() && tData.mPrefix.mNameInternal.startsWith("gem")) {
-									if (tData.mMaterial.mMaterial == MT.Diamond  ) ST.name_(tStack, tData.mPrefix.mMaterialPre + MT.Craponite.mNameLocal + tData.mPrefix.mMaterialPost);
-									if (tData.mMaterial.mMaterial == MT.Craponite) ST.name_(tStack, tData.mPrefix.mMaterialPre + MT.Diamond  .mNameLocal + tData.mPrefix.mMaterialPost);
+									if (tData.mMaterial.mMaterial == MT.Diamond    ) ST.name_(tStack, tData.mPrefix.mMaterialPre + MT.Craponite.mNameLocal + tData.mPrefix.mMaterialPost);
+									if (tData.mMaterial.mMaterial == MT.DiamondPink) ST.name_(tStack, tData.mPrefix.mMaterialPre + MT.Craponite.mNameLocal + tData.mPrefix.mMaterialPost);
+									if (tData.mMaterial.mMaterial == MT.Craponite  ) ST.name_(tStack, tData.mPrefix.mMaterialPre + MT.Diamond  .mNameLocal + tData.mPrefix.mMaterialPost);
 								}
 							}
 							if (tHungerEffect) tCount+=(tStack.stackSize * 64) / Math.max(1, tStack.getMaxStackSize());
@@ -868,7 +870,7 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 					// Dollies won't work on GT6 TileEntities, so to prevent a Crash and deleted Resources, I just disable the interaction.
 					if (IL.JABBA_Dolly.equal(aStack, T, T) || IL.JABBA_Dolly_Diamond.equal(aStack, T, T)) {
 						if (aTileEntity instanceof ITileEntitySpecificPlacementBehavior) {
-							UT.Entities.chat(aEvent.entityPlayer, CHAT_GREG + "The Code of this Dolly is not smart enough to move this TileEntity.", CHAT_GREG + "It would crash if it actually did, so be glad I prevented that mistake.");
+							UT.Entities.chat(aEvent.entityPlayer, CHAT_GREG + "The Dolly Code is sadly not smart enough to move this TileEntity.", CHAT_GREG + "It would crash if it actually did, so be glad I prevented that mistake.", CHAT_GREG + "Would be great if it did work though...");
 							aEvent.setCanceled(T);
 						}
 						return;
@@ -885,7 +887,19 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 						}
 						return;
 					}
-					// Instant breaking for those Hammers.
+					// Instant breaking for those Soft Hammers.
+					if (IL.MFR_Hammer.equal(aStack, T, T)) {
+						List<String> tChatReturn = new ArrayListNoNulls<>();
+						long tDamage = IBlockToolable.Util.onToolClick(TOOL_softhammer, Long.MAX_VALUE, 3, aEvent.entityPlayer, tChatReturn, aEvent.entityPlayer.inventory, aEvent.entityPlayer.isSneaking(), aStack, aEvent.entityPlayer.worldObj, (byte)aEvent.face, aEvent.x, aEvent.y, aEvent.z, 0.5F, 0.5F, 0.5F);
+						UT.Entities.sendchat(aEvent.entityPlayer, tChatReturn, F);
+						if (tDamage > 0) {
+							ST.use(aEvent.entityPlayer, aStack);
+							UT.Sounds.send(SFX.MC_BREAK, aEvent.entityPlayer);
+							aEvent.setCanceled(T);
+						}
+						return;
+					}
+					// Instant breaking for those Hard Hammers.
 					if (IL.IE_Hammer.equal(aStack, T, T)) {
 						List<String> tChatReturn = new ArrayListNoNulls<>();
 						long tDamage = IBlockToolable.Util.onToolClick(TOOL_hammer, Long.MAX_VALUE, 3, aEvent.entityPlayer, tChatReturn, aEvent.entityPlayer.inventory, aEvent.entityPlayer.isSneaking(), aStack, aEvent.entityPlayer.worldObj, (byte)aEvent.face, aEvent.x, aEvent.y, aEvent.z, 0.5F, 0.5F, 0.5F);
@@ -921,7 +935,19 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 						}
 						return;
 					}
-					// Make Twilight Forests Lamp of Cinders work as infinite Flint and Steel on TNT and GT6 Machines
+					// Make Railcrafts Firestone work as Flint and Steel on TNT and GT6 Machines
+					if (IL.RC_Firestone_Refined.equal(aStack, T, T) || IL.RC_Firestone_Cracked.equal(aStack, T, T)) {
+						List<String> tChatReturn = new ArrayListNoNulls<>();
+						long tDamage = IBlockToolable.Util.onToolClick(TOOL_igniter, Long.MAX_VALUE, Long.MAX_VALUE, aEvent.entityPlayer, tChatReturn, aEvent.entityPlayer.inventory, aEvent.entityPlayer.isSneaking(), aStack, aEvent.world, (byte)aEvent.face, aEvent.x, aEvent.y, aEvent.z, 0.5F, 0.5F, 0.5F);
+						UT.Entities.sendchat(aEvent.entityPlayer, tChatReturn, F);
+						if (tDamage > 0) {
+							aStack.damageItem((int)UT.Code.units(tDamage, 10000, 1, T), aEvent.entityPlayer);
+							if (aStack.getItemDamage() >= aStack.getMaxDamage()) ST.use(aEvent.entityPlayer, aStack);
+							aEvent.setCanceled(T);
+						}
+						return;
+					}
+					// Make Twilight Forests Lamp of Cinders work as infinite Flint and Steel on TNT and GT6 Machines. Should be a good reward for getting to it.
 					if (IL.TF_Lamp_of_Cinders.equal(aStack, T, T)) {
 						List<String> tChatReturn = new ArrayListNoNulls<>();
 						long tDamage = IBlockToolable.Util.onToolClick(TOOL_igniter, Long.MAX_VALUE, Long.MAX_VALUE, aEvent.entityPlayer, tChatReturn, aEvent.entityPlayer.inventory, aEvent.entityPlayer.isSneaking(), aStack, aEvent.world, (byte)aEvent.face, aEvent.x, aEvent.y, aEvent.z, 0.5F, 0.5F, 0.5F);
@@ -1014,9 +1040,9 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 	public void onBlockHarvestingEvent(BlockEvent.HarvestDropsEvent aEvent) {
 		Iterator<ItemStack> aDrops = aEvent.drops.iterator();
 		while (aDrops.hasNext()) {
-			ItemStack tDrop = aDrops.next();
-			if (ST.invalid(tDrop) || ItemsGT.ILLEGAL_DROPS.contains(tDrop, T)) {aDrops.remove(); continue;}
-			if (ST.item_(tDrop) == Items.gold_nugget) ST.meta_(tDrop, 0);
+			ItemStack aDrop = aDrops.next();
+			if (ST.invalid(aDrop) || ItemsGT.ILLEGAL_DROPS.contains(aDrop, T)) {aDrops.remove(); continue;}
+			if (ST.item_(aDrop) == Items.gold_nugget) ST.meta_(aDrop, 0);
 		}
 		
 		if (aEvent.block == Blocks.dirt && aEvent.blockMetadata == 1) for (int i = 0, j = aEvent.drops.size(); i < j; i++) if (ST.block(aEvent.drops.get(0)) == Blocks.dirt) {
@@ -1095,11 +1121,20 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 				if (tCanCollect && !aEvent.drops.isEmpty()) {
 					boolean aCollectSound = T;
 					aDrops = aEvent.drops.iterator();
-					while (aDrops.hasNext()) if (UT.Inventories.addStackToPlayerInventory(aEvent.harvester, ST.update(aDrops.next(), aEvent.world, aEvent.x, aEvent.y, aEvent.z))) {
-						aDrops.remove();
-						if (aCollectSound) {
-							UT.Sounds.send(SFX.MC_COLLECT, 0.2F, ((RNGSUS.nextFloat()-RNGSUS.nextFloat())*0.7F+1.0F)*2.0F, aEvent.harvester);
-							aCollectSound = F;
+					while (aDrops.hasNext()) {
+						ItemStack aDrop = ST.update(aDrops.next(), aEvent.world, aEvent.x, aEvent.y, aEvent.z);
+						
+						EntityItem tEntity = ST.entity(aEvent.harvester, aDrop);
+						EntityItemPickupEvent tEvent = new EntityItemPickupEvent(aEvent.harvester, tEntity);
+						ST.set(aDrop, tEvent.item.getEntityItem(), T, T);
+						if (MinecraftForge.EVENT_BUS.post(tEvent)) continue;
+						
+						if (tEvent.getResult() == Result.ALLOW || aDrop.stackSize <= 0 || UT.Inventories.addStackToPlayerInventory(aEvent.harvester, aDrop)) {
+							aDrops.remove();
+							if (aCollectSound) {
+								UT.Sounds.send(SFX.MC_COLLECT, 0.2F, ((RNGSUS.nextFloat()-RNGSUS.nextFloat())*0.7F+1.0F)*2.0F, aEvent.harvester);
+								aCollectSound = F;
+							}
 						}
 					}
 				}

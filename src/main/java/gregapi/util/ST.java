@@ -639,7 +639,6 @@ public class ST {
 		return F;
 	}
 	
-
 	@Deprecated public static boolean canTake (IInventory      aFrom, byte aSideFrom, int aSlotFrom, ItemStack aStackFrom) {return canTake(aFrom, aSideFrom, aSideFrom, aSlotFrom, aStackFrom);}
 	@Deprecated public static boolean canTake_(ISidedInventory aFrom, byte aSideFrom, int aSlotFrom, ItemStack aStackFrom) {return canTake(aFrom, aSideFrom, aSideFrom, aSlotFrom, aStackFrom);}
 	
@@ -807,13 +806,15 @@ public class ST {
 	
 	public static ItemStack container(ItemStack aStack, boolean aCheckIFluidContainerItems) {
 		if (invalid(aStack)) return NI;
+		// Decrease Durability by 1 for these Items.
+		if (ItemsGT.CONTAINER_DURABILITY.contains(aStack, T)) return copyMeta(meta_(aStack) + 1, aStack);
+		// Use normal Container Item Mechanics.
 		if (item_(aStack).hasContainerItem(aStack)) return copy(item_(aStack).getContainerItem(aStack));
-		/** These are all special Cases, in which it is intended to have only GT Blocks outputting those Container Items */
+		// These are all special Cases, in which it is intended to have only GT Blocks outputting those Container Items.
 		if (IL.Cell_Empty.exists()) {
 			if (IL.Cell_Empty.equal(aStack, F, T)) return NI;
 			if (IL.Cell_Empty.equal(aStack, T, T)) return IL.Cell_Empty.get(1);
 		}
-		
 		if (aCheckIFluidContainerItems && item_(aStack) instanceof IFluidContainerItem && ((IFluidContainerItem)item_(aStack)).getCapacity(aStack) > 0) {
 			ItemStack tStack = amount(1, aStack);
 			((IFluidContainerItem)item_(aStack)).drain(tStack, Integer.MAX_VALUE, T);
@@ -822,8 +823,6 @@ public class ST {
 			if (tStack.getTagCompound().hasNoTags()) tStack.setTagCompound(null);
 			return tStack;
 		}
-		
-		if (IL.IC2_ForgeHammer.equal(aStack, T, T) || IL.IC2_WireCutter.equal(aStack, T, T)) return copyMeta(meta_(aStack) + 1, aStack);
 		return NI;
 	}
 	
