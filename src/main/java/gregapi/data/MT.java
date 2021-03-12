@@ -2759,8 +2759,11 @@ public class MT {
 			Electrum                        .addOreByProducts(Au                        , Ag                        );
 			Bronze                          .addOreByProducts(Cu                        , Sn                        );
 			Brass                           .addOreByProducts(Cu                        , Zn                        );
-			Coal                            .addOreByProducts(Lignite                   , S                         );
+			Coal                            .addOreByProducts(Lignite                   , S                         , Anthracite            );
 			Lignite                         .addOreByProducts(Coal                      , S                         , Ge                    );
+			Anthracite                      .addOreByProducts(Prismane                  , Lonsdaleite               , Thorium               );
+			Prismane                        .addOreByproducts(Lonsdaleite               , Thorium                   , Pitchblende           );
+			Lonsdaleite                     .addOreByproducts(Thorium                   , OREMATS.Uraninite         , Uranium               );
 			Emerald                         .addOreByProducts(Be                        , Al2O3                     , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
 			Aquamarine                      .addOreByProducts(Be                        , Al2O3                     , Emerald               , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
 			Morganite                       .addOreByProducts(Be                        , Al2O3                     , Emerald               , Aquamarine            , Goshenite             , Bixbite               , Heliodor              , Maxixe    );

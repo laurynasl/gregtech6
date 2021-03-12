@@ -140,8 +140,8 @@ public class Loader_Worldgen implements Runnable {
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteRed));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteRed));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteRed
-		//, new StoneLayerOres(MT.OREMATS.Pitchblende     , U32,  0, 18)
-		//, new StoneLayerOres(MT.OREMATS.Uraninite       , U32,  0, 16)
+		, new StoneLayerOres(MT.OREMATS.Pitchblende     , U1440,  0, 18)
+		, new StoneLayerOres(MT.OREMATS.Uraninite       , U1440,  0, 16)
 		, new StoneLayerOres(MT.OREMATS.Tantalite       , U16, 20, 50)
 		));
 		
@@ -491,8 +491,8 @@ public class Loader_Worldgen implements Runnable {
 		);
 		StoneLayer.bothsides(MT.Limestone, MT.Quartzite
 		, new StoneLayerOres(MT.OREMATS.Kyanite         , U3 , 32, 72)
-		, new StoneLayerOres(MT.OREMATS.Lepidolite      , U12, 16, 48)
-		, new StoneLayerOres(MT.OREMATS.Spodumene       , U12, 32, 64)
+		, new StoneLayerOres(MT.OREMATS.Lepidolite      , U1440, 16, 48)
+		, new StoneLayerOres(MT.OREMATS.Spodumene       , U1440, 32, 64)
 		, new StoneLayerOres(MT.OREMATS.Tantalite       , U32,  8, 56)
 		);
 		StoneLayer.bothsides(MT.Marble, MT.Quartzite
