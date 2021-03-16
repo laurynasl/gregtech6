@@ -2701,8 +2701,8 @@ public class MT {
 			Au                              .addOreByProducts(Cu                        , Ni                        , OREMATS.Cinnabar      );
 			Ag                              .addOreByProducts(Pb                        , S                         , OREMATS.Bromargyrite  );
 			Monazite                        .addOreByProducts(/*Th                        ,*/ Nd                        , RareEarth             );
-			Forcicium                       .addOreByProducts(Th                        , Nd                        , RareEarth             );
-			Forcillium                      .addOreByProducts(Th                        , Nd                        , RareEarth             );
+			Forcicium                       .addOreByProducts(Nd                        , RareEarth             );
+			Forcillium                      .addOreByProducts(Nd                        , RareEarth             );
 			FakeOsmium                      .addOreByProducts(Fe2O3                     , Sn                        , Cr                    );
 			Cd                              .addOreByProducts(OREMATS.Chalcopyrite      , OREMATS.Sphalerite        , Se                    );
 			OREMATS.Powellite               .addOreByProducts(OREMATS.Molybdenite       , OREMATS.Scheelite         );
@@ -2761,9 +2761,9 @@ public class MT {
 			Brass                           .addOreByProducts(Cu                        , Zn                        );
 			Coal                            .addOreByProducts(Lignite                   , S                         , Anthracite            );
 			Lignite                         .addOreByProducts(Coal                      , S                         , Ge                    );
-			Anthracite                      .addOreByProducts(Prismane                  , Lonsdaleite               , Thorium               );
-			Prismane                        .addOreByproducts(Lonsdaleite               , Thorium                   , Pitchblende           );
-			Lonsdaleite                     .addOreByproducts(Thorium                   , OREMATS.Uraninite         , Uranium               );
+			Anthracite                      .addOreByProducts(Prismane                  , Lonsdaleite               , Th                    );
+			Prismane                        .addOreByProducts(Lonsdaleite               , Th                        , OREMATS.Pitchblende   );
+			Lonsdaleite                     .addOreByProducts(Th                        , OREMATS.Uraninite         , U_238                );
 			Emerald                         .addOreByProducts(Be                        , Al2O3                     , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
 			Aquamarine                      .addOreByProducts(Be                        , Al2O3                     , Emerald               , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
 			Morganite                       .addOreByProducts(Be                        , Al2O3                     , Emerald               , Aquamarine            , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
