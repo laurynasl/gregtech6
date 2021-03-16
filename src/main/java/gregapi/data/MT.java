@@ -2381,7 +2381,7 @@ public class MT {
 			Skyroot                 .addEnchantmentForTools(Enchantment.fortune, 1);
 			IronWood                .addEnchantmentForTools(Enchantment.fortune, 1);
 			Steeleaf                .addEnchantmentForTools(Enchantment.fortune, 2);
-			Efrine                  .addEnchantmentForTools(Enchantment.fortune, 2);
+			//Efrine                  .addEnchantmentForTools(Enchantment.fortune, 2);
 			Soularium               .addEnchantmentForTools(Enchantment.fortune, 2);
 			Midasium                .addEnchantmentForTools(Enchantment.fortune, 2);
 			Mithril                 .addEnchantmentForTools(Enchantment.fortune, 3);
