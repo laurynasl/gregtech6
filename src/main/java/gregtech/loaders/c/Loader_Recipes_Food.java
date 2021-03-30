@@ -290,6 +290,17 @@ public class Loader_Recipes_Food implements Runnable {
 			RM.food_can(aEvent.mStack, Math.max(1, ST.food(aEvent.mStack)), "Canned Fish", ST.rotten(aEvent.mStack)?IL.CANS_ROTTEN:IL.CANS_FISH);
 			if (!(aEvent.mStack.getItem() instanceof MultiItemRandom)) FoodsGT.put(aEvent.mStack, 0, 0, 0, 0,12);
 		}});
+		addListener("listAllribraw", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (!OD.listAllmeatsubstitute.is_(aEvent.mStack))
+			RM.food_can(aEvent.mStack, Math.max(1, ST.food(aEvent.mStack)), "Canned Ribs", ST.rotten(aEvent.mStack)?IL.CANS_ROTTEN:IL.CANS_MEAT);
+			if (!(aEvent.mStack.getItem() instanceof MultiItemRandom)) FoodsGT.put(aEvent.mStack, 0, 0, 0, 0,24);
+		}});
+		addListener("listAllribcooked", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (!OD.listAllmeatsubstitute.is_(aEvent.mStack))
+			RM.food_can(aEvent.mStack, Math.max(1, ST.food(aEvent.mStack)), "Canned Ribs", ST.rotten(aEvent.mStack)?IL.CANS_ROTTEN:IL.CANS_MEAT);
+			if (!(aEvent.mStack.getItem() instanceof MultiItemRandom)) FoodsGT.put(aEvent.mStack, 0, 0, 0, 0,24);
+			RM.Bath     .addRecipe1(T,  0,   16, aEvent.mStack, FL.Sauce_BBQ.make(250), NF, IL.Food_Rib_BBQ.get(1));
+		}});
 		addListener("listAllbeefraw", "listAllbeefcooked", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (!OD.listAllmeatsubstitute.is_(aEvent.mStack))
 			RM.food_can(aEvent.mStack, Math.max(1, ST.food(aEvent.mStack)), "Canned Beef", ST.rotten(aEvent.mStack)?IL.CANS_ROTTEN:IL.CANS_MEAT);
@@ -353,11 +364,6 @@ public class Loader_Recipes_Food implements Runnable {
 		addListener("listAllhamraw", "listAllhamcooked", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (!OD.listAllmeatsubstitute.is_(aEvent.mStack))
 			RM.food_can(aEvent.mStack, Math.max(1, ST.food(aEvent.mStack)), "Canned Ham", ST.rotten(aEvent.mStack)?IL.CANS_ROTTEN:IL.CANS_MEAT);
-			if (!(aEvent.mStack.getItem() instanceof MultiItemRandom)) FoodsGT.put(aEvent.mStack, 0, 0, 0, 0,24);
-		}});
-		addListener("listAllribraw", "listAllribcooked", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
-			if (!OD.listAllmeatsubstitute.is_(aEvent.mStack))
-			RM.food_can(aEvent.mStack, Math.max(1, ST.food(aEvent.mStack)), "Canned Ribs", ST.rotten(aEvent.mStack)?IL.CANS_ROTTEN:IL.CANS_MEAT);
 			if (!(aEvent.mStack.getItem() instanceof MultiItemRandom)) FoodsGT.put(aEvent.mStack, 0, 0, 0, 0,24);
 		}});
 		addListener("listAllhorseraw", "listAllhorsecooked", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
@@ -522,11 +528,11 @@ public class Loader_Recipes_Food implements Runnable {
 		RM.Centrifuge       .addRecipe0(T, 16,   16, FL.Juice_Coconut.make(50), FL.Cream_Coconut.make(50), ZL_IS);
 		RM.Centrifuge       .addRecipe0(T, 16,   64, FL.Cream.make(250), NF, IL.Food_Butter.get(1));
 		
-		RM.Mixer            .addRecipe1(T, 16,   16, OP.stick.mat(MT.WoodSealed, 0), FL.MilkSoy.make(50), FL.Cream.make(50), ZL_IS);
-		RM.Mixer            .addRecipe1(T, 16,   16, OP.stick.mat(MT.WoodSealed, 0), FL.Milk.make(50), FL.Cream.make(50), ZL_IS);
-		RM.Mixer            .addRecipe1(T, 16,   16, OP.stick.mat(MT.WoodSealed, 0), FL.MilkGrC.make(50), FL.Cream.make(50), ZL_IS);
-		RM.Mixer            .addRecipe1(T, 16,   16, OP.stick.mat(MT.WoodSealed, 0), FL.Juice_Coconut.make(50), FL.Cream_Coconut.make(50), ZL_IS);
-		RM.Mixer            .addRecipe1(T, 16,   64, OP.stick.mat(MT.WoodSealed, 0), FL.Cream.make(250), NF, IL.Food_Butter.get(1));
+		RM.Mixer            .addRecipe1(T, 16,   16, OP.stick.mat(MT.WoodTreated, 0), FL.MilkSoy.make(50), FL.Cream.make(50), ZL_IS);
+		RM.Mixer            .addRecipe1(T, 16,   16, OP.stick.mat(MT.WoodTreated, 0), FL.Milk.make(50), FL.Cream.make(50), ZL_IS);
+		RM.Mixer            .addRecipe1(T, 16,   16, OP.stick.mat(MT.WoodTreated, 0), FL.MilkGrC.make(50), FL.Cream.make(50), ZL_IS);
+		RM.Mixer            .addRecipe1(T, 16,   16, OP.stick.mat(MT.WoodTreated, 0), FL.Juice_Coconut.make(50), FL.Cream_Coconut.make(50), ZL_IS);
+		RM.Mixer            .addRecipe1(T, 16,   64, OP.stick.mat(MT.WoodTreated, 0), FL.Cream.make(250), NF, IL.Food_Butter.get(1));
 		
 		ItemStack
 		tOutput = OreDictManager.INSTANCE.getFirstOre("dropHoney", 1); if (ST.valid(tOutput)) {

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 GregTech-6 Team
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -33,6 +33,7 @@ import gregapi.block.multitileentity.IMultiTileEntity.IMTE_GetLightValue;
 import gregapi.block.multitileentity.IMultiTileEntity.IMTE_IsProvidingStrongPower;
 import gregapi.code.ArrayListNoNulls;
 import gregapi.code.TagData;
+import gregapi.data.CS.GarbageGT;
 import gregapi.data.CS.ModIDs;
 import gregapi.data.CS.SFX;
 import gregapi.data.FL;
@@ -525,6 +526,10 @@ public abstract class TileEntityBase01Root extends TileEntity implements ITileEn
 		}
 	}
 	
+	public boolean shouldCheckWeakPower(byte aSide) {
+		return F;
+	}
+	
 	@Override
 	public boolean hasRedstoneIncoming() {
 		for (byte tSide : ALL_SIDES_VALID) if (getRedstoneIncoming(tSide) > 0) return T;
@@ -816,6 +821,7 @@ public abstract class TileEntityBase01Root extends TileEntity implements ITileEn
 	public ItemStack slot(int aIndex, ItemStack aStack) {return NI;}
 	public ItemStack slot(int aIndex) {return NI;}
 	public ItemStack slotTake(int aIndex) {return NI;}
+	public boolean slotTrash(int aIndex) {return GarbageGT.trash(slotTake(aIndex)) > 0;}
 	public boolean slotNull(int aIndex) {if (slotHas(aIndex) && slot(aIndex).stackSize < 0) return slotKill(aIndex); return F;}
 	public boolean slotKill(int aIndex) {slot(aIndex, NI); return T;}
 	public boolean slotHas(int aIndex) {return F;}

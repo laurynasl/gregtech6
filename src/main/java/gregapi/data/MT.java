@@ -911,7 +911,7 @@ public class MT {
 	MnCl2                   = dustelec      ( 8031, "Manganese Chloride"    , SET_CUBE              , 255, 213, 213, 255, MELTING, MOLTEN, INGOTS)                                                                                                                  .uumMcfg( 0, Mn             , 1*U, Cl               , 2*U)                                                                                                  .heat( 927, 1498),
 	
 	
-	Fe2O3                   = oredustdcmp   ( 9104, "Hematite"              , SET_DULL              , 145,  90,  90, 255, MELTING, MOLTEN, MORTAR, MAGNETIC_PASSIVE, "BandedIron", "IronOxide")                                                                     .uumMcfg( 0, Fe             , 2*U, O                , 3*U)                                                                                                  .qual(0).heat(2 * Fe.mMeltingPoint / 3),
+	Fe2O3                   = oredustdcmp   ( 9104, "Hematite"              , SET_DULL              , 145,  90,  90, 255, MELTING, MOLTEN, MORTAR, MAGNETIC_PASSIVE, "BandedIron", "IronOxide")                                                                     .uumMcfg( 0, Fe             , 2*U, O                , 3*U)                                                                                                  .heat(2 * Fe.mMeltingPoint / 3).qual(0),
 	FeCl2                   = dustelec      ( 8030, "Ferrous Chloride"      , SET_CUBE              , 199, 233, 199, 255, MELTING, MOLTEN, INGOTS, MAGNETIC_PASSIVE)                                                                                                .uumMcfg( 0, Fe             , 1*U, Cl               , 2*U)                                                                                                  .heat( 950, 1296),
 	FeCl3                   = dustdcmp      ( 8017, "Ferric Chloride"       , SET_METALLIC          , 180, 180, 120, 255, MELTING)                                                                                                                                  .uumMcfg( 0, Fe             , 1*U, Cl               , 3*U)                                                                                                  .heat( 580,  589),
 	FeO3H3                  = dustdcmp      ( 8035, "Ferric Oxyhydroxide"   , SET_FINE              , 137,  62,  40, 255, MELTING)                                                                                                                                  .uumMcfg( 0, Fe             , 1*U, O                , 3*U, H                , 3*U)                                                                          .heat(Fe2O3.mMeltingPoint).setSmelting(Fe2O3, 5*U14),
@@ -1055,18 +1055,18 @@ public class MT {
 	
 	Bark                    = dust          ( 8275, "Bark"                  , SET_ROUGH             ,  80,  40,   0, 255, TICKS_PER_SMELT/ 2, WOOD, MORTAR, FLAMMABLE, APPROXIMATE)                                                                                 .uumMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1                   ).setBurning(Ash, U9).setSmelting(Ash, U4).heat(400, 500),
 	Wood                    = wood          ( 8221, "Wood"                                          , 100,  50,   0, 255, TICKS_PER_SMELT/ 2, FLAMMABLE, APPROXIMATE)                                                                                               .uumMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1                   ).setBurning(Ash, U9).setSmelting(Ash, U4).qual(1, 2.0, 16, 0).heat(400, 500),
-	WoodSealed              = wood          ( 8222, "WoodSealed"                                    ,  80,  40,   0, 255, TICKS_PER_SMELT/ 2, FLAMMABLE, COATED)                                                                                                    .setMcfg( 0, Wood           , 1*U)                                                                                                                          .aspects(TC.ARBOR, 1, TC.FABRICO    , 1).setAllToTheOutputOf(Wood).qual(1, 3.0, 24, 0).heat(500, 600).setLocal("Treated Wood"),
-	WoodPolished            = wood          ( 8267, "WoodPolished"                                  ,  60,  30,   0, 255, TICKS_PER_SMELT/ 2, FLAMMABLE, COATED)                                                                                                    .setMcfg( 0, Wood           , 1*U)                                                                                                                          .aspects(TC.ARBOR, 1, TC.FABRICO    , 1).setAllToTheOutputOf(Wood).qual(1, 3.0, 24, 0).heat(500, 600).setLocal("Polished Wood"),
-	WoodRubber              = wood          ( 8224, "WoodRubber"                                    , 180, 150,   0, 255, TICKS_PER_SMELT/ 4, FLAMMABLE, APPROXIMATE)                                                                                               .setMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1                   ).setBurning(Ash, U4).setSmelting(Ash, U2).qual(1, 1.5, 12, 0).heat(350, 450).setLocal("Rubber Wood"),
-	Bamboo                  = wood          ( 8418, "Bamboo"                                        , 100, 200, 100, 255, TICKS_PER_SMELT/ 2, FLAMMABLE, APPROXIMATE)                                                                                               .setMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.HERBA, 1                   ).setBurning(Ash, U4).setSmelting(Ash, U2).qual(1, 2.0, 32, 0).heat(350, 450),
-	Skyroot                 = wood          ( 8291, "Skyroot"                                       ,  50,  80,  80, 255, TICKS_PER_SMELT/ 2, FLAMMABLE, APPROXIMATE)                                                                                               .setMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1, TC.VOLATUS    , 1).setBurning(Ash, U4).setSmelting(Ash, U2).qual(1, 4.0, 64, 0).heat(350, 450),
-	Weedwood                = wood          ( 8286, "Weedwood"                                      ,  80,  50,   0, 255, TICKS_PER_SMELT/ 2, FLAMMABLE, APPROXIMATE)                                                                                               .setMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1, TC.MORTUUS    , 1).setBurning(Ash, U4).setSmelting(Ash, U2).qual(1, 2.0, 32, 0).heat(350, 450),
+	WoodTreated             = wood          ( 8222, "WoodTreated"                                   ,  80,  40,   0, 255, TICKS_PER_SMELT/ 2, FLAMMABLE, COATED, "WoodSealed")                                                                                      .uumMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1, TC.FABRICO    , 1).setAllToTheOutputOf(Wood).qual(1, 3.0, 24, 0).heat(500, 600).setLocal("Treated Wood"),
+	WoodPolished            = wood          ( 8267, "WoodPolished"                                  ,  60,  30,   0, 255, TICKS_PER_SMELT/ 2, FLAMMABLE, COATED)                                                                                                    .uumMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1, TC.FABRICO    , 1).setAllToTheOutputOf(Wood).qual(1, 3.0, 24, 0).heat(500, 600).setLocal("Polished Wood"),
+	WoodRubber              = wood          ( 8224, "WoodRubber"                                    , 180, 150,   0, 255, TICKS_PER_SMELT/ 4, FLAMMABLE, APPROXIMATE)                                                                                               .uumMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1                   ).setBurning(Ash, U4).setSmelting(Ash, U2).qual(1, 1.5, 12, 0).heat(350, 450).setLocal("Rubber Wood"),
+	Bamboo                  = wood          ( 8418, "Bamboo"                                        , 100, 200, 100, 255, TICKS_PER_SMELT/ 2, FLAMMABLE, APPROXIMATE)                                                                                               .uumMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.HERBA, 1                   ).setBurning(Ash, U4).setSmelting(Ash, U2).qual(1, 2.0, 32, 0).heat(350, 450),
+	Skyroot                 = wood          ( 8291, "Skyroot"                                       ,  50,  80,  80, 255, TICKS_PER_SMELT/ 2, FLAMMABLE, APPROXIMATE)                                                                                               .uumMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1, TC.VOLATUS    , 1).setBurning(Ash, U4).setSmelting(Ash, U2).qual(1, 4.0, 64, 0).heat(350, 450),
+	Weedwood                = wood          ( 8286, "Weedwood"                                      ,  80,  50,   0, 255, TICKS_PER_SMELT/ 2, FLAMMABLE, APPROXIMATE)                                                                                               .uumMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1, TC.MORTUUS    , 1).setBurning(Ash, U4).setSmelting(Ash, U2).qual(1, 2.0, 32, 0).heat(350, 450),
 	Livingwood              = wood          ( 8289, "Livingwood"                                    ,  60,  30,   0, 255, TICKS_PER_SMELT   , FLAMMABLE, APPROXIMATE, MAGICAL)                                                                                      .setMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1, TC.VICTUS     , 1).setBurning(Ash, U4).setSmelting(Ash, U2).qual(1, 4.0, 64, 0).heat(350, 500),
 	Dreamwood               = wood          ( 8290, "Dreamwood"                                     , 200, 240, 240, 255, TICKS_PER_SMELT* 2, FLAMMABLE, APPROXIMATE, MAGICAL)                                                                                      .setMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1, TC.SPIRITUS   , 1).setBurning(Ash, U4).setSmelting(Ash, U2).qual(1, 4.0,128, 1).heat(350, 550),
 	Shimmerwood             = wood          ( 8414, "Shimmerwood"                                   , 234, 234, 234, 255, TICKS_PER_SMELT* 2, FLAMMABLE, APPROXIMATE, MAGICAL)                                                                                      .setMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1, TC.LUX        , 1).setBurning(Ash, U4).setSmelting(Ash, U2).qual(1, 4.0,128, 1).heat(350, 550),
 	Greatwood               = wood          ( 8296, "Greatwood"                                     ,  60,  30,  25, 255, TICKS_PER_SMELT* 2, FLAMMABLE, APPROXIMATE, MAGICAL)                                                                                      .setMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1                   ).setBurning(Ash, U4).setSmelting(Ash, U2).qual(1, 6.0, 64, 1).heat(400, 600),
 	Silverwood              = wood          ( 8297, "Silverwood"                                    , 234, 222, 210, 255, TICKS_PER_SMELT* 4, FLAMMABLE, APPROXIMATE, MAGICAL)                                                                                      .setMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1, TC.PRAECANTIO , 1).setBurning(Ash,  0).setSmelting(Ash,  0).qual(1, 8.0,128, 1).heat(450, 650),
-	Peanutwood              = wood          ( 8227, "Peanut Wood"                                   , 120,  60,   0, 255, TICKS_PER_SMELT/ 2, FLAMMABLE, "Peanutwood")                                                                                              .setMcfg( 0, Wood           , 1*U)                                                                                                                          .aspects(TC.ARBOR, 1                   ).steal(Wood).heat(350, 450),
+	Peanutwood              = wood          ( 8227, "Peanut Wood"                                   , 120,  60,   0, 255, TICKS_PER_SMELT/ 2, FLAMMABLE, "Peanutwood")                                                                                              .uumMcfg( 0, C              , 6*U, H2O              ,15*U)                                                                                                  .aspects(TC.ARBOR, 1                   ).steal(Wood).heat(350, 450),
 	Marshmallow             = wood          ( 9715, "Marshmallow"           , SET_FINE              , 255, 220, 220, 255, FOOD)                                                                                                                                                                                                                                                                                                 .aspects(TC.FAMES, 1                   ).qual(1, 3.0, 24, 0),
 	LiveRoot                = dustcent      ( 8223, "LiveRoot"              , SET_WOOD              , 220, 200,   0, 255, TICKS_PER_SMELT   , WOOD, MORTAR, MAGICAL, MORTAR)                                                                                        .setMcfg( 3, Wood           , 3*U, Ma               , 1*U)                                                                                                  .aspects(TC.ARBOR, 1, TC.VICTUS     , 1).setLocal("Liveroot").setBurning(Ash, U9).heat(1178, 2465),
 	PetrifiedWood           = create        ( 8277, "Petrified Wood"        , SET_WOOD              , 110,  50,  35, 255, TICKS_PER_SMELT/ 4, G_STONE, STONE, WOOD, MORTAR, FLAMMABLE, MD.ERE)                                                                      .setMcfg( 0, Wood           , 1*U)                                                                                                                          .aspects(TC.ARBOR, 1, TC.TERRA      , 1).qual(1, 2.0, 24, 1).heat(350, 450),
@@ -1717,7 +1717,7 @@ public class MT {
 	}
 	
 	/** I had to remove the full length names of Elements from this List, but in order to keep Compat with Mods that used some, such as IHL or Tinkers Gregworks, I got a few of them here. */
-	@Deprecated public static final OreDictMaterial Trinium = Ke, Vibranium = Vb, Naquadah = Nq, NaquadahEnriched = Nq_528, Naquadria = Nq_522, Adamantium = Ad, Silver = Ag, Aluminium = Al, Bismuth = Bi, Lead = Pb, Argon = Ar, Copper = Cu, Gold = Au, Iron = Fe, Titanium = Ti, Calcite = CaCO3, Tungsten = W, Beryllium = Be, Chromium = Cr, Manganese = Mn, Cobalt = Co, Cobalt60 = Co_60, Nickel = Ni, Arsenic = As, Zirconium = Zr, Molybdenum = Mo, Technetium = Tc, Palladium = Pd, Neodymium = Nd, Osmium = Os, Iridium = Ir, Platinum = Pt, Thorium = Th, Uranium = U_238, Uranium235 = U_235, Plutonium = Pu, Plutonium241 = Pu_241, Plutonium243 = Pu_243, Americium = Am, Americium241 = Am_241, Alumina = Al2O3, AluminiumFluoride = AlF3, AluminiumHydroxide = AlO3H3, Gibbsite = AlO3H3, Fluorite = CaF2, Soapstone = Talc;
+	@Deprecated public static final OreDictMaterial Trinium = Ke, Vibranium = Vb, Naquadah = Nq, NaquadahEnriched = Nq_528, Naquadria = Nq_522, Adamantium = Ad, Silver = Ag, Aluminium = Al, Bismuth = Bi, Lead = Pb, Argon = Ar, Copper = Cu, Gold = Au, Iron = Fe, Titanium = Ti, Calcite = CaCO3, Tungsten = W, Beryllium = Be, Chromium = Cr, Manganese = Mn, Cobalt = Co, Cobalt60 = Co_60, Nickel = Ni, Arsenic = As, Zirconium = Zr, Molybdenum = Mo, Technetium = Tc, Palladium = Pd, Neodymium = Nd, Osmium = Os, Iridium = Ir, Platinum = Pt, Thorium = Th, Uranium = U_238, Uranium235 = U_235, Plutonium = Pu, Plutonium241 = Pu_241, Plutonium243 = Pu_243, Americium = Am, Americium241 = Am_241, Alumina = Al2O3, AluminiumFluoride = AlF3, AluminiumHydroxide = AlO3H3, Gibbsite = AlO3H3, Fluorite = CaF2, Soapstone = Talc, WoodSealed = WoodTreated;
 	
 	/** Technical Materials, which are only there for Recipes and such. */
 	public static class TECH {
@@ -2043,7 +2043,7 @@ public class MT {
 			
 			
 			Constantan              .put(MD.IE);
-			WoodSealed              .put(MD.IE);
+			WoodTreated             .put(MD.IE);
 			
 			
 			Ni                      .put(MD.TE, COMMON_ORE);
@@ -2579,13 +2579,6 @@ public class MT {
 			RedMatter               .addEnchantmentForArmors(Enchantment.blastProtection, 5);
 			Infinity                .addEnchantmentForArmors(Enchantment.blastProtection,10);
 			
-			/* TODO ?
-			FryingOilHot            .setHeatDamage(1.0);
-			Lava                    .setHeatDamage(3.0);
-			Firestone               .setHeatDamage(5.0);
-			Pyrotheum               .setHeatDamage(5.0);
-			*/
-			
 			Yellorite                       .addOreByProducts(Pb                        , Cyanite                   , Yellorium             , Ra                    , RareEarth             );
 			Yellorium                       .addOreByProducts(Pb                        , Cyanite                   , Blutonium             , Am                    );
 			Blutonium                       .addOreByProducts(Pb                        , Yellorium                 , Am                    );
@@ -2623,7 +2616,7 @@ public class MT {
 			OREMATS.Cassiterite             .addOreByProducts(OREMATS.Molybdenite       , OREMATS.Wolframite        , FluoriteWhite         , OREMATS.Arsenopyrite  , OREMATS.Stannite      , OREMATS.Sperrylite    , OREMATS.Huebnerite    , Apatite); // Tourmaline
 			OREMATS.Bauxite                 .addOreByProducts(Kaolinite                 , OREMATS.Ilmenite          , Fe2O3                 , Al2O3                 , AlO3H3                );
 			AlO3H3                          .addOreByProducts(OREMATS.Bauxite           , OREMATS.Ilmenite          , Fe2O3                 , Al2O3                 );
-			OREMATS.Ilmenite                .addOreByProducts(TiO2                      , Fe2O3                     , Mg                    , MnO2                  );
+			OREMATS.Ilmenite                .addOreByProducts(TiO2                      , Fe2O3                     , MgCO3                 , MnO2                  );
 			TiO2                            .addOreByProducts(Fe2O3                     , Nb                        , OREMATS.Tantalite     , Zircon                );
 			Ti                              .addOreByProducts(Fe2O3                     , Nb                        , OREMATS.Tantalite     , Zircon                );
 			Fe2O3                           .addOreByProducts(OREMATS.Ilmenite          , OREMATS.GraniticMineralSand, MnO2                 , ClayRed               );
@@ -2652,7 +2645,7 @@ public class MT {
 			OREMATS.Tantalite               .addOreByProducts(MnO2                      , Nb                        , Ta                    );
 			Mn                              .addOreByProducts(MnO2                      , Fe2O3                     , OREMATS.Tantalite     , OREMATS.Chromite      );
 			MnO2                            .addOreByProducts(OREMATS.Bromargyrite      , Fe2O3                     , OREMATS.Tantalite     , OREMATS.Chromite      );
-			OREMATS.Chromite                .addOreByProducts(MnO2                      , Fe2O3                     , Mg                    , OREMATS.Bromargyrite  );
+			OREMATS.Chromite                .addOreByProducts(MnO2                      , Fe2O3                     , MgCO3                 , OREMATS.Bromargyrite  );
 			OREMATS.Bromargyrite            .addOreByProducts(MnO2                      , Ag                        , OREMATS.Chromite      , OREMATS.Smithsonite   );
 			
 			Apatite                         .addOreByProducts(Phosphorite               , Phosphorus                , FluoriteBlue          , PO4                   );
@@ -2664,6 +2657,15 @@ public class MT {
 			OREMATS.Zeolite                 .addOreByProducts(OREMATS.Pollucite         , NaCl                      );
 			OREMATS.Pollucite               .addOreByProducts(OREMATS.Zeolite           , Cs                        , Rb                    );
 			
+			Be                              .addOreByProducts(Al2O3                     , Emerald                   , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
+			Emerald                         .addOreByProducts(Al2O3                     , Be                        , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
+			Aquamarine                      .addOreByProducts(Al2O3                     , Be                        , Emerald               , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
+			Morganite                       .addOreByProducts(Al2O3                     , Be                        , Emerald               , Aquamarine            , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
+			Goshenite                       .addOreByProducts(Al2O3                     , Be                        , Emerald               , Aquamarine            , Morganite             , Bixbite               , Heliodor              , Maxixe    );
+			Bixbite                         .addOreByProducts(Al2O3                     , Be                        , Emerald               , Aquamarine            , Morganite             , Goshenite             , Heliodor              , Maxixe    );
+			Heliodor                        .addOreByProducts(Al2O3                     , Be                        , Emerald               , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Maxixe    );
+			Maxixe                          .addOreByProducts(Al2O3                     , Be                        , Emerald               , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Heliodor  );
+			
 			Sapphire                        .addOreByProducts(Ruby                      , PurpleSapphire            , GreenSapphire         );
 			BlueSapphire                    .addOreByProducts(Ruby                      , PurpleSapphire            , GreenSapphire         );
 			GreenSapphire                   .addOreByProducts(Ruby                      , BlueSapphire              , YellowSapphire        );
@@ -2671,6 +2673,37 @@ public class MT {
 			OrangeSapphire                  .addOreByProducts(Ruby                      , BlueSapphire              , GreenSapphire         );
 			PurpleSapphire                  .addOreByProducts(Ruby                      , BlueSapphire              , GreenSapphire         );
 			Ruby                            .addOreByProducts(OrangeSapphire            , BlueSapphire              , GreenSapphire         );
+			
+			Almandine                       .addOreByProducts(Grossular                 , Pyrope                    , Spessartine           , Andradite             , Uvarovite             );
+			Grossular                       .addOreByProducts(Almandine                 , Pyrope                    , Spessartine           , Andradite             , Uvarovite             );
+			Pyrope                          .addOreByProducts(Almandine                 , Grossular                 , Spessartine           , Andradite             , Uvarovite             );
+			Spessartine                     .addOreByProducts(Almandine                 , Grossular                 , Pyrope                , Andradite             , Uvarovite             );
+			Andradite                       .addOreByProducts(Almandine                 , Grossular                 , Pyrope                , Spessartine           , Uvarovite             );
+			Uvarovite                       .addOreByProducts(Almandine                 , Grossular                 , Pyrope                , Spessartine           , Andradite             );
+			
+			Jasper                          .addOreByProducts(JasperOcean               , JasperRainforest          , JasperBlue            , JasperGreen           , JasperYellow          );
+			JasperOcean                     .addOreByProducts(Jasper                    , JasperRainforest          , JasperBlue            , JasperGreen           , JasperYellow          );
+			JasperRainforest                .addOreByProducts(Jasper                    , JasperOcean               , JasperBlue            , JasperGreen           , JasperYellow          );
+			JasperBlue                      .addOreByProducts(Jasper                    , JasperOcean               , JasperRainforest      , JasperGreen           , JasperYellow          );
+			JasperGreen                     .addOreByProducts(Jasper                    , JasperOcean               , JasperRainforest      , JasperBlue            , JasperYellow          );
+			JasperYellow                    .addOreByProducts(Jasper                    , JasperOcean               , JasperRainforest      , JasperBlue            , JasperGreen           );
+			
+			TigerEyeYellow                  .addOreByProducts(Fe2O3                     , TigerEyeGreen             , TigerEyeRed           , TigerEyeBlue          , TigerEyeBlack         , TigerIron             );
+			TigerEyeGreen                   .addOreByProducts(Fe2O3                     , TigerEyeYellow            , TigerEyeRed           , TigerEyeBlue          , TigerEyeBlack         , TigerIron             );
+			TigerEyeRed                     .addOreByProducts(Fe2O3                     , TigerEyeYellow            , TigerEyeGreen         , TigerEyeBlue          , TigerEyeBlack         , TigerIron             );
+			TigerEyeBlue                    .addOreByProducts(Fe2O3                     , TigerEyeYellow            , TigerEyeGreen         , TigerEyeRed           , TigerEyeBlack         , TigerIron             );
+			TigerEyeBlack                   .addOreByProducts(Fe2O3                     , TigerEyeYellow            , TigerEyeGreen         , TigerEyeRed           , TigerEyeBlue          , TigerIron             );
+			TigerIron                       .addOreByProducts(Fe2O3                     , TigerEyeYellow            , TigerEyeGreen         , TigerEyeRed           , TigerEyeBlue          , TigerEyeBlack         );
+			
+			AventurineGreen                 .addOreByProducts(AventurineBrown           , AventurineYellow          , AventurineBlack       , AventurineBlue        , AventurineRed         );
+			AventurineBrown                 .addOreByProducts(AventurineGreen           , AventurineYellow          , AventurineBlack       , AventurineBlue        , AventurineRed         );
+			AventurineYellow                .addOreByProducts(AventurineGreen           , AventurineBrown           , AventurineBlack       , AventurineBlue        , AventurineRed         );
+			AventurineBlack                 .addOreByProducts(AventurineGreen           , AventurineBrown           , AventurineYellow      , AventurineBlue        , AventurineRed         );
+			AventurineBlue                  .addOreByProducts(AventurineGreen           , AventurineBrown           , AventurineYellow      , AventurineBlack       , AventurineRed         );
+			AventurineRed                   .addOreByProducts(AventurineGreen           , AventurineBrown           , AventurineYellow      , AventurineBlack       , AventurineBlue        );
+			
+			Spinel                          .addOreByProducts(Al2O3                     , BalasRuby                 );
+			BalasRuby                       .addOreByProducts(OREMATS.Chromite          , Spinel                    );
 			
 			HexoriumRed                     .addOreByProducts(HexoriumWhite             , HexoriumBlack             );
 			HexoriumGreen                   .addOreByProducts(HexoriumWhite             , HexoriumBlack             );
@@ -2687,7 +2720,7 @@ public class MT {
 			
 			OREMATS.Barite                  .addOreByProducts(CertusQuartz              , Quartzite                 );
 			OREMATS.QuartzSand              .addOreByProducts(CertusQuartz              , Quartzite                 , OREMATS.Barite        );
-			OREMATS.Wollastonite            .addOreByProducts(Fe2O3                     , Mg                        , MnO2                  );
+			OREMATS.Wollastonite            .addOreByProducts(Fe2O3                     , MgCO3                     , MnO2                  );
 			
 			Redstone                        .addOreByProducts(OREMATS.Cinnabar          , RareEarth                 , Glowstone             );
 			Nikolite                        .addOreByProducts(Cu                        , RareEarth                 );
@@ -2703,7 +2736,7 @@ public class MT {
 			Monazite                        .addOreByProducts(/*Th                        ,*/ Nd                        , RareEarth             );
 			Forcicium                       .addOreByProducts(Nd                        , RareEarth             );
 			Forcillium                      .addOreByProducts(Nd                        , RareEarth             );
-			FakeOsmium                      .addOreByProducts(Fe2O3                     , Sn                        , Cr                    );
+			FakeOsmium                      .addOreByProducts(Fe2O3                     , Sn                        , OREMATS.Chromite      );
 			Cd                              .addOreByProducts(OREMATS.Chalcopyrite      , OREMATS.Sphalerite        , Se                    );
 			OREMATS.Powellite               .addOreByProducts(OREMATS.Molybdenite       , OREMATS.Scheelite         );
 			OREMATS.Molybdenite             .addOreByProducts(OREMATS.Powellite         , OREMATS.Scheelite         , Re                    , Os);
@@ -2748,9 +2781,6 @@ public class MT {
 			Ga                              .addOreByProducts(Zn                        , Se                        );
 			Zn                              .addOreByProducts(Sn                        , Ga                        );
 			W                               .addOreByProducts(MnO2                      , Mo                        );
-			Jasper                          .addOreByProducts(BalasRuby                 , Spinel                    );
-			BalasRuby                       .addOreByProducts(Jasper                    , Spinel                    );
-			Spinel                          .addOreByProducts(Jasper                    , BalasRuby                 );
 			Fe                              .addOreByProducts(Ni                        , Sn                        );
 			OREMATS.Lepidolite              .addOreByProducts(LiCl                      , Cs                        , Rb                    );
 			Sb                              .addOreByProducts(Zn                        , Fe2O3                     );
@@ -2764,17 +2794,10 @@ public class MT {
 			Anthracite                      .addOreByProducts(Prismane                  , Lonsdaleite               , Th                    );
 			Prismane                        .addOreByProducts(Lonsdaleite               , Th                        , OREMATS.Pitchblende   );
 			Lonsdaleite                     .addOreByProducts(Th                        , OREMATS.Uraninite         , U_238                );
-			Emerald                         .addOreByProducts(Be                        , Al2O3                     , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
-			Aquamarine                      .addOreByProducts(Be                        , Al2O3                     , Emerald               , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
-			Morganite                       .addOreByProducts(Be                        , Al2O3                     , Emerald               , Aquamarine            , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
-			Goshenite                       .addOreByProducts(Be                        , Al2O3                     , Emerald               , Aquamarine            , Morganite             , Bixbite               , Heliodor              , Maxixe    );
-			Bixbite                         .addOreByProducts(Be                        , Al2O3                     , Emerald               , Aquamarine            , Morganite             , Goshenite             , Heliodor              , Maxixe    );
-			Heliodor                        .addOreByProducts(Be                        , Al2O3                     , Emerald               , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Maxixe    );
-			Maxixe                          .addOreByProducts(Be                        , Al2O3                     , Emerald               , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Heliodor  );
-			Be                              .addOreByProducts(Emerald                   , Aquamarine                , Morganite             );
+
 			Al                              .addOreByProducts(OREMATS.Bauxite           , Al2O3                     , AlO3H3                );
 			Al2O3                           .addOreByProducts(OREMATS.Bauxite           , Al2O3                     , AlO3H3                );
-			Cr                              .addOreByProducts(Fe2O3                     , Mg                        );
+			Cr                              .addOreByProducts(OREMATS.Chromite          , Fe2O3                     , MgCO3                 );
 			OREMATS.Ferrovanadium           .addOreByProducts(OREMATS.Magnetite         , VanadiumPentoxide         );
 			OREMATS.Magnetite               .addOreByProducts(Fe2O3                     , Au                        , Stone);
 			OREMATS.GraniticMineralSand     .addOreByProducts(Fe2O3                     , Au                        , GraniteBlack);
@@ -2788,7 +2811,7 @@ public class MT {
 			Zr                              .addOreByProducts(TiO2                      , Hf                        );
 			Zircon                          .addOreByProducts(TiO2                      , Hf                        /*, OREMATS.Uraninite*/     );
 			Eudialyte                       .addOreByProducts(Zircon                    , RareEarth                 , Hf                    , Ta                    , Nb                    , Pb                    );
-			Azurite                         .addOreByProducts(Zircon                    , OREMATS.Malachite         , Hf                    ); // TODO: Niccolite
+			Azurite                         .addOreByProducts(Zircon                    , OREMATS.Malachite         , Hf                    ); // Niccolite byproduct?
 			Ad                              .addOreByProducts(OREMATS.GraniticMineralSand, Adamantine               );
 			Adamantine                      .addOreByProducts(OREMATS.GraniticMineralSand, Ad                       );
 			OREMATS.Stibnite                .addOreByProducts(Sb                        );
@@ -2796,13 +2819,7 @@ public class MT {
 			DiamondPink                     .addOreByProducts(Graphite                  , Diamond                   );
 			ManaDiamond                     .addOreByProducts(Graphite                  , Diamond                   );
 			ElvenDragonstone                .addOreByProducts(Graphite                  );
-			Pyrope                          .addOreByProducts(Mg                        );
-			Almandine                       .addOreByProducts(Al2O3                     );
-			Spessartine                     .addOreByProducts(MnO2                      );
-			Andradite                       .addOreByProducts(Fe2O3                     );
-			Grossular                       .addOreByProducts(Ca                        );
-			Uvarovite                       .addOreByProducts(Cr                        );
-			Olivine                         .addOreByProducts(Mg                        );
+			Olivine                         .addOreByProducts(Obsidian                  );
 			PigIron                         .addOreByProducts(Fe2O3                     );
 			DarkIron                        .addOreByProducts(Fe2O3                     );
 			Steel                           .addOreByProducts(Fe2O3                     );
@@ -2816,7 +2833,7 @@ public class MT {
 			KNO3                            .addOreByProducts(NaNO3                     , Niter                     );
 			Niter                           .addOreByProducts(KNO3                      , NaNO3                     );
 			Hf                              .addOreByProducts(Zircon                    );
-			Mg                              .addOreByProducts(Olivine                   );
+			Mg                              .addOreByProducts(Olivine                   , MgCO3                     );
 			Ardite                          .addOreByProducts(OREMATS.Cobaltite                        );
 			Obsidian                        .addOreByProducts(Olivine                   );
 			Redrock                         .addOreByProducts(ClayBrown                 );
@@ -2860,9 +2877,9 @@ public class MT {
 			
 			Alduorite                       .addOreByProducts(Cd                        );
 			Infuscolium                     .addOreByProducts(Cu                        );
-			Rubracium                       .addOreByProducts(Cr                        );
+			Rubracium                       .addOreByProducts(OREMATS.Chromite          );
 			Meutoite                        .addOreByProducts(VanadiumPentoxide         );
-			Lemurite                        .addOreByProducts(Mg                        );
+			Lemurite                        .addOreByProducts(MgCO3                     );
 			Ceruclase                       .addOreByProducts(Sb                        );
 			Atl                             .addOreByProducts(TiO2                      );
 			Oureclase                       .addOreByProducts(Ni                        );
@@ -2880,6 +2897,13 @@ public class MT {
 			AstralSilver                    .addOreByProducts(Ag                        );
 			Midasium                        .addOreByProducts(Au                        );
 			Mithril                         .addOreByProducts(Pt                        );
+			
+			/* TODO ?
+			FryingOilHot            .setHeatDamage(1.0);
+			Lava                    .setHeatDamage(3.0);
+			Firestone               .setHeatDamage(5.0);
+			Pyrotheum               .setHeatDamage(5.0);
+			*/
 			
 //          Fe                      .addAlloyingRecipe(new OreDictConfigurationComponent( 2, OM.stack(OREMATS.Chalcopyrite          , 8*U), OM.stack(C                  , 1*U)));
 			Fe                      .addAlloyingRecipe(new OreDictConfigurationComponent( 2, OM.stack(Fe2O3                         , 5*U), OM.stack(C                  , 1*U), OM.stack(CaCO3, 1*U)));
@@ -3236,7 +3260,7 @@ public class MT {
 		public static final OreDictMaterial
 		Cassiterite             = oredustelec( 9108, "Cassiterite"               , SET_METALLIC  , 220, 220, 220, 255, MORTAR, FURNACE, "CassiteriteSand"                                             ).setSmelting(Sn   , 3*U4).uumMcfg( 1, Sn             , 1*U, O                , 2*U)                                                                                                .heat(3 * Sn.mMeltingPoint / 2), CassiteriteSand = Cassiterite,
 		Garnierite              = oredustelec( 9118, "Garnierite"                , SET_METALLIC  ,  50, 200,  70, 255, MORTAR, BLACKLISTED_SMELTER, MAGNETIC_PASSIVE, WASHING_PERSULFATE              ).setSmelting(Ni   , 3*U4).uumMcfg( 1, Ni             , 1*U, O                , 1*U)                                                                                                .qual(0),
-		Uraninite               = oredustelec( 9134, "Uraninite"                 , SET_RAD       ,  35,  35,  35, 255, BLACKLISTED_SMELTER                                                            ).setSmelting(U_238,   U3).setMcfg( 1, U_238          , 1*U, O                , 2*U)                                                                                                ,
+		Uraninite               = oredustdcmp( 9134, "Uraninite"                 , SET_RAD       ,  35,  35,  35, 255, BLACKLISTED_SMELTER                                                            ).setSmelting(U_238,   U3).setMcfg( 1, U_238          , 1*U, O                , 2*U)                                                                                                ,
 		Magnetite               = oredustdcmp( 9122, "Magnetite"                 , SET_METALLIC  ,  30,  30,  30, 255, MORTAR, MELTING, MAGNETIC_PASSIVE                                              )                         .uumMcfg( 0, Fe             , 3*U, O                , 4*U)                                                                                                .qual(0).heat(Fe.mMeltingPoint).aspects(TC.METALLUM, 2, TC.MAGNETO, 1),
 		BasalticMineralSand     = oredustcent( 9003, "Basaltic Mineral Sand"     , SET_METALLIC  ,  40,  50,  40, 255, MORTAR, MELTING, MAGNETIC_PASSIVE                                              )                         .setMcfg( 1, Magnetite      , 1*U, Gabbro           , 1*U)                                                                                                .qual(0).heat(Fe.mMeltingPoint).aspects(TC.METALLUM, 2, TC.MAGNETO, 1),
 		GraniticMineralSand     = oredustcent( 9004, "Granitic Mineral Sand"     , SET_METALLIC  ,  40,  60,  60, 255, MORTAR, MELTING, MAGNETIC_PASSIVE                                              )                         .setMcfg( 1, Magnetite      , 1*U, GraniteBlack     , 1*U)                                                                                                .qual(0).heat(Fe.mMeltingPoint).aspects(TC.METALLUM, 2, TC.MAGNETO, 1),
