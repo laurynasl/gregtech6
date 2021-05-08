@@ -23,6 +23,7 @@ import static gregapi.data.CS.*;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import gregapi.GT_API_Proxy;
 import gregapi.block.multitileentity.IMultiTileEntity.IMTE_GetCollisionBoundingBoxFromPool;
@@ -30,6 +31,7 @@ import gregapi.block.multitileentity.IMultiTileEntity.IMTE_OnEntityCollidedWithB
 import gregapi.block.multitileentity.MultiTileEntityBlock;
 import gregapi.block.multitileentity.MultiTileEntityRegistry;
 import gregapi.code.ArrayListNoNulls;
+import gregapi.code.HashSetNoNulls;
 import gregapi.code.TagData;
 import gregapi.data.CS.GarbageGT;
 import gregapi.data.CS.IconsGT;
@@ -156,12 +158,55 @@ public class MultiTileEntityPipeFluid extends TileEntityBase10ConnectorRendered 
 		if (aTool.equals(TOOL_magnifyingglass)) {
 			if (!isCovered(UT.Code.getSideWrenching(aSide, aHitX, aHitY, aHitZ))) {
 				if (aChatReturn != null) {
-					boolean temp = T;
+					boolean tPipeEmpty = T;
 					for (FluidTankGT tTank : mTanks) if (!tTank.isEmpty()) {
-						temp = F;
 						aChatReturn.add(tTank.content());
+						tPipeEmpty = F;
 					}
-					if (temp) aChatReturn.add("Pipe is empty");
+					
+					Set<MultiTileEntityPipeFluid>
+					tDone = new HashSetNoNulls<>(F, this),
+					tNow  = new HashSetNoNulls<>(F, this),
+					tNext = new HashSetNoNulls<>(),
+					tSwap;
+					
+					List<FluidTankGT> tFluids = new ArrayListNoNulls<>();
+					
+					while (T) {
+						for (MultiTileEntityPipeFluid tPipe : tNow) {
+							for (FluidTankGT tTank : tPipe.mTanks) if (!tTank.isEmpty()) {
+								boolean temp = T;
+								for (FluidTankGT tFluid : tFluids) if (tFluid.contains(tTank.get())) {
+									tFluid.add(tTank.amount());
+									temp = F;
+									break;
+								}
+								if (temp) tFluids.add(new FluidTankGT().setFluid(tTank));
+							}
+							
+							for (byte tSide : ALL_SIDES_VALID) if (tPipe.connected(tSide)) {
+								DelegatorTileEntity<TileEntity> tDelegator = tPipe.getAdjacentTileEntity(tSide);
+								if (tDelegator.mTileEntity instanceof MultiTileEntityPipeFluid) {
+									if (tDone.add((MultiTileEntityPipeFluid)tDelegator.mTileEntity)) {
+										tNext.add((MultiTileEntityPipeFluid)tDelegator.mTileEntity);
+									}
+								}
+							}
+						}
+						if (tNext.isEmpty()) break;
+						tSwap = tNow;
+						tNow  = tNext;
+						tNext = tSwap;
+						tNext.clear();
+					}
+					
+					if (tFluids.isEmpty()) {
+						aChatReturn.add("=== This Fluid Pipe Network is empty ===");
+					} else {
+						if (tPipeEmpty) aChatReturn.add("This particular Pipe Segment is currently empty");
+						aChatReturn.add("=== This Fluid Pipe Network contains: ===");
+						for (FluidTankGT tFluid : tFluids) aChatReturn.add(tFluid.content());
+					}
 				}
 				return mTanks.length;
 			}
@@ -171,8 +216,8 @@ public class MultiTileEntityPipeFluid extends TileEntityBase10ConnectorRendered 
 	
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
-		aList.add(Chat.CYAN     + LH.get(LH.PIPE_STATS_BANDWIDTH) + (mCapacity/2) + " L/t");
-		aList.add(Chat.CYAN     + LH.get(LH.PIPE_STATS_CAPACITY) + mCapacity + " L");
+		aList.add(Chat.CYAN     + LH.get(LH.PIPE_STATS_BANDWIDTH) + UT.Code.makeString(mCapacity/2) + " L/t");
+		aList.add(Chat.CYAN     + LH.get(LH.PIPE_STATS_CAPACITY) + UT.Code.makeString(mCapacity) + " L");
 		if (mTanks.length > 1)
 		aList.add(Chat.CYAN     + LH.get(LH.PIPE_STATS_AMOUNT) + mTanks.length);
 		aList.add(Chat.DRED     + LH.get(LH.HAZARD_MELTDOWN) + " (" + mMaxTemperature + " K)");
@@ -239,19 +284,19 @@ public class MultiTileEntityPipeFluid extends TileEntityBase10ConnectorRendered 
 					mTransferredAmount += Math.min(8, mTanks[i].amount());
 					GarbageGT.trash(mTanks[i], 8);
 					UT.Sounds.send(worldObj, SFX.MC_FIZZ, 1.0F, 1.0F, getCoords());
-					try {for (Entity tEntity : (List<Entity>)worldObj.getEntitiesWithinAABB(Entity.class, box(-2, -2, -2, +3, +3, +3))) UT.Entities.applyTemperatureDamage(tEntity, mTemperature, 2.0F);} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+					try {for (Entity tEntity : (List<Entity>)worldObj.getEntitiesWithinAABB(Entity.class, box(-2, -2, -2, +3, +3, +3))) UT.Entities.applyTemperatureDamage(tEntity, mTemperature, 2.0F);} catch(Throwable e) {e.printStackTrace(ERR);}
 				}
 				if (!mPlasmaProof && FL.plasma(tFluid)) {
 					mTransferredAmount += Math.min(64, mTanks[i].amount());
 					GarbageGT.trash(mTanks[i], 64);
 					UT.Sounds.send(worldObj, SFX.MC_FIZZ, 1.0F, 1.0F, getCoords());
-					try {for (Entity tEntity : (List<Entity>)worldObj.getEntitiesWithinAABB(Entity.class, box(-2, -2, -2, +3, +3, +3))) UT.Entities.applyTemperatureDamage(tEntity, mTemperature, 2.0F);} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+					try {for (Entity tEntity : (List<Entity>)worldObj.getEntitiesWithinAABB(Entity.class, box(-2, -2, -2, +3, +3, +3))) UT.Entities.applyTemperatureDamage(tEntity, mTemperature, 2.0F);} catch(Throwable e) {e.printStackTrace(ERR);}
 				}
 				if (!mAcidProof && FL.acid(tFluid)) {
 					mTransferredAmount += Math.min(16, mTanks[i].amount());
 					GarbageGT.trash(mTanks[i], 16);
 					UT.Sounds.send(worldObj, SFX.MC_FIZZ, 1.0F, 0.5F, getCoords());
-					try {for (Entity tEntity : (List<Entity>)worldObj.getEntitiesWithinAABB(Entity.class, box(-1, -1, -1, +2, +2, +2))) UT.Entities.applyChemDamage(tEntity, 2);} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+					try {for (Entity tEntity : (List<Entity>)worldObj.getEntitiesWithinAABB(Entity.class, box(-1, -1, -1, +2, +2, +2))) UT.Entities.applyChemDamage(tEntity, 2);} catch(Throwable e) {e.printStackTrace(ERR);}
 					if (rng(100) == 0) {
 						GarbageGT.trash(mTanks);
 						setToAir();
@@ -283,7 +328,7 @@ public class MultiTileEntityPipeFluid extends TileEntityBase10ConnectorRendered 
 		// Top Priority is filling Cauldrons and other specialties.
 		for (byte tSide : ALL_SIDES_VALID) if (aAdjacentOther[tSide] != null) {
 			// Covers let distribution happen, right?
-			if (hasCovers() && mCovers.mBehaviours[tSide] != null && mCovers.mBehaviours[tSide].interceptFluidDrain(tSide, mCovers, tSide, aTank.get())) continue;
+			if (isCovered(tSide) && mCovers.mBehaviours[tSide].interceptFluidDrain(tSide, mCovers, tSide, aTank.get())) continue;
 			
 			Block tBlock = aAdjacentOther[tSide].getBlock();
 			// Filling up Cauldrons from Vanilla. Yes I need to check for both to make this work. Some Mods override the Cauldron in a bad way.
@@ -320,7 +365,7 @@ public class MultiTileEntityPipeFluid extends TileEntityBase10ConnectorRendered 
 			// Are we even connected to this Side? (Only gets checked due to the Cover check being slightly expensive)
 			if (!canEmitFluidsTo(tSide)) continue;
 			// Covers let distribution happen, right?
-			if (hasCovers() && mCovers.mBehaviours[tSide] != null && mCovers.mBehaviours[tSide].interceptFluidDrain(tSide, mCovers, tSide, aTank.get())) continue;
+			if (isCovered(tSide) && mCovers.mBehaviours[tSide].interceptFluidDrain(tSide, mCovers, tSide, aTank.get())) continue;
 			// Is it a Pipe?
 			if (aAdjacentPipes[tSide] != null) {
 				// Check if the Pipe can be filled with this Fluid.
@@ -374,7 +419,17 @@ public class MultiTileEntityPipeFluid extends TileEntityBase10ConnectorRendered 
 	
 	@Override
 	public boolean breakBlock() {
+		// Do the same thing Factorio does and just dump Fluid to adjacent connected things.
+		for (byte tSide : ALL_SIDES_VALID) if (canEmitFluidsTo(tSide)) {
+			DelegatorTileEntity<TileEntity> tDelegator = getAdjacentTileEntity(tSide);
+			for (FluidTankGT tTank : mTanks) if (tTank.has()) {
+				if (isCovered(tSide) && mCovers.mBehaviours[tSide].interceptFluidDrain(tSide, mCovers, tSide, tTank.get())) continue;
+				mTransferredAmount += FL.move(tTank, tDelegator);
+			}
+		}
+		// And if that doesn't work, go to the trash!
 		GarbageGT.trash(mTanks);
+		// Drop, uh Inventory? Eh, it is a super Call that is needed regardless, just in case. 
 		return super.breakBlock();
 	}
 	

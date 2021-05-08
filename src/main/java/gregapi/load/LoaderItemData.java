@@ -407,6 +407,10 @@ public class LoaderItemData implements Runnable {
 		OM.reg("listAllfishcooked"                  , ST.make(Items.cooked_fished, 1, 1));
 		OM.reg("listAllmushroom"                    , ST.make(Blocks.brown_mushroom, 1, W));
 		OM.reg("listAllmushroom"                    , ST.make(Blocks.red_mushroom, 1, W));
+		OM.reg(OD.pressurePlateWood                 , ST.make(Blocks.wooden_pressure_plate, 1, W));
+		OM.reg(OD.pressurePlateStone                , ST.make(Blocks.stone_pressure_plate, 1, W));
+		OM.reg(OD.pressurePlateIron                 , ST.make(Blocks.heavy_weighted_pressure_plate, 1, W));
+		OM.reg(OD.pressurePlateGold                 , ST.make(Blocks.light_weighted_pressure_plate, 1, W));
 		OM.reg(OD.paperEmpty                        , ST.make(Items.paper, 1, W));
 		OM.reg(OD.paperMap                          , ST.make(Items.map, 1, W));
 		OM.reg(OD.paperMap                          , ST.make(Items.filled_map, 1, W));
@@ -510,6 +514,7 @@ public class LoaderItemData implements Runnable {
 		OM.reg("foodRabbitraw"                      , ST.make(MD.EtFu, "rabbit_raw", 1, 0));
 		OM.reg("foodRabbitcooked"                   , ST.make(MD.EtFu, "rabbit_cooked", 1, 0));
 		OM.reg(OD.sandstone                         , ST.make(MD.EtFu, "red_sandstone", 1, W));
+		OM.reg("cropBerry"                          , ST.make(MD.EtFu, "sweet_berries", 1, 0));
 		OM.reg(OD.container250poison                , ST.make(Items.potionitem, 1,  8196));
 		OM.reg(OD.container250poison                , ST.make(Items.potionitem, 1,  8228));
 		OM.reg(OD.container250poison                , ST.make(Items.potionitem, 1,  8260));
@@ -537,12 +542,43 @@ public class LoaderItemData implements Runnable {
 		OM.reg(OD.enderChest                        , ST.make(Blocks.ender_chest, 1, W));
 		OM.reg(OD.enderChest                        , ST.make(MD.GaEn, "anchoredEnderChest", 1, 0));
 		OM.reg(OD.enderChest                        , ST.make(MD.GaEn, "enderBag", 1, 0));
+		OM.reg(OD.craftingChest                     , ST.make(MD.NeLi, "CrimsonChest", 1, W));
+		OM.reg(OD.craftingChest                     , ST.make(MD.NeLi, "WarpedChest", 1, W));
+		OM.reg(OD.craftingChest                     , ST.make(MD.NeLi, "FoxfireChest", 1, W));
+		OM.reg(OD.craftingChest                     , ST.make(MD.NeLi, "CrimsonBarrel", 1, W));
+		OM.reg(OD.craftingChest                     , ST.make(MD.NeLi, "WarpedBarrel", 1, W));
+		OM.reg(OD.craftingChest                     , ST.make(MD.NeLi, "FoxfireBarrel", 1, W));
 		OM.reg(OD.craftingFurnace                   , ST.make(Blocks.furnace, 1, W));
 		OM.reg(OD.craftingFurnace                   , ST.make(Blocks.lit_furnace, 1, W));
+		OM.reg(OD.craftingFurnace                   , ST.make(MD.NeLi, "FurnaceBlackstone", 1, W));
+		OM.reg(OD.craftingFurnace                   , ST.make(MD.NeLi, "FurnaceBlackstoneLit", 1, W));
+		OM.reg(OD.craftingWorkBench                 , ST.make(Blocks.crafting_table, 1, W));
+		OM.reg(OD.craftingWorkBench                 , ST.make(MD.NeLi, "NetherCraftingTable", 1, W));
+		OM.reg(OD.craftingWorkBench                 , ST.make(Blocks.crafting_table, 1, W));
 		OM.reg(OD.craftingWorkBench                 , ST.make(Blocks.crafting_table, 1, W));
 		OM.reg(OD.craftingWorkBench                 , ST.make(MD.BC_FACTORY, "autoWorkbenchBlock", 1, 0));
 		OM.reg(OD.buttonWood                        , ST.make(Blocks.wooden_button, 1, W));
+		OM.reg(OD.buttonWood                        , ST.make(MD.TFC, "ButtonWood", 1, W));
+		OM.reg(OD.buttonWood                        , ST.make(MD.TFCP, "ButtonWood", 1, W)); // This Item Name is speculation!
+		OM.reg(OD.buttonWood                        , ST.make(MD.NeLi, "crimsonButton", 1, W));
+		OM.reg(OD.buttonWood                        , ST.make(MD.NeLi, "warpedButton", 1, W));
+		OM.reg(OD.buttonWood                        , ST.make(MD.NeLi, "foxfireButton", 1, W));
+		OM.reg(OD.buttonWood                        , ST.make(MD.EtFu, "button_spruce", 1, W));
+		OM.reg(OD.buttonWood                        , ST.make(MD.EtFu, "button_birch", 1, W));
+		OM.reg(OD.buttonWood                        , ST.make(MD.EtFu, "button_jungle", 1, W));
+		OM.reg(OD.buttonWood                        , ST.make(MD.EtFu, "button_dark_oak", 1, W));
+		OM.reg(OD.buttonWood                        , ST.make(MD.EtFu, "button_acacia", 1, W));
 		OM.reg(OD.buttonStone                       , ST.make(Blocks.stone_button, 1, W));
+		OM.reg(OD.buttonStone                       , ST.make(MD.NeLi, "blackstoneButton", 1, W));
+		OM.reg(OD.pressurePlateWood                 , ST.make(MD.NeLi, "pressurePlateCrimson", 1, W));
+		OM.reg(OD.pressurePlateWood                 , ST.make(MD.NeLi, "pressurePlateWarped", 1, W));
+		OM.reg(OD.pressurePlateWood                 , ST.make(MD.NeLi, "pressurePlateFoxfire", 1, W));
+		OM.reg(OD.pressurePlateWood                 , ST.make(MD.EtFu, "pressure_plate_spruce", 1, W));
+		OM.reg(OD.pressurePlateWood                 , ST.make(MD.EtFu, "pressure_plate_birch", 1, W));
+		OM.reg(OD.pressurePlateWood                 , ST.make(MD.EtFu, "pressure_plate_jungle", 1, W));
+		OM.reg(OD.pressurePlateWood                 , ST.make(MD.EtFu, "pressure_plate_dark_oak", 1, W));
+		OM.reg(OD.pressurePlateWood                 , ST.make(MD.EtFu, "pressure_plate_acacia", 1, W));
+		OM.reg(OD.pressurePlateStone                , ST.make(MD.NeLi, "pressurePlateBlackstone", 1, W));
 		OM.reg(OD.lever                             , ST.make(Blocks.lever, 1, W));
 		OM.reg(OD.craftingRedstoneTorch             , ST.make(Blocks.redstone_torch, 1, W));
 		OM.reg(OD.craftingRedstoneTorch             , ST.make(Blocks.unlit_redstone_torch, 1, W));
@@ -1025,6 +1061,7 @@ public class LoaderItemData implements Runnable {
 		OM.reg(OP.stoneSmooth                                   , ST.make(Blocks.stone                  , 1, W));
 		OM.reg(OP.stoneBricks                                   , ST.make(Blocks.stonebrick             , 1, W));
 		OM.reg(OP.stoneMossy                                    , ST.make(Blocks.stonebrick             , 1, 1));
+		OM.reg(OP.stoneMossyBricks                              , ST.make(Blocks.stonebrick             , 1, 1));
 		OM.reg(OP.stoneCracked                                  , ST.make(Blocks.stonebrick             , 1, 2));
 		OM.reg(OP.stoneChiseled                                 , ST.make(Blocks.stonebrick             , 1, 3));
 		OM.reg(OP.stone, MT.Sand                                , ST.make(Blocks.sandstone              , 1, W));
@@ -1467,6 +1504,11 @@ public class LoaderItemData implements Runnable {
 		OM.data(MD.FZ, "servo/sprocket"                     , 1,   W, MT.DarkIron           ,  U * 2, MT.Ag                 ,  U2);
 		OM.data(MD.FZ, "ArtifactForge"                      , 1,   W, MT.DarkIron           ,  U *31);
 		OM.data(MD.FZ, "FzBlock"                            , 1,  27, MT.DarkIron           ,  U8   , MT.Pb                 ,  U4);
+		
+		
+		OM.data(MD.BTRS, "lock"                             , 1,   W, MT.Au                 ,  U * 5, ANY.Fe                ,  U);
+		OM.data(MD.BTRS, "key"                              , 1,   W, MT.Au                 ,  29*U9);
+		OM.data(MD.BTRS, "keyring"                          , 1,   W, MT.Au                 ,   8*U9);
 		
 		
 		OM.data(MD.JABBA, "barrel"                          , 1,   W, ANY.Wood              ,129* U2);

@@ -29,6 +29,7 @@ import java.text.DateFormat;
 import java.util.*;
 import java.util.Map.Entry;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -39,13 +40,21 @@ import gregapi.code.ModData;
 import gregapi.code.ObjectStack;
 import gregapi.code.TagData;
 import gregapi.damage.DamageSources;
-import gregapi.data.*;
+import gregapi.data.ANY;
 import gregapi.data.CS.ArmorsGT;
 import gregapi.data.CS.FluidsGT;
 import gregapi.data.CS.IconsGT;
 import gregapi.data.CS.ItemsGT;
 import gregapi.data.CS.PotionsGT;
+import gregapi.data.FL;
+import gregapi.data.IL;
+import gregapi.data.LH;
+import gregapi.data.MD;
+import gregapi.data.MT;
+import gregapi.data.OD;
+import gregapi.data.RM;
 import gregapi.data.TC.TC_AspectStack;
+import gregapi.data.TD;
 import gregapi.enchants.Enchantment_Radioactivity;
 import gregapi.fluid.FluidGT;
 import gregapi.fluid.FluidTankGT;
@@ -575,11 +584,11 @@ public class UT {
 			for (Set<String> tSet : aFluidList) tSet.add(aName);
 			
 			switch (aState) {
-			case STATE_SOLID:           rFluid.setViscosity(10000); break;
-			case STATE_LIQUID:          rFluid.setViscosity( 1000); FluidsGT.LIQUID.add(aName); break;
-			case STATE_GASEOUS:         rFluid.setViscosity(  200); rFluid.setDensity(   -100); FluidsGT.GAS.add(aName); break;
-			case STATE_PLASMA:          rFluid.setViscosity(   10); rFluid.setDensity(-100000); rFluid.setLuminosity(15); FluidsGT.PLASMA.add(aName); break;
-			case 4:                     rFluid.setViscosity( 1000); break;
+			case STATE_SOLID:   rFluid.setViscosity(10000); break;
+			case STATE_LIQUID:  rFluid.setViscosity( 1000); FluidsGT.LIQUID.add(aName); break;
+			case STATE_GASEOUS: rFluid.setViscosity(  200); rFluid.setDensity(   -100); FluidsGT.GAS.add(aName); break;
+			case STATE_PLASMA:  rFluid.setViscosity(   10); rFluid.setDensity(-100000); rFluid.setLuminosity(15); FluidsGT.PLASMA.add(aName); break;
+			case 4:             rFluid.setViscosity( 1000); break;
 			}
 			
 			if (!FluidRegistry.registerFluid(rFluid)) {
@@ -622,11 +631,31 @@ public class UT {
 		public static final List<String> BOOK_LIST = new ArrayListNoNulls<>();
 		public static final List<String> MATERIAL_DICTIONARIES = new ArrayListNoNulls<>();
 		
-		public static ItemStack getWrittenBook(String aMapping) {
-			return getWrittenBook(aMapping, null);
+		public static void display(EntityPlayer aPlayer, ItemStack aStack) {
+			String aMapping = NBT.getBookMapping(aStack);
+			if (Code.stringValid(aMapping)) display(aPlayer, aMapping); else display(aPlayer, F, aStack);
+		}
+		public static void display(EntityPlayer aPlayer, String aMapping) {
+			aPlayer.displayGUIBook(getWrittenBook(aMapping, T, ST.make(Items.written_book, 1, 0)));
+		}
+		public static void display(EntityPlayer aPlayer, boolean aWritable, ItemStack aStack) {
+			if (ST.invalid(aStack)) return;
+			display(aPlayer, aWritable, aStack.getTagCompound());
+		}
+		public static void display(EntityPlayer aPlayer, boolean aWritable, NBTTagCompound aNBT) {
+			if (aNBT == null || UT.Code.stringInvalid(UT.NBT.getBookTitle(aNBT))) return;
+			aPlayer.displayGUIBook(ST.make(aWritable?Items.writable_book:Items.written_book, 1, 0, aNBT));
 		}
 		
-		public static ItemStack getWrittenBook(String aMapping, ItemStack aStackToPutNBT) {
+		@Deprecated public static ItemStack getWrittenBook(String aMapping) {return getWrittenBook(aMapping, F, null);}
+		@Deprecated public static ItemStack getWrittenBook(String aMapping, ItemStack aStackToPutNBT) {return getWrittenBook(aMapping, F, aStackToPutNBT);}
+		
+		public static ItemStack getWrittenBook(String aMapping, boolean aForceRecreation) {
+			return getWrittenBook(aMapping, aForceRecreation, null);
+		}
+		public static ItemStack getWrittenBook(String aMapping, boolean aForceRecreation, ItemStack aStackToPutNBT) {
+			if (Code.stringInvalid(aMapping)) return null;
+			if (aForceRecreation && aMapping.startsWith("Material_Dictionary_")) UT.Books.createMaterialDictionary(OreDictMaterial.MATERIAL_MAP.get(aMapping.replaceFirst("Material_Dictionary_", "")), NI, NI);
 			ItemStack tStack = BOOK_MAP.get(aMapping);
 			if (tStack == null) return aStackToPutNBT==null?ST.make(Items.written_book, 1, 0):aStackToPutNBT;
 			if (aStackToPutNBT == null) aStackToPutNBT = ST.copy(tStack);
@@ -636,7 +665,6 @@ public class UT {
 		public static ItemStack getBookWithTitle(String aMapping) {
 			return getBookWithTitle(aMapping, null);
 		}
-		
 		public static ItemStack getBookWithTitle(String aMapping, ItemStack aStackToPutNBT) {
 			ItemStack tStack = BOOK_MAP.get(aMapping);
 			if (tStack == null) return aStackToPutNBT==null?ST.make(Items.written_book, 1, 0):aStackToPutNBT;
@@ -647,15 +675,12 @@ public class UT {
 		public static ItemStack createWrittenBook(String aMapping, String aTitle, String aAuthor, ItemStack aDefaultBook, String... aPages) {
 			return createWrittenBook(aMapping, aTitle, aAuthor, aDefaultBook, T, aPages);
 		}
-		
 		public static ItemStack createWrittenBook(String aMapping, String aTitle, String aAuthor, ItemStack aDefaultBook, boolean aLogging, String... aPages) {
 			if (Code.stringInvalid(aMapping)) return null;
 			ItemStack rStack = BOOK_MAP.get(aMapping);
 			if (rStack == null) rStack = aDefaultBook==null?ST.make(Items.written_book, 1, 0):ST.amount(1, aDefaultBook);
-			NBTTagCompound rNBT = rStack.getTagCompound();
-			if (rNBT != null) return ST.copy(rStack);
 			if (Code.stringInvalid(aTitle) || Code.stringInvalid(aAuthor) || aPages.length <= 0) return null;
-			rNBT = NBT.make();
+			NBTTagCompound rNBT = NBT.make();
 			rNBT.setString("title", aTitle);
 			rNBT.setString("author", aAuthor);
 			NBTTagList tNBTList = new NBTTagList();
@@ -663,14 +688,136 @@ public class UT {
 				if (aPages[i].length() < 256) tNBTList.appendTag(new NBTTagString(aPages[i])); else if (aLogging) ERR.println("WARNING: String for Page of written Book too long! ->\n" + aPages[i]);
 			}
 			rNBT.setTag("pages", tNBTList);
-			if (aLogging) DEB.println("NOTE: Added Book to Book List  -  Mapping: '"+aMapping+"'  -  Name: '"+aTitle+"'  -  Author: '"+aAuthor+"'");
 			NBT.set(rStack, rNBT);
 			BOOK_MAP.put(aMapping, ST.copy(rStack));
-			BOOK_LIST.add(aMapping);
+			if (!BOOK_LIST.contains(aMapping)) BOOK_LIST.add(aMapping);
 			return ST.copy(rStack);
 		}
 		
-		public static ItemStack createMaterialDictionary(OreDictMaterial aMat, ItemStack aDefaultBook, ItemStack aDefaultLargeBook) {
+		public static ItemStack addMaterialDictionary(OreDictMaterial aMat) {
+			boolean temp = F;
+			int tCounter = 0, tPages = 6 + aMat.mAlloyCreationRecipes.size();
+			
+			if (aMat.mComponents == null && !aMat.contains(TD.Atomic.ELEMENT)) tPages--;
+			
+			if (!aMat.mByProducts.isEmpty()) tPages++;
+			if (aMat.mToolTypes > 0 || !aMat.mEnchantmentTools.isEmpty() || !aMat.mEnchantmentArmors.isEmpty()) tPages++;
+			if (aMat.mDescription != null) for (int i = 0; i < aMat.mDescription.length; i++) if (Code.stringValid(aMat.mDescription[i])) tPages++;
+			
+			for (TagData tTag : TD.Properties.ALL_RELEVANTS) if (aMat.contains(tTag)) {tPages++; break;}
+			for (TagData tTag : TD.Processing.ALL_MACHINES ) if (aMat.contains(tTag)) {tPages++; break;}
+			for (TagData tTag : TD.Processing.ALL_ORES     ) if (aMat.contains(tTag)) {tPages++; break;}
+			
+			tCounter = 0;
+			for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mComponents != null && tMat.contains(TD.Compounds.DECOMPOSABLE)) {
+				for (OreDictMaterialStack tMt2 : tMat.mComponents.getUndividedComponents()) if (tMt2.mMaterial == aMat) {
+					temp=!(tCounter++%6==5);
+					if (!temp) tPages++;
+					break;
+				}
+			}
+			if (temp) {tPages++; temp=F;}
+			
+			tCounter = 0;
+			for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mByProducts.contains(aMat)) {
+				temp=!(tCounter++%6==5);
+				if (!temp) tPages++;
+			}
+			if (temp) {tPages++; temp=F;}
+			
+			tCounter = 0;
+			for (OreDictMaterial tMat : aMat.mTargetedSmelting) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetSmelting.has(aMat)) {
+				temp=!(tCounter++%6==5);
+				if (!temp) tPages++;
+			}
+			if (temp) {tPages++; temp=F;}
+			
+			tCounter = 0;
+			for (OreDictMaterial tMat : aMat.mTargetedSolidifying) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetSolidifying.has(aMat)) {
+				temp=!(tCounter++%6==5);
+				if (!temp) tPages++;
+			}
+			if (temp) {tPages++; temp=F;}
+			
+			tCounter = 0;
+			for (OreDictMaterial tMat : aMat.mTargetedBurning) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetBurning.has(aMat)) {
+				temp=!(tCounter++%6==5);
+				if (!temp) tPages++;
+			}
+			if (temp) {tPages++; temp=F;}
+			
+			tCounter = 0;
+			for (OreDictMaterial tMat : aMat.mTargetedPulver) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetPulver.has(aMat)) {
+				temp=!(tCounter++%6==5);
+				if (!temp) tPages++;
+			}
+			if (temp) {tPages++; temp=F;}
+			
+			tCounter = 0;
+			for (OreDictMaterial tMat : aMat.mTargetedBending) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetBending.has(aMat)) {
+				temp=!(tCounter++%6==5);
+				if (!temp) tPages++;
+			}
+			if (temp) {tPages++; temp=F;}
+			
+			tCounter = 0;
+			for (OreDictMaterial tMat : aMat.mTargetedCompressing) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetCompressing.has(aMat)) {
+				temp=!(tCounter++%6==5);
+				if (!temp) tPages++;
+			}
+			if (temp) {tPages++; temp=F;}
+			
+			tCounter = 0;
+			for (OreDictMaterial tMat : aMat.mTargetedCrushing) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetCrushing.has(aMat)) {
+				temp=!(tCounter++%6==5);
+				if (!temp) tPages++;
+			}
+			if (temp) {tPages++; temp=F;}
+			
+			tCounter = 0;
+			for (OreDictMaterial tMat : aMat.mTargetedCutting) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetCutting.has(aMat)) {
+				temp=!(tCounter++%6==5);
+				if (!temp) tPages++;
+			}
+			if (temp) {tPages++; temp=F;}
+			
+			tCounter = 0;
+			for (OreDictMaterial tMat : aMat.mTargetedForging) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetForging.has(aMat)) {
+				temp=!(tCounter++%6==5);
+				if (!temp) tPages++;
+			}
+			if (temp) {tPages++; temp=F;}
+			
+			tCounter = 0;
+			for (OreDictMaterial tMat : aMat.mTargetedSmashing) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetSmashing.has(aMat)) {
+				temp=!(tCounter++%6==5);
+				if (!temp) tPages++;
+			}
+			if (temp) {tPages++; temp=F;}
+			
+			tCounter = 0;
+			for (OreDictMaterial tMat : aMat.mTargetedWorking) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetWorking.has(aMat)) {
+				temp=!(tCounter++%6==5);
+				if (!temp) tPages++;
+			}
+			if (temp) {tPages++; temp=F;}
+			
+			for (OreDictMaterial tMat : aMat.mAlloyComponentReferences) {
+				for (IOreDictConfigurationComponent tConfig : tMat.mAlloyCreationRecipes) {
+					for (OreDictMaterialStack tMatStack : tConfig.getUndividedComponents()) {
+						if (tMatStack.mMaterial == aMat) {tPages++; break;}
+					}
+				}
+			}
+			
+			MATERIAL_DICTIONARIES.add("Material_Dictionary_"+aMat.mNameInternal);
+			createWrittenBook("Material_Dictionary_"+aMat.mNameInternal, aMat.getLocal(), "Material Dictionary Foundation", ST.make(ItemsGT.BOOKS, 1, tPages<=50?32002:32003), F, "If you can read this in a legitimate Material Dictionary, even if it is old, then this is a Bug, please report this to me!\n\nGregorius\nTechneticies\n\n2021");
+			return ST.copy(aMat.mDictionaryBook = ST.book("Material_Dictionary_"+aMat.mNameInternal));
+		}
+		
+		public static boolean createMaterialDictionary(OreDictMaterial aMat, ItemStack aDefaultBook, ItemStack aDefaultLargeBook) {
+			if (aMat == null) return F;
+			
 			String tPage = "";
 			List<String> tBook = new ArrayListNoNulls<>();
 			boolean temp = F;
@@ -774,29 +921,29 @@ public class UT {
 			//----------
 			
 			tPage = "Processing Data\n===================\n";
-			tPage += "Smelting:\n"      +(aMat.mTargetSmelting      .mAmount / U) + "." + ((int)(((double)(aMat.mTargetSmelting     .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetSmelting       .mAmount <= 0 ? "nothing" : aMat.mTargetSmelting    .mMaterial == aMat ? "itself" : aMat.mTargetSmelting    .mMaterial.getLocal())+"\n";
-			tPage += "Solidifying:\n"   +(aMat.mTargetSolidifying   .mAmount / U) + "." + ((int)(((double)(aMat.mTargetSolidifying  .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetSolidifying    .mAmount <= 0 ? "nothing" : aMat.mTargetSolidifying .mMaterial == aMat ? "itself" : aMat.mTargetSolidifying .mMaterial.getLocal())+"\n";
-			tPage += "Burning:\n"       +(aMat.mTargetBurning       .mAmount / U) + "." + ((int)(((double)(aMat.mTargetBurning      .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetBurning        .mAmount <= 0 ? "nothing" : aMat.mTargetBurning     .mMaterial == aMat ? "itself" : aMat.mTargetBurning     .mMaterial.getLocal())+"\n";
-			tPage += "Pulverising:\n"   +(aMat.mTargetPulver        .mAmount / U) + "." + ((int)(((double)(aMat.mTargetPulver       .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetPulver         .mAmount <= 0 ? "nothing" : aMat.mTargetPulver      .mMaterial == aMat ? "itself" : aMat.mTargetPulver      .mMaterial.getLocal())+"\n";
-			tPage += "Crushing:\n"      +(aMat.mTargetCrushing      .mAmount / U) + "." + ((int)(((double)(aMat.mTargetCrushing     .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetCrushing       .mAmount <= 0 ? "nothing" : aMat.mTargetCrushing    .mMaterial == aMat ? "itself" : aMat.mTargetCrushing    .mMaterial.getLocal())+"\n";
+			tPage += "Smelting:\n"      +(aMat.mTargetSmelting   .mAmount / U) + "." + ((int)(((double)(aMat.mTargetSmelting   .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetSmelting   .mAmount <= 0 ? "nothing" : aMat.mTargetSmelting   .mMaterial == aMat ? "itself" : aMat.mTargetSmelting   .mMaterial.getLocal())+"\n";
+			tPage += "Solidifying:\n"   +(aMat.mTargetSolidifying.mAmount / U) + "." + ((int)(((double)(aMat.mTargetSolidifying.mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetSolidifying.mAmount <= 0 ? "nothing" : aMat.mTargetSolidifying.mMaterial == aMat ? "itself" : aMat.mTargetSolidifying.mMaterial.getLocal())+"\n";
+			tPage += "Burning:\n"       +(aMat.mTargetBurning    .mAmount / U) + "." + ((int)(((double)(aMat.mTargetBurning    .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetBurning    .mAmount <= 0 ? "nothing" : aMat.mTargetBurning    .mMaterial == aMat ? "itself" : aMat.mTargetBurning    .mMaterial.getLocal())+"\n";
+			tPage += "Pulverising:\n"   +(aMat.mTargetPulver     .mAmount / U) + "." + ((int)(((double)(aMat.mTargetPulver     .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetPulver     .mAmount <= 0 ? "nothing" : aMat.mTargetPulver     .mMaterial == aMat ? "itself" : aMat.mTargetPulver     .mMaterial.getLocal())+"\n";
+			tPage += "Crushing:\n"      +(aMat.mTargetCrushing   .mAmount / U) + "." + ((int)(((double)(aMat.mTargetCrushing   .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetCrushing   .mAmount <= 0 ? "nothing" : aMat.mTargetCrushing   .mMaterial == aMat ? "itself" : aMat.mTargetCrushing   .mMaterial.getLocal())+"\n";
 			
 			tBook.add(tPage);
 			
 			//----------
 			
 			tPage = "Processing Data\n===================\n";
-			tPage += "Bending:\n"       +(aMat.mTargetBending       .mAmount / U) + "." + ((int)(((double)(aMat.mTargetBending      .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetBending        .mAmount <= 0 ? "nothing" : aMat.mTargetBending     .mMaterial == aMat ? "itself" : aMat.mTargetBending     .mMaterial.getLocal())+"\n";
-			tPage += "Compressing:\n"   +(aMat.mTargetCompressing   .mAmount / U) + "." + ((int)(((double)(aMat.mTargetCompressing  .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetCompressing    .mAmount <= 0 ? "nothing" : aMat.mTargetCompressing .mMaterial == aMat ? "itself" : aMat.mTargetCompressing .mMaterial.getLocal())+"\n";
-			tPage += "Cutting:\n"       +(aMat.mTargetCutting       .mAmount / U) + "." + ((int)(((double)(aMat.mTargetCutting      .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetCutting        .mAmount <= 0 ? "nothing" : aMat.mTargetCutting     .mMaterial == aMat ? "itself" : aMat.mTargetCutting     .mMaterial.getLocal())+"\n";
-			tPage += "Forging:\n"       +(aMat.mTargetForging       .mAmount / U) + "." + ((int)(((double)(aMat.mTargetForging      .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetForging        .mAmount <= 0 ? "nothing" : aMat.mTargetForging     .mMaterial == aMat ? "itself" : aMat.mTargetForging     .mMaterial.getLocal())+"\n";
-			tPage += "Smashing:\n"      +(aMat.mTargetSmashing      .mAmount / U) + "." + ((int)(((double)(aMat.mTargetSmashing     .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetSmashing       .mAmount <= 0 ? "nothing" : aMat.mTargetSmashing    .mMaterial == aMat ? "itself" : aMat.mTargetSmashing    .mMaterial.getLocal())+"\n";
+			tPage += "Bending:\n"       +(aMat.mTargetBending    .mAmount / U) + "." + ((int)(((double)(aMat.mTargetBending    .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetBending    .mAmount <= 0 ? "nothing" : aMat.mTargetBending    .mMaterial == aMat ? "itself" : aMat.mTargetBending    .mMaterial.getLocal())+"\n";
+			tPage += "Compressing:\n"   +(aMat.mTargetCompressing.mAmount / U) + "." + ((int)(((double)(aMat.mTargetCompressing.mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetCompressing.mAmount <= 0 ? "nothing" : aMat.mTargetCompressing.mMaterial == aMat ? "itself" : aMat.mTargetCompressing.mMaterial.getLocal())+"\n";
+			tPage += "Cutting:\n"       +(aMat.mTargetCutting    .mAmount / U) + "." + ((int)(((double)(aMat.mTargetCutting    .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetCutting    .mAmount <= 0 ? "nothing" : aMat.mTargetCutting    .mMaterial == aMat ? "itself" : aMat.mTargetCutting    .mMaterial.getLocal())+"\n";
+			tPage += "Forging:\n"       +(aMat.mTargetForging    .mAmount / U) + "." + ((int)(((double)(aMat.mTargetForging    .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetForging    .mAmount <= 0 ? "nothing" : aMat.mTargetForging    .mMaterial == aMat ? "itself" : aMat.mTargetForging    .mMaterial.getLocal())+"\n";
+			tPage += "Smashing:\n"      +(aMat.mTargetSmashing   .mAmount / U) + "." + ((int)(((double)(aMat.mTargetSmashing   .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetSmashing   .mAmount <= 0 ? "nothing" : aMat.mTargetSmashing   .mMaterial == aMat ? "itself" : aMat.mTargetSmashing   .mMaterial.getLocal())+"\n";
 			
 			tBook.add(tPage);
 			
 			//----------
 			
 			tPage = "Processing Data\n===================\n";
-			tPage += "Working:\n"       +(aMat.mTargetWorking       .mAmount / U) + "." + ((int)(((double)(aMat.mTargetWorking      .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetWorking        .mAmount <= 0 ? "nothing" : aMat.mTargetWorking     .mMaterial == aMat ? "itself" : aMat.mTargetWorking     .mMaterial.getLocal())+"\n";
+			tPage += "Working:\n"       +(aMat.mTargetWorking    .mAmount / U) + "." + ((int)(((double)(aMat.mTargetWorking    .mAmount % U) / (double)U) * 1000))+" "+(aMat.mTargetWorking    .mAmount <= 0 ? "nothing" : aMat.mTargetWorking    .mMaterial == aMat ? "itself" : aMat.mTargetWorking    .mMaterial.getLocal())+"\n";
 			
 			tBook.add(tPage);
 			
@@ -818,7 +965,7 @@ public class UT {
 			
 			Map<OreDictMaterial, Long> tMap;
 			
-			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetSmelting .mMaterial == aMat && tMat.mTargetSmelting      .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetSmelting       .mAmount);
+			tMap = new HashMap<>(); for (OreDictMaterial tMat : aMat.mTargetedSmelting) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetSmelting.has(aMat)) tMap.put(tMat, tMat.mTargetSmelting.mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to smelt for getting "+aMat.getLocal()+"\n===================\n";
 			tCounter = 0;
@@ -835,7 +982,24 @@ public class UT {
 			
 			//----------
 			
-			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetBurning      .mMaterial == aMat && tMat.mTargetBurning       .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetBurning        .mAmount);
+			tMap = new HashMap<>(); for (OreDictMaterial tMat : aMat.mTargetedSolidifying) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetSolidifying.has(aMat)) tMap.put(tMat, tMat.mTargetSolidifying.mAmount);
+			tMap = Code.sortByValuesDescending(tMap);
+			tPage = "Resources to smelt and solidify for getting "+aMat.getLocal()+"\n===================\n";
+			tCounter = 0;
+			for (Entry<OreDictMaterial, Long> tEntry : tMap.entrySet()) {
+				temp=!(tCounter++%6==5);
+				tPage+=(tEntry.getValue() / U) + "." + ((int)(((double)(tEntry.getValue() % U) / (double)U) * 1000))+" from 1 "+tEntry.getKey().getLocal()+"\n";
+				if (!temp) {
+					tBook.add(tPage);
+					tPage = "Resources to smelt and solidify for getting "+aMat.getLocal()+"\n===================\n";
+				}
+			}
+			
+			if (temp) {tBook.add(tPage); temp=F;}
+			
+			//----------
+			
+			tMap = new HashMap<>(); for (OreDictMaterial tMat : aMat.mTargetedBurning) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetBurning.has(aMat)) tMap.put(tMat, tMat.mTargetBurning.mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to burn for getting "+aMat.getLocal()+"\n===================\n";
 			tCounter = 0;
@@ -852,7 +1016,7 @@ public class UT {
 			
 			//----------
 			
-			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetPulver       .mMaterial == aMat && tMat.mTargetPulver        .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetPulver     .mAmount);
+			tMap = new HashMap<>(); for (OreDictMaterial tMat : aMat.mTargetedPulver) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetPulver.has(aMat)) tMap.put(tMat, tMat.mTargetPulver.mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to pulverise for getting "+aMat.getLocal()+"\n===================\n";
 			tCounter = 0;
@@ -869,7 +1033,7 @@ public class UT {
 			
 			//----------
 			
-			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetBending      .mMaterial == aMat && tMat.mTargetBending       .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetBending        .mAmount);
+			tMap = new HashMap<>(); for (OreDictMaterial tMat : aMat.mTargetedBending) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetBending.has(aMat)) tMap.put(tMat, tMat.mTargetBending.mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to bend for getting "+aMat.getLocal()+"\n===================\n";
 			tCounter = 0;
@@ -886,7 +1050,7 @@ public class UT {
 			
 			//----------
 			
-			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetCompressing  .mMaterial == aMat && tMat.mTargetCompressing   .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetCompressing    .mAmount);
+			tMap = new HashMap<>(); for (OreDictMaterial tMat : aMat.mTargetedCompressing) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetCompressing.has(aMat)) tMap.put(tMat, tMat.mTargetCompressing.mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to compress for getting "+aMat.getLocal()+"\n===================\n";
 			tCounter = 0;
@@ -903,7 +1067,7 @@ public class UT {
 			
 			//----------
 			
-			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetCrushing .mMaterial == aMat && tMat.mTargetCrushing      .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetCrushing       .mAmount);
+			tMap = new HashMap<>(); for (OreDictMaterial tMat : aMat.mTargetedCrushing) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetCrushing.has(aMat)) tMap.put(tMat, tMat.mTargetCrushing.mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to crush for getting "+aMat.getLocal()+"\n===================\n";
 			tCounter = 0;
@@ -920,7 +1084,7 @@ public class UT {
 			
 			//----------
 			
-			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetCutting      .mMaterial == aMat && tMat.mTargetCutting       .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetCutting        .mAmount);
+			tMap = new HashMap<>(); for (OreDictMaterial tMat : aMat.mTargetedCutting) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetCutting.has(aMat)) tMap.put(tMat, tMat.mTargetCutting.mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to cut for getting "+aMat.getLocal()+"\n===================\n";
 			tCounter = 0;
@@ -937,7 +1101,7 @@ public class UT {
 			
 			//----------
 			
-			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetForging      .mMaterial == aMat && tMat.mTargetForging       .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetForging        .mAmount);
+			tMap = new HashMap<>(); for (OreDictMaterial tMat : aMat.mTargetedForging) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetForging.has(aMat)) tMap.put(tMat, tMat.mTargetForging.mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to forge for getting "+aMat.getLocal()+"\n===================\n";
 			tCounter = 0;
@@ -954,7 +1118,7 @@ public class UT {
 			
 			//----------
 			
-			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetSmashing .mMaterial == aMat && tMat.mTargetSmashing      .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetSmashing       .mAmount);
+			tMap = new HashMap<>(); for (OreDictMaterial tMat : aMat.mTargetedSmashing) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetSmashing.has(aMat)) tMap.put(tMat, tMat.mTargetSmashing.mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to smash for getting "+aMat.getLocal()+"\n===================\n";
 			tCounter = 0;
@@ -971,7 +1135,7 @@ public class UT {
 			
 			//----------
 			
-			tMap = new HashMap<>(); for (OreDictMaterial tMat : OreDictMaterial.MATERIAL_MAP.values()) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetWorking      .mMaterial == aMat && tMat.mTargetWorking       .mAmount > 0 && !tMat.getLocal().equals(aMat.getLocal())) tMap.put(tMat, tMat.mTargetWorking        .mAmount);
+			tMap = new HashMap<>(); for (OreDictMaterial tMat : aMat.mTargetedWorking) if (tMat.mTargetRegistration == tMat && tMat != aMat && tMat.mTargetWorking.has(aMat)) tMap.put(tMat, tMat.mTargetWorking.mAmount);
 			tMap = Code.sortByValuesDescending(tMap);
 			tPage = "Resources to use in other ways for getting "+aMat.getLocal()+"\n===================\n";
 			tCounter = 0;
@@ -992,7 +1156,6 @@ public class UT {
 				tPage="Alloy:\n"+aMat.getLocal()+"\n===================\nMelting: "+aMat.mMeltingPoint+" K\nBoiling: "+aMat.mBoilingPoint+" K\n===================\nComponents per "+tConfig.getCommonDivider() + "\n";
 				for (OreDictMaterialStack tMt2 : tConfig.getUndividedComponents()) tPage += (tMt2.mAmount / U)+" "+tMt2.mMaterial.getLocal()+"\n";
 				tBook.add(tPage);
-				break;
 			}
 			
 			//----------
@@ -1016,9 +1179,7 @@ public class UT {
 			
 			//----------
 			
-			MATERIAL_DICTIONARIES.add("Material_Dictionary_"+aMat.mNameInternal);
-			
-			return ST.copy(aMat.mDictionaryBook = createWrittenBook("Material_Dictionary_"+aMat.mNameInternal, aMat.getLocal(), "Material Dictionary Foundation", tBook.size()<=50?(aDefaultBook!=null?aDefaultBook:ItemsGT.BOOKS==null?NI:ST.make(ItemsGT.BOOKS, 1, 32002)):(aDefaultLargeBook!=null?aDefaultLargeBook:ItemsGT.BOOKS==null?NI:ST.make(ItemsGT.BOOKS, 1, 32003)), F, tBook.toArray(ZL_STRING)));
+			return null != createWrittenBook("Material_Dictionary_"+aMat.mNameInternal, aMat.getLocal(), "Material Dictionary Foundation", tBook.size()<=50?(ST.valid(aDefaultBook)?ST.amount(1, aDefaultBook):ST.make(ItemsGT.BOOKS, 1, 32002)):(ST.valid(aDefaultLargeBook)?ST.amount(1, aDefaultLargeBook):ST.make(ItemsGT.BOOKS, 1, 32003)), F, tBook.toArray(ZL_STRING));
 		}
 	}
 	
@@ -1156,7 +1317,7 @@ public class UT {
 		
 		/** Converts a Number to a String with Underscores as Decimal Separators. Ignores Numbers with 4 Digits or less. */
 		public static String makeString(long aNumber) {
-			if (aNumber > -10000 && aNumber < 10000) return "" + aNumber;
+			if (aNumber > -10000 && aNumber < 10000) return Long.toString(aNumber);
 			StringBuilder rString = new StringBuilder();
 			if (aNumber < 0) {
 				aNumber *= -1;
@@ -1278,6 +1439,15 @@ public class UT {
 			aMap.clear();
 			aMap.putAll(tMap);
 			return aMap;
+		}
+		
+		/** re-maps all Keys of a (Hash)-Set after the Keys were weakened. */
+		public static <X> Set<X> reMap(Set<X> aSet) {
+			Set<X> tSet = new HashSet<>();
+			tSet.addAll(aSet);
+			aSet.clear();
+			aSet.addAll(aSet);
+			return aSet;
 		}
 		
 		/** Why the fuck do neither Java nor Guava have a Function to do this? */
@@ -1843,6 +2013,16 @@ public class UT {
 			return aNBT;
 		}
 		
+		/** Saves on Data Size by choosing the smallest possible Data Type, and by also not adding zeros or negative Numbers. The regular getLong() Function can also get the other Number Types. */
+		public static NBTTagCompound setPosNum(NBTTagCompound aNBT, Object aTag, long aValue) {
+			if (aValue <= 0) {aNBT.removeTag(aTag.toString()); return aNBT;}
+			if (aValue > Integer.MAX_VALUE || aValue < Integer.MIN_VALUE) {aNBT.setLong(aTag.toString(), aValue); return aNBT;}
+			if (aValue > Short.MAX_VALUE || aValue < Short.MIN_VALUE) {aNBT.setInteger(aTag.toString(), (int)aValue); return aNBT;}
+			if (aValue > Byte.MAX_VALUE || aValue < Byte.MIN_VALUE) {aNBT.setShort(aTag.toString(), (short)aValue); return aNBT;}
+			aNBT.setByte(aTag.toString(), (byte)aValue);
+			return aNBT;
+		}
+		
 		public static ItemStack set(ItemStack aStack, NBTTagCompound aNBT) {
 			if (aNBT == null || aNBT.hasNoTags()) {aStack.setTagCompound(null); return aStack;}
 			ArrayList<String> tTagsToRemove = new ArrayListNoNulls<>();
@@ -2103,7 +2283,7 @@ public class UT {
 			if (!tNBT.hasKey("ench", 9)) tNBT.setTag("ench", new NBTTagList());
 			NBTTagList tList = tNBT.getTagList("ench", 10);
 			
-			boolean temp = CS.T;
+			boolean temp = T;
 			
 			for (int i = 0; i < tList.tagCount(); i++) {
 				tEnchantmentTag = tList.getCompoundTagAt(i);
@@ -2226,7 +2406,7 @@ public class UT {
 				rField = aClass.getDeclaredField(aField);
 				rField.setAccessible(T);
 				rField.set(aObject, aValue);
-			} catch (Throwable e) {if (aLogErrors) e.printStackTrace(DEB);}
+			} catch (Throwable e) {if (aLogErrors) e.printStackTrace(ERR);}
 			return rField;
 		}
 		
@@ -2296,8 +2476,10 @@ public class UT {
 		public static Object callPrivateMethod(Object aObject, String aMethod, Object... aParameters) {
 			return callMethod(aObject, aMethod, T, F, T, aParameters);
 		}
-		
 		public static Object callMethod(Object aObject, String aMethod, boolean aPrivate, boolean aUseUpperCasedDataTypes, boolean aLogErrors, Object... aParameters) {
+			return callMethod(aObject, new String[] {aMethod}, aPrivate, aUseUpperCasedDataTypes, aLogErrors, aParameters);
+		}
+		public static Object callMethod(Object aObject, String[] aMethods, boolean aPrivate, boolean aUseUpperCasedDataTypes, boolean aLogErrors, Object... aParameters) {
 			try {
 				Class<?>[] tParameterTypes = new Class<?>[aParameters.length];
 				for (byte i = 0; i < aParameters.length; i++) {
@@ -2317,12 +2499,17 @@ public class UT {
 						if (tParameterTypes[i] == Double.class ) tParameterTypes[i] = double.class;
 					}
 				}
-				
-				Method tMethod = aPrivate?
-				(aObject instanceof Class)?((Class<?>)aObject).getDeclaredMethod(aMethod, tParameterTypes):aObject.getClass().getDeclaredMethod(aMethod, tParameterTypes):
-				(aObject instanceof Class)?((Class<?>)aObject).getMethod        (aMethod, tParameterTypes):aObject.getClass().getMethod        (aMethod, tParameterTypes);
-				if (aPrivate) tMethod.setAccessible(T);
-				return tMethod.invoke(aObject, aParameters);
+				for (String aMethod : aMethods) {
+					try {
+						Method tMethod = aPrivate?
+						(aObject instanceof Class)?((Class<?>)aObject).getDeclaredMethod(aMethod, tParameterTypes):aObject.getClass().getDeclaredMethod(aMethod, tParameterTypes):
+						(aObject instanceof Class)?((Class<?>)aObject).getMethod        (aMethod, tParameterTypes):aObject.getClass().getMethod        (aMethod, tParameterTypes);
+						if (aPrivate) tMethod.setAccessible(T);
+						return tMethod.invoke(aObject, aParameters);
+					} catch(Throwable e) {
+						if (aLogErrors) e.printStackTrace(ERR);
+					}
+				}
 			} catch (Throwable e) {
 				if (aLogErrors) e.printStackTrace(ERR);
 			}
@@ -2896,7 +3083,7 @@ public class UT {
 				if ("Bear989Sr".equalsIgnoreCase(aEntity.getCommandSenderName())) return T;
 				IExtendedEntityProperties tWerewolfProperty = aEntity.getExtendedProperties("WerewolfPlayer");
 				if (tWerewolfProperty == null) return F;
-				Object tReturned = UT.Reflection.callMethod(tWerewolfProperty, "getWerewolf", F, F, T);
+				Object tReturned = UT.Reflection.callPublicMethod(tWerewolfProperty, "getWerewolf");
 				return tReturned instanceof Boolean && (Boolean)tReturned;
 			}
 			if (aEntity.getClass().getName().indexOf(".") < 0) return F;
@@ -2922,7 +3109,7 @@ public class UT {
 			return Code.bindInt(rLevel);
 		}
 		
-		public static boolean isImmuneToBreathingGasses(EntityLivingBase aEntity) {
+		public static boolean isImmuneToBreathingGases(EntityLivingBase aEntity) {
 			return isWearingFullGasHazmat(aEntity);
 		}
 		
@@ -3236,36 +3423,37 @@ public class UT {
 		public static boolean mEnabled = T;
 		public static Object mBar = null;
 		public static int mSize = 0, mCount = 0;
+		public static Field mMessage = null, mStep = null;
 		
 		@SuppressWarnings("deprecation")
 		public static boolean start(String aName, int aSize) {
 			if (mBar == null && mEnabled && aSize > 0) {
 				try {
 					mBar = cpw.mods.fml.common.ProgressManager.push(aName, aSize);
+					mMessage = UT.Reflection.getField(mBar, "message", T, T);
+					mStep = UT.Reflection.getField(mBar, "step", T, T);
 					mSize = aSize;
 					mCount = 0;
 					return T;
 				} catch(NoClassDefFoundError e) {
 					mEnabled = F;
-				} catch(Throwable e) {/**/}
+				} catch(Throwable e) {e.printStackTrace(ERR);}
 			}
 			return F;
 		}
 		
-		@SuppressWarnings("deprecation")
 		public static boolean step(Object aStep) {
 			if (mBar != null && mEnabled) {
 				if (mCount++ < mSize) {
 					try {
-						String tStepName = (aStep == null ? "null" : aStep.toString());
-						((cpw.mods.fml.common.ProgressManager.ProgressBar)mBar).step(tStepName);
+						mMessage.set(mBar, aStep == null ? "null" : aStep.toString());
+						mStep.setInt(mBar, mCount);
+			            FMLCommonHandler.instance().processWindowMessages();
 						return T;
-					} catch(NoClassDefFoundError e) {
-						mEnabled = F;
-					} catch(Throwable e) {/**/}
+					} catch(Throwable e) {e.printStackTrace(ERR);}
 					return F;
 				}
-				ERR.println("WARNING: Progress Bar needed forced Finish, because of too many Steps.");
+				ERR.println("ERROR: Progress Bar needed a forced Finish, because of too many Steps.");
 				finish();
 				return F;
 			}
@@ -3275,7 +3463,7 @@ public class UT {
 		@SuppressWarnings("deprecation")
 		public static boolean finish() {
 			if (mBar != null && mEnabled) {
-				if (mCount != mSize) ERR.println("WARNING: Progress Bar needed forced Finish, because of too few Steps.");
+				if (mCount != mSize) ERR.println("ERROR: Progress Bar needed a forced Finish, because of too few Steps.");
 				try {
 					cpw.mods.fml.common.ProgressManager.pop((cpw.mods.fml.common.ProgressManager.ProgressBar)mBar);
 					mBar = null;
@@ -3284,7 +3472,7 @@ public class UT {
 					return T;
 				} catch(NoClassDefFoundError e) {
 					mEnabled = F;
-				} catch(Throwable e) {/**/}
+				} catch(Throwable e) {e.printStackTrace(ERR);}
 				mBar = null;
 				mSize = 0;
 				mCount = 0;

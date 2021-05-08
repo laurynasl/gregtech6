@@ -58,6 +58,7 @@ public class OP {
 	oreVanillagranite           = create("oreVanillagranite"            , "Granite Ores"                    , "Granite "                        , " Ore").setCondition(ORES).add(UNIFICATABLE, ORE, UNIFICATABLE_RECIPES, MATERIAL_BASED, BLOCK_BASED, TOOLTIP_ENCHANTS, STANDARD_ORE).aspects(TC.TERRA      , 1).setTextureSetName("ore"),
 	oreAndesite                 = create("oreAndesite"                  , "Andesite Ores"                   , "Andesite "                       , " Ore").setCondition(ORES).add(UNIFICATABLE, ORE, UNIFICATABLE_RECIPES, MATERIAL_BASED, BLOCK_BASED, TOOLTIP_ENCHANTS, STANDARD_ORE).aspects(TC.TERRA      , 1).setTextureSetName("ore"),
 	oreDiorite                  = create("oreDiorite"                   , "Diorite Ores"                    , "Diorite "                        , " Ore").setCondition(ORES).add(UNIFICATABLE, ORE, UNIFICATABLE_RECIPES, MATERIAL_BASED, BLOCK_BASED, TOOLTIP_ENCHANTS, STANDARD_ORE).aspects(TC.TERRA      , 1).setTextureSetName("ore"),
+	oreDeepslate                = create("oreDeepslate"                 , "Deepslate Ores"                  , "Deepslate "                      , " Ore").setCondition(ORES).add(UNIFICATABLE, ORE, UNIFICATABLE_RECIPES, MATERIAL_BASED, BLOCK_BASED, TOOLTIP_ENCHANTS, STANDARD_ORE).aspects(TC.TERRA      , 1).setTextureSetName("ore"),
 	oreBlackstone               = create("oreBlackstone"                , "Blackstone Ores"                 , "Blackstone "                     , " Ore").setCondition(ORES).add(UNIFICATABLE, ORE, UNIFICATABLE_RECIPES, MATERIAL_BASED, BLOCK_BASED, TOOLTIP_ENCHANTS, STANDARD_ORE).aspects(TC.TENEBRAE   , 1).setTextureSetName("ore"),
 	oreMoon                     = create("oreMoon"                      , "Moon Ores"                       , "Moon "                           , " Ore").setCondition(ORES).add(UNIFICATABLE, ORE, UNIFICATABLE_RECIPES, MATERIAL_BASED, BLOCK_BASED, TOOLTIP_ENCHANTS, STANDARD_ORE).aspects(TC.ALIENIS    , 1).setTextureSetName("ore"),
 	oreMars                     = create("oreMars"                      , "Mars Ores"                       , "Mars "                           , " Ore").setCondition(ORES).add(UNIFICATABLE, ORE, UNIFICATABLE_RECIPES, MATERIAL_BASED, BLOCK_BASED, TOOLTIP_ENCHANTS, STANDARD_ORE).aspects(TC.ALIENIS    , 1).setTextureSetName("ore"),
@@ -355,9 +356,9 @@ public class OP {
 	treeSapling                 = create("treeSapling"                  , "Saplings"                        , ""                                , ""                                )                             .add(SELF_REFERENCING, BLOCK_BASED).addIdenticalNames("sapling").setMinStacksize(16), // Prefix for Saplings.
 	treeLeaves                  = create("treeLeaves"                   , "Leaves"                          , ""                                , ""                                )                             .add(SELF_REFERENCING, BLOCK_BASED).addIdenticalNames("leaves").setMinStacksize(16), // Prefix for Leaves.
 	tree                        = create("tree"                         , "Tree Parts"                      , ""                                , ""                                )                             .add(), // Prefix for Tree Parts.
-	log                         = create("log"                          , "Logs"                            , ""                                , ""                                )                             .add(BLOCK_BASED), // Prefix used for Logs. Usually as "logWood". Introduced by Eloraam
-	beam                        = create("beam"                         , "Beams"                           , ""                                , ""                                )                             .add(BLOCK_BASED), // Prefix used for Beams.  Usually as "beamWood".
-	plank                       = create("plank"                        , "Planks"                          , ""                                , ""                                )                             .add(BLOCK_BASED).setMinStacksize(16), // Prefix for Planks. Usually "plankWood". Introduced by Eloraam
+	log                         = create("log"                          , "Logs"                            , ""                                , ""                                )                             .add(BLOCK_BASED, UNIFICATABLE_RECIPES), // Prefix used for Logs. Usually as "logWood". Introduced by Eloraam
+	beam                        = create("beam"                         , "Beams"                           , ""                                , ""                                )                             .add(BLOCK_BASED, UNIFICATABLE_RECIPES), // Prefix used for Beams.  Usually as "beamWood".
+	plank                       = create("plank"                        , "Planks"                          , ""                                , ""                                )                             .add(BLOCK_BASED, UNIFICATABLE_RECIPES).setMinStacksize(16), // Prefix for Planks. Usually "plankWood". Introduced by Eloraam
 	
 	stoneCobble                 = create("stoneCobble"                  , "Cobblestones"                    , ""                                , ""                                )                             .add(SELF_REFERENCING, BLOCK_BASED                                          ).aspects(TC.TERRA, 1), // Cobblestone Prefix for all Cobblestones.
 	stoneSmooth                 = create("stoneSmooth"                  , "Smoothstones"                    , ""                                , ""                                )                             .add(SELF_REFERENCING, BLOCK_BASED                                          ).aspects(TC.TERRA, 1), // Smoothstone Prefix.
@@ -526,7 +527,8 @@ public class OP {
 	bars                        = unused("bars"                         ).setCategoryName("Bars"),
 	bar                         = unused("bar"                          ).setCategoryName("Bars");
 	
-	public static final OreDictPrefix wireGt[] = {wireGt01, wireGt02, wireGt03, wireGt04, wireGt05, wireGt06, wireGt07, wireGt08, wireGt09, wireGt10, wireGt11, wireGt12, wireGt13, wireGt14, wireGt15, wireGt16};
+	public static final OreDictPrefix[] wireGt = {wireGt01, wireGt02, wireGt03, wireGt04, wireGt05, wireGt06, wireGt07, wireGt08, wireGt09, wireGt10, wireGt11, wireGt12, wireGt13, wireGt14, wireGt15, wireGt16};
+	public static final OreDictPrefix[] array_dust_ingot = {dust, ingot}, array_dust_ingot_plate = {dust, ingot, plate}, array_dust_ingot_plate_gem = {dust, ingot, plate, gem}, array_ingot_plate = {ingot, plate}, array_ingot_plate_gem = {ingot, plate, gem}, array_ingot_gem = {ingot, gem};
 	
 	static {
 		MT.init();
@@ -614,6 +616,7 @@ public class OP {
 		oreBlackgranite         .mByProducts.add(OM.stack(MT.GraniteBlack       , dust.mAmount));
 		oreVanillagranite       .mByProducts.add(OM.stack(MT.Granite            , dust.mAmount));
 		oreVanillastone         .mByProducts.add(OM.stack(MT.Stone              , dust.mAmount));
+		oreDeepslate            .mByProducts.add(OM.stack(MT.Slate              , dust.mAmount));
 		oreMoon                 .mByProducts.add(OM.stack(MT.MoonRock           , dust.mAmount));
 		oreMars                 .mByProducts.add(OM.stack(MT.MarsRock           , dust.mAmount));
 		oreHolystone            .mByProducts.add(OM.stack(MT.Holystone          , dust.mAmount));

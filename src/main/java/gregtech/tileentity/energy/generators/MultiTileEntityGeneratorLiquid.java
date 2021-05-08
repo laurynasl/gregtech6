@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2019 Gregorius Techneticies
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -127,7 +127,7 @@ public class MultiTileEntityGeneratorLiquid extends TileEntityBase09FacingSingle
 					// Will be set back to true if the Recipe finds enough Fuel.
 					mBurning = F;
 					// Burn whatever Block is in front of the Burning Box, if it is flammable.
-					WD.fire(worldObj, getOffset(mFacing, 1), T);
+					WD.burn(worldObj, getOffset(mFacing, 1), T, T);
 					// Check for Air, because Fire needs Oxygen.
 					if (!WD.hasCollide(worldObj, getOffsetX(mFacing), getOffsetY(mFacing), getOffsetZ(mFacing)) && !getBlockAtSide(mFacing).getMaterial().isLiquid() && WD.oxygen(worldObj, getOffsetX(mFacing), getOffsetY(mFacing), getOffsetZ(mFacing))) {
 						// Find and apply fitting Recipe.
@@ -136,10 +136,10 @@ public class MultiTileEntityGeneratorLiquid extends TileEntityBase09FacingSingle
 							mBurning = T;
 							mCooldown = 100;
 							mLastRecipe = tRecipe;
-							mEnergy += UT.Code.units(Math.abs(tRecipe.mEUt * tRecipe.mDuration), 10000, mEfficiency, F);
+							mEnergy += UT.Code.units(tRecipe.getAbsoluteTotalPower(), 10000, mEfficiency, F);
 							// Burn as much as needed to keep up the Power per Tick.
 							while (mEnergy < mRate * 2 && tRecipe.isRecipeInputEqual(T, F, mTank.AS_ARRAY, ZL_IS)) {
-								mEnergy += UT.Code.units(Math.abs(tRecipe.mEUt * tRecipe.mDuration), 10000, mEfficiency, F);
+								mEnergy += UT.Code.units(tRecipe.getAbsoluteTotalPower(), 10000, mEfficiency, F);
 								if (mTank.isEmpty()) break;
 							}
 						} else {

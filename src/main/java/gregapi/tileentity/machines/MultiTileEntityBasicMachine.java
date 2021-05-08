@@ -213,12 +213,12 @@ public class MultiTileEntityBasicMachine extends TileEntityBase09FacingSingle im
 				new Textures.BlockIcons.CustomIcon("machines/basicmachines/"+tTextureName+"/overlay_running/right"),
 				new Textures.BlockIcons.CustomIcon("machines/basicmachines/"+tTextureName+"/overlay_running/back")};
 			} else {
-				if (getMultiTileEntityRegistryID() != W && getMultiTileEntityID() != W) {
-					MultiTileEntityBasicMachine tCanonicalTileEntity = (MultiTileEntityBasicMachine)MultiTileEntityRegistry.getRegistry(getMultiTileEntityRegistryID()).getClassContainer(getMultiTileEntityID()).mCanonicalTileEntity;
-					mTexturesMaterial = tCanonicalTileEntity.mTexturesMaterial;
-					mTexturesInactive = tCanonicalTileEntity.mTexturesInactive;
-					mTexturesRunning  = tCanonicalTileEntity.mTexturesRunning;
-					mTexturesActive   = tCanonicalTileEntity.mTexturesActive;
+				TileEntity tCanonicalTileEntity = MultiTileEntityRegistry.getCanonicalTileEntity(getMultiTileEntityRegistryID(), getMultiTileEntityID());
+				if (tCanonicalTileEntity instanceof MultiTileEntityBasicMachine) {
+					mTexturesMaterial = ((MultiTileEntityBasicMachine)tCanonicalTileEntity).mTexturesMaterial;
+					mTexturesInactive = ((MultiTileEntityBasicMachine)tCanonicalTileEntity).mTexturesInactive;
+					mTexturesRunning  = ((MultiTileEntityBasicMachine)tCanonicalTileEntity).mTexturesRunning;
+					mTexturesActive   = ((MultiTileEntityBasicMachine)tCanonicalTileEntity).mTexturesActive;
 				} else {
 					mTexturesMaterial = mTexturesInactive = mTexturesRunning = mTexturesActive = L6_IICONCONTAINER;
 				}
@@ -629,7 +629,10 @@ public class MultiTileEntityBasicMachine extends TileEntityBase09FacingSingle im
 		int rMaxTimes = mParallel;
 		
 		// Don't do more than 1-4 Minutes worth of Input at a time, when doing the Chain Processing.
-		if (mParallelDuration) rMaxTimes = (int)Math.max(1, rMaxTimes-Math.abs((aRecipe.mEUt * aRecipe.mDuration * rMaxTimes) / (mInputMax * 1200)));
+		if (mParallelDuration) {
+			// Ugh, I do not feel like Maths right now, but the previous incarnation of this seemed a tiny bit wrong, so I will make sure it works properly.
+			while (rMaxTimes > 1 && aRecipe.getAbsoluteTotalPower() * rMaxTimes > mInputMax * 1200) rMaxTimes--;
+		}
 		
 		for (int i = 0, j = mRecipes.mInputItemsCount; i < mRecipes.mOutputItemsCount && i < aRecipe.mOutputs.length; i++, j++) if (ST.valid(aRecipe.mOutputs[i])) {
 			if (slotHas(j)) {

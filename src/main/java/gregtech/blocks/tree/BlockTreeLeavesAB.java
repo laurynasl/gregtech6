@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 GregTech-6 Team
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -41,9 +41,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockTreeLeaves extends BlockBaseLeaves implements Runnable {
-	public BlockTreeLeaves(String aUnlocalised, Block aSaplings) {
-		super(null, aUnlocalised, Material.leaves, soundTypeGrass, 8, Textures.BlockIcons.LEAVES, aSaplings, new Block[] {BlocksGT.LogA, BlocksGT.LogA, BlocksGT.LogA, BlocksGT.LogA, BlocksGT.LogB, BlocksGT.LogB, BlocksGT.LogB, BlocksGT.LogB}, new byte[] {0, 1, 2, 3, 0, 1, 2, 3});
+public class BlockTreeLeavesAB extends BlockBaseLeaves implements Runnable {
+	public BlockTreeLeavesAB(String aUnlocalised, Block aSaplings) {
+		super(null, aUnlocalised, Material.leaves, soundTypeGrass, 8, Textures.BlockIcons.LEAVES_AB, aSaplings, new Block[] {BlocksGT.LogA, BlocksGT.LogA, BlocksGT.LogA, BlocksGT.LogA, BlocksGT.LogB, BlocksGT.LogB, BlocksGT.LogB, BlocksGT.LogB}, new byte[] {0, 1, 2, 3, 0, 1, 2, 3});
 		LH.add(getUnlocalizedName()+ ".0.name", "Rubber Leaves");
 		LH.add(getUnlocalizedName()+ ".1.name", "Maple Leaves");
 		LH.add(getUnlocalizedName()+ ".2.name", "Willow Leaves");
@@ -61,7 +61,10 @@ public class BlockTreeLeaves extends BlockBaseLeaves implements Runnable {
 		LH.add(getUnlocalizedName()+".14.name", "Coconut Leaves");
 		LH.add(getUnlocalizedName()+".15.name", "Rainbow Leaves");
 		
-		for (int i = 0; i < 16; i++) OM.reg(ST.make(this, 1, i), OP.treeLeaves);
+		for (int i = 0; i < maxMeta(); i++) {
+			OM.reg(ST.make(this, 1, i), OP.treeLeaves);
+			OM.reg(ST.make(this, 1, i+8), OP.treeLeaves);
+		}
 		
 		GAPI.mAfterPostInit.add(this);
 	}

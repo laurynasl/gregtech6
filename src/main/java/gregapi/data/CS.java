@@ -294,10 +294,10 @@ public class CS {
 	
 	/** Stores the Coordinates that any given Player last interacted with. */
 	public static final Map<EntityPlayer, ChunkCoordinates> PLAYER_LAST_CLICKED = new IdentityHashMap<>();
-
+	
 	/** a Random generator so I don't need to instantiate a new one all the time. */
 	public static final Random RNGSUS = new Random(), RANDOM = RNGSUS;
-
+	
 	/** Current Time on the Server, since the last Reboot. */
 	public static long SERVER_TIME = 0;
 	/** Current Time on the Client. Used for Animations. */
@@ -339,7 +339,7 @@ public class CS {
 		0xff0080,
 		0xff0040,
 	};
-
+	
 	/** Some Colour Arrays */
 	public static final short[]
 	  CA_WHITE              = {255, 255, 255, 255}
@@ -383,7 +383,7 @@ public class CS {
 	, CA_LIGHT_YELLOW_64    = { 64,  64,  32, 255}
 	, CA_LIGHT_YELLOW_32    = { 32,  32,  16, 255}
 	;
-
+	
 	public static final short[]
 	  DYE_None              = {255, 255, 255, 255}
 	, DYE_Black             = { 32,  32,  32, 255}
@@ -403,7 +403,7 @@ public class CS {
 	, DYE_Orange            = {255, 128,   0, 255}
 	, DYE_White             = {255, 255, 255, 255}
 	;
-
+	
 	public static final int
 	  DYE_INT_None            = UT.Code.getRGBInt(DYE_None)
 	, DYE_INT_Black           = UT.Code.getRGBInt(DYE_Black)
@@ -423,7 +423,7 @@ public class CS {
 	, DYE_INT_Orange          = UT.Code.getRGBInt(DYE_Orange)
 	, DYE_INT_White           = UT.Code.getRGBInt(DYE_White)
 	;
-
+	
 	public static final byte
 	DYE_INDEX_Black         =  0,
 	DYE_INDEX_Red           =  1,
@@ -441,7 +441,7 @@ public class CS {
 	DYE_INDEX_Magenta       = 13,
 	DYE_INDEX_Orange        = 14,
 	DYE_INDEX_White         = 15;
-
+	
 	public static final String[] DYE_NAMES                  = {"Black", "Red", "Green", "Brown", "Blue", "Purple", "Cyan", "Light Gray", "Gray", "Pink", "Lime", "Yellow", "Light Blue", "Magenta", "Orange", "White"};
 	public static final String[] DYE_OREDICTS               = {"dyeBlack", "dyeRed", "dyeGreen", "dyeBrown", "dyeBlue", "dyePurple", "dyeCyan", "dyeLightGray", "dyeGray", "dyePink", "dyeLime", "dyeYellow", "dyeLightBlue", "dyeMagenta", "dyeOrange", "dyeWhite"};
 	public static final String[] DYE_OREDICTS_CERAMIC       = {"dyeCeramicBlack", "dyeCeramicRed", "dyeCeramicGreen", "dyeCeramicBrown", "dyeCeramicBlue", "dyeCeramicPurple", "dyeCeramicCyan", "dyeCeramicLightGray", "dyeCeramicGray", "dyeCeramicPink", "dyeCeramicLime", "dyeCeramicYellow", "dyeCeramicLightBlue", "dyeCeramicMagenta", "dyeCeramicOrange", "dyeCeramicWhite"};
@@ -452,22 +452,22 @@ public class CS {
 	
 	public static final short[][] DYES                      = {DYE_Black, DYE_Red, DYE_Green, DYE_Brown, DYE_Blue, DYE_Purple, DYE_Cyan, DYE_LightGray, DYE_Gray, DYE_Pink, DYE_Lime, DYE_Yellow, DYE_LightBlue, DYE_Magenta, DYE_Orange, DYE_White};
 	public static final short[][] DYES_INVERTED             = {DYES[15], DYES[14], DYES[13], DYES[12], DYES[11], DYES[10], DYES[ 9], DYES[ 8], DYES[ 7], DYES[ 6], DYES[ 5], DYES[ 4], DYES[ 3], DYES[ 2], DYES[ 1], DYES[ 0]};
-
+	
 	public static final int[] DYES_INT                      = {DYE_INT_Black, DYE_INT_Red, DYE_INT_Green, DYE_INT_Brown, DYE_INT_Blue, DYE_INT_Purple, DYE_INT_Cyan, DYE_INT_LightGray, DYE_INT_Gray, DYE_INT_Pink, DYE_INT_Lime, DYE_INT_Yellow, DYE_INT_LightBlue, DYE_INT_Magenta, DYE_INT_Orange, DYE_INT_White};
 	public static final int[] DYES_INT_INVERTED             = {DYES_INT[15], DYES_INT[14], DYES_INT[13], DYES_INT[12], DYES_INT[11], DYES_INT[10], DYES_INT[ 9], DYES_INT[ 8], DYES_INT[ 7], DYES_INT[ 6], DYES_INT[ 5], DYES_INT[ 4], DYES_INT[ 3], DYES_INT[ 2], DYES_INT[ 1], DYES_INT[ 0]};
-
+	
 	public static final FluidStack[] DYED_C_FOAMS           = new FluidStack[16];
 	public static final FluidStack[] DYED_C_FOAMS_OWNED     = new FluidStack[16];
-
+	
 	public static final FluidStack[] DYE_FLUIDS_WATER       = new FluidStack[16];
 	public static final FluidStack[] DYE_FLUIDS_FLOWER      = new FluidStack[16];
 	public static final FluidStack[] DYE_FLUIDS_CHEMICAL    = new FluidStack[16];
 	public static final FluidStack[][] DYE_FLUIDCATEGORIES  = {DYE_FLUIDS_WATER, DYE_FLUIDS_FLOWER, DYE_FLUIDS_CHEMICAL};
-
-
+	
+	
 	@SuppressWarnings("unchecked")
 	public static final ArrayListNoNulls<FluidStack>[] DYE_FLUIDS = new ArrayListNoNulls[] {new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>(), new ArrayListNoNulls<FluidStack>()};
-
+	
 	/** Offset for Rendering Text on Surfaces. */
 	public static final float PX_OFFSET = 0.005F;
 	
@@ -485,7 +485,7 @@ public class CS {
 		, 1.5000F, 1.5625F, 1.6250F, 1.6875F
 		, 1.7500F, 1.8125F, 1.8750F, 1.9375F
 		, 2.0000F}, PIXELS_POS = PX_P;
-
+	
 	/** Array with length 17 containing the Coordinates of Pixels from 16/16 to 0/16 */
 	public static final float[] PX_N = {
 		  1.0000F, 0.9375F, 0.8750F, 0.8125F
@@ -497,7 +497,7 @@ public class CS {
 		,-0.5000F,-0.5625F,-0.6250F,-0.6875F
 		,-0.7500F,-0.8125F,-0.8750F,-0.9375F
 		,-1.0000F}, PIXELS_NEG = PX_N;
-
+	
 	/** Different Side Variables for easier comprehension. */
 	public static final byte        SIDE_Y_NEG  = 0, SIDE_BOTTOM    = 0, SIDE_DOWN      = 0,
 									SIDE_Y_POS  = 1, SIDE_TOP       = 1, SIDE_UP        = 1,
@@ -506,7 +506,7 @@ public class CS {
 									SIDE_X_NEG  = 4, SIDE_WEST      = 4,
 									SIDE_X_POS  = 5, SIDE_EAST      = 5, // Also a Side with a stupidly mirrored Texture
 									SIDE_ANY    = 6, SIDE_UNKNOWN   = 6, SIDE_INVALID = 6, SIDE_INSIDE = 6, SIDE_UNDEFINED = 6;
-
+	
 	/**
 	 * [Facing,Side]->Side Mappings for Blocks, which don't face up- and downwards.
 	 * 0 = bottom, 1 = top, 2 = left, 3 = front, 4 = right, 5 = back, 6 = undefined.
@@ -520,7 +520,7 @@ public class CS {
 		{0,1,4,2,5,3,6},
 		{0,1,2,3,4,5,6}
 	};
-
+	
 	/**
 	 * [Facing,Side]->Orientation Mappings for Blocks, which don't face up- and downwards.
 	 * 0 = bottom, 1 = top, 2 = left, 3 = front, 4 = right, 5 = back, 6 = undefined.
@@ -719,7 +719,11 @@ public class CS {
 	  {0,0,8,8,4,4,0}, {1,1,9,9,5,5,1}, {2,2,10,10,6,6,2}, {3,3,11,11,7,7,3}
 	, {0,0,8,8,4,4,0}, {1,1,9,9,5,5,1}, {2,2,10,10,6,6,2}, {3,3,11,11,7,7,3}
 	, {0,0,8,8,4,4,0}, {1,1,9,9,5,5,1}, {2,2,10,10,6,6,2}, {3,3,11,11,7,7,3}
-	, {0,0,8,8,4,4,0}, {1,1,9,9,5,5,1}, {2,2,10,10,6,6,2}, {3,3,11,11,7,7,3}
+	// Pillar Blocks that are fully covered in "Bark" (if they were Logs)
+	, {12,12,12,12,12,12,12}
+	, {13,13,13,13,13,13,13}
+	, {14,14,14,14,14,14,14}
+	, {15,15,15,15,15,15,15}
 	};
 	/** Pillar Axis Stuff for more understandable references. */
 	public static final boolean[][] PILLAR_TO_AXIS = {
@@ -729,6 +733,7 @@ public class CS {
 		SIDES_NONE  , SIDES_NONE  , SIDES_NONE  , SIDES_NONE  ,
 	};
 	
+	/** Used for Networking Covers, for the most Part. */
 	public static final boolean[] TRUE_6 = {T,T,T,T,T,T};
 	
 	/** To Scan Coordinates in a somewhat "close stuff gets scanned first" order. */
@@ -810,7 +815,7 @@ public class CS {
 	
 	/** Not really Constants, but they set using the Config and therefore should be constant. */
 	@SuppressWarnings("deprecation")
-	public static boolean D1 = F, D2 = F, D3 = F, CLIENT_BLOCKUPDATE_SOUNDS = F, NEI = F, APRIL_FOOLS = (new Date().getMonth() == 3 && new Date().getDate() <= 3), TOOL_SOUNDS = T, EMIT_EU_AS_RF = F, DISABLE_GT6_CRAFTING_RECIPES = F, ENABLE_ADDING_IC2_MACERATOR_RECIPES = T, DISABLE_ALL_IC2_MACERATOR_RECIPES = F, ENABLE_ADDING_IC2_EXTRACTOR_RECIPES = T, DISABLE_ALL_IC2_EXTRACTOR_RECIPES = F, ENABLE_ADDING_IC2_COMPRESSOR_RECIPES = T, DISABLE_ALL_IC2_COMPRESSOR_RECIPES = F, ENABLE_ADDING_IC2_OREWASHER_RECIPES = T, DISABLE_ALL_IC2_OREWASHER_RECIPES = F, ENABLE_ADDING_IC2_CENTRIFUGE_RECIPES = T, DISABLE_ALL_IC2_CENTRIFUGE_RECIPES = F, FAST_LEAF_DECAY = T, NERFED_WOOD = T, FOOD_OVERDOSE_DEATH = T, NUTRITION_SYSTEM = T, OBSTRUCTION_CHECKS = T, OWNERSHIP_RESET = F, SPAWN_ZONE_MOB_PROTECTION = T, CONSTANT_ENERGY = T, RAIN_EXPLOSIONS = F, WATER_EXPLOSIONS = F, THUNDER_EXPLOSIONS = F, FIRE_EXPLOSIONS = F, OVERCHARGE_EXPLOSIONS = F, FIRE_BREAKING = F, RAIN_BREAKING = F, WATER_BREAKING = F, THUNDER_BREAKING = F, OVERCHARGE_BREAKING = F, SHOW_MICROBLOCKS = F, SHOW_CHEM_FORMULAS = T, SHOW_INTERNAL_NAMES = F, SHOW_HIDDEN_MATERIALS = F, SHOW_HIDDEN_PREFIXES = F, SHOW_ORE_BLOCK_PREFIXES = F, SHOW_HIDDEN_ITEMS = F, DRINKS_ALWAYS_DRINKABLE = F, HUNGER_BY_INVENTORY_WEIGHT = F, INVENTORY_UNIFICATION = T, XP_ORB_COMBINING = T, ADVENTURE_MODE_KIT = F, SURVIVAL_INTO_ADVENTURE_MODE = F, DISPLAY_TEMP_TOOLTIP = T, GENERATE_STONE = T, GENERATE_STREETS = F, GENERATE_NEXUS = F, GENERATE_TESTING = F, GENERATE_BEACON = F, GENERATE_BIOMES = F;
+	public static boolean D1 = F, D2 = F, D3 = F, ALWAYS_TRUE = T, ALWAYS_FALSE = F, CLIENT_BLOCKUPDATE_SOUNDS = F, NEI = F, APRIL_FOOLS = (new Date().getMonth() == 3 && new Date().getDate() <= 2), TOOL_SOUNDS = T, EMIT_EU_AS_RF = F, DISABLE_GT6_CRAFTING_RECIPES = F, ENABLE_ADDING_IC2_MACERATOR_RECIPES = T, DISABLE_ALL_IC2_MACERATOR_RECIPES = F, ENABLE_ADDING_IC2_EXTRACTOR_RECIPES = T, DISABLE_ALL_IC2_EXTRACTOR_RECIPES = F, ENABLE_ADDING_IC2_COMPRESSOR_RECIPES = T, DISABLE_ALL_IC2_COMPRESSOR_RECIPES = F, ENABLE_ADDING_IC2_OREWASHER_RECIPES = T, DISABLE_ALL_IC2_OREWASHER_RECIPES = F, ENABLE_ADDING_IC2_CENTRIFUGE_RECIPES = T, DISABLE_ALL_IC2_CENTRIFUGE_RECIPES = F, FAST_LEAF_DECAY = T, FORCE_GRAVEL_NO_FLINT = F, NERFED_WOOD = T, FOOD_OVERDOSE_DEATH = T, NUTRITION_SYSTEM = T, OBSTRUCTION_CHECKS = T, OWNERSHIP_RESET = F, SPAWN_ZONE_MOB_PROTECTION = T, CONSTANT_ENERGY = T, RAIN_EXPLOSIONS = F, WATER_EXPLOSIONS = F, THUNDER_EXPLOSIONS = F, FIRE_EXPLOSIONS = F, OVERCHARGE_EXPLOSIONS = F, FIRE_BREAKING = F, RAIN_BREAKING = F, WATER_BREAKING = F, THUNDER_BREAKING = F, OVERCHARGE_BREAKING = F, SHOW_MICROBLOCKS = F, SHOW_CHEM_FORMULAS = T, SHOW_INTERNAL_NAMES = F, SHOW_HIDDEN_MATERIALS = F, SHOW_HIDDEN_PREFIXES = F, SHOW_ORE_BLOCK_PREFIXES = F, SHOW_HIDDEN_ITEMS = F, DRINKS_ALWAYS_DRINKABLE = F, HUNGER_BY_INVENTORY_WEIGHT = F, INVENTORY_UNIFICATION = T, XP_ORB_COMBINING = T, ADVENTURE_MODE_KIT = F, SURVIVAL_INTO_ADVENTURE_MODE = F, DISPLAY_TEMP_TOOLTIP = T, GENERATE_STONE = T, GENERATE_STREETS = F, GENERATE_NEXUS = F, GENERATE_TESTING = F, GENERATE_BEACON = F, GENERATE_BIOMES = F;
 	/** This means that Client or Server specific Base Files are definitely existing and loaded! Not if the World is actually client side or server side! */
 	public static boolean CODE_UNCHECKED = T, CODE_CLIENT = F, CODE_SERVER = F;
 	
@@ -841,7 +846,12 @@ public class CS {
 	, DIM_NETHER = -1
 	, DIM_END = 1
 	, DIM_ENVM = -2
-	, DIM_AROMA = -6 // Collides with Aether by default
+	, DIM_A97 = -6 // Collides with Aether by default
+	, DIM_CW2_AquaCavern = -32
+	, DIM_CW2_Caveland = -33
+	, DIM_CW2_Cavenia = -34
+	, DIM_CW2_Cavern = -31
+	, DIM_CW2_Caveworld = -30
 	, DIM_MOON = 2
 	, DIM_MARS = 3
 	, DIM_ASTEROIDS = 4
@@ -863,59 +873,74 @@ public class CS {
 	/** Lists of all the active World generation Features by Dimension Type, these are getting initialised in Load! */
 	@SuppressWarnings("unchecked")
 	public static final List<WorldgenObject>
-	  GEN_OVERWORLD     = new ArrayListNoNulls<>()
-	, GEN_GT            = new ArrayListNoNulls<>()
-	, GEN_PFAA          = new ArrayListNoNulls<>()
-	, GEN_TFC           = new ArrayListNoNulls<>()
-	, GEN_NETHER        = new ArrayListNoNulls<>()
-	, GEN_AETHER        = new ArrayListNoNulls<>()
-	, GEN_END           = new ArrayListNoNulls<>()
-	, GEN_MOON          = new ArrayListNoNulls<>()
-	, GEN_MARS          = new ArrayListNoNulls<>()
-	, GEN_PLANETS       = new ArrayListNoNulls<>()
-	, GEN_ASTEROIDS     = new ArrayListNoNulls<>()
-	, GEN_TWILIGHT      = new ArrayListNoNulls<>()
-	, GEN_EREBUS        = new ArrayListNoNulls<>()
-	, GEN_BETWEENLANDS  = new ArrayListNoNulls<>()
-	, GEN_ATUM          = new ArrayListNoNulls<>()
-	, GEN_DEEPDARK      = new ArrayListNoNulls<>()
-	, GEN_ENVM          = new ArrayListNoNulls<>()
-	, GEN_ENVM_GT       = new ArrayListNoNulls<>()
-	, GEN_AROMA         = new ArrayListNoNulls<>()
-	, GEN_AROMA_GT      = new ArrayListNoNulls<>()
-	, GEN_ALFHEIM       = new ArrayListNoNulls<>()
-	, GEN_TROPICS       = new ArrayListNoNulls<>()
-	, GEN_CANDY         = new ArrayListNoNulls<>()
-	, GEN_GEMS[]        = new List[] {GEN_OVERWORLD        , GEN_PFAA, GEN_ENVM,              GEN_AROMA,               GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_MARS, GEN_AETHER}
-	, GEN_FLOOR[]       = new List[] {GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_ENVM_GT, GEN_AROMA, GEN_AROMA_GT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_MARS, GEN_DEEPDARK, GEN_TFC, GEN_NETHER, GEN_MOON, GEN_TWILIGHT, GEN_ALFHEIM, GEN_TROPICS, GEN_CANDY}
-	, GEN_ALL[]         = new List[] {GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_ENVM_GT, GEN_AROMA, GEN_AROMA_GT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_MARS, GEN_DEEPDARK, GEN_TFC, GEN_NETHER, GEN_MOON, GEN_TWILIGHT, GEN_ALFHEIM, GEN_TROPICS, GEN_CANDY, GEN_AETHER, GEN_END, GEN_PLANETS, GEN_ASTEROIDS}
+	  GEN_OVERWORLD         = new ArrayListNoNulls<>()
+	, GEN_GT                = new ArrayListNoNulls<>()
+	, GEN_PFAA              = new ArrayListNoNulls<>()
+	, GEN_TFC               = new ArrayListNoNulls<>()
+	, GEN_NETHER            = new ArrayListNoNulls<>()
+	, GEN_AETHER            = new ArrayListNoNulls<>()
+	, GEN_END               = new ArrayListNoNulls<>()
+	, GEN_MOON              = new ArrayListNoNulls<>()
+	, GEN_MARS              = new ArrayListNoNulls<>()
+	, GEN_PLANETS           = new ArrayListNoNulls<>()
+	, GEN_ASTEROIDS         = new ArrayListNoNulls<>()
+	, GEN_TWILIGHT          = new ArrayListNoNulls<>()
+	, GEN_EREBUS            = new ArrayListNoNulls<>()
+	, GEN_BETWEENLANDS      = new ArrayListNoNulls<>()
+	, GEN_ATUM              = new ArrayListNoNulls<>()
+	, GEN_DEEPDARK          = new ArrayListNoNulls<>()
+	, GEN_ENVM              = new ArrayListNoNulls<>()
+	, GEN_ENVM_GT           = new ArrayListNoNulls<>()
+	, GEN_A97               = new ArrayListNoNulls<>()
+	, GEN_A97_GT            = new ArrayListNoNulls<>()
+	, GEN_CW2_AquaCavern    = new ArrayListNoNulls<>()
+	, GEN_CW2_AquaCavern_GT = new ArrayListNoNulls<>()
+	, GEN_CW2_Caveland      = new ArrayListNoNulls<>()
+	, GEN_CW2_Caveland_GT   = new ArrayListNoNulls<>()
+	, GEN_CW2_Cavenia       = new ArrayListNoNulls<>()
+	, GEN_CW2_Cavenia_GT    = new ArrayListNoNulls<>()
+	, GEN_CW2_Cavern        = new ArrayListNoNulls<>()
+	, GEN_CW2_Cavern_GT     = new ArrayListNoNulls<>()
+	, GEN_CW2_Caveworld     = new ArrayListNoNulls<>()
+	, GEN_CW2_Caveworld_GT  = new ArrayListNoNulls<>()
+	, GEN_ALFHEIM           = new ArrayListNoNulls<>()
+	, GEN_TROPICS           = new ArrayListNoNulls<>()
+	, GEN_CANDY             = new ArrayListNoNulls<>()
+	, GEN_GEMS[]            = new List[] {GEN_OVERWORLD        , GEN_PFAA, GEN_ENVM,              GEN_A97,             GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_MARS, GEN_AETHER}
+	, GEN_FLOOR[]           = new List[] {GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_ENVM_GT, GEN_A97, GEN_A97_GT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_MARS, GEN_DEEPDARK, GEN_TFC, GEN_NETHER, GEN_MOON, GEN_TWILIGHT, GEN_ALFHEIM, GEN_TROPICS, GEN_CANDY, GEN_CW2_AquaCavern, GEN_CW2_AquaCavern_GT, GEN_CW2_Caveland, GEN_CW2_Caveland_GT, GEN_CW2_Cavenia, GEN_CW2_Cavenia_GT, GEN_CW2_Cavern, GEN_CW2_Cavern_GT, GEN_CW2_Caveworld, GEN_CW2_Caveworld_GT}
+	, GEN_ALL[]             = new List[] {GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_ENVM, GEN_ENVM_GT, GEN_A97, GEN_A97_GT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_MARS, GEN_DEEPDARK, GEN_TFC, GEN_NETHER, GEN_MOON, GEN_TWILIGHT, GEN_ALFHEIM, GEN_TROPICS, GEN_CANDY, GEN_CW2_AquaCavern, GEN_CW2_AquaCavern_GT, GEN_CW2_Caveland, GEN_CW2_Caveland_GT, GEN_CW2_Cavenia, GEN_CW2_Cavenia_GT, GEN_CW2_Cavern, GEN_CW2_Cavern_GT, GEN_CW2_Caveworld, GEN_CW2_Caveworld_GT, GEN_AETHER, GEN_END, GEN_PLANETS, GEN_ASTEROIDS}
 	;
 	
 	/** Lists of all the active Large Ore Vein generation by Dimension Type, these are getting initialised in Load! */
 	@SuppressWarnings("unchecked")
 	public static final List<WorldgenObject>
-	  ORE_OVERWORLD     = new ArrayListNoNulls<>()
-	, ORE_PFAA          = new ArrayListNoNulls<>()
-	, ORE_TFC           = new ArrayListNoNulls<>()
-	, ORE_NETHER        = new ArrayListNoNulls<>()
-	, ORE_AETHER        = new ArrayListNoNulls<>()
-	, ORE_END           = new ArrayListNoNulls<>()
-	, ORE_MOON          = new ArrayListNoNulls<>()
-	, ORE_MARS          = new ArrayListNoNulls<>()
-	, ORE_PLANETS       = new ArrayListNoNulls<>()
-	, ORE_ASTEROIDS     = new ArrayListNoNulls<>()
-	, ORE_TWILIGHT      = new ArrayListNoNulls<>()
-	, ORE_EREBUS        = new ArrayListNoNulls<>()
-	, ORE_BETWEENLANDS  = new ArrayListNoNulls<>()
-	, ORE_ATUM          = new ArrayListNoNulls<>()
-	, ORE_DEEPDARK      = new ArrayListNoNulls<>()
-	, ORE_ENVM          = new ArrayListNoNulls<>()
-	, ORE_AROMA         = new ArrayListNoNulls<>()
-	, ORE_ALFHEIM       = new ArrayListNoNulls<>()
-	, ORE_TROPICS       = new ArrayListNoNulls<>()
-	, ORE_CANDY         = new ArrayListNoNulls<>()
-	, ORE_FLOOR[]       = new List[] {ORE_OVERWORLD, ORE_PFAA, ORE_ENVM, ORE_AROMA, ORE_TFC, ORE_NETHER, ORE_MOON, ORE_MARS, ORE_TWILIGHT, ORE_EREBUS, ORE_BETWEENLANDS, ORE_ATUM, ORE_ALFHEIM, ORE_DEEPDARK, ORE_TROPICS, ORE_CANDY}
-	, ORE_ALL[]         = new List[] {ORE_OVERWORLD, ORE_PFAA, ORE_ENVM, ORE_AROMA, ORE_TFC, ORE_NETHER, ORE_MOON, ORE_MARS, ORE_TWILIGHT, ORE_EREBUS, ORE_BETWEENLANDS, ORE_ATUM, ORE_ALFHEIM, ORE_DEEPDARK, ORE_TROPICS, ORE_CANDY, ORE_AETHER, ORE_END, ORE_PLANETS, ORE_ASTEROIDS}
+	  ORE_OVERWORLD         = new ArrayListNoNulls<>()
+	, ORE_PFAA              = new ArrayListNoNulls<>()
+	, ORE_TFC               = new ArrayListNoNulls<>()
+	, ORE_NETHER            = new ArrayListNoNulls<>()
+	, ORE_AETHER            = new ArrayListNoNulls<>()
+	, ORE_END               = new ArrayListNoNulls<>()
+	, ORE_MOON              = new ArrayListNoNulls<>()
+	, ORE_MARS              = new ArrayListNoNulls<>()
+	, ORE_PLANETS           = new ArrayListNoNulls<>()
+	, ORE_ASTEROIDS         = new ArrayListNoNulls<>()
+	, ORE_TWILIGHT          = new ArrayListNoNulls<>()
+	, ORE_EREBUS            = new ArrayListNoNulls<>()
+	, ORE_BETWEENLANDS      = new ArrayListNoNulls<>()
+	, ORE_ATUM              = new ArrayListNoNulls<>()
+	, ORE_DEEPDARK          = new ArrayListNoNulls<>()
+	, ORE_ENVM              = new ArrayListNoNulls<>()
+	, ORE_A97               = new ArrayListNoNulls<>()
+	, ORE_CW2_AquaCavern    = new ArrayListNoNulls<>()
+	, ORE_CW2_Caveland      = new ArrayListNoNulls<>()
+	, ORE_CW2_Cavenia       = new ArrayListNoNulls<>()
+	, ORE_CW2_Cavern        = new ArrayListNoNulls<>()
+	, ORE_CW2_Caveworld     = new ArrayListNoNulls<>()
+	, ORE_ALFHEIM           = new ArrayListNoNulls<>()
+	, ORE_TROPICS           = new ArrayListNoNulls<>()
+	, ORE_CANDY             = new ArrayListNoNulls<>()
+	, ORE_FLOOR[]           = new List[] {ORE_OVERWORLD, ORE_PFAA, ORE_ENVM, ORE_A97, ORE_TFC, ORE_NETHER, ORE_MOON, ORE_MARS, ORE_TWILIGHT, ORE_EREBUS, ORE_BETWEENLANDS, ORE_ATUM, ORE_ALFHEIM, ORE_DEEPDARK, ORE_TROPICS, ORE_CANDY, ORE_CW2_AquaCavern, ORE_CW2_Caveland, ORE_CW2_Cavenia, ORE_CW2_Cavern, ORE_CW2_Caveworld}
+	, ORE_ALL[]             = new List[] {ORE_OVERWORLD, ORE_PFAA, ORE_ENVM, ORE_A97, ORE_TFC, ORE_NETHER, ORE_MOON, ORE_MARS, ORE_TWILIGHT, ORE_EREBUS, ORE_BETWEENLANDS, ORE_ATUM, ORE_ALFHEIM, ORE_DEEPDARK, ORE_TROPICS, ORE_CANDY, ORE_CW2_AquaCavern, ORE_CW2_Caveland, ORE_CW2_Cavenia, ORE_CW2_Cavern, ORE_CW2_Caveworld, ORE_AETHER, ORE_END, ORE_PLANETS, ORE_ASTEROIDS}
 	;
 	
 	/** For Internal Usage. Even though after 2 years I still don't use this one... */
@@ -1404,6 +1429,7 @@ public class CS {
 		, LIQUID = new HashSetNoNulls<>(F, "poison", "liquidnitrogen", "liquiddna")
 		, GAS = new HashSetNoNulls<>()
 		, PLASMA = new HashSetNoNulls<>(F, "rc fusion plasma")
+		, HIDDEN = new HashSetNoNulls<>(F, "heliumplasma", "nitrogenplasma")
 		, AIR = new HashSetNoNulls<>()
 		, OXYGEN = new HashSetNoNulls<>()
 		, LIQUID_OXYGEN = new HashSetNoNulls<>()
@@ -1504,9 +1530,9 @@ public class CS {
 		
 		/** Ore Blocks */
 		public static IPrefixBlock
-		ore         , oreSandstone          , oreNetherrack         , oreEndstone       , oreAtumLimestone          , oreAtumSand, oreGravel, oreMud, oreSand, oreRedSand, oreBedrock,
-		oreBroken   , oreBrokenSandstone    , oreBrokenNetherrack   , oreBrokenEndstone , oreBrokenAtumLimestone    ,
-		oreSmall    , oreSmallSandstone     , oreSmallNetherrack    , oreSmallEndstone  , oreSmallAtumLimestone     , oreSmallAtumSand, oreSmallGravel, oreSmallMud, oreSmallSand, oreSmallRedSand, oreSmallBedrock;
+		ore      , oreSandstone      , oreNetherrack      , oreEndstone      , oreAtumLimestone      , oreAtumSand, oreGravel, oreMud, oreSand, oreRedSand, oreBedrock,
+		oreBroken, oreBrokenSandstone, oreBrokenNetherrack, oreBrokenEndstone, oreBrokenAtumLimestone,
+		oreSmall , oreSmallSandstone , oreSmallNetherrack , oreSmallEndstone , oreSmallAtumLimestone , oreSmallAtumSand, oreSmallGravel, oreSmallMud, oreSmallSand, oreSmallRedSand, oreSmallBedrock;
 		
 		public static BlockBaseFluid OilLight, OilMedium, OilHeavy, OilExtraHeavy, GasNatural;
 		public static BlockFluidClassic Ocean, Swamp, River;
@@ -1514,8 +1540,11 @@ public class CS {
 		public static BlockBase Sands, Diggables, Grass, Paths, RockOres, CrystalOres, VanillaOresA;
 		
 		public static IBlockBase FlowersA, FlowersB;
-		public static BlockBase Glowtus, Sapling, Leaves, BalesGrass, BalesCrop;
-		public static BlockBase Log1, Log1FireProof, LogA, LogAFireProof, LogB, LogBFireProof, BeamA, BeamAFireProof, BeamB, BeamBFireProof, Beam1, Beam1FireProof, Beam2, Beam2FireProof, Beam3, Beam3FireProof, Planks, PlanksFireProof;
+		public static BlockBase Glowtus, Saplings_AB, Saplings_CD, Leaves_AB, Leaves_CD, BalesGrass, BalesCrop;
+		public static BlockBase Log1, Log1FireProof, LogA, LogAFireProof, LogB, LogBFireProof, LogC, LogCFireProof, LogD, LogDFireProof, BeamA, BeamAFireProof, BeamB, BeamBFireProof, BeamC, BeamCFireProof, BeamD, BeamDFireProof, Beam1, Beam1FireProof, Beam2, Beam2FireProof, Beam3, Beam3FireProof, Planks, PlanksFireProof, Planks2, Planks2FireProof;
+		@Deprecated
+		public static BlockBase Sapling = Saplings_AB, Leaves = Leaves_AB;
+		
 		
 		public static BlockBase CFoam, CFoamFresh, Concrete, ConcreteReinforced, Asphalt, Glass, GlowGlass, Bars_Wood, Bars_Steel, Bars_Titanium, Bars_TungstenSteel, Bars_Adamantium, Spikes_Sharp, Spikes_Super, Spikes_Metal, Spikes_Fancy;
 		public static BlockBase LongDistWire01, LongDistPipe01;
@@ -1538,6 +1567,12 @@ public class CS {
 		  stoneToNormalOres = new ItemStackMap<>()
 		, stoneToBrokenOres = new ItemStackMap<>()
 		, stoneToSmallOres  = new ItemStackMap<>()
+		;
+		
+		/** Mappings for changing Drops of Blocks. */
+		public static ItemStackMap<ItemStackContainer, ItemStack>
+		  blockToDrop = new ItemStackMap<>()
+		, blockToSilk = new ItemStackMap<>()
 		;
 		
 		public static final Set<Object> stoneOverridable = new HashSetNoNulls<>(F);
@@ -1674,6 +1709,9 @@ public class CS {
 		public static final ITexture[] BOOK_TEXTURES_SIDE = new ITexture[256];
 		
 		public static final ItemStackMap<ItemStackContainer, Byte> BOOK_REGISTER = new ItemStackMap<>();
+		
+		public static final ItemStackSet<ItemStackContainer> BOOKS_NORMAL = new ItemStackSet<>();
+		public static final ItemStackSet<ItemStackContainer> BOOKS_ENCHANTED = new ItemStackSet<>();
 	}
 
 	/** Contains typical Tool OreDict Names. */
@@ -1740,15 +1778,14 @@ public class CS {
 	/** Configs */
 	public static class ConfigsGT {
 		public static Config
-		CLIENT = null,
-		SPECIAL = null,
-		RECIPES = null,
-		GREGTECH = null,
-		MACHINES = null,
-		WORLDGEN = null,
-		MATERIAL = null,
-		OVERPOWERED = null,
-		OREPROCESSING = null;
+		CLIENT,
+		RECIPES,
+		GREGTECH,
+		WORLDGEN,
+		MATERIAL,
+		OREPROCESSING;
+		
+		@Deprecated public static Config SPECIAL, MACHINES, OVERPOWERED;
 	}
 
 	/** Class Containing MOD ID Strings used in GT, since they are very common Parameters. */
@@ -1851,7 +1888,9 @@ public class CS {
 		, EIO               = "EnderIO"
 		, RT                = "RandomThings"
 		, AA                = "ActuallyAdditions"
+		
 		, SD                = "StorageDrawers"
+		, BTRS              = "betterstorage"
 		, JABBA             = "JABBA"
 		
 		, MgC               = "Magneticraft"
@@ -1918,7 +1957,10 @@ public class CS {
 		, RTG               = "RTG"
 		, RWG               = "RWG"
 		
-		, AROMA_MINING      = "Aroma1997sDimension"
+		, A97               = "Aroma1997Core"
+		, A97_MINING        = "Aroma1997sDimension"
+		
+		, CW2               = "caveworld"
 		
 		, GaSu              = "ganyssurface"
 		, GaNe              = "ganysnether"

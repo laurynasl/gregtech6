@@ -77,7 +77,7 @@ public class WorldgenHives extends WorldgenObject {
 			if (!IL.ATUM_Limestone.equal(WD.block(aWorld, tX, tY, tZ))) return rResult;
 			for (byte tSide : ALL_SIDES_VALID) if (WD.opq(aWorld, tX+OFFSETS_X[tSide], tY+OFFSETS_Y[tSide], tZ+OFFSETS_Z[tSide], F, T)) tCount++;
 			return (tCount == 5 && placeHive(tRegistry, aWorld, tX, tY, tZ, DYE_INT_Yellow      ,   900, aRandom)) || rResult;
-		case DIM_ENVM:
+		case DIM_ENVM: case DIM_CW2_Caveland:
 			tY = 16+aRandom.nextInt(96);
 			if (WD.block(aWorld, tX, tY, tZ) != Blocks.netherrack) return rResult;
 			for (byte tSide : ALL_SIDES_VALID) if (WD.opq(aWorld, tX+OFFSETS_X[tSide], tY+OFFSETS_Y[tSide], tZ+OFFSETS_Z[tSide], F, T)) tCount++;
@@ -103,7 +103,7 @@ public class WorldgenHives extends WorldgenObject {
 				tCount = 0;
 			}
 			return rResult;
-		case DIM_OVERWORLD: case DIM_ALFHEIM: case DIM_TROPICS: case DIM_UNKNOWN: case DIM_TWILIGHT: case DIM_AROMA:
+		case DIM_OVERWORLD: case DIM_ALFHEIM: case DIM_TROPICS: case DIM_UNKNOWN: case DIM_TWILIGHT: case DIM_A97:
 			for (tY = 8; tY < 28; tY++) {
 				Block tBlock = WD.block(aWorld, tX, tY, tZ);
 				if (tBlock.getMaterial() == Material.rock && WD.opq(tBlock) && WD.stone(tBlock, WD.meta(aWorld, tX, tY, tZ))) {

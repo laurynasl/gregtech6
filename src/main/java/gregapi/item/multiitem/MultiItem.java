@@ -51,7 +51,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -103,14 +102,14 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 	
 	@Override
 	public boolean hasProjectile(TagData aProjectileType, ItemStack aStack) {
-		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get((short)getDamage(aStack));
+		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) if (tBehavior.hasProjectile(this, aProjectileType, aStack)) return T;
 		return super.hasProjectile(aProjectileType, aStack);
 	}
 	
 	@Override
 	public EntityProjectile getProjectile(TagData aProjectileType, ItemStack aStack, World aWorld, double aX, double aY, double aZ) {
-		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get((short)getDamage(aStack));
+		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) {
 			EntityProjectile rArrow = tBehavior.getProjectile(this, aProjectileType, aStack, aWorld, aX, aY, aZ);
 			if (rArrow != null) return rArrow;
@@ -120,7 +119,7 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 	
 	@Override
 	public EntityProjectile getProjectile(TagData aProjectileType, ItemStack aStack, World aWorld, EntityLivingBase aEntity, float aSpeed) {
-		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get((short)getDamage(aStack));
+		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) {
 			EntityProjectile rArrow = tBehavior.getProjectile(this, aProjectileType, aStack, aWorld, aEntity, aSpeed);
 			if (rArrow != null) return rArrow;
@@ -130,14 +129,14 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 	
 	@Override
 	public ItemStack onDispense(IBlockSource aSource, ItemStack aStack) {
-		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get((short)getDamage(aStack));
+		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) if (tBehavior.canDispense(this, aSource, aStack)) return tBehavior.onDispense(this, aSource, aStack);
 		return super.onDispense(aSource, aStack);
 	}
 	
 	@Override
 	public boolean isItemStackUsable(ItemStack aStack) {
-		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get((short)getDamage(aStack));
+		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) if (!tBehavior.isItemStackUsable(this, aStack)) return F;
 		return super.isItemStackUsable(aStack);
 	}
@@ -146,7 +145,7 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 	public boolean itemInteractionForEntity(ItemStack aStack, EntityPlayer aPlayer, EntityLivingBase aEntity) {
 		useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
 		isItemStackUsable(aStack);
-		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get((short)getDamage(aStack));
+		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) try {
 			if (tBehavior.onRightClickEntity(this, aStack, aPlayer, aEntity)) {
 				if (aStack.stackSize <= 0) aPlayer.destroyCurrentEquippedItem();
@@ -157,7 +156,7 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 				return F;
 			}
 		} catch(Throwable e) {
-			if (D1) e.printStackTrace(ERR);
+			e.printStackTrace(ERR);
 		}
 		return F;
 	}
@@ -166,7 +165,7 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 	public boolean onLeftClickEntity(ItemStack aStack, EntityPlayer aPlayer, Entity aEntity) {
 		useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
 		isItemStackUsable(aStack);
-		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get((short)getDamage(aStack));
+		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) try {
 			if (tBehavior.onLeftClickEntity(this, aStack, aPlayer, aEntity)) {
 				if (aStack.stackSize <= 0) aPlayer.destroyCurrentEquippedItem();
@@ -177,7 +176,7 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 				return F;
 			}
 		} catch(Throwable e) {
-			if (D1) e.printStackTrace(ERR);
+			e.printStackTrace(ERR);
 		}
 		return F;
 	}
@@ -187,7 +186,7 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 		if (MD.BbLC.owns(aWorld, aX, aY, aZ)) return F;
 		useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
 		isItemStackUsable(aStack);
-		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get((short)getDamage(aStack));
+		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) try {
 			if (tBehavior.onItemUse(this, aStack, aPlayer, aWorld, aX, aY, aZ, UT.Code.side(aSide), hitX, hitY, hitZ)) {
 				if (aStack.stackSize <= 0) aPlayer.destroyCurrentEquippedItem();
@@ -198,7 +197,7 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 				return F;
 			}
 		} catch(Throwable e) {
-			if (D1) e.printStackTrace(ERR);
+			e.printStackTrace(ERR);
 		}
 		return F;
 	}
@@ -208,7 +207,7 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 		if (MD.BbLC.owns(aWorld, aX, aY, aZ)) return F;
 		useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
 		isItemStackUsable(aStack);
-		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get((short)getDamage(aStack));
+		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) try {
 			if (tBehavior.onItemUseFirst(this, aStack, aPlayer, aWorld, aX, aY, aZ, UT.Code.side(aSide), hitX, hitY, hitZ)) {
 				if (aStack.stackSize <= 0) aPlayer.destroyCurrentEquippedItem();
@@ -219,7 +218,7 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 				return F;
 			}
 		} catch(Throwable e) {
-			if (D1) e.printStackTrace(ERR);
+			e.printStackTrace(ERR);
 		}
 		return F;
 	}
@@ -228,11 +227,11 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 	public ItemStack onItemRightClick(ItemStack aStack, World aWorld, EntityPlayer aPlayer) {
 		useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
 		isItemStackUsable(aStack);
-		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get((short)getDamage(aStack));
+		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) try {
 			aStack = tBehavior.onItemRightClick(this, aStack, aWorld, aPlayer);
 		} catch(Throwable e) {
-			if (D1) e.printStackTrace(ERR);
+			e.printStackTrace(ERR);
 		}
 		return aStack;
 	}
@@ -240,39 +239,41 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 	@Override
 	@SuppressWarnings("unchecked")
 	public final void addInformation(ItemStack aStack, EntityPlayer aPlayer, @SuppressWarnings("rawtypes") List aList, boolean aF3_H) {
-		isItemStackUsable(aStack);
-		
-		String tKey = getUnlocalizedName(aStack) + ".tooltip", tString = LanguageHandler.translate(tKey, tKey);
-		if (UT.Code.stringValid(tString) && !tKey.equals(tString)) aList.add(tString);
-		
-		IItemEnergy tEnergyStats = getEnergyStats(aStack);
-		if (tEnergyStats != null) {
-			if (tEnergyStats instanceof EnergyStatDebug) {
-				aList.add(LH.Chat.RAINBOW_SLOW + "Works as Infinite Energy Battery" + EnumChatFormatting.GRAY);
-			} else {
-				for (TagData tEnergyType : tEnergyStats.getEnergyTypes(aStack)) {
-					long tCapacity = tEnergyStats.getEnergyCapacity(tEnergyType, aStack);
-					aList.add(LH.Chat.WHITE + UT.Code.makeString(Math.min(tCapacity, tEnergyStats.getEnergyStored(tEnergyType, aStack))) + " / " + UT.Code.makeString(tCapacity) + " " + tEnergyType.getChatFormat() + tEnergyType.getLocalisedNameShort() + LH.Chat.WHITE + " - Size: " + tEnergyStats.getEnergySizeInputRecommended(tEnergyType, aStack) + EnumChatFormatting.GRAY);
+		try {
+			String tKey = getUnlocalizedName(aStack) + ".tooltip", tString = LanguageHandler.translate(tKey, tKey);
+			if (UT.Code.stringValid(tString) && !tKey.equals(tString)) aList.add(tString);
+			
+			IItemEnergy tEnergyStats = getEnergyStats(aStack);
+			if (tEnergyStats != null) {
+				if (tEnergyStats instanceof EnergyStatDebug) {
+					aList.add(LH.Chat.RAINBOW_SLOW + "Works as Infinite Energy Battery");
+				} else {
+					for (TagData tEnergyType : tEnergyStats.getEnergyTypes(aStack)) {
+						long tCapacity = tEnergyStats.getEnergyCapacity(tEnergyType, aStack);
+						aList.add(LH.Chat.WHITE + UT.Code.makeString(Math.min(tCapacity, tEnergyStats.getEnergyStored(tEnergyType, aStack))) + " / " + UT.Code.makeString(tCapacity) + " " + tEnergyType.getChatFormat() + tEnergyType.getLocalisedNameShort() + LH.Chat.WHITE + " - Size: " + tEnergyStats.getEnergySizeInputRecommended(tEnergyType, aStack));
+					}
 				}
 			}
+			
+			Long[] tStats = getFluidContainerStats(aStack);
+			if (tStats != null && tStats[0] > 0) {
+				FluidStack tFluid = getFluidContent(aStack);
+				aList.add(LH.Chat.BLUE + ((tFluid==null?"No Fluids Contained":FL.name(tFluid, T))));
+				aList.add(LH.Chat.BLUE + ((tFluid==null?0:tFluid.amount) + "L / " + tStats[0] + "L"));
+			}
+			
+			addAdditionalToolTips(aList, aStack, aF3_H);
+			
+			ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
+			if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) aList = tBehavior.getAdditionalToolTips(this, aList, aStack);
+		} catch(Throwable e) {
+			e.printStackTrace(ERR);
 		}
-		
-		Long[] tStats = getFluidContainerStats(aStack);
-		if (tStats != null && tStats[0] > 0) {
-			FluidStack tFluid = getFluidContent(aStack);
-			aList.add(LH.Chat.BLUE + ((tFluid==null?"No Fluids Contained":FL.name(tFluid, T))) + LH.Chat.GRAY);
-			aList.add(LH.Chat.BLUE + ((tFluid==null?0:tFluid.amount) + "L / " + tStats[0] + "L") + LH.Chat.GRAY);
-		}
-		
-		addAdditionalToolTips(aList, aStack, aF3_H);
-		
-		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get((short)getDamage(aStack));
-		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) aList = tBehavior.getAdditionalToolTips(this, aList, aStack);
 	}
 	
 	@Override
 	public void onUpdate(ItemStack aStack, World aWorld, Entity aPlayer, int aTimer, boolean aIsInHand) {
-		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get((short)getDamage(aStack));
+		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) tBehavior.onUpdate(this, aStack, aWorld, aPlayer, aTimer, aIsInHand);
 	}
 	

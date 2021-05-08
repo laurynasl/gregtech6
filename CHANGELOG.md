@@ -1,20 +1,67 @@
 This is the most recent Changelog. It also contains some of the changes inside the >>>UPCOMING<<< Versions (most of the time). This is for 1.7.10 btw.
 
 
+6.14.14: (Not released yet, released whenever it needs to be)
+Nothing (I tend to only add finished Stuff to the Changelog).
+
+
+6.14.13: (Not released yet, released whenever it needs to be)
+Nothing (I tend to only add finished Stuff to the Changelog).
+
+
 6.14.12: (Not released yet, released whenever it needs to be)
-Nothing (I tend to only add finished Stuff to the Changelog).
+[ADDED] Axes and such are now able to chop down whole vanilla Mushrooms in one go.
+[ADDED] The Drain can now also produce liquid Slime should a Slime be ontop of it. Works with Green, Magma, Maze and Pink Slimes.
+[ADDED] GT6 Logs can now be crafted into their All-Bark Variant, when placed in the bottom right corner of the Crafting Grid. For Non-GT6 Logs you will still have to use the Soft Hammer after placing the Log though.
 
 
-6.14.11: (Not released yet, released whenever it needs to be)
-Nothing (I tend to only add finished Stuff to the Changelog).
+6.14.11:
+[NOTE] Erik3003 changed a tiny bit of the Internals of the Moderated Reactors, everything should still work as usual though.
+[COMPAT] Caveworld 2 now generates Stone Layers too. Its Ore Blocks will not be replaced though, so you get its Vanilla-alike Ores inside my Stone Layers. by the way did you know its "Universal Chest" is an Enderchest that goes across Savegames? Neat, isn't it?
+[COMPAT] Better Storage has some things been done to, but not much. I could not assign Material Data to its Chests and Stuff due to them using NBT instead of MetaData...
+[COMPAT] Et Futurum Requiems Copper Blocks and their Variants are now properly supported and not exploitable anymore.
+[FIXED] I messed up Ardite and Aredrite. That should be fixed now.
+[CHANGED] Bookshelves now count Writable Books and Written Books for Levels on the Enchanting Table. Same goes for GT Books and most other things that look enough like Books, some of which even count as Enchanted Books.
+[CHANGED] Bookshelves made of Magical Materials will give an additional Bonus to Enchantment Power. Greatwood and Livingwood would be a good example of ones that you can get for cheap.
+[CHANGED] Burner and Cryo Mixers now have Parallel Processing like the Normal and Electric Mixers.
+[CHANGED] Bedrock Ores can now overlap, so you can get a Bedrock Ore Spot with two or more different Bedrock Ores generating in it. However this is insanely rare, so do not try to go search for it! (I had to x10 the Bedrock Ore Probability in order to find just one of this in Superflat)
+[CHANGED] Bedrock Lava Springs in the Nether got nerfed to 500 times less Output (so still twice as good as Overworld Lava Springs). Only applies to newly generated ones though!
+[CHANGED] Fluid Pipes will now show all Fluids that are currently somewhere within all connected Pipes, when hit with a Magnifying Glass.
+[ADDED] Spray Cans can now be used to dye Sheep, Wolf Collars and Grass (if their Color is applicable). So you no longer need to Silk/Spade Harvest Grass to Bath/Craft it into one of the the 4 dyed Variants, and it is easier to spawnproof your Lawn that way.
+[ADDED]
+Blue Spruce
+Can be found in Mountainous Biomes.
+Its Planks are White, and the Tree is quite tall on average, making it a very good Wood Source.
+It also turns Dirt and Grass to Podzol below, making it far easier to get that Stuff renewably now, similar to how it works in later Versions of Vanilla Minecraft. (remember: Spades are super easy to use for digging Stuff like Podzol)
+When Biomes o'Plenty is installed it will drop Pinecones, that are now registered as Windfall to Forestry, and they also finally got a Biomass Recipe assigned to them that I originally forgot about.
+During certain periods of time it will turn into a Christmas Tree.
 
 
-6.14.10: (Not released yet, released whenever it needs to be)
+6.14.10:
+[COMPAT] Et Futurum Requiem
+Default Config Pack updated for Et Futurum Requiem.
+Deepslate will generate near Bedrock now. It will generate 1 Block higher in Slime Chunks specifically.
+[IMPROVED]
+The Vanilla "getting kicked back to Main Menu, when launching Singleplayer"-Bug should be mostly fixed. (it happened to me a few days after we fixed it sooooo, maybe it is not properly fixed)
+It wasn't my fault, but hey mostly fixed is mostly fixed.
+Please test for yourself if it actually works, since it is random and my dozen Tests have definitely been a fluke. (though it might be less likely!)
+The Fix also has the side effect of loading Singleplayer Worlds without having that initial Lagspike, so getting into the World feels a bit smoother.
+[IMPROVED] Creating Material Dictionaries no longer happens on Startup and is now done on the fly.
+[IMPROVED] When you break Fluid Pipes, they will try to move their content to connected adjacent Blocks/Pipes in order to not waste it. Keyword being TRY, because if there is nowhere to go they will still send it to the Garbage Dump.
+[FIXED] Button Panel was resetting its Chiseled Design whenever a Block Update or similar happened.
+[FIXED] Hoppers and Queue Hoppers will no longer let other things pull from their Output Facing.
+[FIXED] Bedrock Drill will actually output the right Ores and Stones in Atum, Betweenlands and Erebus. IT will also output Deepslate instead of Vanilla Stone in the Overworld if applicable. (ofcourse other Stone Layer Stones will still be outputted)
+[FIXED] Ice Harvesting with the Saw now actually works properly and does no longer spawn Water Blocks.
+[FIXED] A Crash when Furnace Recipes with Liquid XP were added to NEI.
 [FIXED] Dust Funnel is now slightly smarter when pulling and pushing Items.
 [FIXED] Rightclicking a Path Block with a Shovel should no longer prompt other Shovel Placer Features like Torches.
-[FIXED] A bunch of Issues with Crusible Molds/Basins. There was more than one, that this mini rewrite solved.
-[FIXED] Radioactive Centrifuging requires Refined Ores only now instead of also allowing Purified Ores. The Recipe overwrote the regular Centrifuging of Purified Ores, resulting in Recipe inconsistencies.
+[FIXED] A bunch of Issues with Crucible Molds/Basins. There was more than one, that this mini rewrite solved.
+[FIXED] Radioactive and Rare Earth Centrifuging requires Refined Ores only now instead of also allowing Purified Ores. The Recipe overwrote the regular Centrifuging of Purified Ores, resulting in Recipe inconsistencies.
 [FIXED] Byproducts for several Gem Ores, along with some other Ores.
+[CHANGED] Texture of the Generifier. It now looks much more like "sucking the specialness out of Items", instead of an Epileptic Rave Machine.
+[ADDED] Small Malachite Ore near the Surface.
+[ADDED] Config to make Gravel never drop Flint when harvested by a Player. (This was added because another Mod does it, but very badly, so I needed to replace that Feature using GT6, ofcourse Flint will still drop by Default)
+[ADDED] Miniature Portal to Aroma1997's Mining Dimension.
 
 
 6.14.09:

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2019 Gregorius Techneticies
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -125,9 +125,10 @@ public class CR {
 			if (tRecipe != null) {
 				if (tRecipe instanceof ICraftingRecipeGT && !((ICraftingRecipeGT)tRecipe).isRemovableByGT()) continue;
 				if (CLASSES_SPECIAL.contains(tRecipe.getClass().getName())) continue;
-				if (RECIPES_TO_DELATE.contains(tRecipe.getRecipeOutput(), T)) tList.remove(i--);
+				if (RECIPES_TO_DELATE.contains(tRecipe.getRecipeOutput(), T)) tList.set(i, null);
 			}
 		}
+		tList.removeAll(Arrays.asList((IRecipe)null));
 		// This setting is not meant to speed up load times, its meant to just make Crafting Recipes less visible in NEI
 		if (!DISABLE_GT6_CRAFTING_RECIPES) for (IRecipe tRecipe : BUFFER) GameRegistry.addRecipe(tRecipe);
 		BUFFER.clear();
@@ -376,10 +377,8 @@ public class CR {
 			
 			for (; idx < aRecipe.length; idx += 2) {
 				if (aRecipe[idx] == null || aRecipe[idx + 1] == null) {
-					if (D1) {
-						ERR.println("WARNING: Missing Item for shaped Recipe: " + (aResult==null?"null":aResult.getDisplayName()));
-						for (Object tContent : aRecipe) ERR.println(tContent);
-					}
+					ERR.println("WARNING: Missing Item for shaped Recipe: " + (aResult==null?"null":aResult.getDisplayName()));
+					for (Object tContent : aRecipe) ERR.println(tContent);
 					return F;
 				}
 				
@@ -482,7 +481,7 @@ public class CR {
 			int i = 0;
 			for (Object tObject : aRecipe) {
 				if (tObject == null) {
-					if (D1) ERR.println("WARNING: Missing Item for shapeless Recipe: " + (aResult==null?"null":aResult.getDisplayName()));
+					ERR.println("WARNING: Missing Item for shapeless Recipe: " + (aResult==null?"null":aResult.getDisplayName()));
 					for (Object tContent : aRecipe) ERR.println(tContent);
 					return F;
 				}

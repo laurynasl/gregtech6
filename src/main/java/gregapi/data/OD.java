@@ -94,12 +94,17 @@ public enum OD {
 	, materialPressedwax
 	, materialWaxcomb
 	, materialHoneycomb
+	, materialWax
 	, plankSkyroot
 	, plankWeedwood
 	, plankAnyWood
 	, plankWood
 	, stickAnyWood
 	, stickWood
+	, pressurePlateWood
+	, pressurePlateStone
+	, pressurePlateIron
+	, pressurePlateGold
 	, paperMap
 	, paperEmpty
 	, paperWritten

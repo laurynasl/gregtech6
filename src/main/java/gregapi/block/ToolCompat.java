@@ -29,7 +29,6 @@ import java.util.Random;
 import cpw.mods.fml.common.FMLLog;
 import gregapi.data.CS.BlocksGT;
 import gregapi.data.IL;
-import gregapi.data.LH;
 import gregapi.data.MD;
 import gregapi.data.MT;
 import gregapi.data.OD;
@@ -164,7 +163,7 @@ public class ToolCompat {
 				}
 			}
 			if (rReturn) {
-				if (FAST_LEAF_DECAY) WD.leafdecay(aWorld, aX, aY, aZ, null, F);
+				if (FAST_LEAF_DECAY) WD.leafdecay(aWorld, aX, aY, aZ, null, F, F);
 				UT.Inventories.addStackToPlayerInventoryOrDrop(aPlayer instanceof EntityPlayer ? (EntityPlayer)aPlayer : null, tBark, aWorld, aX+OFFSETS_X[aSide], aY+OFFSETS_Y[aSide], aZ+OFFSETS_Z[aSide]);
 				return aTool.equals(TOOL_axe) ? 500 : 1000;
 			}
@@ -374,47 +373,49 @@ public class ToolCompat {
 	
 	public static boolean prospectStone(Block aBlock, byte aMeta, long aQuality, List<String> aChatReturn, World aWorld, byte aSide, int aX, int aY, int aZ) {
 		Block tBlock;
-		int tX = aX, tY = aY, tZ = aZ;
-		for (int i = 0, j = (int)(4 + aQuality); i < j; i++) {
+		int tX = aX, tY = aY, tZ = aZ, tQuality = (int)UT.Code.bind(1, 20, aQuality + 4);
+		
+		for (int i = 0, j = tQuality; i < j; i++) {
 			tX -= OFFSETS_X[aSide];
 			tY -= OFFSETS_Y[aSide];
 			tZ -= OFFSETS_Z[aSide];
 			
+			// The Strings in this do not want to be localized, and not even Backup Lang wants to work.
 			tBlock = aWorld.getBlock(tX, tY, tZ);
 			if (tBlock == Blocks.lava || tBlock == Blocks.flowing_lava) {
-				if (aChatReturn != null) aChatReturn.add(LH.get(LH.PROSPECTING_LAVA));
+				if (aChatReturn != null) aChatReturn.add("There is Lava behind this Rock");
 				break;
 			}
 			if (tBlock instanceof BlockLiquid || tBlock instanceof IFluidBlock) {
-				if (aChatReturn != null) aChatReturn.add(LH.get(LH.PROSPECTING_LIQUID));
+				if (aChatReturn != null) aChatReturn.add("There is a Fluid behind this Rock");
 				break;
 			}
 			if (tBlock instanceof BlockSilverfish || !WD.hasCollide(aWorld, tX, tY, tZ, tBlock)) {
-				if (aChatReturn != null) aChatReturn.add(LH.get(LH.PROSPECTING_AIR));
+				if (aChatReturn != null) aChatReturn.add("There is an Air Pocket behind this Rock");
 				break;
 			}
 			if (i < 4) if (tBlock != aBlock || aMeta != aWorld.getBlockMetadata(tX, tY, tZ)) {
-				if (aChatReturn != null) aChatReturn.add(LH.get(LH.PROSPECTING_CHANGE));
+				if (aChatReturn != null) aChatReturn.add("Material is changing behind this Rock");
 				break;
 			}
 		}
 		
 		Random tRandom = new Random(aX^aY^aZ^aSide);
-		for (int i = 0, j = (int)(9+2*aQuality); i < j * (1+aQuality); i++) {
-			tX = (int) (aX-4-aQuality+tRandom.nextInt(j));
-			tY = (int) (aY-4-aQuality+tRandom.nextInt(j));
-			tZ = (int) (aZ-4-aQuality+tRandom.nextInt(j));
+		for (int i = 0, j = 1+2*tQuality, k = tQuality * tQuality; i < k; i++) {
+			tX = aX-tQuality+tRandom.nextInt(j);
+			tY = aY-tQuality+tRandom.nextInt(j);
+			tZ = aZ-tQuality+tRandom.nextInt(j);
 			tBlock = aWorld.getBlock(tX, tY, tZ);
 			
 			if (tBlock != NB && tBlock != Blocks.obsidian && tBlock != BlocksGT.RockOres) {
 				OreDictItemData tAssotiation = OM.anyassociation((tBlock instanceof IBlockRetrievable ? ((IBlockRetrievable)tBlock).getItemStackFromBlock(aWorld, tX, tY, tZ, SIDE_INVALID) : ST.make(tBlock, 1, aWorld.getBlockMetadata(tX, tY, tZ))));
 				if (tAssotiation != null && tAssotiation.mPrefix.containsAny(TD.Prefix.STANDARD_ORE, TD.Prefix.DENSE_ORE)) {
-					if (aChatReturn != null) aChatReturn.add(LH.get(LH.PROSPECTING_TRACES) + tAssotiation.mMaterial.mMaterial.getLocal());
+					if (aChatReturn != null) aChatReturn.add("Found traces of " + tAssotiation.mMaterial.mMaterial.getLocal());
 					return T;
 				}
 			}
 		}
-		if (aChatReturn != null && aChatReturn.isEmpty()) aChatReturn.add(LH.get(LH.PROSPECTING_NOTHING));
+		if (aChatReturn != null && aChatReturn.isEmpty()) aChatReturn.add("No traces of Ore found");
 		return T;
 	}
 }

@@ -142,7 +142,7 @@ public abstract class TileEntityBase08Barrel extends TileEntityBase07Paintable i
 		if (aTool.equals(TOOL_magnifyingglass)) {
 			if (aChatReturn != null) {
 				aChatReturn.add((mMode & B[0]) == 0 ? "Won't fill vertically adjacent Tanks" : "Will fill vertically adjacent Tanks (depending on Gravity and State of Matter)");
-				aChatReturn.add(mTank.content());
+				aChatReturn.add(mTank.contentcap());
 				if (!mTank.isEmpty() && (mMode & B[1]) != 0) {
 					if (mMaxSealedTime > 0) {
 						aChatReturn.add("Sealed (" + mSealedTime + " / " + mMaxSealedTime + ")");
@@ -185,7 +185,7 @@ public abstract class TileEntityBase08Barrel extends TileEntityBase07Paintable i
 						if (mMaxSealedTime <= 0) {
 							mRecipe = RM.Fermenter.findRecipe(this, mRecipe, T, Long.MAX_VALUE, NI, FL.array(mTank.getFluid()), ST.tag(0));
 							if (mRecipe != null && mRecipe.mFluidInputs.length > 0 && mRecipe.mFluidOutputs.length > 0 && !FL.gas(mRecipe.mFluidInputs[0]) && !FL.gas(mRecipe.mFluidOutputs[0])) {
-								mMaxSealedTime = UT.Code.divup(Math.max(1, mRecipe.mDuration) * Math.max(1, mRecipe.mEUt) * Math.max(1, mTank.amount()), Math.max(1, mRecipe.mFluidInputs[0].amount));
+								mMaxSealedTime = UT.Code.divup(Math.max(1, mRecipe.getAbsoluteTotalPower()) * Math.max(1, mTank.amount()), Math.max(1, mRecipe.mFluidInputs[0].amount));
 								mSealedTime = 0;
 							} else {
 								mMaxSealedTime = 0;

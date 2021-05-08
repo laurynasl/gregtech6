@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 GregTech-6 Team
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -49,7 +49,7 @@ import net.minecraft.world.World;
 public class BlockMetaType extends BlockBaseMeta {
 	public final float mHardnessMultiplier, mResistanceMultiplier;
 	public final int mHarvestLevel;
-	public final byte mSide;
+	public final byte mSide, mOctantcount;
 	public final boolean mIsWall, mIsSlab, mIsStair;
 	public final BlockMetaType mBlock;
 	public final BlockMetaType[] mSlabs;
@@ -65,6 +65,7 @@ public class BlockMetaType extends BlockBaseMeta {
 		mIsSlab = F;
 		mIsStair = F;
 		mBlock = this;
+		mOctantcount = 8;
 		mSide = SIDE_UNKNOWN;
 		mHarvestLevel = aHarvestLevel;
 		mHardnessMultiplier = aHardnessMultiplier;
@@ -84,9 +85,12 @@ public class BlockMetaType extends BlockBaseMeta {
 		ST.hide(mSlabs[SIDE_WEST]);
 		ST.hide(mSlabs[SIDE_EAST]);
 		for (byte i = 0; i < 16; i++) {
-			RM.sawing(16, 16, F, 5, ST.make(this, 1, i), ST.make(mSlabs[0], 2, i));
-			CR.shaped(ST.make(mSlabs[0], 2, i), CR.DEF_NAC, "sX", 'X', ST.make(this, 1, i));
 			CR.shaped(ST.make(this, 1, i), CR.DEF_NAC, "X", "X", 'X', ST.make(mSlabs[0], 1, i));
+			// Avoid duplicating Recipes that are added by the Wood Dictionary anyways.
+			if (!(this instanceof BlockBasePlanks)) {
+				RM.sawing(16, 16, F, 5, ST.make(this, 1, i), ST.make(mSlabs[0], 2, i));
+				CR.shaped(ST.make(mSlabs[0], 2, i), CR.DEF_NAC, "sX", 'X', ST.make(this, 1, i));
+			}
 		}
 	}
 	
@@ -104,6 +108,7 @@ public class BlockMetaType extends BlockBaseMeta {
 		mIsSlab = T;
 		mIsStair = F;
 		mBlock = aBlock;
+		mOctantcount = 4;
 		mSide = aSlabType;
 		mHarvestLevel = aHarvestLevel;
 		mHardnessMultiplier = aHardnessMultiplier;

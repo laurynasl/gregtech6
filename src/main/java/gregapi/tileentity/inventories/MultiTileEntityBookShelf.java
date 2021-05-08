@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 GregTech-6 Team
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -147,12 +147,12 @@ public class MultiTileEntityBookShelf extends TileEntityBase09FacingSingle imple
 	
 	@Override
 	public float getEnchantPowerBonus() {
-		int tNormalBooks = 0, tEnchantedBooks = 0;
+		float tPoints = 0;
 		for (int i = 0; i < 28; i++) if (slotHas(i)) {
-			if (slot(i).getItem() == Items.book) {tNormalBooks++; continue;}
-			if (slot(i).getItem() == Items.enchanted_book) {tEnchantedBooks++; continue;}
+			if (BooksGT.BOOKS_ENCHANTED.contains(slot(i), T)) {tPoints += 2; continue;}
+			if (BooksGT.BOOKS_NORMAL   .contains(slot(i), T)) {tPoints += 1; continue;}
 		}
-		return (tNormalBooks+tEnchantedBooks*2)/12;
+		return (mMaterial.contains(TD.Properties.MAGICAL) ? 1 : 0) + tPoints/12.0F;
 	}
 	
 	@Override

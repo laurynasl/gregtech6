@@ -24,13 +24,13 @@ import static gregapi.data.CS.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import gregapi.code.ArrayListNoNulls;
 import gregapi.code.ItemStackSet;
 import gregapi.code.ObjectStack;
+import gregapi.code.TagData;
 import gregapi.data.IL;
 import gregapi.data.LH;
 import gregapi.data.MD;
@@ -63,6 +63,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.DamageSource;
@@ -165,6 +166,17 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 	 * @param aSecondaryMaterial Secondary (Rod/Handle) Material of this Tool
 	 */
 	public final ItemStack getToolWithStats(int aToolID, int aAmount, OreDictMaterial aPrimaryMaterial, OreDictMaterial aSecondaryMaterial, long aMaxCharge, long aVoltage) {
+		return getToolWithStats(aToolID, aAmount, aPrimaryMaterial, aSecondaryMaterial, aMaxCharge, aVoltage, 0);
+	}
+	
+	/**
+	 * This Function gets an ItemStack Version of this Tool
+	 * @param aToolID the ID of the Tool Class
+	 * @param aAmount Amount of Items (well normally you only need 1)
+	 * @param aPrimaryMaterial Primary Material of this Tool
+	 * @param aSecondaryMaterial Secondary (Rod/Handle) Material of this Tool
+	 */
+	public final ItemStack getToolWithStats(int aToolID, int aAmount, OreDictMaterial aPrimaryMaterial, OreDictMaterial aSecondaryMaterial, long aMaxCharge, long aVoltage, long aCharge) {
 		ItemStack rStack = ST.make(this, aAmount, aToolID);
 		IToolStats tToolStats = getToolStats(rStack);
 		if (tToolStats != null) {
@@ -180,6 +192,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 				tToolNBT.setBoolean("e", T);
 				UT.NBT.setNumber(tToolNBT, "f", aMaxCharge);
 				UT.NBT.setNumber(tToolNBT, "g", aVoltage);
+				if (aCharge != 0) for (TagData tEnergyType : getEnergyTypes(rStack)) setEnergyStored(tEnergyType, rStack, Math.min(aCharge, aMaxCharge));
 			}
 			tMainNBT.setTag("GT.ToolStats", tToolNBT);
 			UT.NBT.set(rStack, tMainNBT);
@@ -291,19 +304,19 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		IToolStats tStats = getToolStats(aStack);
 		if (tMaxDamage > 0 && tStats != null) {
 			if (tMat1 == MT.NULL) {
-				aList.add(LH.Chat.WHITE + "Durability: x" + LH.Chat.GREEN + tStats.getMaxDurabilityMultiplier() + LH.Chat.GRAY);
-				aList.add(LH.Chat.WHITE + "Level: +" + LH.Chat.YELLOW + tStats.getBaseQuality() + LH.Chat.GRAY);
+				aList.add(LH.Chat.WHITE + "Durability: x" + LH.Chat.GREEN + tStats.getMaxDurabilityMultiplier());
+				aList.add(LH.Chat.WHITE + "Level: +" + LH.Chat.YELLOW + tStats.getBaseQuality());
 				float tCombat = getToolCombatDamage(aStack);
-				aList.add(LH.Chat.WHITE + "Attack Damage: +" + LH.Chat.BLUE + (((MD.TFC.mLoaded || MD.TFCP.mLoaded) ? tCombat * TFC_DAMAGE_MULTIPLIER : tCombat) + LH.Chat.RED + " (= " + ((MD.TFC.mLoaded || MD.TFCP.mLoaded) ? ((tCombat+1)*(TFC_DAMAGE_MULTIPLIER/2.0)) + ")" : ((tCombat+1)/2) + " Hearts)"))  + LH.Chat.GRAY);
-				aList.add(LH.Chat.WHITE + "Mining Speed: x" + LH.Chat.PINK + tStats.getSpeedMultiplier() + LH.Chat.GRAY);
+				aList.add(LH.Chat.WHITE + "Attack Damage: +" + LH.Chat.BLUE + (((MD.TFC.mLoaded || MD.TFCP.mLoaded) ? tCombat * TFC_DAMAGE_MULTIPLIER : tCombat) + LH.Chat.RED + " (= " + ((MD.TFC.mLoaded || MD.TFCP.mLoaded) ? ((tCombat+1)*(TFC_DAMAGE_MULTIPLIER/2.0)) + ")" : ((tCombat+1)/2) + " Hearts)")));
+				aList.add(LH.Chat.WHITE + "Mining Speed: x" + LH.Chat.PINK + tStats.getSpeedMultiplier());
 				if (tStats.canCollect()) aList.add(LH.Chat.DGRAY + LH.get(LH.TOOLTIP_AUTOCOLLECT));
 			} else {
-				aList.add(LH.Chat.WHITE + "Durability: " + LH.Chat.GREEN + UT.Code.makeString(tMaxDamage - tDamage) + " / " + UT.Code.makeString(tMaxDamage) + LH.Chat.GRAY);
-				aList.add(LH.Chat.WHITE + tMat1.getLocal() + LH.Chat.YELLOW + " Level: " + (tStats.getBaseQuality() + tMat1.mToolQuality) + LH.Chat.GRAY);
+				aList.add(LH.Chat.WHITE + "Durability: " + LH.Chat.GREEN + UT.Code.makeString(tMaxDamage - tDamage) + " / " + UT.Code.makeString(tMaxDamage));
+				aList.add(LH.Chat.WHITE + tMat1.getLocal() + LH.Chat.YELLOW + " Level: " + (tStats.getBaseQuality() + tMat1.mToolQuality));
 				float tCombat = getToolCombatDamage(aStack);
-				aList.add(LH.Chat.WHITE + "Attack Damage: " + LH.Chat.BLUE + "+" + (((MD.TFC.mLoaded || MD.TFCP.mLoaded) ? tCombat * TFC_DAMAGE_MULTIPLIER : tCombat) + LH.Chat.RED + " (= " + ((MD.TFC.mLoaded || MD.TFCP.mLoaded) ? ((tCombat+1)*(TFC_DAMAGE_MULTIPLIER/2.0)) + ")" : ((tCombat+1)/2) + " Hearts)"))  + LH.Chat.GRAY);
-				aList.add(LH.Chat.WHITE + "Mining Speed: " + LH.Chat.PINK + Math.max(Float.MIN_NORMAL, tStats.getSpeedMultiplier() * tMat1.mToolSpeed) + LH.Chat.GRAY);
-				aList.add(LH.Chat.WHITE + "Crafting Uses: " + LH.Chat.GREEN + UT.Code.divup(getEnergyStats(aStack) == null ? tMaxDamage - tDamage : getEnergyStored(TD.Energy.EU, aStack), tStats.getToolDamagePerContainerCraft()) + LH.Chat.GRAY);
+				aList.add(LH.Chat.WHITE + "Attack Damage: " + LH.Chat.BLUE + "+" + (((MD.TFC.mLoaded || MD.TFCP.mLoaded) ? tCombat * TFC_DAMAGE_MULTIPLIER : tCombat) + LH.Chat.RED + " (= " + ((MD.TFC.mLoaded || MD.TFCP.mLoaded) ? ((tCombat+1)*(TFC_DAMAGE_MULTIPLIER/2.0)) + ")" : ((tCombat+1)/2) + " Hearts)")));
+				aList.add(LH.Chat.WHITE + "Mining Speed: " + LH.Chat.PINK + Math.max(Float.MIN_NORMAL, tStats.getSpeedMultiplier() * tMat1.mToolSpeed));
+				aList.add(LH.Chat.WHITE + "Crafting Uses: " + LH.Chat.GREEN + UT.Code.divup(getEnergyStats(aStack) == null ? tMaxDamage - tDamage : Math.min(getEnergyStored(TD.Energy.EU, aStack), getEnergyCapacity(TD.Energy.EU, aStack)), tStats.getToolDamagePerContainerCraft()));
 				if (MD.BTL.mLoaded && tMat1.contains(TD.Properties.BETWEENLANDS)) aList.add(LH.Chat.GREEN + LH.get(LH.TOOLTIP_BETWEENLANDS_RESISTANCE));
 				if ((IL.TF_Mazestone.exists() || IL.TF_Mazehedge.exists()) && tMat1.contains(TD.Properties.MAZEBREAKER)) {
 					if (canHarvestBlock(IL.TF_Mazestone.block(), aStack)) aList.add(LH.Chat.PINK + LH.get(LH.TOOLTIP_TWILIGHT_MAZE_STONE_BREAKING));
@@ -321,8 +334,8 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		if (aNBT != null) {
 			aNBT = aNBT.getCompoundTag("GT.ToolStats");
 			if (aNBT != null) {
-				if (aNBT.hasKey("a")) return OreDictMaterial.MATERIAL_ARRAY[aNBT.getShort("a")];
-				if (aNBT.hasKey("b")) return OreDictMaterial.get(aNBT.getString("b"));
+				if (aNBT.hasKey("a")) return OreDictMaterial.get(aNBT.getShort ("a"), aDefault);
+				if (aNBT.hasKey("b")) return OreDictMaterial.get(aNBT.getString("b"), aDefault);
 			}
 		}
 		return aDefault;
@@ -334,8 +347,8 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		if (aNBT != null) {
 			aNBT = aNBT.getCompoundTag("GT.ToolStats");
 			if (aNBT != null) {
-				if (aNBT.hasKey("c")) return OreDictMaterial.MATERIAL_ARRAY[aNBT.getShort("c")];
-				if (aNBT.hasKey("d")) return OreDictMaterial.get(aNBT.getString("d"));
+				if (aNBT.hasKey("c")) return OreDictMaterial.get(aNBT.getShort ("c"), aDefault);
+				if (aNBT.hasKey("d")) return OreDictMaterial.get(aNBT.getString("d"), aDefault);
 			}
 		}
 		return aDefault;
@@ -347,7 +360,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		if (aNBT != null) {
 			aNBT = aNBT.getCompoundTag("GT.ToolStats");
 			if (aNBT != null) {
-				if (aNBT.getBoolean("e")) return EnergyStat.makeTool(TD.Energy.EU, aNBT.getLong("f"), aNBT.getLong("g"), 64, ST.make(aStack.getItem(), 1, getEmptyMetaData(aStack)), ST.make(aStack.getItem(), 1, getChargedMetaData(aStack)), ST.make(aStack.getItem(), 1, getChargedMetaData(aStack)));
+				if (aNBT.getBoolean("e")) return EnergyStat.makeTool(TD.Energy.EU, aNBT.getLong("f"), aNBT.getLong("g"), 64, ST.make(this, 1, getEmptyMetaData(aStack)), ST.make(this, 1, getChargedMetaData(aStack)), ST.make(this, 1, getChargedMetaData(aStack)));
 			}
 		}
 		return null;
@@ -515,36 +528,76 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 	
 	@Override
 	public boolean isItemStackUsable(ItemStack aStack) {
-		if (aStack == null || aStack.stackSize <= 0) return F;
-		IToolStats tStats = getToolStatsInternal(aStack);
-		if (ST.meta_(aStack) % 2 == 1 || tStats == null) {
-			NBTTagCompound aNBT = aStack.getTagCompound();
-			if (aNBT != null) aNBT.removeTag("ench");
+		if (ST.invalid(aStack) || aStack.stackSize <= 0) return F;
+		
+		NBTTagCompound aNBT = aStack.getTagCompound();
+		if (aNBT == null) return T;
+		
+		short aMeta = ST.meta_(aStack);
+		if (aMeta % 2 == 1) {
+			aNBT.removeTag("ench");
 			return F;
 		}
+		
+		IToolStats tStats = getToolStatsInternal(aMeta);
+		if (tStats == null || getToolDamage(aStack) > getToolMaxDamage(aStack) || !super.isItemStackUsable(aStack)) {
+			aNBT.removeTag("ench");
+			return F;
+		}
+		
+		if (aNBT.hasKey("ench")) return T;
+		
+		// Abuse a potentially empty List as a boolean to see if a Tool already has enchants or not.
+		aNBT.setTag("ench", new NBTTagList());
+		
 		OreDictMaterial aMaterial = getPrimaryMaterial(aStack);
-		HashMap<Integer, Integer> tMap = new HashMap<>(), tResult = new HashMap<>();
+		
+		List<ObjectStack<Enchantment>> tEnchantments = new ArrayListNoNulls<>();
+		
 		for (ObjectStack<Enchantment> tEnchantment : aMaterial.mEnchantmentTools) {
-			tMap.put(tEnchantment.mObject.effectId, tEnchantment.amountInt());
-			if (tEnchantment.mObject == Enchantment.fortune   ) tMap.put(Enchantment.looting.effectId, tEnchantment.amountInt());
-			if (tEnchantment.mObject == Enchantment.knockback ) tMap.put(Enchantment.punch  .effectId, tEnchantment.amountInt());
-			if (tEnchantment.mObject == Enchantment.fireAspect) tMap.put(Enchantment.flame  .effectId, tEnchantment.amountInt());
+			tEnchantments.add(new ObjectStack<>(tEnchantment.mObject, tEnchantment.mAmount));
+			if (tEnchantment.mObject == Enchantment.fortune   ) tEnchantments.add(new ObjectStack<>(Enchantment.looting, tEnchantment.mAmount));
+			if (tEnchantment.mObject == Enchantment.knockback ) tEnchantments.add(new ObjectStack<>(Enchantment.punch  , tEnchantment.mAmount));
+			if (tEnchantment.mObject == Enchantment.fireAspect) tEnchantments.add(new ObjectStack<>(Enchantment.flame  , tEnchantment.mAmount));
 		}
+		
 		Enchantment[] tEnchants = tStats.getEnchantments(aStack, aMaterial);
-		int[] tLevels = tStats.getEnchantmentLevels(aStack);
+		int[] tLevels = tStats.getEnchantmentLevels(aStack, aMaterial);
+		
 		for (int i = 0; i < tEnchants.length; i++) if (tLevels[i] > 0) {
-			Integer tLevel = tMap.get(tEnchants[i].effectId);
-			tMap.put(tEnchants[i].effectId, tLevel == null ? tLevels[i] : tLevel == tLevels[i] ? tLevel+1 : Math.max(tLevel, tLevels[i]));
+			boolean temp = T;
+			for (ObjectStack<Enchantment> tEnchantment : tEnchantments) if (tEnchantment.mObject == tEnchants[i]) {
+				if (tEnchantment.mAmount == tLevels[i]) {
+					tEnchantment.mAmount++;
+				} else if (tEnchantment.mAmount < tLevels[i]) {
+					tEnchantment.mAmount = tLevels[i];
+				}
+				temp = F;
+				break;
+			}
+			if (temp) tEnchantments.add(new ObjectStack<>(tEnchants[i], tLevels[i]));
 		}
-		for (Entry<Integer, Integer> tEntry : tMap.entrySet()) {
-			if (tEntry.getKey() == 33 || (tEntry.getKey() == 20 && tEntry.getValue() > 2) || tEntry.getKey() == Enchantment_Radioactivity.INSTANCE.effectId) tResult.put(tEntry.getKey(), tEntry.getValue()); else
-			if ("enchantment.railcraft.crowbar.implosion".equalsIgnoreCase(Enchantment.enchantmentsList[tEntry.getKey()].getName())) {
-				if (tStats.isWeapon()) tResult.put(tEntry.getKey(), tEntry.getValue());
-			} else switch(Enchantment.enchantmentsList[tEntry.getKey()].type) {
-			case all        :                              tResult.put(tEntry.getKey(), tEntry.getValue()); break;
-			case weapon     : if (tStats.isWeapon      ()) tResult.put(tEntry.getKey(), tEntry.getValue()); break;
-			case bow        : if (tStats.isRangedWeapon()) tResult.put(tEntry.getKey(), tEntry.getValue()); break;
-			case digger     : if (tStats.isMiningTool  ()) tResult.put(tEntry.getKey(), tEntry.getValue()); break;
+		
+		for (ObjectStack<Enchantment> tEnchantment : tEnchantments) {
+			if (tEnchantment.mObject == Enchantment.silkTouch || tEnchantment.mObject == Enchantment_Radioactivity.INSTANCE) {
+				aStack.addEnchantment(tEnchantment.mObject, tEnchantment.amountShort());
+				continue;
+			}
+			if (tEnchantment.mObject == Enchantment.fireAspect) {
+				if (tEnchantment.mAmount > 2 || tStats.isWeapon())
+				aStack.addEnchantment(tEnchantment.mObject, tEnchantment.amountShort());
+				continue;
+			}
+			if ("enchantment.railcraft.crowbar.implosion".equalsIgnoreCase(tEnchantment.mObject.getName())) {
+				if (tStats.isWeapon())
+				aStack.addEnchantment(tEnchantment.mObject, tEnchantment.amountShort());
+				continue;
+			}
+			switch(tEnchantment.mObject.type) {
+			case all        :                              aStack.addEnchantment(tEnchantment.mObject, tEnchantment.amountShort()); break;
+			case weapon     : if (tStats.isWeapon      ()) aStack.addEnchantment(tEnchantment.mObject, tEnchantment.amountShort()); break;
+			case bow        : if (tStats.isRangedWeapon()) aStack.addEnchantment(tEnchantment.mObject, tEnchantment.amountShort()); break;
+			case digger     : if (tStats.isMiningTool  ()) aStack.addEnchantment(tEnchantment.mObject, tEnchantment.amountShort()); break;
 			case armor      : break;
 			case armor_feet : break;
 			case armor_head : break;
@@ -554,8 +607,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 			case fishing_rod: break;
 			}
 		}
-		EnchantmentHelper.setEnchantments(tResult, aStack);
-		return getToolDamage(aStack) <= getToolMaxDamage(aStack);
+		return T;
 	}
 	
 	public short getChargedMetaData(ItemStack aStack) {
@@ -563,8 +615,6 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 	}
 	
 	public short getEmptyMetaData(ItemStack aStack) {
-		NBTTagCompound aNBT = aStack.getTagCompound();
-		if (aNBT != null) aNBT.removeTag("ench");
 		return (short)(ST.meta_(aStack)+1-(ST.meta_(aStack) % 2));
 	}
 	

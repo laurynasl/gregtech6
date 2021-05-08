@@ -134,7 +134,7 @@ public class GT6_Main extends Abstract_Mod {
 			if (tGregTech != null) tNewModsList.add(tGregTech);
 			UT.Reflection.getField(tLoadController, "activeModList", T, T).set(tLoadController, tNewModsList);
 		} catch(Throwable e) {
-			if (D1) e.printStackTrace(ERR);
+			e.printStackTrace(ERR);
 		}
 		
 		gt_proxy.mSkeletonsShootGTArrows = ConfigsGT.GREGTECH.get("general", "SkeletonsShootGTArrows", 16);
@@ -146,16 +146,16 @@ public class GT6_Main extends Abstract_Mod {
 		if (ConfigsGT.GREGTECH.get("general", "IncreaseDungeonLoot", T)) {
 			OUT.println(getModNameForLog() + ": Increasing general amount of Loot in Dungeon Chests and alike");
 			ChestGenHooks tChest;
-			tChest = ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST                ); tChest.setMax(tChest.getMax()+ 8); tChest.setMin(tChest.getMin()+ 4);
-			tChest = ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST              ); tChest.setMax(tChest.getMax()+12); tChest.setMin(tChest.getMin()+ 6);
-			tChest = ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST       ); tChest.setMax(tChest.getMax()+ 8); tChest.setMin(tChest.getMin()+ 4);
-			tChest = ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_CHEST       ); tChest.setMax(tChest.getMax()+16); tChest.setMin(tChest.getMin()+ 8);
-			tChest = ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_DISPENSER   ); tChest.setMax(tChest.getMax()+ 2); tChest.setMin(tChest.getMin()+ 1);
-			tChest = ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR         ); tChest.setMax(tChest.getMax()+ 4); tChest.setMin(tChest.getMin()+ 2);
-			tChest = ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH         ); tChest.setMax(tChest.getMax()+12); tChest.setMin(tChest.getMin()+ 6);
-			tChest = ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CROSSING        ); tChest.setMax(tChest.getMax()+ 8); tChest.setMin(tChest.getMin()+ 4);
-			tChest = ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CORRIDOR        ); tChest.setMax(tChest.getMax()+ 6); tChest.setMin(tChest.getMin()+ 3);
-			tChest = ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_LIBRARY         ); tChest.setMax(tChest.getMax()+16); tChest.setMin(tChest.getMin()+ 8);
+			tChest = ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST             ); tChest.setMax(tChest.getMax()+ 8); tChest.setMin(tChest.getMin()+ 4);
+			tChest = ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST           ); tChest.setMax(tChest.getMax()+12); tChest.setMin(tChest.getMin()+ 6);
+			tChest = ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST    ); tChest.setMax(tChest.getMax()+ 8); tChest.setMin(tChest.getMin()+ 4);
+			tChest = ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_CHEST    ); tChest.setMax(tChest.getMax()+16); tChest.setMin(tChest.getMin()+ 8);
+			tChest = ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_DISPENSER); tChest.setMax(tChest.getMax()+ 2); tChest.setMin(tChest.getMin()+ 1);
+			tChest = ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR      ); tChest.setMax(tChest.getMax()+ 4); tChest.setMin(tChest.getMin()+ 2);
+			tChest = ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH      ); tChest.setMax(tChest.getMax()+12); tChest.setMin(tChest.getMin()+ 6);
+			tChest = ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CROSSING     ); tChest.setMax(tChest.getMax()+ 8); tChest.setMin(tChest.getMin()+ 4);
+			tChest = ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CORRIDOR     ); tChest.setMax(tChest.getMax()+ 6); tChest.setMin(tChest.getMin()+ 3);
+			tChest = ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_LIBRARY      ); tChest.setMax(tChest.getMax()+16); tChest.setMin(tChest.getMin()+ 8);
 		}
 		if (ConfigsGT.GREGTECH.get("general", "SmallerVanillaToolDurability", T)) {
 			OUT.println(getModNameForLog() + ": Nerfing Vanilla Tool Durability");
@@ -169,21 +169,21 @@ public class GT6_Main extends Abstract_Mod {
 			Items.stone_shovel   .setMaxDamage( 16);
 			Items.stone_axe      .setMaxDamage( 16);
 			Items.stone_hoe      .setMaxDamage( 16);
-			Items.iron_sword     .setMaxDamage( 80);
-			Items.iron_pickaxe   .setMaxDamage( 80);
-			Items.iron_shovel    .setMaxDamage( 80);
-			Items.iron_axe       .setMaxDamage( 80);
-			Items.iron_hoe       .setMaxDamage( 80);
+			Items.iron_sword     .setMaxDamage( 64);
+			Items.iron_pickaxe   .setMaxDamage( 64);
+			Items.iron_shovel    .setMaxDamage( 64);
+			Items.iron_axe       .setMaxDamage( 64);
+			Items.iron_hoe       .setMaxDamage( 64);
 			Items.golden_sword   .setMaxDamage(  8);
 			Items.golden_pickaxe .setMaxDamage(  8);
 			Items.golden_shovel  .setMaxDamage(  8);
 			Items.golden_axe     .setMaxDamage(  8);
 			Items.golden_hoe     .setMaxDamage(  8);
-			Items.diamond_sword  .setMaxDamage(240);
-			Items.diamond_pickaxe.setMaxDamage(240);
-			Items.diamond_shovel .setMaxDamage(240);
-			Items.diamond_axe    .setMaxDamage(240);
-			Items.diamond_hoe    .setMaxDamage(240);
+			Items.diamond_sword  .setMaxDamage(256);
+			Items.diamond_pickaxe.setMaxDamage(256);
+			Items.diamond_shovel .setMaxDamage(256);
+			Items.diamond_axe    .setMaxDamage(256);
+			Items.diamond_hoe    .setMaxDamage(256);
 		}
 		
 		if (COMPAT_IC2 != null && !MD.IC2C.mLoaded) {
@@ -192,36 +192,36 @@ public class GT6_Main extends Abstract_Mod {
 				UT.Reflection.getField("ic2.core.item.ItemScrapbox$Drop", "topChance", T, T).set(null, 0);
 				((List<?>)UT.Reflection.getFieldContent(UT.Reflection.getFieldContent("ic2.api.recipe.Recipes", "scrapboxDrops", T, T), "drops", T, T)).clear();
 			} catch(Throwable e) {
-				if (D1) e.printStackTrace(ERR);
+				e.printStackTrace(ERR);
 			}
 
 			OUT.println(getModNameForLog() + ": Adding Scrap with a Weight of 200.0F to the Scrapbox Drops.");
 			COMPAT_IC2.scrapbox(200.0F, IL.IC2_Scrap.get(1));
 		}
 
-		EntityRegistry.registerModEntity(EntityArrow_Material.class , "GT_Entity_Arrow"         , 1, GT, 160, 1, T);
-		EntityRegistry.registerModEntity(EntityArrow_Potion.class   , "GT_Entity_Arrow_Potion"  , 2, GT, 160, 1, T);
+		EntityRegistry.registerModEntity(EntityArrow_Material.class, "GT_Entity_Arrow"       , 1, GT, 160, 1, T);
+		EntityRegistry.registerModEntity(EntityArrow_Potion.class  , "GT_Entity_Arrow_Potion", 2, GT, 160, 1, T);
 
 		for (OreDictMaterial tWood : ANY.Wood.mToThis) OP.plate.disableItemGeneration(tWood);
-		OP.ingot        .disableItemGeneration(MT.Butter, MT.ButterSalted, MT.Chocolate, MT.Cheese, MT.MeatRaw, MT.MeatCooked, MT.FishRaw, MT.FishCooked, MT.Tofu, MT.SoylentGreen);
-		OP.gemChipped   .disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
-		OP.gemFlawed    .disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
-		OP.gem          .disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
-		OP.gemFlawless  .disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
-		OP.gemExquisite .disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
-		OP.gemLegendary .disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
+		OP.ingot       .disableItemGeneration(MT.Butter, MT.ButterSalted, MT.Chocolate, MT.Cheese, MT.MeatRaw, MT.MeatCooked, MT.FishRaw, MT.FishCooked, MT.Tofu, MT.SoylentGreen);
+		OP.gemChipped  .disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
+		OP.gemFlawed   .disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
+		OP.gem         .disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
+		OP.gemFlawless .disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
+		OP.gemExquisite.disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
+		OP.gemLegendary.disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
 
 
-		RM.pulverizing(ST.make(Blocks.cobblestone   , 1, W), ST.make(Blocks.sand, 1, 0), null, 0, F);
-		RM.pulverizing(ST.make(Blocks.stone         , 1, W), ST.make(Blocks.cobblestone, 1, 0), null, 0, F);
-		RM.pulverizing(ST.make(Blocks.gravel        , 1, W), ST.make(Items.flint, 1, 0), OP.dustSmall.mat(MT.Flint, 1), 10, F);
-		RM.pulverizing(ST.make(Blocks.furnace       , 1, W), ST.make(Blocks.sand, 6, 0), null, 0, F);
-		RM.pulverizing(ST.make(Blocks.lit_furnace   , 1, W), ST.make(Blocks.sand, 6, 0), null, 0, F);
-		RM.pulverizing(ST.make(Items.bone           , 1, W), IL.Dye_Bonemeal.get(2), IL.Dye_Bonemeal.get(1), 50, T);
-		RM.pulverizing(ST.make(Items.blaze_rod      , 1, W), ST.make(Items.blaze_powder, 3, 0), ST.make(Items.blaze_powder, 1, 0), 50, T);
-		RM.pulverizing(ST.make(Blocks.pumpkin       , 1, W), ST.make(Items.pumpkin_seeds, 4, 0), null, 0, F);
-		RM.pulverizing(ST.make(Items.melon          , 1, W), ST.make(Items.melon_seeds, 1, 0), null, 0, F);
-		RM.pulverizing(ST.make(Blocks.wool          , 1, W), ST.make(Items.string, 2, 0), ST.make(Items.string, 1, 0), 50, F);
+		RM.pulverizing(ST.make(Blocks.cobblestone, 1, W), ST.make(Blocks.sand, 1, 0), null, 0, F);
+		RM.pulverizing(ST.make(Blocks.stone      , 1, W), ST.make(Blocks.cobblestone, 1, 0), null, 0, F);
+		RM.pulverizing(ST.make(Blocks.gravel     , 1, W), ST.make(Items.flint, 1, 0), OP.dustSmall.mat(MT.Flint, 1), 10, F);
+		RM.pulverizing(ST.make(Blocks.furnace    , 1, W), ST.make(Blocks.sand, 6, 0), null, 0, F);
+		RM.pulverizing(ST.make(Blocks.lit_furnace, 1, W), ST.make(Blocks.sand, 6, 0), null, 0, F);
+		RM.pulverizing(ST.make(Items.bone        , 1, W), IL.Dye_Bonemeal.get(2), IL.Dye_Bonemeal.get(1), 50, T);
+		RM.pulverizing(ST.make(Items.blaze_rod   , 1, W), ST.make(Items.blaze_powder, 3, 0), ST.make(Items.blaze_powder, 1, 0), 50, T);
+		RM.pulverizing(ST.make(Blocks.pumpkin    , 1, W), ST.make(Items.pumpkin_seeds, 4, 0), null, 0, F);
+		RM.pulverizing(ST.make(Items.melon       , 1, W), ST.make(Items.melon_seeds, 1, 0), null, 0, F);
+		RM.pulverizing(ST.make(Blocks.wool       , 1, W), ST.make(Items.string, 2, 0), ST.make(Items.string, 1, 0), 50, F);
 		
 		new Loader_Fluids().run();
 		new Loader_Tools().run();
@@ -436,8 +436,8 @@ public class GT6_Main extends Abstract_Mod {
 		
 		
 		RM.Other.addFakeRecipe(F, ST.array(
-		  ST.make(BlocksGT.Sapling, 1, 0, "Find a Rubber Tree in a Taiga Biome or similar")
-		, ST.make(BlocksGT.Leaves, 1, 0, "Make sure its natural Leaves stay intact!")
+		  ST.make(BlocksGT.Saplings_AB, 1, 0, "Find a Rubber Tree in a Taiga Biome or similar")
+		, ST.make(BlocksGT.Leaves_AB, 1, 0, "Make sure its natural Leaves stay intact!")
 		, ST.make(BlocksGT.LogA, 1, 0, "Look for a possible Resin Hole at the Tree")
 		, NI
 		, NI
@@ -445,8 +445,8 @@ public class GT6_Main extends Abstract_Mod {
 		), ST.array(IL.Resin.get(1), IL.IC2_Resin.get(1)), null, ZL_LONG, ZL_FS, FL.array(FL.Resin_Rubber.make(250)), 0, 0, 0);
 		
 		RM.Other.addFakeRecipe(F, ST.array(
-		  ST.make(BlocksGT.Sapling, 1, 1, "Find a Maple Tree in a Forest")
-		, ST.make(BlocksGT.Leaves, 1, 1, "Make sure its natural Leaves stay intact!")
+		  ST.make(BlocksGT.Saplings_AB, 1, 1, "Find a Maple Tree in a Forest")
+		, ST.make(BlocksGT.Leaves_AB, 1, 1, "Make sure its natural Leaves stay intact!")
 		, ST.make(BlocksGT.LogA, 1, 1, "Choose one of the Log Segments at the Base of the Tree")
 		, ST.make(ToolsGT.sMetaTool, 1, ToolsGT.HAND_DRILL, "Drill only one Hole into the Tree")
 		, ST.make(ToolsGT.sMetaTool, 1, ToolsGT.DRILL_LV  , "Drill only one Hole into the Tree")
@@ -454,8 +454,8 @@ public class GT6_Main extends Abstract_Mod {
 		), ZL_IS, null, ZL_LONG, ZL_FS, FL.array(FL.Sap_Maple.make(250)), 0, 0, 0);
 		
 		RM.Other.addFakeRecipe(F, ST.array(
-		  ST.make(BlocksGT.Sapling, 1, 2, "Find a Willow Tree in the Swamp")
-		, ST.make(BlocksGT.Leaves, 1, 2, "Harvest its Leaves for Sticks")
+		  ST.make(BlocksGT.Saplings_AB, 1, 2, "Find a Willow Tree in the Swamp")
+		, ST.make(BlocksGT.Leaves_AB, 1, 2, "Harvest its Leaves for Sticks")
 		, ST.make(BlocksGT.LogA, 1, 2, "Use its Logs in a Coke Oven for double the Charcoal")
 		, NI
 		, NI
@@ -463,8 +463,8 @@ public class GT6_Main extends Abstract_Mod {
 		), ST.array(OP.stick.mat(MT.WOODS.Willow, 1), OP.gem.mat(MT.Charcoal, 2), OP.ingot.mat(MT.Charcoal, 2)), null, ZL_LONG, ZL_FS, ZL_FS, 0, 0, 0);
 		
 		RM.Other.addFakeRecipe(F, ST.array(
-		  ST.make(BlocksGT.Sapling, 1, 3, "Find a Blue Mahoe Tree in the Jungle")
-		, ST.make(BlocksGT.Leaves, 1, 3, "Harvest its Leaves for Sticks")
+		  ST.make(BlocksGT.Saplings_AB, 1, 3, "Find a Blue Mahoe Tree in the Jungle")
+		, ST.make(BlocksGT.Leaves_AB, 1, 3, "Harvest its Leaves for Sticks")
 		, ST.make(BlocksGT.LogA, 1, 3, "Nothing special about its Logs")
 		, NI
 		, NI
@@ -472,8 +472,8 @@ public class GT6_Main extends Abstract_Mod {
 		), ST.array(OP.stick.mat(MT.WOODS.BlueMahoe, 1)), null, ZL_LONG, ZL_FS, ZL_FS, 0, 0, 0);
 		
 		RM.Other.addFakeRecipe(F, ST.array(
-		  ST.make(BlocksGT.Sapling, 1, 4, "Find a Hazel Tree in the Plains")
-		, ST.make(BlocksGT.Leaves, 1, 4, "Harvest its Leaves for Hazelnuts and Sticks")
+		  ST.make(BlocksGT.Saplings_AB, 1, 4, "Find a Hazel Tree in the Plains")
+		, ST.make(BlocksGT.Leaves_AB, 1, 4, "Harvest its Leaves for Hazelnuts and Sticks")
 		, ST.make(BlocksGT.LogB, 1, 0, "Nothing special about its Logs")
 		, NI
 		, NI
@@ -481,8 +481,8 @@ public class GT6_Main extends Abstract_Mod {
 		), ST.array(IL.Food_Hazelnut.get(1), OP.stick.mat(MT.WOODS.Hazel, 1)), null, ZL_LONG, ZL_FS, ZL_FS, 0, 0, 0);
 		
 		RM.Other.addFakeRecipe(F, ST.array(
-		  ST.make(BlocksGT.Sapling, 1, 5, "Find a Cinnamon Tree in the Jungle")
-		, ST.make(BlocksGT.Leaves, 1, 5, "Nothing special about its Leaves")
+		  ST.make(BlocksGT.Saplings_AB, 1, 5, "Find a Cinnamon Tree in the Jungle")
+		, ST.make(BlocksGT.Leaves_AB, 1, 5, "Nothing special about its Leaves")
 		, ST.make(BlocksGT.LogB, 1, 1, "The Bark does not regrow! Plant a new Tree for more")
 		, ST.make(ToolsGT.sMetaTool, 1, ToolsGT.KNIFE, "Remove its edible Bark")
 		, ST.make(ToolsGT.sMetaTool, 1, ToolsGT.AXE  , "Remove its edible Bark")
@@ -490,8 +490,8 @@ public class GT6_Main extends Abstract_Mod {
 		), ST.array(OM.dust(MT.Cinnamon), IL.Food_Cinnamon.get(1), IL.HaC_Cinnamon.get(1)), null, ZL_LONG, ZL_FS, ZL_FS, 0, 0, 0);
 		
 		RM.Other.addFakeRecipe(F, ST.array(
-		  ST.make(BlocksGT.Sapling, 1, 6, "Find a Coconut Tree near the Ocean")
-		, ST.make(BlocksGT.Leaves, 1, 6, "Harvest its Leaves for Coconuts")
+		  ST.make(BlocksGT.Saplings_AB, 1, 6, "Find a Coconut Tree near the Ocean")
+		, ST.make(BlocksGT.Leaves_AB, 1, 6, "Harvest its Leaves for Coconuts")
 		, ST.make(BlocksGT.LogB, 1, 2, "Nothing special about its Logs")
 		, NI
 		, NI
@@ -499,14 +499,22 @@ public class GT6_Main extends Abstract_Mod {
 		), ST.array(IL.Food_Coconut.get(1)), null, ZL_LONG, ZL_FS, ZL_FS, 0, 0, 0);
 		
 		RM.Other.addFakeRecipe(F, ST.array(
-		  ST.make(BlocksGT.Sapling, 1, 7, "Find a super rare Rainbow Tree")
-		, ST.make(BlocksGT.Leaves, 1, 7, "Make sure its natural Leaves stay intact!")
+		  ST.make(BlocksGT.Saplings_AB, 1, 7, "Find a super rare Rainbow Tree")
+		, ST.make(BlocksGT.Leaves_AB, 1, 7, "Make sure its natural Leaves stay intact!")
 		, ST.make(BlocksGT.LogB, 1, 3, "Choose one of the Log Segments at the Base of the Tree")
 		, ST.make(ToolsGT.sMetaTool, 1, ToolsGT.HAND_DRILL, "Drill only one Hole into the Tree")
 		, ST.make(ToolsGT.sMetaTool, 1, ToolsGT.DRILL_LV  , "Drill only one Hole into the Tree")
 		, IL.Bag_Sap_Resin.getWithName(1, "Place Sap Bag at the drilled Hole")
 		), ZL_IS, null, ZL_LONG, ZL_FS, FL.array(FL.Sap_Rainbow.make(250)), 0, 0, 0);
 		
+		RM.Other.addFakeRecipe(F, ST.array(
+		  ST.make(BlocksGT.Saplings_CD, 1, 0, "Find a Blue Spruce Tree in the Mountains")
+		, ST.make(BlocksGT.Leaves_CD, 1, 0, "Nothing special about its Leaves")
+		, ST.make(BlocksGT.LogC, 1, 0, "Nothing special about its Logs")
+		, NI
+		, NI
+		, NI
+		), ZL_IS, null, ZL_LONG, ZL_FS, ZL_FS, 0, 0, 0);
 		
 		
 		if (CODE_CLIENT) {
@@ -686,7 +694,7 @@ public class GT6_Main extends Abstract_Mod {
 			ORD.println("END GregTech-Debug");
 			ORD.println("*"); ORD.println("*"); ORD.println("*");
 		}
-		} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+		} catch(Throwable e) {e.printStackTrace(ERR);}
 	}
 
 	@Override public void onModServerStarted2(FMLServerStartedEvent aEvent) {/**/}

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2019 Gregorius Techneticies
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -123,7 +123,7 @@ public class MultiTileEntityGeneratorFluidBed extends TileEntityBase09FacingSing
 					}
 				}
 				if (mEnergy < mRate * 2) {
-					WD.fire(worldObj, getOffset(mFacing, 1), T);
+					WD.burn(worldObj, getOffset(mFacing, 1), T, T);
 					if (addStackToSlot(1, mOutput1)) mOutput1 = null;
 					if (mOutput1 == null && !WD.hasCollide(worldObj, getOffsetX(mFacing), getOffsetY(mFacing), getOffsetZ(mFacing)) && !getBlockAtSide(mFacing).getMaterial().isLiquid() && WD.oxygen(worldObj, getOffsetX(mFacing), getOffsetY(mFacing), getOffsetZ(mFacing))) {
 						Recipe tRecipe = mRecipes.findRecipe(this, mLastRecipe, T, Long.MAX_VALUE, NI, mTank.AS_ARRAY, slot(0));
@@ -131,7 +131,7 @@ public class MultiTileEntityGeneratorFluidBed extends TileEntityBase09FacingSing
 							mLastRecipe = tRecipe;
 							ItemStack[] tOutputs = tRecipe.getOutputs();
 							if (tOutputs.length > 0) mOutput1 = ST.copy(tOutputs[0]);
-							mEnergy += UT.Code.units(Math.abs(tRecipe.mEUt * tRecipe.mDuration), 10000, mEfficiency, F);
+							mEnergy += UT.Code.units(tRecipe.getAbsoluteTotalPower(), 10000, mEfficiency, F);
 							removeAllDroppableNullStacks();
 						}
 					}

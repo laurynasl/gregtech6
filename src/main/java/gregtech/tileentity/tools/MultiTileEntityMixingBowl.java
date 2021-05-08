@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 GregTech-6 Team
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -125,7 +125,7 @@ public class MultiTileEntityMixingBowl extends TileEntityBase07Paintable impleme
 					for (int i = 0; i < mRecipes.mOutputItemsCount && i < tOutputItems.length; i++) addStackToSlot(i+6, tOutputItems[i]);
 					for (int i = 0; i < mTanksOutput.length && i < tOutputFluids.length; i++) mTanksOutput[i].fill(tOutputFluids[i], T);
 					removeAllDroppableNullStacks();
-					return Math.max(1, UT.Code.divup(Math.max(1, tRecipe.mEUt) * Math.max(1, tRecipe.mDuration), 4));
+					return Math.max(1, UT.Code.divup(Math.max(1, tRecipe.getAbsoluteTotalPower()), 4));
 				}
 				return 0;
 			}
@@ -234,7 +234,7 @@ public class MultiTileEntityMixingBowl extends TileEntityBase07Paintable impleme
 						FluidStack[] tOutputFluids = tRecipe.getFluidOutputs();
 						for (int i = 0; i < mRecipes.mOutputItemsCount && i < tOutputItems.length; i++) addStackToSlot(i+6, tOutputItems[i]);
 						for (int i = 0; i < mTanksOutput.length && i < tOutputFluids.length; i++) mTanksOutput[i].fill(tOutputFluids[i], T);
-						aPlayer.addExhaustion((tRecipe.mEUt * tRecipe.mDuration) / 250.0F);
+						aPlayer.addExhaustion(tRecipe.getAbsoluteTotalPower() / 250.0F);
 						removeAllDroppableNullStacks();
 						return T;
 					}
@@ -332,7 +332,7 @@ public class MultiTileEntityMixingBowl extends TileEntityBase07Paintable impleme
 	@Override
 	protected IFluidTank getFluidTankFillable2(byte aSide, FluidStack aFluidToFill) {
 		for (int i = 0; i < mTanksInput.length; i++) if (mTanksInput[i].contains(aFluidToFill)) return mTanksInput[i];
-		if (FL.temperature(aFluidToFill) >= mMaterial.mMeltingPoint - 100 || FL.lighter(aFluidToFill) || !FL.simple(aFluidToFill)) return null;
+		if (FL.temperature(aFluidToFill) >= mMaterial.mMeltingPoint - 100 || !FL.heavier(aFluidToFill) || !FL.simple(aFluidToFill)) return null;
 		for (int i = 0; i < mTanksInput.length; i++) if (mTanksInput[i].isEmpty()) return mTanksInput[i];
 		return null;
 	}

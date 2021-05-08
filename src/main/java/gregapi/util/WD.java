@@ -39,6 +39,7 @@ import gregapi.data.CS.BlocksGT;
 import gregapi.data.CS.SFX;
 import gregapi.data.FL;
 import gregapi.data.IL;
+import gregapi.data.LH;
 import gregapi.data.MD;
 import gregapi.data.TD;
 import gregapi.event.BlockScanningEvent;
@@ -196,8 +197,23 @@ public class WD {
 	public static boolean dimENVM(World aWorld) {return aWorld != null && dimENVM(aWorld.provider);}
 	public static boolean dimENVM(WorldProvider aProvider) {return MD.ENVM.mLoaded && "WorldProviderCaves".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
 	
-	public static boolean dimAROMA(World aWorld) {return aWorld != null && dimAROMA(aWorld.provider);}
-	public static boolean dimAROMA(WorldProvider aProvider) {return MD.AROMA_MINING.mLoaded && "WorldProviderMiner".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimA97(World aWorld) {return aWorld != null && dimA97(aWorld.provider);}
+	public static boolean dimA97(WorldProvider aProvider) {return MD.A97_MINING.mLoaded && "WorldProviderMiner".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	
+	public static boolean dimCW2AquaCavern(World aWorld) {return aWorld != null && dimCW2AquaCavern(aWorld.provider);}
+	public static boolean dimCW2AquaCavern(WorldProvider aProvider) {return MD.CW2.mLoaded && "WorldProviderAquaCavern".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	
+	public static boolean dimCW2Caveland(World aWorld) {return aWorld != null && dimCW2Caveland(aWorld.provider);}
+	public static boolean dimCW2Caveland(WorldProvider aProvider) {return MD.CW2.mLoaded && "WorldProviderCaveland".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	
+	public static boolean dimCW2Cavenia(World aWorld) {return aWorld != null && dimCW2Cavenia(aWorld.provider);}
+	public static boolean dimCW2Cavenia(WorldProvider aProvider) {return MD.CW2.mLoaded && "WorldProviderCavenia".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	
+	public static boolean dimCW2Cavern(World aWorld) {return aWorld != null && dimCW2Cavern(aWorld.provider);}
+	public static boolean dimCW2Cavern(WorldProvider aProvider) {return MD.CW2.mLoaded && "WorldProviderCavern".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	
+	public static boolean dimCW2Caveworld(World aWorld) {return aWorld != null && dimCW2Caveworld(aWorld.provider);}
+	public static boolean dimCW2Caveworld(WorldProvider aProvider) {return MD.CW2.mLoaded && "WorldProviderCaveworld".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
 	
 	public static boolean dimAETHER(World aWorld) {return aWorld != null && dimAETHER(aWorld.provider);}
 	public static boolean dimAETHER(WorldProvider aProvider) {return MD.AETHER.mLoaded && "WorldProviderAether".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
@@ -426,7 +442,7 @@ public class WD {
 		return T;
 	}
 	
-	public static Random random(World aWorld, long aChunkX, long aChunkZ) {return random(aChunkX, aChunkZ, aWorld.getSeed() ^ aWorld.provider.dimensionId);}
+	public static Random random(World aWorld, long aChunkX, long aChunkZ) {return random(aChunkX >> 4, aChunkZ >> 4, aWorld.getSeed() ^ aWorld.provider.dimensionId);}
 	public static Random random(long aSeed, long aChunkX, long aChunkZ) {
 		Random rRandom = new Random(aSeed);
 		for (int i = 0; i < 50; i++) rRandom.nextInt(0x00ffffff);
@@ -437,7 +453,7 @@ public class WD {
 	
 	public static int random(World aWorld, int aX, int aY, int aZ, int aBound) {return random(aWorld.getSeed() ^ aWorld.provider.dimensionId, aX, aY, aZ, aBound);}
 	public static int random(long aSeed, int aX, int aY, int aZ, int aBound) {
-		Random rRandom = new Random(aSeed);
+		Random rRandom = new Random(aSeed ^ aY);
 		for (int i = 0; i < 10; i++) rRandom.nextInt(0x00ffffff);
 		rRandom = new Random(aSeed ^ ((rRandom.nextLong() >> 2 + 1L) * aX + (rRandom.nextLong() >> 2 + 1L) * aZ));
 		for (int i = 0; i < 10; i++) rRandom.nextInt(0x00ffffff);
@@ -464,12 +480,21 @@ public class WD {
 		return F;
 	}
 	
-	public static boolean leafdecay(World aWorld, int aX, int aY, int aZ, Block aBlock) {return leafdecay(aWorld, aX, aY, aZ, aBlock, F);}
-	public static boolean leafdecay(World aWorld, int aX, int aY, int aZ, Block aBlock, boolean aOnlyTopArea) {
+	public static boolean leafdecay(World aWorld, int aX, int aY, int aZ, Block aBlock) {return leafdecay(aWorld, aX, aY, aZ, aBlock, F, F);}
+	public static boolean leafdecay(World aWorld, int aX, int aY, int aZ, Block aBlock, boolean aOnlyTopArea) {return leafdecay(aWorld, aX, aY, aZ, aBlock, aOnlyTopArea, F);}
+	public static boolean leafdecay(World aWorld, int aX, int aY, int aZ, Block aBlock, boolean aOnlyTopArea, boolean aTreeCapitator) {
 		if (aBlock == null || aBlock.canSustainLeaves(aWorld, aX, aY, aZ)) {
-			for (int j = (aOnlyTopArea ? 7 : -7); j <= 7; ++j) for (int i = -7; i <= 7; ++i) for (int k = -7; k <= 7; ++k) {
+			for (int j = (aOnlyTopArea ? 0 : -7); j <= 7; ++j) for (int i = -7; i <= 7; ++i) for (int k = -7; k <= 7; ++k) {
 				Block tBlock = aWorld.getBlock(aX+i, aY+j, aZ+k);
-				if (tBlock.isLeaves(aWorld, aX+i, aY+j, aZ+k)) aWorld.scheduleBlockUpdate(aX+i, aY+j, aZ+k, tBlock, 1+RNGSUS.nextInt(100));
+				if (tBlock != NB) {
+					if (tBlock == Blocks.brown_mushroom_block || tBlock == Blocks.red_mushroom_block) {
+						if (aTreeCapitator && Math.abs(i) <= 4 && Math.abs(k) <= 4 && j <= 0 && j >= -2) aWorld.func_147480_a(aX+i, aY+j, aZ+k, T);
+					} else if (IL.NeLi_Wart_Block_Crimson.equal(tBlock) || IL.NeLi_ShroomLight.equal(tBlock)) {
+						if (aTreeCapitator && Math.abs(i) <= 4 && Math.abs(k) <= 4) aWorld.func_147480_a(aX+i, aY+j, aZ+k, T);
+					} else {
+						if (tBlock.isLeaves(aWorld, aX+i, aY+j, aZ+k)) aWorld.scheduleBlockUpdate(aX+i, aY+j, aZ+k, tBlock, 1+RNGSUS.nextInt(100));
+					}
+				}
 			}
 			return T;
 		}
@@ -548,8 +573,8 @@ public class WD {
 	
 	public static boolean burning(World aWorld, int aX, int aY, int aZ) {return block(aWorld, aX, aY, aZ, F) instanceof BlockFire || block(aWorld, aX+1, aY, aZ, F) instanceof BlockFire || block(aWorld, aX-1, aY, aZ, F) instanceof BlockFire || block(aWorld, aX, aY+1, aZ, F) instanceof BlockFire || block(aWorld, aX, aY-1, aZ, F) instanceof BlockFire || block(aWorld, aX, aY, aZ+1, F) instanceof BlockFire || block(aWorld, aX, aY, aZ-1, F) instanceof BlockFire;}
 	
-	public static void burn(World aWorld, ChunkCoordinates aCoords, boolean aReplaceCenter, boolean aCheckFlammability) {for (byte tSide : aReplaceCenter?ALL_SIDES:ALL_SIDES_VALID) fire(aWorld, aCoords.posX+OFFSETS_X[tSide], aCoords.posY+OFFSETS_Y[tSide], aCoords.posZ+OFFSETS_Z[tSide], aCheckFlammability);}
-	public static void burn(World aWorld, int aX, int aY, int aZ  , boolean aReplaceCenter, boolean aCheckFlammability) {for (byte tSide : aReplaceCenter?ALL_SIDES:ALL_SIDES_VALID) fire(aWorld, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide], aCheckFlammability);}
+	public static void burn(World aWorld, ChunkCoordinates aCoords, boolean aReplaceCenter, boolean aCheckFlammability) {for (byte tSide : aReplaceCenter?ALL_SIDES_MIDDLE_UP:ALL_SIDES_VALID) fire(aWorld, aCoords.posX+OFFSETS_X[tSide], aCoords.posY+OFFSETS_Y[tSide], aCoords.posZ+OFFSETS_Z[tSide], aCheckFlammability);}
+	public static void burn(World aWorld, int aX, int aY, int aZ  , boolean aReplaceCenter, boolean aCheckFlammability) {for (byte tSide : aReplaceCenter?ALL_SIDES_MIDDLE_UP:ALL_SIDES_VALID) fire(aWorld, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide], aCheckFlammability);}
 	
 	public static boolean fire(World aWorld, ChunkCoordinates aCoords, boolean aCheckFlammability) {return fire(aWorld, aCoords.posX, aCoords.posY, aCoords.posZ, aCheckFlammability);}
 	public static boolean fire(World aWorld, int aX, int aY, int aZ, boolean aCheckFlammability) {
@@ -661,30 +686,30 @@ public class WD {
 				if (aTileEntity != null) rList.add("TileEntity Class: " + aTileEntity.getClass());
 			}
 			float tResistance = aBlock.getExplosionResistance(aPlayer, aWorld, aX, aY, aZ, aPlayer.posX, aPlayer.posY, aPlayer.posZ);
-			rList.add("Hardness: " + aBlock.getBlockHardness(aWorld, aX, aY, aZ) + "  Blast Resistance: " + tResistance + (tResistance < 16 ? " (TNT Blastable)" : " (TNT Proof)"));
+			rList.add("Hardness: " + aBlock.getBlockHardness(aWorld, aX, aY, aZ) + " - " + LH.getToolTipBlastResistance(aBlock, tResistance));
 			int tHarvestLevel = aBlock.getHarvestLevel(aMeta);
 			String tHarvestTool = aBlock.getHarvestTool(aMeta);
 			rList.add(tHarvestLevel == 0 && aBlock.getMaterial().isAdventureModeExempt() ? "Hand-Harvestable, but " + (Code.stringValid(tHarvestTool)?Code.capitalise(tHarvestTool):"None") + " is faster" : "Tool to Harvest: " + (Code.stringValid(tHarvestTool)?Code.capitalise(tHarvestTool):"None") + " (" + tHarvestLevel + ")");
 			if (aBlock.isBeaconBase(aWorld, aX, aY, aZ, aX, aY+1, aZ)) rList.add("Is usable for Beacon Pyramids");
 			if (MD.GC.mLoaded && aBlock instanceof IPartialSealableBlock) rList.add(((IPartialSealableBlock)aBlock).isSealed(aWorld, aX, aY, aZ, FORGE_DIR[aSide ^ 1]) ? "Is Sealable on this Side" : "Is not Sealable on this Side");
-		} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+		} catch(Throwable e) {e.printStackTrace(ERR);}
 		if (aTileEntity != null) {
 			try {if (aTileEntity instanceof ITileEntityWeight && ((ITileEntityWeight)aTileEntity).getWeightValue(aSide) > 0) {
 				rEUAmount+=V[3];
 				rList.add("Weight: " + ((ITileEntityWeight)aTileEntity).getWeightValue(aSide) + " kg");
-			}} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+			}} catch(Throwable e) {e.printStackTrace(ERR);}
 			try {if (aTileEntity instanceof ITileEntityTemperature && ((ITileEntityTemperature)aTileEntity).getTemperatureMax(aSide) > 0) {
 				rEUAmount+=V[3];
 				rList.add("Temperature: " + ((ITileEntityTemperature)aTileEntity).getTemperatureValue(aSide) + " / " + ((ITileEntityTemperature)aTileEntity).getTemperatureMax(aSide) + " K");
-			}} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+			}} catch(Throwable e) {e.printStackTrace(ERR);}
 			try {if (aTileEntity instanceof ITileEntityGibbl && ((ITileEntityGibbl)aTileEntity).getGibblMax(aSide) > 0) {
 				rEUAmount+=V[3];
 				rList.add("Pressure: " + ((ITileEntityGibbl)aTileEntity).getGibblValue(aSide) + " / " + ((ITileEntityGibbl)aTileEntity).getGibblMax(aSide) + " Gibbl");
-			}} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+			}} catch(Throwable e) {e.printStackTrace(ERR);}
 			try {if (aTileEntity instanceof ITileEntityProgress && ((ITileEntityProgress)aTileEntity).getProgressMax(aSide) > 0) {
 				rEUAmount+=V[3];
 				rList.add("Progress: " + ((ITileEntityProgress)aTileEntity).getProgressValue(aSide) + " / " + ((ITileEntityProgress)aTileEntity).getProgressMax(aSide));
-			}} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+			}} catch(Throwable e) {e.printStackTrace(ERR);}
 			
 			
 			String rState = "";
@@ -692,12 +717,12 @@ public class WD {
 				if (Code.stringValid(rState)) rState += " --- ";
 				rEUAmount+=V[3];
 				rState += ("State: " + (((ITileEntitySwitchableOnOff)aTileEntity).getStateOnOff()?"ON":"OFF"));
-			}} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+			}} catch(Throwable e) {e.printStackTrace(ERR);}
 			try {if (aTileEntity instanceof ITileEntitySwitchableMode) {
 				if (Code.stringValid(rState)) rState += " --- ";
 				rEUAmount+=V[3];
 				rState += ("Mode: " + (((ITileEntitySwitchableMode)aTileEntity).getStateMode()));
-			}} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+			}} catch(Throwable e) {e.printStackTrace(ERR);}
 			try {if (aTileEntity instanceof ITileEntityRunningSuccessfully) {
 				if (Code.stringValid(rState)) rState += " --- ";
 				rEUAmount+=V[3];
@@ -714,7 +739,7 @@ public class WD {
 				if (Code.stringValid(rState)) rState += " --- ";
 				rEUAmount+=V[3];
 				rState += ("Running: " + (((ITileEntityRunningPossible)aTileEntity).getStateRunningPossible()?"Possible":"Not Possible"));
-			}} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+			}} catch(Throwable e) {e.printStackTrace(ERR);}
 			if (Code.stringValid(rState)) rList.add(rState);
 			
 			
@@ -724,13 +749,13 @@ public class WD {
 					rList.add("Input: " + ((ITileEntityEnergy)aTileEntity).getEnergySizeInputMin(tEnergyType, aSide) + " to " + ((ITileEntityEnergy)aTileEntity).getEnergySizeInputMax(tEnergyType, aSide) + tEnergyType.getLocalisedNameShort());
 					rList.add("Output: " + ((ITileEntityEnergy)aTileEntity).getEnergySizeOutputMin(tEnergyType, aSide) + " to " + ((ITileEntityEnergy)aTileEntity).getEnergySizeOutputMax(tEnergyType, aSide) + tEnergyType.getLocalisedNameShort());
 				}
-			}} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+			}} catch(Throwable e) {e.printStackTrace(ERR);}
 			try {if (aTileEntity instanceof ITileEntityEnergyDataCapacitor) {
 				rEUAmount+=V[3];
 				for (TagData tEnergyType : ((ITileEntityEnergyDataCapacitor)aTileEntity).getEnergyCapacitorTypes(aSide)) {
 					rList.add("Stored: " + ((ITileEntityEnergyDataCapacitor)aTileEntity).getEnergyStored(tEnergyType, aSide) + " of " + ((ITileEntityEnergyDataCapacitor)aTileEntity).getEnergyCapacity(tEnergyType, aSide) + tEnergyType.getLocalisedNameShort());
 				}
-			}} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+			}} catch(Throwable e) {e.printStackTrace(ERR);}
 			
 			
 			try {if (aTileEntity instanceof IFluidHandler) {
@@ -739,47 +764,47 @@ public class WD {
 				if (tTanks != null) for (byte i = 0; i < tTanks.length; i++) {
 					rList.add("Tank " + i + ": " + (tTanks[i].fluid==null?0:tTanks[i].fluid.amount) + " / " + tTanks[i].capacity + " " + FL.name(tTanks[i].fluid, T));
 				}
-			}} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+			}} catch(Throwable e) {e.printStackTrace(ERR);}
 			
 			if (!(aTileEntity instanceof ITileEntity)) {
 				try {if (aTileEntity instanceof ic2.api.reactor.IReactorChamber) {
 					rEUAmount+=V[4];
 					aTileEntity = (TileEntity)(((ic2.api.reactor.IReactorChamber)aTileEntity).getReactor());
-				}} catch(NoClassDefFoundError e) {/* ignore */} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+				}} catch(NoClassDefFoundError e) {/* ignore */} catch(Throwable e) {e.printStackTrace(ERR);}
 				try {if (aTileEntity instanceof ic2.api.reactor.IReactor) {
 					rEUAmount+=V[4];
 					rList.add( "Heat: " + ((ic2.api.reactor.IReactor)aTileEntity).getHeat() + "/" + ((ic2.api.reactor.IReactor)aTileEntity).getMaxHeat()
 							+ "  HEM: " + ((ic2.api.reactor.IReactor)aTileEntity).getHeatEffectModifier() + "  Base IC2-EU Output: " + ((ic2.api.reactor.IReactor)aTileEntity).getReactorEUEnergyOutput());
-				}} catch(NoClassDefFoundError e) {/* ignore */} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+				}} catch(NoClassDefFoundError e) {/* ignore */} catch(Throwable e) {e.printStackTrace(ERR);}
 				try {if (aTileEntity instanceof ic2.api.tile.IWrenchable) {
 					rEUAmount+=V[3];
 					rList.add("Facing: " + ((ic2.api.tile.IWrenchable)aTileEntity).getFacing() + " / IC2 Wrench Drop Chance: " + (((ic2.api.tile.IWrenchable)aTileEntity).wrenchCanRemove(aPlayer)?(((ic2.api.tile.IWrenchable)aTileEntity).getWrenchDropRate()*100):0) + "%");
-				}} catch(NoClassDefFoundError e) {/* ignore */} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+				}} catch(NoClassDefFoundError e) {/* ignore */} catch(Throwable e) {e.printStackTrace(ERR);}
 				try {if (aTileEntity instanceof ic2.api.energy.tile.IEnergySink) {
 					rEUAmount+=V[3];
 					rList.add("Demanded Energy: " + ((ic2.api.energy.tile.IEnergySink)aTileEntity).getDemandedEnergy() + " IC2-EU");
 					rList.add("Max Safe Input: " + V[((ic2.api.energy.tile.IEnergySink)aTileEntity).getSinkTier()] + " IC2-EU/t");
-				}} catch(NoClassDefFoundError e) {/* ignore */} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+				}} catch(NoClassDefFoundError e) {/* ignore */} catch(Throwable e) {e.printStackTrace(ERR);}
 				try {if (aTileEntity instanceof ic2.api.energy.tile.IEnergySource) {
 					rEUAmount+=V[3];
 					rList.add("Max Energy Output: " + V[((ic2.api.energy.tile.IEnergySource)aTileEntity).getSourceTier()] + " IC2-EU/t");
-				}} catch(NoClassDefFoundError e) {/* ignore */} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+				}} catch(NoClassDefFoundError e) {/* ignore */} catch(Throwable e) {e.printStackTrace(ERR);}
 				try {if (aTileEntity instanceof ic2.api.energy.tile.IEnergyConductor) {
 					rEUAmount+=V[3];
 					rList.add("Conduction Loss: " + ((ic2.api.energy.tile.IEnergyConductor)aTileEntity).getConductionLoss() + " IC2-EU/m");
-				}} catch(NoClassDefFoundError e) {/* ignore */} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+				}} catch(NoClassDefFoundError e) {/* ignore */} catch(Throwable e) {e.printStackTrace(ERR);}
 				try {if (aTileEntity instanceof ic2.api.tile.IEnergyStorage) {
 					rEUAmount+=V[3];
 					rList.add("Contained Energy: " + ((ic2.api.tile.IEnergyStorage)aTileEntity).getStored() + " of " + ((ic2.api.tile.IEnergyStorage)aTileEntity).getCapacity() + " IC2-EU");
 					rList.add(((ic2.api.tile.IEnergyStorage)aTileEntity).isTeleporterCompatible(FORGE_DIR[aSide])?"Teleporter Compatible":"Not Teleporter Compatible");
-				}} catch(NoClassDefFoundError e) {/* ignore */} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+				}} catch(NoClassDefFoundError e) {/* ignore */} catch(Throwable e) {e.printStackTrace(ERR);}
 			}
 		}
 		try {if (aBlock instanceof IBlockDebugable) {
 			rEUAmount+=V[3];
 			ArrayList<String> temp = ((IBlockDebugable)aBlock).getDebugInfo(aPlayer, aX, aY, aZ, aScanLevel);
 			if (temp != null) rList.addAll(temp);
-		}} catch(Throwable e) {if (D1) e.printStackTrace(ERR);}
+		}} catch(Throwable e) {e.printStackTrace(ERR);}
 		
 		BlockScanningEvent tEvent = new BlockScanningEvent(aWorld, aPlayer, aX, aY, aZ, aSide, aScanLevel, aBlock, aTileEntity, rList, aClickX, aClickY, aClickZ);
 		tEvent.mEUCost = rEUAmount;

@@ -24,6 +24,7 @@ import static gregapi.data.OP.*;
 import static gregapi.util.CR.*;
 
 import gregapi.data.ANY;
+import gregapi.data.CS.BlocksGT;
 import gregapi.data.CS.FluidsGT;
 import gregapi.data.CS.OreDictToolNames;
 import gregapi.data.FL;
@@ -78,6 +79,11 @@ public class Loader_Recipes_Temporary implements Runnable {
 		// TODO: Just no Ender IO Compat Handler and for this small thing I wont make a new Class.
 		CR.delate(MD.EIO, "itemYetaWrench");
 		
+		
+		
+		if (MD.BTRS.mLoaded) {
+			RM.packunpack(ST.make(Items.flint, 9, 0), ST.make(MD.BTRS, "flintBlock", 1, 0));
+		}
 		
 		
 		if (MD.HEX.mLoaded) {
@@ -349,10 +355,10 @@ public class Loader_Recipes_Temporary implements Runnable {
 			RM.biomass(IL.NeLi_Wither_Rose             .get(8));
 			RM.biomass(IL.NeLi_Foxfire_Lily            .get(8));
 			
-			RM.compact(ST.make(Items.nether_wart, 1, 0), 9, ST.make(MD.NeLi, "Wartblock", 1, 0));
-			RM.compact(IL.NeLi_Wart_Crimson     .get(1), 9, ST.make(MD.NeLi, "Wartblock", 1, 0));
-			RM.compact(IL.NeLi_Wart_Warped      .get(1), 9, ST.make(MD.NeLi, "Wartblock", 1, 1));
-			RM.compact(IL.NeLi_Wart_Soggy       .get(1), 9, ST.make(MD.NeLi, "Wartblock", 1, 2));
+			RM.compact(ST.make(Items.nether_wart, 1, 0), 9, IL.NeLi_Wart_Block_Crimson.get(1));
+			RM.compact(IL.NeLi_Wart_Crimson     .get(1), 9, IL.NeLi_Wart_Block_Crimson.get(1));
+			RM.compact(IL.NeLi_Wart_Warped      .get(1), 9, IL.NeLi_Wart_Block_Warped .get(1));
+			RM.compact(IL.NeLi_Wart_Soggy       .get(1), 9, IL.NeLi_Wart_Block_Soggy  .get(1));
 			
 			RM.box(ST.make(Items.bowl, 1, W), IL.NeLi_Bowl_CrimsonStew  .get(1), ST.make(MD.NeLi, "Fungus", 2, 0));
 			RM.box(ST.make(Items.bowl, 1, W), IL.NeLi_Bowl_WarpedStew   .get(1), ST.make(MD.NeLi, "Fungus", 2, 1));
@@ -429,7 +435,25 @@ public class Loader_Recipes_Temporary implements Runnable {
 			
 			RM.smash(IL.NePl_Quartz_Bricks.get(1), OP.gem.mat(MT.NetherQuartz, 4), 4);
 			
-			if (!MD.NeLi.mLoaded) {
+			if (MD.NeLi.mLoaded) {
+				BlocksGT.blockToDrop.put(IL.NePl_Blackstone         , IL.NeLi_Blackstone         .get(1));
+				BlocksGT.blockToDrop.put(IL.NePl_Blackstone_Polished, IL.NeLi_Blackstone_Polished.get(1));
+				BlocksGT.blockToDrop.put(IL.NePl_Blackstone_Chiseled, IL.NeLi_Blackstone_Chiseled.get(1));
+				BlocksGT.blockToDrop.put(IL.NePl_Blackstone_Bricks  , IL.NeLi_Blackstone_Bricks  .get(1));
+				BlocksGT.blockToDrop.put(IL.NePl_Blackstone_Cracked , IL.NeLi_Blackstone_Cracked .get(1));
+				BlocksGT.blockToDrop.put(IL.NePl_Basalt             , IL.NeLi_Basalt             .get(1));
+				BlocksGT.blockToDrop.put(IL.NePl_Basalt_Polished    , IL.NeLi_Basalt_Polished    .get(1));
+				BlocksGT.blockToDrop.put(IL.NePl_Ancient_Debris     , IL.Ancient_Debris          .get(1));
+				
+				BlocksGT.blockToSilk.put(IL.NePl_Blackstone         , IL.NeLi_Blackstone         .get(1));
+				BlocksGT.blockToSilk.put(IL.NePl_Blackstone_Polished, IL.NeLi_Blackstone_Polished.get(1));
+				BlocksGT.blockToSilk.put(IL.NePl_Blackstone_Chiseled, IL.NeLi_Blackstone_Chiseled.get(1));
+				BlocksGT.blockToSilk.put(IL.NePl_Blackstone_Bricks  , IL.NeLi_Blackstone_Bricks  .get(1));
+				BlocksGT.blockToSilk.put(IL.NePl_Blackstone_Cracked , IL.NeLi_Blackstone_Cracked .get(1));
+				BlocksGT.blockToSilk.put(IL.NePl_Basalt             , IL.NeLi_Basalt             .get(1));
+				BlocksGT.blockToSilk.put(IL.NePl_Basalt_Polished    , IL.NeLi_Basalt_Polished    .get(1));
+				BlocksGT.blockToSilk.put(IL.NePl_Ancient_Debris     , IL.Ancient_Debris          .get(1));
+			} else {
 				CR.shapeless(IL.NePl_Torch.get(4), DEF_NCC, new Object[] {OD.soulsand    , OD.blockTorch, OD.blockTorch, OD.blockTorch, OD.blockTorch});
 				CR.shapeless(IL.NePl_Torch.get(4), DEF_NCC, new Object[] {OD.flowerWither, OD.blockTorch, OD.blockTorch, OD.blockTorch, OD.blockTorch});
 				CR.shapeless(IL.NePl_Torch.get(3), DEF_NCC, new Object[] {OD.soulsand    , OD.blockTorch, OD.blockTorch, OD.blockTorch});
