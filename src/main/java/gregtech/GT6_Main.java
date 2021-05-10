@@ -123,7 +123,6 @@ public class GT6_Main extends Abstract_Mod {
 	@Override
 	public void onModPreInit2(FMLPreInitializationEvent aEvent) {
 		try {
-			OUT.println(getModNameForLog() + ": Sorting GregTech to the end of the Mod List for further processing.");
 			LoadController tLoadController = ((LoadController)UT.Reflection.getFieldContent(Loader.instance(), "modController", T, T));
 			List<ModContainer> tModList = tLoadController.getActiveModList(), tNewModsList = new ArrayList<>(tModList.size());
 			ModContainer tGregTech = null;
@@ -144,7 +143,6 @@ public class GT6_Main extends Abstract_Mod {
 		BlockOcean.SPREAD_TO_AIR         = ConfigsGT.GREGTECH.get("general", "OceanBlocksSpreadToAir", T);
 		
 		if (ConfigsGT.GREGTECH.get("general", "IncreaseDungeonLoot", T)) {
-			OUT.println(getModNameForLog() + ": Increasing general amount of Loot in Dungeon Chests and alike");
 			ChestGenHooks tChest;
 			tChest = ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST             ); tChest.setMax(tChest.getMax()+ 8); tChest.setMin(tChest.getMin()+ 4);
 			tChest = ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST           ); tChest.setMax(tChest.getMax()+12); tChest.setMin(tChest.getMin()+ 6);
@@ -158,7 +156,6 @@ public class GT6_Main extends Abstract_Mod {
 			tChest = ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_LIBRARY      ); tChest.setMax(tChest.getMax()+16); tChest.setMin(tChest.getMin()+ 8);
 		}
 		if (ConfigsGT.GREGTECH.get("general", "SmallerVanillaToolDurability", T)) {
-			OUT.println(getModNameForLog() + ": Nerfing Vanilla Tool Durability");
 			Items.wooden_sword   .setMaxDamage(  4);
 			Items.wooden_pickaxe .setMaxDamage(  4);
 			Items.wooden_shovel  .setMaxDamage(  4);

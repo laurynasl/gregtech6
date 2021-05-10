@@ -151,6 +151,11 @@ public class MultiTileEntityGeneratorLiquid extends TileEntityBase09FacingSingle
 						mCooldown = 0;
 					}
 				}
+			} else {
+				// Something burning in front of it? Lets ignite!
+				if (rng(200) == 0 && WD.burning(worldObj, getOffsetX(mFacing), getOffsetY(mFacing), getOffsetZ(mFacing))) {
+					mBurning = T;
+				}
 			}
 			// Out of Fuel I guess.
 			if (mEnergy <     0) mEnergy = 0;
@@ -198,7 +203,7 @@ public class MultiTileEntityGeneratorLiquid extends TileEntityBase09FacingSingle
 	
 	@Override public byte getVisualData() {return (byte)(mBurning?1:0);}
 	@Override public byte getDefaultSide() {return SIDE_FRONT;}
-	@Override public boolean[] getValidSides() {return SIDES_HORIZONTAL;}
+	@Override public boolean[] getValidSides() {return mBurning ? SIDES_THIS[mFacing] : SIDES_HORIZONTAL;}
 	
 	@Override
 	protected IFluidTank getFluidTankFillable2(byte aSide, FluidStack aFluidToFill) {

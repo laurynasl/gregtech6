@@ -165,6 +165,11 @@ public class MultiTileEntityGeneratorSolid extends TileEntityBase09FacingSingle 
 						}
 					}
 				}
+			} else {
+				// Something burning in front of it? Lets ignite!
+				if (rng(200) == 0 && WD.burning(worldObj, getOffsetX(mFacing), getOffsetY(mFacing), getOffsetZ(mFacing))) {
+					mBurning = T;
+				}
 			}
 			if (mEnergy <     0) mEnergy = 0;
 			if (mEnergy < mRate) mBurning = F;
@@ -252,7 +257,7 @@ public class MultiTileEntityGeneratorSolid extends TileEntityBase09FacingSingle 
 	
 	@Override public byte getVisualData() {return (byte)(mBurning?1:0);}
 	@Override public byte getDefaultSide() {return SIDE_FRONT;}
-	@Override public boolean[] getValidSides() {return SIDES_HORIZONTAL;}
+	@Override public boolean[] getValidSides() {return mBurning ? SIDES_THIS[mFacing] : SIDES_HORIZONTAL;}
 	
 	@Override public ITexture getTexture2(Block aBlock, int aRenderPass, byte aSide, boolean[] aShouldSideBeRendered) {return aShouldSideBeRendered[aSide] ? BlockTextureMulti.get(BlockTextureDefault.get(sColoreds[FACING_ROTATIONS[mFacing][aSide]], mRGBa), BlockTextureDefault.get((mBurning?sOverlaysActive:sOverlays)[FACING_ROTATIONS[mFacing][aSide]])): null;}
 	

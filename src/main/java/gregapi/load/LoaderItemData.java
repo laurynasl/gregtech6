@@ -554,8 +554,6 @@ public class LoaderItemData implements Runnable {
 		OM.reg(OD.craftingFurnace                   , ST.make(MD.NeLi, "FurnaceBlackstoneLit", 1, W));
 		OM.reg(OD.craftingWorkBench                 , ST.make(Blocks.crafting_table, 1, W));
 		OM.reg(OD.craftingWorkBench                 , ST.make(MD.NeLi, "NetherCraftingTable", 1, W));
-		OM.reg(OD.craftingWorkBench                 , ST.make(Blocks.crafting_table, 1, W));
-		OM.reg(OD.craftingWorkBench                 , ST.make(Blocks.crafting_table, 1, W));
 		OM.reg(OD.craftingWorkBench                 , ST.make(MD.BC_FACTORY, "autoWorkbenchBlock", 1, 0));
 		OM.reg(OD.buttonWood                        , ST.make(Blocks.wooden_button, 1, W));
 		OM.reg(OD.buttonWood                        , ST.make(MD.TFC, "ButtonWood", 1, W));
@@ -1932,6 +1930,8 @@ public class LoaderItemData implements Runnable {
 		OM.data(MD.WTCH, "iceslab"                          , 1,   W, MT.Ice                ,  U2);
 		OM.data(MD.WTCH, "shadedglass"                      , 1,   W, MT.Glass              ,  U);
 		OM.data(MD.WTCH, "shadedglass_active"               , 1,   W, MT.Glass              ,  U);
+		OM.data(MD.WTCH, "ingredient"                       , 1,  26, ANY.Clay              ,  U);
+		OM.data(MD.WTCH, "ingredient"                       , 1,  27, MT.Ceramic            ,  U);
 		
 		
 //      OM.data(MD.TCFM, "WandCaps"                         , 1,   0, MT.Alchemical         ,  5* U9);
