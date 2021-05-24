@@ -282,7 +282,7 @@ public abstract class GT_Proxy extends Abstract_Proxy {
 							}
 						}
 						if (!WD.infiniteWater(aEvent.world, tTarget.blockX, tTarget.blockY, tTarget.blockZ)) aEvent.world.setBlockToAir(tTarget.blockX, tTarget.blockY, tTarget.blockZ);
-						if (aEvent.entityPlayer.openContainer != null) aEvent.entityPlayer.openContainer.detectAndSendChanges();
+						ST.update(aEvent.entityPlayer);
 						return;
 					}
 					if (tBlock == BlocksGT.River || WD.waterstream(tBlock)) {
@@ -310,7 +310,10 @@ public abstract class GT_Proxy extends Abstract_Proxy {
 				}
 				if (aStack.getItem() == Items.bucket) {
 					MovingObjectPosition tTarget = WD.getMOP(aEvent.world, aEvent.entityPlayer, T);
-					if (tTarget != null && tTarget.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && aEvent.world.getBlock(tTarget.blockX, tTarget.blockY, tTarget.blockZ) instanceof BlockWaterlike) aEvent.setCanceled(T);
+					if (tTarget != null && tTarget.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
+						Block tBlock = aEvent.world.getBlock(tTarget.blockX, tTarget.blockY, tTarget.blockZ);
+						if (tBlock instanceof BlockWaterlike && tBlock != BlocksGT.River) aEvent.setCanceled(T);
+					}
 					return;
 				}
 			}

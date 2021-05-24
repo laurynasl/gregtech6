@@ -143,8 +143,8 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 	
 	@Override
 	public boolean itemInteractionForEntity(ItemStack aStack, EntityPlayer aPlayer, EntityLivingBase aEntity) {
-		useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
-		isItemStackUsable(aStack);
+		if (!aPlayer.worldObj.isRemote) useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
+		if (!isItemStackUsable(aStack)) return F;
 		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) try {
 			if (tBehavior.onRightClickEntity(this, aStack, aPlayer, aEntity)) {
@@ -163,8 +163,8 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 	
 	@Override
 	public boolean onLeftClickEntity(ItemStack aStack, EntityPlayer aPlayer, Entity aEntity) {
-		useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
-		isItemStackUsable(aStack);
+		if (!aPlayer.worldObj.isRemote) useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
+		if (!isItemStackUsable(aStack)) return F;
 		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) try {
 			if (tBehavior.onLeftClickEntity(this, aStack, aPlayer, aEntity)) {
@@ -184,8 +184,8 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 	@Override
 	public boolean onItemUse(ItemStack aStack, EntityPlayer aPlayer, World aWorld, int aX, int aY, int aZ, int aSide, float hitX, float hitY, float hitZ) {
 		if (MD.BbLC.owns(aWorld, aX, aY, aZ)) return F;
-		useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
-		isItemStackUsable(aStack);
+		if (!aWorld.isRemote) useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
+		if (!isItemStackUsable(aStack)) return F;
 		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) try {
 			if (tBehavior.onItemUse(this, aStack, aPlayer, aWorld, aX, aY, aZ, UT.Code.side(aSide), hitX, hitY, hitZ)) {
@@ -205,8 +205,8 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 	@Override
 	public boolean onItemUseFirst(ItemStack aStack, EntityPlayer aPlayer, World aWorld, int aX, int aY, int aZ, int aSide, float hitX, float hitY, float hitZ) {
 		if (MD.BbLC.owns(aWorld, aX, aY, aZ)) return F;
-		useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
-		isItemStackUsable(aStack);
+		if (!aWorld.isRemote) useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
+		if (!isItemStackUsable(aStack)) return F;
 		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) try {
 			if (tBehavior.onItemUseFirst(this, aStack, aPlayer, aWorld, aX, aY, aZ, UT.Code.side(aSide), hitX, hitY, hitZ)) {
@@ -225,8 +225,8 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 	
 	@Override
 	public ItemStack onItemRightClick(ItemStack aStack, World aWorld, EntityPlayer aPlayer) {
-		useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
-		isItemStackUsable(aStack);
+		if (!aWorld.isRemote) useEnergy(TD.Energy.EU, aStack, 0, aPlayer, null, null, 0, 0, 0, T);
+		if (!isItemStackUsable(aStack)) return aStack;
 		ArrayList<IBehavior<MultiItem>> tList = mItemBehaviors.get(ST.meta_(aStack));
 		if (tList != null) for (IBehavior<MultiItem> tBehavior : tList) try {
 			aStack = tBehavior.onItemRightClick(this, aStack, aWorld, aPlayer);
@@ -269,6 +269,7 @@ public abstract class MultiItem extends ItemBase implements IItemEnergy {
 		} catch(Throwable e) {
 			e.printStackTrace(ERR);
 		}
+		while (aList.remove(null));
 	}
 	
 	@Override

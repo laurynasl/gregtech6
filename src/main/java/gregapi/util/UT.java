@@ -2561,7 +2561,21 @@ public class UT {
 		}
 		
 		public static boolean checkAchievements(EntityPlayer aPlayer, ItemStack aStack) {
-			if (aPlayer == null || ST.invalid(aStack)) return F;
+			if (aPlayer == null) return F;
+			
+			if (aPlayer.worldObj.provider.dimensionId == DIM_NETHER) {
+				aPlayer.triggerAchievement(AchievementList.openInventory);
+				aPlayer.triggerAchievement(AchievementList.mineWood);
+				aPlayer.triggerAchievement(AchievementList.buildWorkBench);
+				aPlayer.triggerAchievement(AchievementList.buildPickaxe);
+				aPlayer.triggerAchievement(AchievementList.buildFurnace);
+				aPlayer.triggerAchievement(AchievementList.acquireIron);
+				aPlayer.triggerAchievement(AchievementList.diamonds);
+				aPlayer.triggerAchievement(AchievementList.portal);
+			}
+			
+			if (ST.invalid(aStack)) return F;
+			
 			OreDictItemData tData = OM.association_(aStack);
 			Item aItem = ST.item(aStack);
 			Block aBlock = ST.block(aItem);
@@ -2589,7 +2603,8 @@ public class UT {
 				aPlayer.triggerAchievement(AchievementList.mineWood);
 				aPlayer.triggerAchievement(AchievementList.buildWorkBench);
 				aPlayer.triggerAchievement(AchievementList.buildPickaxe);
-				if (aItem != Items.wooden_pickaxe) aPlayer.triggerAchievement(AchievementList.buildBetterPickaxe);
+				if (aItem != Items.wooden_pickaxe)
+				aPlayer.triggerAchievement(AchievementList.buildBetterPickaxe);
 			}
 			
 			if (MD.MC.owns(aRegName)) {
@@ -2608,7 +2623,7 @@ public class UT {
 					aPlayer.triggerAchievement(AchievementList.buildHoe);
 					aPlayer.triggerAchievement(AchievementList.makeBread);
 				} else
-				if (aItem == Items.leather || aItem == Items.saddle) {
+				if (aItem == Items.leather || aItem == Items.beef || aItem == Items.cooked_beef || aItem == Items.saddle) {
 					aPlayer.triggerAchievement(AchievementList.openInventory);
 					aPlayer.triggerAchievement(AchievementList.mineWood);
 					aPlayer.triggerAchievement(AchievementList.buildWorkBench);
@@ -2767,7 +2782,7 @@ public class UT {
 				}
 			} catch(Throwable e) {e.printStackTrace(ERR);}
 			
-			if (tData != null) {
+			if (tData != null && !tData.mPrefix.containsAny(TD.Prefix.ORE_PROCESSING_BASED, TD.Prefix.ORE)) {
 				if (ANY.Diamond.mToThis.contains(tData.mMaterial.mMaterial) && tData.mPrefix.contains(TD.Prefix.GEM_BASED)) {
 					aPlayer.triggerAchievement(AchievementList.openInventory);
 					aPlayer.triggerAchievement(AchievementList.mineWood);
@@ -2803,7 +2818,7 @@ public class UT {
 					ItemStack tStack = aInventory.getStackInSlot(i);
 					if (ST.equal(tStack, aStack) && aStack.stackSize + tStack.stackSize <= tStack.getMaxStackSize()) {
 						tStack.stackSize += aStack.stackSize;
-						if (aPlayer != null && aPlayer.openContainer != null) aPlayer.openContainer.detectAndSendChanges();
+						ST.update(aPlayer);
 						return T;
 					}
 				}
@@ -2811,11 +2826,11 @@ public class UT {
 					ItemStack tStack = aInventory.getStackInSlot(aPlayer.inventory.currentItem);
 					if (tStack == null || tStack.stackSize == 0) {
 						aInventory.setInventorySlotContents(aPlayer.inventory.currentItem, aStack);
-						if (aPlayer.openContainer != null) aPlayer.openContainer.detectAndSendChanges();
+						ST.update(aPlayer);
 						return T;
 					} else if (ST.equal(tStack, aStack) && aStack.stackSize + tStack.stackSize <= tStack.getMaxStackSize()) {
 						tStack.stackSize += aStack.stackSize;
-						if (aPlayer.openContainer != null) aPlayer.openContainer.detectAndSendChanges();
+						ST.update(aPlayer);
 						return T;
 					}
 				}
@@ -2823,7 +2838,7 @@ public class UT {
 					ItemStack tStack = aInventory.getStackInSlot(i);
 					if (tStack == null || tStack.stackSize <= 0) {
 						aInventory.setInventorySlotContents(i, aStack);
-						if (aPlayer != null && aPlayer.openContainer != null) aPlayer.openContainer.detectAndSendChanges();
+						ST.update(aPlayer);
 						return T;
 					}
 				}
@@ -2831,11 +2846,11 @@ public class UT {
 					ItemStack tStack = aInventory.getStackInSlot(aPlayer.inventory.currentItem);
 					if (tStack == null || tStack.stackSize == 0) {
 						aInventory.setInventorySlotContents(aPlayer.inventory.currentItem, aStack);
-						if (aPlayer.openContainer != null) aPlayer.openContainer.detectAndSendChanges();
+						ST.update(aPlayer);
 						return T;
 					} else if (ST.equal(tStack, aStack) && aStack.stackSize + tStack.stackSize <= tStack.getMaxStackSize()) {
 						tStack.stackSize += aStack.stackSize;
-						if (aPlayer.openContainer != null) aPlayer.openContainer.detectAndSendChanges();
+						ST.update(aPlayer);
 						return T;
 					}
 				}
@@ -3448,7 +3463,7 @@ public class UT {
 					try {
 						mMessage.set(mBar, aStep == null ? "null" : aStep.toString());
 						mStep.setInt(mBar, mCount);
-			            FMLCommonHandler.instance().processWindowMessages();
+						FMLCommonHandler.instance().processWindowMessages();
 						return T;
 					} catch(Throwable e) {e.printStackTrace(ERR);}
 					return F;

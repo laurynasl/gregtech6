@@ -19,18 +19,12 @@
 
 package gregtech.asm;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
+import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -46,7 +40,14 @@ import cpw.mods.fml.relauncher.IFMLLoadingPlugin.MCVersion;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin.Name;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin.SortingIndex;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions;
-import gregtech.asm.transformers.*;
+import gregtech.asm.transformers.CoFHCore_CrashFix;
+import gregtech.asm.transformers.CoFHLib_HashFix;
+import gregtech.asm.transformers.Minecraft_EmptyRecipeOptimization;
+import gregtech.asm.transformers.Minecraft_IceHarvestMissingHookFix;
+import gregtech.asm.transformers.Minecraft_LavaFlammableFix;
+import gregtech.asm.transformers.Minecraft_MinecraftServerIntegratedLaunchMainMenuPartialFix;
+import gregtech.asm.transformers.Technomancy_ExtremelySlowLoadFix;
+import gregtech.asm.transformers.Thaumcraft_AspectLagFix;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 
 @Name("Greg-ASM®")
@@ -56,7 +57,7 @@ import net.minecraft.launchwrapper.LaunchClassLoader;
 public class GT_ASM implements IFMLLoadingPlugin {
 	public static File location; // Useful to get the path to the coremod to grab other files if needed
 	public static ClassLoader classLoader;
-	public static final Logger logger = Logger.getLogger(GT_ASM.class.getName());
+	public static final Logger logger = LogManager.getLogger(GT_ASM.class.getSimpleName());
 	
 	public GT_ASM() {}
 	
@@ -104,6 +105,7 @@ public class GT_ASM implements IFMLLoadingPlugin {
 			
 			transformers.put(CoFHLib_HashFix.class.getName(), true);
 			transformers.put(CoFHCore_CrashFix.class.getName(), true);
+			transformers.put(Minecraft_EmptyRecipeOptimization.class.getName(), true);
 			transformers.put(Minecraft_IceHarvestMissingHookFix.class.getName(), true);
 			transformers.put(Minecraft_LavaFlammableFix.class.getName(), true);
 			transformers.put(Minecraft_MinecraftServerIntegratedLaunchMainMenuPartialFix.class.getName(), true);
@@ -203,5 +205,14 @@ public class GT_ASM implements IFMLLoadingPlugin {
 		PrinterClassVisitor printer = new PrinterClassVisitor();
 		classNode.accept(printer);
 		return printer.out_writer.toString();
+	}
+
+	@SuppressWarnings("resource")
+	public static void writePrettyPrintedOpCodesToFile(ClassNode classNode, String fileName) {
+		try {
+			(new BufferedWriter(new FileWriter(fileName, true))).append(getPrettyPrintedOpCodes(classNode)).close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

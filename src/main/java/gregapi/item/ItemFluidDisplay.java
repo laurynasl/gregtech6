@@ -225,6 +225,8 @@ public class ItemFluidDisplay extends Item implements IFluidContainerItem, IItem
 				}
 			}
 		}
+		
+		while (aList.remove(null));
 	}
 	
 	@Override

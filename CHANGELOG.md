@@ -10,14 +10,28 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 
 
 6.14.12: (Not released yet, released whenever it needs to be)
-[COMPAT] Witchery now has a little bit more Compat. The Spirit World now generates GT6 Stuff properly just like the Overworld.
+[COMPAT] Chisel
+Granite, Andesite and Diorite of other Mods such as Botania, Ganys Surface, Et Futurum and GregTech-6 now work with Chisel.
+I removed the damn Cobblestone and Glowstone OreDict equivalencies.
+Glowtus can now be chiseled into different Colors and GT6 Logs can now be chiseled into their All-Bark Variants.
+[COMPAT]
+Witchery now has a little bit more Compat.
+The Spirit World now generates GT6 Stuff properly just like the Overworld.
+[FIXED] Bricks and nether Bricks were not palceable on the Floor like Ingots.
 [FIXED] Other Types of Coal could not be made into "Bricks"/"Ingots" before, now they can.
+[FIXED] The Cow Cooldown of Hunger Overhaul is now respected by Wooden Buckets.
 [FIXED] Burning Boxes and Basic Machines can no longer be rotated while they are lit or actively processing something.
+[FIXED] Item Filter Covers no longer go inbetween two Item Pipes, which was causing confusion as to why they are "not working" since you were able to place them in such a way.
+[FIXED] Clientside FPS Lag when holding Rightclick with GT6 Tools is now gone for good.
 [CHANGED] If there is a Fire Block in front of a Burning Box, it will randomly ignite. This technically makes automation using the Dispenser possible, but still cumbersome and dangerous enough so you want an Igniter.
 [CHANGED] Dispensers now work on my Wooden Buckets too.
-[ADDED] Axes and such are now able to chop down whole vanilla Mushrooms in one go.
+[CHANGED] Bumblehives in the wild can now be measured with a Thermometer. This should help finding a proper new Home for a Hive.
+[CHANGED] Axes and such are now able to chop down whole vanilla Mushrooms in one go.
+[ADDED] Brick Burning Box. Very inefficient and Earlygame.
+[ADDED] Asbestos now has Jade as a Byproduct, making Fortune III Tools more available.
 [ADDED] The Drain can now also produce liquid Slime should a Slime be ontop of it. Works with Green, Magma, Maze and Pink Slimes.
-[ADDED] GT6 Logs can now be crafted into their All-Bark Variant, when placed in the bottom right corner of the Crafting Grid. For Non-GT6 Logs you will still have to use the Soft Hammer after placing the Log though.
+[ADDED] GT6 Logs can now be crafted into their All-Bark Variant using some Bark. For Non-GT6 Logs you will still have to use the Soft Hammer after placing the Log though.
+[ADDED] Raw Ore Items similar to the ones in the latest Minecraft Snapshots. They will only be dropped if you use a Fortune Tool to harvest the GT6 Ore Blocks.
 
 
 6.14.11:

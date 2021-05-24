@@ -333,18 +333,21 @@ public class Loader_Recipes_Handlers implements Runnable {
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(pipeQuadruple                   , 1, NF,  16,16,     0, NF, pipeMedium              , 4, NI, NI, F, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(pipeNonuple                     , 1, NF,  16,16,     0, NF, pipeSmall               , 9, NI, NI, F, F, F, ANTIMATTER.NOT));
 		
+		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(crateGtRaw                      , 1, NF,  16,16,     0, NF, oreRaw                  ,16, NI, IL.Crate.get(1), T, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(crateGtDust                     , 1, NF,  16,16,     0, NF, dust                    ,16, NI, IL.Crate.get(1), T, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(crateGtGem                      , 1, NF,  16,16,     0, NF, gem                     ,16, NI, IL.Crate.get(1), T, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(crateGtIngot                    , 1, NF,  16,16,     0, NF, ingot                   ,16, NI, IL.Crate.get(1), T, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(crateGtPlate                    , 1, NF,  16,16,     0, NF, plate                   ,16, NI, IL.Crate.get(1), T, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(crateGtPlateGem                 , 1, NF,  16,16,     0, NF, plateGem                ,16, NI, IL.Crate.get(1), T, F, F, ANTIMATTER.NOT));
 		
+		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(crateGt64Raw                    , 1, NF,  16,16,     0, NF, oreRaw                  ,64, NI, IL.Crate.get(1), T, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(crateGt64Dust                   , 1, NF,  16,16,     0, NF, dust                    ,64, NI, IL.Crate.get(1), T, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(crateGt64Gem                    , 1, NF,  16,16,     0, NF, gem                     ,64, NI, IL.Crate.get(1), T, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(crateGt64Ingot                  , 1, NF,  16,16,     0, NF, ingot                   ,64, NI, IL.Crate.get(1), T, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(crateGt64Plate                  , 1, NF,  16,16,     0, NF, plate                   ,64, NI, IL.Crate.get(1), T, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(crateGt64PlateGem               , 1, NF,  16,16,     0, NF, plateGem                ,64, NI, IL.Crate.get(1), T, F, F, ANTIMATTER.NOT));
 		
+		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(blockRaw                        , 1, NF,  16,16,     0, NF, oreRaw                  , 9, NI, NI, T, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(blockDust                       , 1, NF,  16,16,     0, NF, dust                    , 9, NI, NI, T, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(blockGem                        , 1, NF,  16,16,     0, NF, gem                     , 9, NI, NI, T, F, F, ANTIMATTER.NOT));
 		RM.Unboxinator  .add(new RecipeMapHandlerPrefix(blockIngot                      , 1, NF,  16,16,     0, NF, ingot                   , 9, NI, NI, T, F, F, ANTIMATTER.NOT));
@@ -359,6 +362,7 @@ public class Loader_Recipes_Handlers implements Runnable {
 		
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(dustSmall                       ,64, NF,  16,16,     0, NF, crateGtDust             , 1, IL.Crate.get(1), NI, F, F, F, ANTIMATTER.NOT));
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(chunkGt                         ,64, NF,  16,16,     0, NF, crateGtIngot            , 1, IL.Crate.get(1), NI, F, F, F, ANTIMATTER.NOT));
+		RM.Boxinator    .add(new RecipeMapHandlerPrefix(oreRaw                          ,64, NF,  16,16,     0, NF, crateGt64Raw            , 1, IL.Crate.get(1), NI, T, F, F, ANTIMATTER.NOT));
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(dust                            ,64, NF,  16,16,     0, NF, crateGt64Dust           , 1, IL.Crate.get(1), NI, T, F, F, ANTIMATTER.NOT));
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(gem                             ,64, NF,  16,16,     0, NF, crateGt64Gem            , 1, IL.Crate.get(1), NI, T, F, F, ANTIMATTER.NOT));
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(ingot                           ,64, NF,  16,16,     0, NF, crateGt64Ingot          , 1, IL.Crate.get(1), NI, T, F, F, ANTIMATTER.NOT));
@@ -367,6 +371,7 @@ public class Loader_Recipes_Handlers implements Runnable {
 		
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(dustSmall                       ,64, NF,  16,16,     0, NF, crateGtDust             , 1, IL.Crate_Fireproof.get(1), NI, F, F, F, ANTIMATTER.NOT));
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(chunkGt                         ,64, NF,  16,16,     0, NF, crateGtIngot            , 1, IL.Crate_Fireproof.get(1), NI, F, F, F, ANTIMATTER.NOT));
+		RM.Boxinator    .add(new RecipeMapHandlerPrefix(oreRaw                          ,64, NF,  16,16,     0, NF, crateGt64Raw            , 1, IL.Crate_Fireproof.get(1), NI, T, F, F, ANTIMATTER.NOT));
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(dust                            ,64, NF,  16,16,     0, NF, crateGt64Dust           , 1, IL.Crate_Fireproof.get(1), NI, T, F, F, ANTIMATTER.NOT));
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(gem                             ,64, NF,  16,16,     0, NF, crateGt64Gem            , 1, IL.Crate_Fireproof.get(1), NI, T, F, F, ANTIMATTER.NOT));
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(ingot                           ,64, NF,  16,16,     0, NF, crateGt64Ingot          , 1, IL.Crate_Fireproof.get(1), NI, T, F, F, ANTIMATTER.NOT));
@@ -374,6 +379,7 @@ public class Loader_Recipes_Handlers implements Runnable {
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(plateGem                        ,64, NF,  16,16,     0, NF, crateGt64PlateGem       , 1, IL.Crate_Fireproof.get(1), NI, T, F, F, ANTIMATTER.NOT));
 		
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(dustSmall                       ,36, NF,  16,16,     0, NF, blockDust               , 1, ST.tag( 9), NI, F, F, F, ANTIMATTER.NOT));
+		RM.Boxinator    .add(new RecipeMapHandlerPrefix(oreRaw                          , 9, NF,  16,16,     0, NF, blockRaw                , 1, ST.tag( 9), NI, T, F, F, ANTIMATTER.NOT));
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(dust                            , 9, NF,  16,16,     0, NF, blockDust               , 1, ST.tag( 9), NI, T, F, F, ANTIMATTER.NOT));
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(gem                             , 9, NF,  16,16,     0, NF, blockGem                , 1, ST.tag( 9), NI, T, F, F, ANTIMATTER.NOT));
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(chunkGt                         ,36, NF,  16,16,     0, NF, blockIngot              , 1, ST.tag( 9), NI, F, F, F, ANTIMATTER.NOT));
@@ -384,7 +390,6 @@ public class Loader_Recipes_Handlers implements Runnable {
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(crushedPurifiedTiny             , 9, NF,  16,16,     0, NF, crushedPurified         , 1, ST.tag( 9), NI, F, F, F, ANTIMATTER.NOT));
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(crushedCentrifugedTiny          , 9, NF,  16,16,     0, NF, crushedCentrifuged      , 1, ST.tag( 9), NI, F, F, F, ANTIMATTER.NOT));
 		
-		
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(crushed                     , crushedTiny               , 9, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(crushedPurified             , crushedPurifiedTiny       , 9, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(crushedCentrifuged          , crushedCentrifugedTiny    , 9, F));
@@ -394,6 +399,7 @@ public class Loader_Recipes_Handlers implements Runnable {
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(dust                        , dustSmall                 , 4, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(dustTiny                    , dustDiv72                 , 8, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(dustSmall                   , dustDiv72                 ,18, F));
+		GameRegistry.addRecipe(new AdvancedCrafting1ToY(blockRaw                    , oreRaw                    , 9, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(blockDust                   , dust                      , 9, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(blockDust                   , dustSmall                 ,36, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(blockIngot                  , ingot                     , 9, F));
@@ -412,11 +418,17 @@ public class Loader_Recipes_Handlers implements Runnable {
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(dustTiny                ,  9, dust                      , 1, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(dustSmall               ,  4, dust                      , 1, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(dustSmall               ,  8, dust                      , 2, F));
+		GameRegistry.addRecipe(new AdvancedCraftingXToY(oreRaw                  ,  9, blockRaw                  , 1, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(dust                    ,  9, blockDust                 , 1, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(ingot                   ,  9, blockIngot                , 1, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(gem                     ,  9, blockGem                  , 1, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(plate                   ,  9, blockPlate                , 1, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(plateGem                ,  9, blockPlateGem             , 1, F));
+		
+		for (OreDictPrefix tPrefix : OreDictPrefix.VALUES) if (tPrefix != OP.oreRaw) {
+			if (tPrefix.contains(STANDARD_ORE)) GameRegistry.addRecipe(new AdvancedCrafting1ToY(tPrefix, oreRaw, 1, F));
+			if (tPrefix.contains(DENSE_ORE   )) GameRegistry.addRecipe(new AdvancedCrafting1ToY(tPrefix, oreRaw, 2, F));
+		}
 		
 		for (int tBig = 1; tBig <= 16; tBig++) for (int tSmall = 1; tSmall < tBig; tSmall++) if (tBig % tSmall == 0) {
 		int tAmount = tBig/tSmall;
@@ -523,7 +535,7 @@ public class Loader_Recipes_Handlers implements Runnable {
 		RM.Generifier   .add(new RecipeMapHandlerMaterial(tMaterial                 , NF                                ,   0,   1, NF, MT.Fe                   , NI, T, tConditionP));
 		for (OreDictMaterial tMaterial : new OreDictMaterial[] {MT.MeteoricSteel, MT.SteelMagnetic, MT.Knightmetal})
 		RM.Generifier   .add(new RecipeMapHandlerMaterial(tMaterial                 , NF                                ,   0,   1, NF, MT.Steel                , NI, T, tConditionP));
-		for (OreDictMaterial tMaterial : new OreDictMaterial[] {MT.Betweenstone, MT.Pitstone, MT.Umber, MT.Gravel, MT.Diorite, MT.Redrock, MT.GraniteBlack, MT.GraniteRed, MT.Granite, MT.Limestone, MT.Marble, MT.Basalt, MT.Gabbro, MT.Concrete, MT.Eclogite, MT.Shale, MT.Andesite, MT.Dacite, MT.Chert, MT.Blueschist, MT.Epidote, MT.Migmatite, MT.Quartzite, MT.Gneiss, MT.Greenschist, MT.Greywacke, MT.Komatiite, MT.Kimberlite, MT.Siltstone, MT.Rhyolite, MT.MoonRock, MT.MoonTurf, MT.MarsRock, MT.MarsSand, MT.SpaceRock, MT.Livingrock, MT.Deadrock, MT.Holystone})
+		for (OreDictMaterial tMaterial : new OreDictMaterial[] {MT.STONES.Betweenstone, MT.STONES.Pitstone, MT.STONES.Umber, MT.Gravel, MT.STONES.Diorite, MT.STONES.Redrock, MT.STONES.GraniteBlack, MT.STONES.GraniteRed, MT.STONES.Granite, MT.STONES.Limestone, MT.STONES.Marble, MT.STONES.Basalt, MT.STONES.Gabbro, MT.Concrete, MT.STONES.Eclogite, MT.STONES.Shale, MT.STONES.Andesite, MT.STONES.Dacite, MT.STONES.Chert, MT.STONES.Blueschist, MT.Epidote, MT.STONES.Migmatite, MT.STONES.Quartzite, MT.STONES.Gneiss, MT.STONES.Greenschist, MT.STONES.Greywacke, MT.STONES.Komatiite, MT.STONES.Kimberlite, MT.STONES.Siltstone, MT.STONES.Rhyolite, MT.STONES.MoonRock, MT.STONES.MoonTurf, MT.STONES.MarsRock, MT.STONES.MarsSand, MT.STONES.SpaceRock, MT.STONES.Livingrock, MT.STONES.Deadrock, MT.STONES.Holystone})
 		RM.Generifier   .add(new RecipeMapHandlerMaterial(tMaterial                 , NF                                ,   0,   1, NF, MT.Stone                , NI, T, tConditionP));
 		for (OreDictMaterial tMaterial : ANY.Ash.mToThis) if (tMaterial != MT.Ash)
 		RM.Generifier   .add(new RecipeMapHandlerMaterial(tMaterial                 , NF                                ,   0,   1, NF, MT.Ash                  , NI, T, tConditionP));

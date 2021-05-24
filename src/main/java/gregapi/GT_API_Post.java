@@ -209,8 +209,8 @@ public class GT_API_Post extends Abstract_Mod {
 		// Atum violates the "Items have to be created in preInit" Rule...
 		if (MD.ATUM.mLoaded) {
 			IL.ATUM_Scarab      .set(ST.make(MD.ATUM, "item.scarab" , 1, 0), new OreDictItemData(MT.Au, 4*U, MT.Diamond, U));
-			IL.ATUM_Limestone   .set(ST.make(MD.ATUM, "tile.stone"  , 1, 0), OP.stone.dat(MT.Limestone));
-			IL.ATUM_Limecobble  .set(ST.make(MD.ATUM, "tile.cobble" , 1, 0), OP.stone.dat(MT.Limestone));
+			IL.ATUM_Limestone   .set(ST.make(MD.ATUM, "tile.stone"  , 1, 0), OP.stone.dat(MT.STONES.Limestone));
+			IL.ATUM_Limecobble  .set(ST.make(MD.ATUM, "tile.cobble" , 1, 0), OP.stone.dat(MT.STONES.Limestone));
 			
 			OM.reg("cropDate"               , ST.make(MD.ATUM, "item.date", 1, 0));
 			OM.reg("cropFlax"               , ST.make(MD.ATUM, "item.flax", 1, 0));
@@ -225,7 +225,7 @@ public class GT_API_Post extends Abstract_Mod {
 			OreDictManager.INSTANCE.setItemData_(ST.make(MD.ATUM, "tile.coalOre"        , 1, 0), OP.oreLimestone.dat(MT.Coal        ));
 			OreDictManager.INSTANCE.setItemData_(ST.make(MD.ATUM, "tile.diamondOre"     , 1, 0), OP.oreLimestone.dat(MT.Diamond     ));
 			
-			OM.data(MD.ATUM, "item.stoneChunk", 1, 0, MT.Limestone, U);
+			OM.data(MD.ATUM, "item.stoneChunk", 1, 0, MT.STONES.Limestone, U);
 			OM.data(MD.ATUM, "tile.sand", 1, W, MT.Sand, U);
 			OM.data(MD.ATUM, "tile.framedGlass", 1, W, MT.Glass, U);
 			OM.data(MD.ATUM, "tile.crystalGlass", 1, W, MT.Glass, U);
@@ -300,15 +300,15 @@ public class GT_API_Post extends Abstract_Mod {
 		
 		// And Project Red violates that Rule aswell...
 		if (MD.PR.mLoaded) {
-			OreDictManager.INSTANCE.setTarget(OP.ingot  , MT.RedAlloy                   , ST.make(MD.PR, "projectred.core.part", 1, 10));
-			OreDictManager.INSTANCE.setTarget(OP.ingot  , MT.ElectrotineAlloy           , ST.make(MD.PR, "projectred.core.part", 1, 55));
-			OreDictManager.INSTANCE.setTarget(OP.dust   , MT.Electrotine                , ST.make(MD.PR, "projectred.core.part", 1, 56));
+			OreDictManager.INSTANCE.setTarget(OP.ingot  , MT.RedAlloy                   , MD.PR, "projectred.core.part", 10);
+			OreDictManager.INSTANCE.setTarget(OP.ingot  , MT.ElectrotineAlloy           , MD.PR, "projectred.core.part", 55);
+			OreDictManager.INSTANCE.setTarget(OP.dust   , MT.Electrotine                , MD.PR, "projectred.core.part", 56);
 			
-			OM.reg(OP.stone.dat(MT.Marble), ST.make(MD.PR_EXPLORATION, "projectred.exploration.stone", 1, 0));
-			OM.reg(OP.stone.dat(MT.Marble), ST.make(MD.PR_EXPLORATION, "projectred.exploration.stone", 1, 1));
-			OM.reg(OP.stone.dat(MT.Basalt), ST.make(MD.PR_EXPLORATION, "projectred.exploration.stone", 1, 2));
-			OM.reg(OP.stone.dat(MT.Basalt), ST.make(MD.PR_EXPLORATION, "projectred.exploration.stone", 1, 3));
-			OM.reg(OP.stone.dat(MT.Basalt), ST.make(MD.PR_EXPLORATION, "projectred.exploration.stone", 1, 4));
+			OM.reg(OP.stone.dat(MT.STONES.Marble), ST.make(MD.PR_EXPLORATION, "projectred.exploration.stone", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Marble), ST.make(MD.PR_EXPLORATION, "projectred.exploration.stone", 1, 1));
+			OM.reg(OP.stone.dat(MT.STONES.Basalt), ST.make(MD.PR_EXPLORATION, "projectred.exploration.stone", 1, 2));
+			OM.reg(OP.stone.dat(MT.STONES.Basalt), ST.make(MD.PR_EXPLORATION, "projectred.exploration.stone", 1, 3));
+			OM.reg(OP.stone.dat(MT.STONES.Basalt), ST.make(MD.PR_EXPLORATION, "projectred.exploration.stone", 1, 4));
 			for (int i = 0; i < 16; i++) {
 			OM.reg(DYE_OREDICTS_MIXABLE[i], ST.make(MD.PR_EXPLORATION, "projectred.exploration.lilyseed", 1, 15-i));
 			OM.data(MD.PR, "projectred.core.part", 1, i+19, ANY.Glowstone, 2*U);
@@ -330,11 +330,11 @@ public class GT_API_Post extends Abstract_Mod {
 		
 		// Okay I should not have wondered about Blue Power doing the same garbage considering Project Red...
 		if (MD.BP.mLoaded) {
-			OreDictManager.INSTANCE.setTarget(OP.ingot  , MT.RedAlloy                   , ST.make(MD.BP, "red_alloy_ingot", 1, 0));
-			OreDictManager.INSTANCE.setTarget(OP.ingot  , MT.BlueAlloy                  , ST.make(MD.BP, "blue_alloy_ingot", 1, 0));
-			OreDictManager.INSTANCE.setTarget(OP.ingot  , MT.PurpleAlloy                , ST.make(MD.BP, "purple_alloy_ingot", 1, 0));
-			OreDictManager.INSTANCE.setTarget(OP.dust   , MT.Teslatite                  , ST.make(MD.BP, "teslatite_dust", 1, 0));
-			OreDictManager.INSTANCE.setTarget(OP.dust   , MT.UNUSED.InfusedTeslatite    , ST.make(MD.BP, "infused_teslatite_dust", 1, 0));
+			OreDictManager.INSTANCE.setTarget(OP.ingot  , MT.RedAlloy                   , MD.BP, "red_alloy_ingot", 0);
+			OreDictManager.INSTANCE.setTarget(OP.ingot  , MT.BlueAlloy                  , MD.BP, "blue_alloy_ingot", 0);
+			OreDictManager.INSTANCE.setTarget(OP.ingot  , MT.PurpleAlloy                , MD.BP, "purple_alloy_ingot", 0);
+			OreDictManager.INSTANCE.setTarget(OP.dust   , MT.Teslatite                  , MD.BP, "teslatite_dust", 0);
+			OreDictManager.INSTANCE.setTarget(OP.dust   , MT.UNUSED.InfusedTeslatite    , MD.BP, "infused_teslatite_dust", 0);
 			
 			OM.reg("seedFlax"                            , ST.make(MD.BP, "flax_seeds", 1, 0));
 			OM.reg(DYE_OREDICTS_MIXABLE[DYE_INDEX_Purple], ST.make(MD.BP, "indigo_dye", 1, 0));
@@ -343,25 +343,25 @@ public class GT_API_Post extends Abstract_Mod {
 			OM.reg(OP.crushed.dat(MT.Zn)                 , ST.make(MD.BP, "zinc_ore_crushed", 1, 0));
 			OM.reg(OP.crushedPurified.dat(MT.Zn)         , ST.make(MD.BP, "zinc_ore_purified", 1, 0));
 			OM.reg(OP.boule.dat(MT.Si)                   , ST.make(MD.BP, "silicon_boule", 1, 0));
-			OM.reg(OP.stone.dat(MT.Basalt)               , ST.make(MD.BP, "basalt", 1, 0));
-			OM.reg(OP.stone.dat(MT.Basalt)               , ST.make(MD.BP, "basalt_cobble", 1, 0));
-			OM.reg(OP.stone.dat(MT.Basalt)               , ST.make(MD.BP, "basalt_brick", 1, 0));
-			OM.reg(OP.stone.dat(MT.Basalt)               , ST.make(MD.BP, "fancy_basalt", 1, 0));
-			OM.reg(OP.stone.dat(MT.Basalt)               , ST.make(MD.BP, "basalt_brick_small", 1, 0));
-			OM.reg(OP.stone.dat(MT.Basalt)               , ST.make(MD.BP, "basaltbrick_cracked", 1, 0));
-			OM.reg(OP.stone.dat(MT.Basalt)               , ST.make(MD.BP, "basalt_paver", 1, 0));
-			OM.reg(OP.stone.dat(MT.Basalt)               , ST.make(MD.BP, "basalt_tile", 1, 0));
-			OM.reg(OP.stone.dat(MT.Marble)               , ST.make(MD.BP, "marble", 1, 0));
-			OM.reg(OP.stone.dat(MT.Marble)               , ST.make(MD.BP, "marble_brick", 1, 0));
-			OM.reg(OP.stone.dat(MT.Marble)               , ST.make(MD.BP, "fancy_marble", 1, 0));
-			OM.reg(OP.stone.dat(MT.Marble)               , ST.make(MD.BP, "marble_brick_small", 1, 0));
-			OM.reg(OP.stone.dat(MT.Marble)               , ST.make(MD.BP, "marble_paver", 1, 0));
-			OM.reg(OP.stone.dat(MT.Marble)               , ST.make(MD.BP, "marble_tile", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Basalt)        , ST.make(MD.BP, "basalt", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Basalt)        , ST.make(MD.BP, "basalt_cobble", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Basalt)        , ST.make(MD.BP, "basalt_brick", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Basalt)        , ST.make(MD.BP, "fancy_basalt", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Basalt)        , ST.make(MD.BP, "basalt_brick_small", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Basalt)        , ST.make(MD.BP, "basaltbrick_cracked", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Basalt)        , ST.make(MD.BP, "basalt_paver", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Basalt)        , ST.make(MD.BP, "basalt_tile", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Marble)        , ST.make(MD.BP, "marble", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Marble)        , ST.make(MD.BP, "marble_brick", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Marble)        , ST.make(MD.BP, "fancy_marble", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Marble)        , ST.make(MD.BP, "marble_brick_small", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Marble)        , ST.make(MD.BP, "marble_paver", 1, 0));
+			OM.reg(OP.stone.dat(MT.STONES.Marble)        , ST.make(MD.BP, "marble_tile", 1, 0));
 			
 			OM.data(MD.BP, "zincplate", 1, 0, ANY.Fe,   U2, MT.Zn,   U4);
 			OM.data(MD.BP, "paint_can", 1, W, ANY.Fe, 7*U2, MT.Zn, 7*U4);
 			OM.data(MD.BP, "lumar", 1, W, ANY.Glowstone, U2, MT.Redstone, U2);
-			OM.data(MD.BP, "tiles", 1, 0, MT.Marble, U2, MT.Basalt, U2);
+			OM.data(MD.BP, "tiles", 1, 0, MT.STONES.Marble, U2, MT.STONES.Basalt, U2);
 			
 			StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.BP, "ruby_ore"     , null));
 			StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.BP, "sapphire_ore" , null));
@@ -384,13 +384,13 @@ public class GT_API_Post extends Abstract_Mod {
 		
 		// Yay for ChickenBones ALWAYS doing it wrong...
 		if (MD.WR_CBE_C.mLoaded) {
-			OreDictManager.INSTANCE.setTarget(OP.stick, MT.Obsidian, ST.make(MD.WR_CBE_C, "obsidianStick", 1, 0));
+			OreDictManager.INSTANCE.setTarget(OP.stick, MT.Obsidian, MD.WR_CBE_C, "obsidianStick", 0);
 		}
 		if (MD.FMB.mLoaded) {
-			OreDictManager.INSTANCE.setTarget(OP.stick, MT.Stone, ST.make(MD.FMB, "stoneRod", 1, 0));
+			OreDictManager.INSTANCE.setTarget(OP.stick, MT.Stone, MD.FMB, "stoneRod", 0);
 		}
 		if (MD.TRANSLOCATOR.mLoaded) {
-			OreDictManager.INSTANCE.setTarget(OP.nugget, MT.Diamond, ST.make(MD.TRANSLOCATOR, "diamondNugget", 1, 0));
+			OreDictManager.INSTANCE.setTarget(OP.nugget, MT.Diamond, MD.TRANSLOCATOR, "diamondNugget", 0);
 		}
 		
 		
@@ -399,13 +399,13 @@ public class GT_API_Post extends Abstract_Mod {
 			StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.MO, "dilithium_ore", null));
 			StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.MO, "tritanium_ore", null));
 			
-			OreDictManager.INSTANCE.setTarget(OP.oreVanillastone, MT.Dolamide                , ST.make(MD.MO, "dilithium_ore"    , 1, 0));
-			OreDictManager.INSTANCE.setTarget(OP.oreVanillastone, MT.OREMATS.TritaniumDioxide, ST.make(MD.MO, "tritanium_ore"    , 1, 0));
-			OreDictManager.INSTANCE.setTarget(OP.gem            , MT.Dilithium               , ST.make(MD.MO, "dilithium_crystal", 1, 0));
-			OreDictManager.INSTANCE.setTarget(OP.dust           , MT.TritaniumAlloy          , ST.make(MD.MO, "tritanium_dust"   , 1, 0));
-			OreDictManager.INSTANCE.setTarget(OP.nugget         , MT.TritaniumAlloy          , ST.make(MD.MO, "tritanium_nugget" , 1, 0));
-			OreDictManager.INSTANCE.setTarget(OP.ingot          , MT.TritaniumAlloy          , ST.make(MD.MO, "tritanium_ingot"  , 1, 0));
-			OreDictManager.INSTANCE.setTarget(OP.plate          , MT.TritaniumAlloy          , ST.make(MD.MO, "tritanium_plate"  , 1, 0));
+			OreDictManager.INSTANCE.setTarget(OP.oreVanillastone, MT.Dolamide                , MD.MO, "dilithium_ore"    , 0);
+			OreDictManager.INSTANCE.setTarget(OP.oreVanillastone, MT.OREMATS.TritaniumDioxide, MD.MO, "tritanium_ore"    , 0);
+			OreDictManager.INSTANCE.setTarget(OP.gem            , MT.Dilithium               , MD.MO, "dilithium_crystal", 0);
+			OreDictManager.INSTANCE.setTarget(OP.dust           , MT.TritaniumAlloy          , MD.MO, "tritanium_dust"   , 0);
+			OreDictManager.INSTANCE.setTarget(OP.nugget         , MT.TritaniumAlloy          , MD.MO, "tritanium_nugget" , 0);
+			OreDictManager.INSTANCE.setTarget(OP.ingot          , MT.TritaniumAlloy          , MD.MO, "tritanium_ingot"  , 0);
+			OreDictManager.INSTANCE.setTarget(OP.plate          , MT.TritaniumAlloy          , MD.MO, "tritanium_plate"  , 0);
 		}
 		
 		// ThermalExpansion gets on this ShitList too I guess...
@@ -433,8 +433,8 @@ public class GT_API_Post extends Abstract_Mod {
 		
 		// Grimoire of Gaia... though I did not expect them to have done a good job with that...
 		if (MD.GoG.mLoaded) {
-			OreDictManager.INSTANCE.setTarget(OP.chunkGt, MT.Fe, ST.make(MD.GoG, "item.GrimoireOfGaia.Shard", 1, 0));
-			OreDictManager.INSTANCE.setTarget(OP.chunkGt, MT.Au, ST.make(MD.GoG, "item.GrimoireOfGaia.Shard", 1, 1));
+			OreDictManager.INSTANCE.setTarget(OP.chunkGt, MT.Fe, MD.GoG, "item.GrimoireOfGaia.Shard", 0);
+			OreDictManager.INSTANCE.setTarget(OP.chunkGt, MT.Au, MD.GoG, "item.GrimoireOfGaia.Shard", 1);
 			OM.data(MD.GoG, "item.GrimoireOfGaia.Shard"   , 1, 2, MT.Diamond   , U4);
 			OM.data(MD.GoG, "item.GrimoireOfGaia.Shard"   , 1, 3, MT.Emerald   , U4);
 			OM.data(MD.GoG, "item.GrimoireOfGaia.Shard"   , 1, 4, MT.NetherStar, U4);
@@ -547,7 +547,7 @@ public class GT_API_Post extends Abstract_Mod {
 		
 		// Bugfix just in case that one broken Version of Et Futurum Requiem is used.
 		if (MD.EtFu.mLoaded) {
-			OreDictManager.INSTANCE.setTarget(OP.ingot, MT.Cu      , ST.make(MD.EtFu, "copper_ingot", 1, 0));
+			OreDictManager.INSTANCE.setTarget(OP.ingot, MT.Cu, MD.EtFu, "copper_ingot", 0);
 		}
 	}
 	
@@ -644,10 +644,10 @@ public class GT_API_Post extends Abstract_Mod {
 				MT.Alexandrite          .addEnchantmentForTools(tEnchant, 5);
 				MT.Opal                 .addEnchantmentForTools(tEnchant, 4);
 				MT.Olivine              .addEnchantmentForTools(tEnchant, 2);
-				MT.Amethyst             .addEnchantmentForTools(tEnchant, 3);
 				MT.Dioptase             .addEnchantmentForTools(tEnchant, 3);
-				MT.Jade                 .addEnchantmentForTools(tEnchant, 7);
+				MT.Jade                 .addEnchantmentForTools(tEnchant, 3);
 				MT.Craponite            .addEnchantmentForTools(tEnchant, 1);
+				MT.Amethyst             .addEnchantmentForTools(tEnchant, 3);
 				MT.EnderAmethyst        .addEnchantmentForTools(tEnchant, 5);
 			}
 		}

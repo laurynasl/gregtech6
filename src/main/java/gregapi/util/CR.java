@@ -134,6 +134,8 @@ public class CR {
 		BUFFER.clear();
 	}
 	
+	public static final String DELATE = "gt:delate";
+	
 	public static final long NONE = 0;
 	/** Mirrors the Recipe */
 	public static final long MIR = B[0];
@@ -313,17 +315,19 @@ public class CR {
 		boolean tThereWasARecipe = F;
 		
 		aResult = ST.validMeta(OM.get(aResult));
-		for (byte i = 0; i < aRecipe.length; i++) {
-			if (aRecipe[i] instanceof IItemContainer)
+		for (byte i = 0; i < aRecipe.length; i++) if (aRecipe[i] != null) {
+			if (aRecipe[i] instanceof IItemContainer) {
 				aRecipe[i] = ((IItemContainer)aRecipe[i]).get(1);
-			else if (aRecipe[i] instanceof Enum)
+				if (aRecipe[i] == null) return F;
+			} else if (aRecipe[i] instanceof Enum) {
 				aRecipe[i] = ((Enum<?>)aRecipe[i]).name();
-			else if (aRecipe[i] instanceof Item)
+			} else if (aRecipe[i] instanceof Item) {
 				aRecipe[i] = ST.make((Item)aRecipe[i], 1, W);
-			else if (aRecipe[i] instanceof Block)
+			} else if (aRecipe[i] instanceof Block) {
 				aRecipe[i] = ST.make((Block)aRecipe[i], 1, W);
-			else if (!(aRecipe[i] == null || aRecipe[i] instanceof ItemStack || aRecipe[i] instanceof OreDictItemData || aRecipe[i] instanceof String || aRecipe[i] instanceof Character))
+			} else if (!(aRecipe[i] instanceof ItemStack || aRecipe[i] instanceof OreDictItemData || aRecipe[i] instanceof String || aRecipe[i] instanceof Character)) {
 				aRecipe[i] = aRecipe[i].toString();
+			}
 		}
 		
 		try {
@@ -464,17 +468,19 @@ public class CR {
 		if (aRecipe.length > 9) throw new IllegalArgumentException("Shapeless Recipe has more than 9 Inputs! This would crash NEI!");
 		
 		aResult = ST.validMeta(OM.get(aResult));
-		for (byte i = 0; i < aRecipe.length; i++) {
-			if (aRecipe[i] instanceof IItemContainer)
+		for (byte i = 0; i < aRecipe.length; i++) if (aRecipe[i] != null) {
+			if (aRecipe[i] instanceof IItemContainer) {
 				aRecipe[i] = ((IItemContainer)aRecipe[i]).get(1);
-			else if (aRecipe[i] instanceof Enum)
+				if (aRecipe[i] == null) return F;
+			} else if (aRecipe[i] instanceof Enum) {
 				aRecipe[i] = ((Enum<?>)aRecipe[i]).name();
-			else if (aRecipe[i] instanceof Item)
+			} else if (aRecipe[i] instanceof Item) {
 				aRecipe[i] = ST.make((Item)aRecipe[i], 1, W);
-			else if (aRecipe[i] instanceof Block)
+			} else if (aRecipe[i] instanceof Block) {
 				aRecipe[i] = ST.make((Block)aRecipe[i], 1, W);
-			else if (!(aRecipe[i] == null || aRecipe[i] instanceof ItemStack || aRecipe[i] instanceof String || aRecipe[i] instanceof Character))
+			} else if (!(aRecipe[i] instanceof ItemStack || aRecipe[i] instanceof String || aRecipe[i] instanceof Character)) {
 				aRecipe[i] = aRecipe[i].toString();
+			}
 		}
 		try {
 			ItemStack[] tRecipe = new ItemStack[9];
