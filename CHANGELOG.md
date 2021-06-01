@@ -17,16 +17,23 @@ Glowtus can now be chiseled into different Colors and GT6 Logs can now be chisel
 [COMPAT]
 Witchery now has a little bit more Compat.
 The Spirit World now generates GT6 Stuff properly just like the Overworld.
-[FIXED] Bricks and nether Bricks were not palceable on the Floor like Ingots.
+[FIXED] Filter Blocks were kinda broken, so that needed a change. This may break your Setups in some cases.
+[FIXED] Bricks and nether Bricks were not placeable on the Floor like Ingots.
 [FIXED] Other Types of Coal could not be made into "Bricks"/"Ingots" before, now they can.
 [FIXED] The Cow Cooldown of Hunger Overhaul is now respected by Wooden Buckets.
 [FIXED] Burning Boxes and Basic Machines can no longer be rotated while they are lit or actively processing something.
 [FIXED] Item Filter Covers no longer go inbetween two Item Pipes, which was causing confusion as to why they are "not working" since you were able to place them in such a way.
 [FIXED] Clientside FPS Lag when holding Rightclick with GT6 Tools is now gone for good.
+[FIXED] The Boxinator somehow did not have Recipes for Nugget->Ingot, Chunk->Ingot or Dust piling. This was a really big oversight.
+[FIXED] Bluepower Volcanos and Immersive Engineering Village Houses no longer let you skip to Tungsten and aluminium anymore.
+[CHANGED] GT6 Loot Chests can now be picked up with their Loot inside, as long as you did not open them beforehand! This should spare explorers of Dungeon Loot cluttering their Inventories, until they are home.
 [CHANGED] If there is a Fire Block in front of a Burning Box, it will randomly ignite. This technically makes automation using the Dispenser possible, but still cumbersome and dangerous enough so you want an Igniter.
 [CHANGED] Dispensers now work on my Wooden Buckets too.
+[CHANGED] Eletrotine and Teslatite are now the same Material. I will name them both Nikolite by default, and they will be interchangeable between Blue Power and Project Red.
 [CHANGED] Bumblehives in the wild can now be measured with a Thermometer. This should help finding a proper new Home for a Hive.
 [CHANGED] Axes and such are now able to chop down whole vanilla Mushrooms in one go.
+[CHANGED] Crucible Crossings will take Vertical Redstone Signals and emit a weak Signal Horizontally, making it easier to Redstone Molds and Faucets.
+[CHANGED] The Crusher now has 12 Output Slots instead of 6. Because the Block of Raw Ore can be crushed now, and that means more throughput is needed.
 [ADDED] Brick Burning Box. Very inefficient and Earlygame.
 [ADDED] Asbestos now has Jade as a Byproduct, making Fortune III Tools more available.
 [ADDED] The Drain can now also produce liquid Slime should a Slime be ontop of it. Works with Green, Magma, Maze and Pink Slimes.
@@ -87,7 +94,7 @@ The Fix also has the side effect of loading Singleplayer Worlds without having t
 [NOTE] The Default Config Pack updated to disable Fastcrafts Chunk Culling, so that Ocean Floors are now rendering properly again. Set "enableCullingTweaks" to false in the "config/fastcraft.ini" File, if you experience this Issue.
 [COMPAT] Aroma1997's Mining Dimension is now Compatible with my Worldgen.
 [COMPAT] Et Futurum Requiem is now supported properly and up to date. Its Netherite Items and Ore Blocks are preferred over the ones of Netherite Plus. https://www.curseforge.com/minecraft/mc-mods/et-futurum-requiem/files
-[FIXED] Biome dependent Stone LAyer Ores were not generating at all, due to me forgetting to Lowercase the Biome Names.
+[FIXED] Biome dependent Stone Layer Ores were not generating at all, due to me forgetting to Lowercase the Biome Names.
 [FIXED] Infinite Worldgen Loop with Oceans, because I forgot to set the Block Update Flag to 2 during Worldgen, because ofcourse I left it to default when I fixed another Ocean related Bug...
 [FIXED] Coal and Oil Shale Stone Layer Ore Blocks were flammable t othe point of burning up way too much. Now they are still flammable but Fire wont spread to them.
 [FIXED] Railcraft Crowbars should now be able to remove Covers again, even if they dont use the overlay for technical reasons.
