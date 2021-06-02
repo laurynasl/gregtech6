@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 GregTech-6 Team
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -45,6 +45,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFlowerPot;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
@@ -140,6 +142,18 @@ public abstract class BlockBaseFlower extends BlockFlower implements IBlockBase,
 		if (aStack.stackSize == 0) return F;
 		
 		Block tBlock = aWorld.getBlock(aX, aY, aZ);
+		TileEntity tTileEntity = WD.te(aWorld, aX, aY, aZ, T);
+		
+		if (tTileEntity instanceof TileEntityFlowerPot) {
+			if (((TileEntityFlowerPot)tTileEntity).getFlowerPotItem() == null) {
+				((TileEntityFlowerPot)tTileEntity).func_145964_a(aItem, ST.meta(aStack));
+				tTileEntity.markDirty();
+				if (!aWorld.setBlockMetadataWithNotify(aX, aY, aZ, ST.meta(aStack), 2)) aWorld.markBlockForUpdate(aX, aY, aZ);
+				if (!UT.Entities.hasInfiniteItems(aPlayer)) aStack.stackSize--;
+			}
+			return T;
+		}
+		
 		if (tBlock == Blocks.snow_layer && (WD.meta(aWorld, aX, aY, aZ) & 7) < 1) {
 			aSide = SIDE_UP;
 		} else if (tBlock != Blocks.vine && tBlock != Blocks.tallgrass && tBlock != Blocks.deadbush && !tBlock.isReplaceable(aWorld, aX, aY, aZ)) {
@@ -150,7 +164,7 @@ public abstract class BlockBaseFlower extends BlockFlower implements IBlockBase,
 		
 		if (aItem.placeBlockAt(aStack, aPlayer, aWorld, aX, aY, aZ, aSide, aHitX, aHitY, aHitZ, onBlockPlaced(aWorld, aX, aY, aZ, aSide, aHitX, aHitY, aHitZ, aItem.getMetadata(aStack.getItemDamage())))) {
 			aWorld.playSoundEffect(aX+0.5F, aY+0.5F, aZ+0.5F, stepSound.func_150496_b(), (stepSound.getVolume() + 1.0F) / 2.0F, stepSound.getPitch() * 0.8F);
-			aStack.stackSize--;
+			if (!UT.Entities.hasInfiniteItems(aPlayer)) aStack.stackSize--;
 		}
 		return T;
 	}
