@@ -80,14 +80,14 @@ public class BlockRockOres extends BlockBaseMeta {
 		COMPAT_IC2.valuable(this, 15, 0);
 		}
 		
-		//StoneLayer.LAYERS.add(new StoneLayer(this, 0, MT.Coal));
-		//StoneLayer.LAYERS.add(new StoneLayer(this, 1, MT.Lignite));
-		//StoneLayer.LAYERS.add(new StoneLayer(this, 2, MT.NaCl));
-		//StoneLayer.LAYERS.add(new StoneLayer(this, 3, MT.KCl));
-		//StoneLayer.LAYERS.add(new StoneLayer(this, 4, MT.OREMATS.Bauxite));
-		//StoneLayer.LAYERS.add(new StoneLayer(this, 5, MT.Oilshale));
-		//StoneLayer.LAYERS.add(new StoneLayer(this, 6, MT.Gypsum));
-		//StoneLayer.LAYERS.add(new StoneLayer(this, 7, MT.MilkyQuartz));
+		StoneLayer.LAYERS.add(new StoneLayer(this, 0, MT.Coal));
+		StoneLayer.LAYERS.add(new StoneLayer(this, 1, MT.Lignite));
+		StoneLayer.LAYERS.add(new StoneLayer(this, 2, MT.NaCl));
+		StoneLayer.LAYERS.add(new StoneLayer(this, 3, MT.KCl));
+		StoneLayer.LAYERS.add(new StoneLayer(this, 4, MT.OREMATS.Bauxite));
+		StoneLayer.LAYERS.add(new StoneLayer(this, 5, MT.Oilshale));
+		StoneLayer.LAYERS.add(new StoneLayer(this, 6, MT.Gypsum));
+		StoneLayer.LAYERS.add(new StoneLayer(this, 7, MT.MilkyQuartz));
 	//  StoneLayer.LAYERS.add(new StoneLayer(this, 8, MT.NetherQuartz)); Nope, that is not for the Overworld.
 	}
 	

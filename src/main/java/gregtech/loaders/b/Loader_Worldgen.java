@@ -114,6 +114,7 @@ public class Loader_Worldgen implements Runnable {
 		));
 		StoneLayer.LAYERS.add(new StoneLayer(Blocks.stone, 0, Blocks.cobblestone, 0, Blocks.mossy_cobblestone, 0, MT.Stone
 		, new StoneLayerOres(MT.Fe2O3                   , U6 , 30, 70)
+		, new StoneLayerOres(MT.Fe2O3                   , U6 , 30, 70, BIOMES_OCEAN_BEACH)
 		, new StoneLayerOres(MT.Jasper                  , U64, 32, 64, BIOMES_MOUNTAINS)
 		, new StoneLayerOres(MT.JasperBlue              , U64, 32, 64, BIOMES_FROZEN)
 		, new StoneLayerOres(MT.JasperGreen             , U64, 32, 64, BIOMES_DESERT)
@@ -134,7 +135,7 @@ public class Loader_Worldgen implements Runnable {
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteBlack
 		, new StoneLayerOres(MT.OREMATS.Cooperite       , U32,  0, 16)
 		, new StoneLayerOres(MT.OREMATS.Sperrylite      , U32,  0, 16)
-		, new StoneLayerOres(MT.Ir                      , U64,  0,  8)
+		, new StoneLayerOres(MT.Ir                      , U64,  0,  8, BIOMES_OCEAN_BEACH)
 		, new StoneLayerOres(MT.Emerald                 , U64, 24, 48, BIOMES_MOUNTAINS)
 		, new StoneLayerOres(MT.Aquamarine              , U64,  8, 32, BIOMES_OCEAN_BEACH)
 		, new StoneLayerOres(MT.Morganite               , U64, 24, 48, BIOMES_JUNGLE)
@@ -145,8 +146,14 @@ public class Loader_Worldgen implements Runnable {
 		));
 		
 		
-		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteRed));
-		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteRed));
+		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteRed
+		, new StoneLayerOres(MT.Th                      , U128,  0, 18, BIOMES_OCEAN_BEACH)
+		, new StoneLayerOres(MT.Am                      , U1440,  0, 6, BIOMES_OCEAN_BEACH)
+		));
+		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteRed
+		, new StoneLayerOres(MT.OREMATS.Pitchblende     , U256,  0, 18, BIOMES_OCEAN_BEACH)
+		, new StoneLayerOres(MT.OREMATS.Uraninite       , U256,  0, 16, BIOMES_OCEAN_BEACH)
+		));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.GraniteRed
 		, new StoneLayerOres(MT.OREMATS.Pitchblende     , U1440,  0, 18)
 		, new StoneLayerOres(MT.OREMATS.Uraninite       , U1440,  0, 16)
@@ -255,11 +262,11 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.Cu                      , U16, 40, 80)
 		));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Limestone
-		, new StoneLayerOres(MT.OREMATS.Scheelite       , U64,  0, 16)
-		, new StoneLayerOres(MT.OREMATS.Wolframite      , U64,  0, 16)
-		, new StoneLayerOres(MT.OREMATS.Ferberite       , U64,  0, 16)
-		, new StoneLayerOres(MT.OREMATS.Huebnerite      , U64,  0, 16)
-		, new StoneLayerOres(MT.OREMATS.Tungstate       , U64,  0, 16)
+		, new StoneLayerOres(MT.OREMATS.Scheelite       , U64,  0, 16, BIOMES_OCEAN_BEACH)
+		, new StoneLayerOres(MT.OREMATS.Wolframite      , U64,  0, 16, BIOMES_OCEAN_BEACH)
+		, new StoneLayerOres(MT.OREMATS.Ferberite       , U64,  0, 16, BIOMES_OCEAN_BEACH)
+		, new StoneLayerOres(MT.OREMATS.Huebnerite      , U64,  0, 16, BIOMES_OCEAN_BEACH)
+		, new StoneLayerOres(MT.OREMATS.Tungstate       , U64,  0, 16, BIOMES_OCEAN_BEACH)
 		, new StoneLayerOres(MT.OREMATS.YellowLimonite  , U8 , 16, 48)
 		, new StoneLayerOres(MT.OREMATS.BrownLimonite   , U8 , 32, 64)
 		, new StoneLayerOres(MT.OREMATS.Malachite       , U12, 16, 64)
@@ -271,6 +278,7 @@ public class Loader_Worldgen implements Runnable {
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.SchistGreen
 		, new StoneLayerOres(MT.Andradite               , U32,  8, 40)
 		, new StoneLayerOres(MT.Almandine               , U32, 16, 48)
+		, new StoneLayerOres(MT.Am                      , U512,  0, 6, BIOMES_OCEAN_BEACH)
 		));
 		
 		
@@ -278,6 +286,7 @@ public class Loader_Worldgen implements Runnable {
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.SchistBlue
 		, new StoneLayerOres(MT.Spessartine             , U32,  8, 40)
 		, new StoneLayerOres(MT.Pyrope                  , U32, 16, 48)
+		, new StoneLayerOres(MT.Pu                      , U512,  0, 6, BIOMES_OCEAN_BEACH)
 		));
 		
 		
@@ -485,7 +494,7 @@ public class Loader_Worldgen implements Runnable {
 		);
 		StoneLayer.bothsides(MT.STONES.Limestone, MT.STONES.Basalt
 		, new StoneLayerOres(MT.OREMATS.Ilmenite        , U8 ,  0, 32)
-		, new StoneLayerOres(MT.TiO2                    , U12,  0, 32)
+		, new StoneLayerOres(MT.TiO2                    , U12,  0, 32, BIOMES_OCEAN_BEACH)
 		);
 		StoneLayer.topbottom(MT.STONES.Limestone, MT.STONES.Diorite
 		, new StoneLayerOres(MT.Opal                    , U64, 48, 64)
@@ -776,7 +785,7 @@ public class Loader_Worldgen implements Runnable {
 		new WorldgenOresBedrock("ore.bedrock.gloomstone"   , T, T,   4000, MT.Gloomstone                                , GEN_NETHER);
 		new WorldgenOresBedrock("ore.bedrock.efrine"       , T, T,   2000, MT.Efrine                                    , GEN_NETHER);
 		new WorldgenOresBedrock("ore.bedrock.netherquartz" , T, T,   2000, MT.NetherQuartz                              , GEN_NETHER);
-		new WorldgenOresBedrock("ore.bedrock.ancientdebris", T, T,   2000, MT.AncientDebris                             , GEN_NETHER, GEN_MARS);
+		new WorldgenOresBedrock("ore.bedrock.ancientdebris", T, T,   1000, MT.AncientDebris                             , GEN_NETHER, GEN_MARS);
 		new WorldgenOresBedrock("ore.bedrock.naquadah"     , T, T,  10000, MT.Nq                                        , GEN_MARS);
 		new WorldgenOresBedrock("ore.bedrock.desh"         , T, T,   2000, MT.Desh                                      , GEN_MARS);
 		new WorldgenOresBedrock("ore.bedrock.dolamide"     , T, T,   5000, MT.Dolamide                                  , GEN_MARS, GEN_PLANETS);

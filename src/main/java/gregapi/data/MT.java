@@ -2394,7 +2394,7 @@ public class MT {
 			Skyroot                 .addEnchantmentForTools(Enchantment.fortune, 1);
 			IronWood                .addEnchantmentForTools(Enchantment.fortune, 1);
 			Steeleaf                .addEnchantmentForTools(Enchantment.fortune, 2);
-			//Efrine                  .addEnchantmentForTools(Enchantment.fortune, 2);
+			Efrine                  .addEnchantmentForTools(Enchantment.fortune, 2);
 			Soularium               .addEnchantmentForTools(Enchantment.fortune, 2);
 			Midasium                .addEnchantmentForTools(Enchantment.fortune, 2);
 			Mithril                 .addEnchantmentForTools(Enchantment.fortune, 3);
@@ -2813,7 +2813,7 @@ public class MT {
 			Brass                           .addOreByProducts(Cu                        , Zn                        );
 			Coal                            .addOreByProducts(Lignite                   , S                         , Anthracite            );
 			Lignite                         .addOreByProducts(Coal                      , S                         , Ge                    );
-			Anthracite                      .addOreByProducts(Prismane                  , Lonsdaleite               , Th                    );
+			Anthracite                      .addOreByProducts(Prismane                  , Lonsdaleite);
 			Prismane                        .addOreByProducts(Lonsdaleite               , Th                        , OREMATS.Pitchblende   );
 			Lonsdaleite                     .addOreByProducts(Th                        , OREMATS.Uraninite         , U_238                );
 
