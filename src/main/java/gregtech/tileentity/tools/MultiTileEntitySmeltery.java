@@ -169,6 +169,10 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 			if (tData == null) {
 				slotTrash(0);
 				UT.Sounds.send(SFX.MC_FIZZ, this);
+			} else if (tData.mPrefix == null) {
+				List<OreDictMaterialStack> tList = new ArrayListNoNulls<>();
+				for (OreDictMaterialStack tMaterial : tData.getAllMaterialStacks()) if (tMaterial.mAmount > 0) tList.add(tMaterial.clone());
+				if (addMaterialStacks(tList, tTemperature)) decrStackSize(0, 1);
 			} else if (tData.mPrefix == OP.oreRaw) {
 				if (addMaterialStacks(Arrays.asList(OM.stack(tData.mMaterial.mMaterial.mTargetCrushing.mMaterial, tData.mMaterial.mMaterial.mTargetCrushing.mAmount * tData.mMaterial.mMaterial.mOreMultiplier     )), tTemperature)) decrStackSize(0, 1);
 			} else if (tData.mPrefix == OP.blockRaw) {
@@ -177,6 +181,10 @@ public class MultiTileEntitySmeltery extends TileEntityBase07Paintable implement
 				if (addMaterialStacks(Arrays.asList(OM.stack(tData.mMaterial.mMaterial.mTargetCrushing.mMaterial, tData.mMaterial.mMaterial.mTargetCrushing.mAmount * tData.mMaterial.mMaterial.mOreMultiplier * 16)), tTemperature)) decrStackSize(0, 1);
 			} else if (tData.mPrefix == OP.crateGt64Raw) {
 				if (addMaterialStacks(Arrays.asList(OM.stack(tData.mMaterial.mMaterial.mTargetCrushing.mMaterial, tData.mMaterial.mMaterial.mTargetCrushing.mAmount * tData.mMaterial.mMaterial.mOreMultiplier * 64)), tTemperature)) decrStackSize(0, 1);
+			} else if (tData.mPrefix.contains(TD.Prefix.STANDARD_ORE)) {
+				if (addMaterialStacks(Arrays.asList(OM.stack(tData.mMaterial.mMaterial.mTargetCrushing.mMaterial, tData.mMaterial.mMaterial.mTargetCrushing.mAmount * tData.mMaterial.mMaterial.mOreMultiplier     )), tTemperature)) decrStackSize(0, 1);
+			} else if (tData.mPrefix.contains(TD.Prefix.DENSE_ORE)) {
+				if (addMaterialStacks(Arrays.asList(OM.stack(tData.mMaterial.mMaterial.mTargetCrushing.mMaterial, tData.mMaterial.mMaterial.mTargetCrushing.mAmount * tData.mMaterial.mMaterial.mOreMultiplier *  2)), tTemperature)) decrStackSize(0, 1);
 			} else {
 				List<OreDictMaterialStack> tList = new ArrayListNoNulls<>();
 				for (OreDictMaterialStack tMaterial : tData.getAllMaterialStacks()) if (tMaterial.mAmount > 0) tList.add(tMaterial.clone());

@@ -81,13 +81,13 @@ public class Loader_Ores implements Runnable {
 		BlocksGT.oreSmallSand               = new PrefixBlock_(MD.GT, "gt.meta.ore.small.sand"              , OP.oreSmall               , new Drops_SmallOre(MT.Sand)           , BlockTextureCopied.get(Blocks.sand            , 0), Material.sand, Block.soundTypeSand    , TOOL_shovel   , 0.40F, 0.60F,  -1,   0, T,F, OreDictMaterial.MATERIAL_ARRAY);
 		BlocksGT.oreSmallRedSand            = new PrefixBlock_(MD.GT, "gt.meta.ore.small.redsand"           , OP.oreSmall               , new Drops_SmallOre(MT.Sand)           , BlockTextureCopied.get(Blocks.sand            , 1), Material.sand, Block.soundTypeSand    , TOOL_shovel   , 0.40F, 0.60F,  -1,   0, T,F, OreDictMaterial.MATERIAL_ARRAY);
 		
-		((PrefixBlock)BlocksGT.ore          ).mDrops = new Drops(BlocksGT.oreBroken          , BlocksGT.ore          , OP.oreRaw.mRegisteredPrefixItems.get(0));
-		((PrefixBlock)BlocksGT.oreSandstone ).mDrops = new Drops(BlocksGT.oreBrokenSandstone , BlocksGT.oreSandstone , OP.oreRaw.mRegisteredPrefixItems.get(0));
-		((PrefixBlock)BlocksGT.oreNetherrack).mDrops = new Drops(BlocksGT.oreBrokenNetherrack, BlocksGT.oreNetherrack, OP.oreRaw.mRegisteredPrefixItems.get(0));
-		((PrefixBlock)BlocksGT.oreEndstone  ).mDrops = new Drops(BlocksGT.oreBrokenEndstone  , BlocksGT.oreEndstone  , OP.oreRaw.mRegisteredPrefixItems.get(0));
-		((PrefixBlock)BlocksGT.oreGravel    ).mDrops = new Drops(BlocksGT.oreGravel          , BlocksGT.oreGravel    , OP.oreRaw.mRegisteredPrefixItems.get(0));
-		((PrefixBlock)BlocksGT.oreSand      ).mDrops = new Drops(BlocksGT.oreSand            , BlocksGT.oreSand      , OP.oreRaw.mRegisteredPrefixItems.get(0));
-		((PrefixBlock)BlocksGT.oreRedSand   ).mDrops = new Drops(BlocksGT.oreRedSand         , BlocksGT.oreRedSand   , OP.oreRaw.mRegisteredPrefixItems.get(0));
+		((PrefixBlock)BlocksGT.ore          ).mDrops = new Drops(BlocksGT.oreBroken          , BlocksGT.ore          , OP.oreRaw.mRegisteredPrefixItems.get(0), 0, 1);
+		((PrefixBlock)BlocksGT.oreSandstone ).mDrops = new Drops(BlocksGT.oreBrokenSandstone , BlocksGT.oreSandstone , OP.oreRaw.mRegisteredPrefixItems.get(0), 0, 1);
+		((PrefixBlock)BlocksGT.oreNetherrack).mDrops = new Drops(BlocksGT.oreBrokenNetherrack, BlocksGT.oreNetherrack, OP.oreRaw.mRegisteredPrefixItems.get(0), 0, 1);
+		((PrefixBlock)BlocksGT.oreEndstone  ).mDrops = new Drops(BlocksGT.oreBrokenEndstone  , BlocksGT.oreEndstone  , OP.oreRaw.mRegisteredPrefixItems.get(0), 2, 3);
+		((PrefixBlock)BlocksGT.oreGravel    ).mDrops = new Drops(BlocksGT.oreGravel          , BlocksGT.oreGravel    , OP.oreRaw.mRegisteredPrefixItems.get(0), 0, 1);
+		((PrefixBlock)BlocksGT.oreSand      ).mDrops = new Drops(BlocksGT.oreSand            , BlocksGT.oreSand      , OP.oreRaw.mRegisteredPrefixItems.get(0), 0, 1);
+		((PrefixBlock)BlocksGT.oreRedSand   ).mDrops = new Drops(BlocksGT.oreRedSand         , BlocksGT.oreRedSand   , OP.oreRaw.mRegisteredPrefixItems.get(0), 0, 1);
 		
 		BlocksGT.stoneToNormalOres.put(new ItemStackContainer(Blocks.stone     , 1, 0), BlocksGT.ore                );
 		BlocksGT.stoneToNormalOres.put(new ItemStackContainer(Blocks.netherrack, 1, 0), BlocksGT.oreNetherrack      );
@@ -132,7 +132,7 @@ public class Loader_Ores implements Runnable {
 		BlocksGT.stoneToBrokenOres.put(new ItemStackContainer(BlocksGT.Diggables, 1, 0), BlocksGT.oreMud     );
 		BlocksGT.stoneToSmallOres .put(new ItemStackContainer(BlocksGT.Diggables, 1, 0), BlocksGT.oreSmallMud);
 		
-		((PrefixBlock)BlocksGT.oreMud).mDrops = new Drops(BlocksGT.oreMud, BlocksGT.oreMud, OP.oreRaw.mRegisteredPrefixItems.get(0));
+		((PrefixBlock)BlocksGT.oreMud).mDrops = new Drops(BlocksGT.oreMud, BlocksGT.oreMud, OP.oreRaw.mRegisteredPrefixItems.get(0), 0, 1);
 		
 		//====================================================================================================//
 		
@@ -398,9 +398,9 @@ public class Loader_Ores implements Runnable {
 		}
 		
 		PrefixBlock
-		tOre1 = new PrefixBlock_(MD.GT, "gt.meta.ore.normal."+aName, aPrefix        , aMod.mLoaded ? null                       : ((PrefixBlock)BlocksGT.ore        ).mDrops, BlockTextureCopied.get(aRock  , aMetaA==W?0:aMetaA), aRock  .getMaterial(), aRock  .stepSound, TOOL_pickaxe, aBaseHardness  , aBaseResistance  ,  0, aHarvestLevelMinimum, aGravity, aEnderDragonProof, OreDictMaterial.MATERIAL_ARRAY).setHidden(tHidden),
-		tOre2 = new PrefixBlock_(MD.GT, "gt.meta.ore.broken."+aName, aPrefix        , aMod.mLoaded ? null                       : ((PrefixBlock)BlocksGT.oreBroken  ).mDrops, BlockTextureCopied.get(aCobble, aMeta ==W?0:aMeta ), aCobble.getMaterial(), aCobble.stepSound, TOOL_pickaxe, aBaseHardness/2, aBaseResistance/2, -1, aHarvestLevelMinimum, T       , aEnderDragonProof, OreDictMaterial.MATERIAL_ARRAY).setHidden(tHidden),
-		tOre3 = new PrefixBlock_(MD.GT, "gt.meta.ore.small." +aName, OP.oreSmall    , aMod.mLoaded ? new Drops_SmallOre(aDrops) : ((PrefixBlock)BlocksGT.oreSmall   ).mDrops, BlockTextureCopied.get(aRock  , aMetaA==W?0:aMetaA), aRock  .getMaterial(), aRock  .stepSound, TOOL_pickaxe, aBaseHardness  , aBaseResistance  , -1, aHarvestLevelMinimum, aGravity, aEnderDragonProof, OreDictMaterial.MATERIAL_ARRAY).setHidden(tHidden);
+		tOre1 = new PrefixBlock_(MD.GT, "gt.meta.ore.normal."+aName, aPrefix    , aMod.mLoaded ? null                       : ((PrefixBlock)BlocksGT.ore      ).mDrops, BlockTextureCopied.get(aRock  , aMetaA==W?0:aMetaA), aRock  .getMaterial(), aRock  .stepSound, TOOL_pickaxe, aBaseHardness  , aBaseResistance  ,  0, aHarvestLevelMinimum, aGravity, aEnderDragonProof, OreDictMaterial.MATERIAL_ARRAY).setHidden(tHidden),
+		tOre2 = new PrefixBlock_(MD.GT, "gt.meta.ore.broken."+aName, aPrefix    , aMod.mLoaded ? null                       : ((PrefixBlock)BlocksGT.oreBroken).mDrops, BlockTextureCopied.get(aCobble, aMeta ==W?0:aMeta ), aCobble.getMaterial(), aCobble.stepSound, TOOL_pickaxe, aBaseHardness/2, aBaseResistance/2, -1, aHarvestLevelMinimum, T       , aEnderDragonProof, OreDictMaterial.MATERIAL_ARRAY).setHidden(tHidden),
+		tOre3 = new PrefixBlock_(MD.GT, "gt.meta.ore.small." +aName, OP.oreSmall, aMod.mLoaded ? new Drops_SmallOre(aDrops) : ((PrefixBlock)BlocksGT.oreSmall ).mDrops, BlockTextureCopied.get(aRock  , aMetaA==W?0:aMetaA), aRock  .getMaterial(), aRock  .stepSound, TOOL_pickaxe, aBaseHardness  , aBaseResistance  , -1, aHarvestLevelMinimum, aGravity, aEnderDragonProof, OreDictMaterial.MATERIAL_ARRAY).setHidden(tHidden);
 		
 		if (aMod.mLoaded) {
 			if (aStoneOverrideable) {
@@ -422,7 +422,7 @@ public class Loader_Ores implements Runnable {
 				BlocksGT.stoneToBrokenOres.put(new ItemStackContainer(aRock, 1, i), tOre2);
 				BlocksGT.stoneToSmallOres .put(new ItemStackContainer(aRock, 1, i), tOre3);
 			}
-			tOre1.mDrops = new Drops(tOre2, tOre1, OP.oreRaw.mRegisteredPrefixItems.get(0));
+			tOre1.mDrops = new Drops(tOre2, tOre1, OP.oreRaw.mRegisteredPrefixItems.get(0), 0, 1);
 		} else {
 			tOre1.mRegisterToOreDict = tOre2.mRegisterToOreDict = tOre3.mRegisterToOreDict = F;
 		}

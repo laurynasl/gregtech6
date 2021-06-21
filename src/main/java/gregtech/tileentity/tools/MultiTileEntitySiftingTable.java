@@ -70,7 +70,7 @@ public class MultiTileEntitySiftingTable extends TileEntityBase07Paintable imple
 	public byte mState = 0, oState = 0, mClickCount = 0;
 	public RecipeMap mRecipes = RM.Sifting;
 	public Recipe mLastRecipe = null;
-
+	
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
 		super.readFromNBT2(aNBT);
@@ -78,14 +78,14 @@ public class MultiTileEntitySiftingTable extends TileEntityBase07Paintable imple
 		if (aNBT.hasKey(NBT_PROGRESS)) mClickCount = aNBT.getByte(NBT_PROGRESS);
 		if (aNBT.hasKey(NBT_RECIPEMAP)) mRecipes = RecipeMap.RECIPE_MAPS.get(aNBT.getString(NBT_RECIPEMAP));
 	}
-
+	
 	@Override
 	public void writeToNBT2(NBTTagCompound aNBT) {
 		super.writeToNBT2(aNBT);
 		aNBT.setByte(NBT_STATE, mState);
 		aNBT.setByte(NBT_PROGRESS, mClickCount);
 	}
-
+	
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		aList.add(Chat.CYAN     + LH.get(LH.RECIPES) + ": " + Chat.WHITE + LH.get(mRecipes.mNameInternal));
@@ -457,7 +457,7 @@ public class MultiTileEntitySiftingTable extends TileEntityBase07Paintable imple
 		return ACCESSIBLE_SLOTS;
 	}
 
-	@Override public boolean canInsertItem2 (int aSlot, ItemStack aStack, byte aSide) {return aSlot == 0 && mRecipes != null && mRecipes.containsInput(aStack, this, NI) && !OP.crushedPurifiedTiny.contains(aStack);}
+	@Override public boolean canInsertItem2 (int aSlot, ItemStack aStack, byte aSide) {return aSlot == 0 && mRecipes != null && mRecipes.containsInput(aStack, this, NI);}
 	@Override public boolean canExtractItem2(int aSlot, ItemStack aStack, byte aSide) {return aSlot != 0;}
 
 	@Override public String getTileEntityName() {return "gt.multitileentity.sifter.table";}

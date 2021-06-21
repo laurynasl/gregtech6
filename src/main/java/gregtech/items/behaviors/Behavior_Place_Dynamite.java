@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2019 Gregorius Techneticies
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -21,7 +21,10 @@ package gregtech.items.behaviors;
 
 import static gregapi.data.CS.*;
 
+import java.util.List;
+
 import gregapi.data.IL;
+import gregapi.data.LH;
 import gregapi.item.multiitem.MultiItem;
 import gregapi.item.multiitem.MultiItemTool;
 import gregapi.item.multiitem.behaviors.IBehavior.AbstractBehaviorDefault;
@@ -29,6 +32,7 @@ import gregapi.util.ST;
 import gregapi.util.UT;
 import gregapi.util.WD;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -59,11 +63,27 @@ public class Behavior_Place_Dynamite extends AbstractBehaviorDefault {
 						ST.use(aPlayer, tIndex, tStack, 0);
 					}
 					tStack.setTagCompound(tOldTag);
+					// Add Dynamite Coords to Remote Activator if in Hotbar.
+					for (int j = 0; j < InventoryPlayer.getHotbarSize(); j++) if (IL.Tool_Remote_Activator.equal(aPlayer.inventory.mainInventory[j], F, T)) {
+						if (Behavior_Remote.addCoords(aPlayer.inventory.mainInventory[j], aPlayer, aWorld, aX+OFFSETS_X[aSide], aY+OFFSETS_Y[aSide], aZ+OFFSETS_Z[aSide])) {
+							break;
+						}
+					}
 					return T;
 				}
 				tStack.setTagCompound(tOldTag);
 			}
 		}
 		return F;
+	}
+	
+	static {
+		LH.add("gt.behaviour.placedynamite", "Places Dynamite and links it to Remote Activators in Hotbar");
+	}
+	
+	@Override
+	public List<String> getAdditionalToolTips(MultiItem aItem, List<String> aList, ItemStack aStack) {
+		aList.add(LH.get("gt.behaviour.placedynamite"));
+		return aList;
 	}
 }

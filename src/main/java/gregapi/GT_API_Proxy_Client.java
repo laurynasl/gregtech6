@@ -249,7 +249,7 @@ public class GT_API_Proxy_Client extends GT_API_Proxy {
 			
 			if (aEvent.itemStack.getTagCompound() == null) {
 				if (aBlock == Blocks.dirt && aBlockMeta == 1) {
-					aEvent.toolTip.set(0, "Coarse " + aEvent.toolTip.get(0));
+					aEvent.toolTip.set(0, aEvent.toolTip.get(0).replaceAll("Dirt", "Coarse Dirt"));
 				}
 				if (MD.RC.mLoaded && "Railcraft:part.plate".equalsIgnoreCase(aRegName)) {
 					switch(aMeta) {
@@ -346,6 +346,9 @@ public class GT_API_Proxy_Client extends GT_API_Proxy {
 					if (SHOW_CHEM_FORMULAS && UT.Code.stringValid(tData.mMaterial.mMaterial.mTooltipChemical) && (tData.mPrefix == null ? tData.mByProducts.length == 0 : tData.mPrefix.contains(TD.Prefix.TOOLTIP_MATERIAL))) {
 						aEvent.toolTip.add(LH.Chat.YELLOW + tData.mMaterial.mMaterial.mTooltipChemical);
 					}
+					if ((MD.BP.mLoaded || MD.PR.mLoaded) && tData.mMaterial.mMaterial == MT.Nikolite) {
+						aEvent.toolTip.set(0, aEvent.toolTip.get(0).replaceAll("(Teslatite|Electrotine)", "Nikolite"));
+					}
 					if (tData.hasValidPrefixData()) {
 						if (tData.mPrefix.contains(TD.Prefix.NEEDS_SHARPENING)) aEvent.toolTip.add(LH.Chat.CYAN + LH.get(LH.TOOLTIP_NEEDS_SHARPENING));
 						if (tData.mPrefix.contains(TD.Prefix.NEEDS_HANDLE    )) aEvent.toolTip.add(LH.Chat.CYAN + LH.get(LH.TOOLTIP_NEEDS_HANDLE) + LH.Chat.WHITE + tData.mMaterial.mMaterial.mHandleMaterial.getLocal());
@@ -357,7 +360,6 @@ public class GT_API_Proxy_Client extends GT_API_Proxy {
 							Collections.sort(tShapelessAmounts);
 							aEvent.toolTip.add(LH.Chat.CYAN + LH.get(LH.TOOLTIP_SHAPELESS_CRAFT) + LH.Chat.WHITE + tShapelessAmounts);
 						}
-						
 						if (tData.mPrefix.contains(TD.Prefix.TOOLTIP_ENCHANTS)) {
 							if (!tData.mMaterial.mMaterial.mEnchantmentTools.isEmpty()) {
 								if (!tData.mPrefix.contains(TD.Prefix.AMMO_ALIKE)) {

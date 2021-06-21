@@ -1,17 +1,43 @@
 This is the most recent Changelog. It also contains some of the changes inside the >>>UPCOMING<<< Versions (most of the time). This is for 1.7.10 btw.
 
 
-6.14.14: (Not released yet, released whenever it needs to be)
+6.14.18: (Not released yet, released whenever it needs to be)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.14.13: (Not released yet, released whenever it needs to be)
+6.14.17: (Not released yet, released whenever it needs to be)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.14.12: (Not released yet, released whenever it needs to be)
+6.14.16: (Not released yet, released whenever it needs to be)
+Nothing (I tend to only add finished Stuff to the Changelog).
+
+
+6.14.15: (Not released yet, released whenever it needs to be)
+Nothing (I tend to only add finished Stuff to the Changelog).
+
+
+6.14.14:
+[FIXED] Crucibles crashing when certain Items are inserted.
+[FIXED] Bronze Drums were somehow allowing Acids to be contained... (was a copypaste error)
+[FIXED] Boilers somehow did not explode when they were pressurized while you harvested them with a Wrench.
+[FIXED] Ocean somehow displaced Swampwater even when it was not supposed to.
+[FIXED] Several Issues with the Rotational Pump, it should be smarter now.
+[CHANGED] Centrifuges and Sifters now have better Recipes for processing Tiny Purified Crushed Ores.
+[CHANGED] Grass Paths are now Dirt Paths, just like in most recent Vanilla Minecraft Versions. That means you can now actually place them on Dirt, Mycelium, Podzol and Coarse Dirt.
+[CHANGED] Wrenches and Monkey Wrenches now only cost 4 Units instead of 6 units of Material to make.
+[ADDED] A little bit of NEI info on Mercury Bottles and making Steel in a Crucible.
+[ADDED] Detection of Corrupted Chunks to the Ocean World Generator. This should probably help reduce the amount randomly corrupted Chunks because of Minecraft being stupid. If this turns out to be too obnoxious, I will remove parts of this Feature again.
+
+
+6.14.13:
+[FIXED] Crash Bug with Washing Stuff in Cauldron on Servers.
+[CHANGED] The Big Layer Ores like Coal and Salt now give an 8th of an EXP instead of half an EXP.
+
+
+6.14.12:
 [COMPAT] Chisel
-Granite, Andesite and Diorite of other Mods such as Botania, Ganys Surface, Et Futurum and GregTech-6 now work with Chisel.
+Granite, Andesite and Diorite of other Mods such as Botania, Ganys Surface, Et Futurum and GregTech-6 now work with Chisel, but apparently only one way...
 I removed the damn Cobblestone and Glowstone OreDict equivalencies.
 Glowtus can now be chiseled into different Colors and GT6 Logs can now be chiseled into their All-Bark Variants.
 [COMPAT] The Witchery Spirit World now generates GT6 Stuff properly just like the Overworld.
@@ -24,6 +50,8 @@ Glowtus can now be chiseled into different Colors and GT6 Logs can now be chisel
 [FIXED] Clientside FPS Lag when holding Rightclick with GT6 Tools is now gone for good.
 [FIXED] The Boxinator somehow did not have Recipes for Nugget->Ingot, Chunk->Ingot or Dust piling. This was a really big oversight.
 [FIXED] Bluepower Volcanos and Immersive Engineering Village Houses no longer let you skip to Tungsten and aluminium anymore.
+[FIXED] Coke "Ingots" were not considered "fuelCoke", "coke" and "coalCoke" for the OreDict, like Coke "Gems" are.
+[FIXED] Burning Boxes were permitting the use of tiniest Piles of Dust to "not generate Ashes", which was a Bug. Now it will require a minimum amount of Material to at least give a 72nd Pile of Ashes (if the Material you use would give Ashes in the first place).
 [CHANGED]
 A bunch of Recipes that previously outputted Iron, now output something else, usually Hematite.
 I try to make people either process Hematite properly or dig up Black Sand. Looting it from places is okay too.
@@ -42,12 +70,16 @@ Centrifuging Lava or Pahoehoe gives Lead instead of Iron now.
 [CHANGED] Crucible Crossings will take Vertical Redstone Signals and emit a weak Signal Horizontally, making it easier to Redstone Molds and Faucets.
 [CHANGED] Craponite Dust is now the new Main Component of Purple Drink instead of Sugar.
 [CHANGED] Dynamite now has Fortune V instead of Fortune II, making it better than most Hand Tools.
+[CHANGED] Placing Dynamite with the Hand Drill will automatically link it to Remote Activators in your Hotbar.
+[CHANGED] Lignite now has twice the Furnace Burn Value, meaning it is now half as good as Coal. (It was a quarter before, and yes the Fluidized Bed Burning Box takes it into account too)
+[CHANGED] Rotational Pumps no longer distinguish between the 4 different Types of Water, and just consider them the same when scanning the Area. This should make Areas where Rivers and Oceans mix much easier to drain.
+[ADDED] Scraps can now be placed on the Floor like Ingots and Plates. Though they wont stack tall. They just are on the Floor and look all Dusty and such.
 [ADDED] NEI now additionally shows a Version with Black Sand Blocks and Coal whenever an Alloying Recipe for when Magnetite or Carbon is shown.
 [ADDED] GT6 Flowers now work in Flower Pots, I hope. Slightly glitchy for sure.
 [ADDED] Brick Burning Box. Very inefficient and Earlygame.
 [ADDED] GT6 Dungeons now have Ore Blocks and Ore Crates in their Storage Rooms.
 [ADDED] Asbestos now has Jade as a Byproduct, making Fortune III Tools more available.
-[ADDED] The Drain can now also produce liquid Slime should a Slime be ontop of it. Works with Green, Magma, Maze and Pink Slimes.
+[ADDED] The Drain can now produce liquid Slime should a Slime be ontop of it, and Squid Ink when there is a Squid ontop (good luck figuring out how to do that, I know a way). Slime works with Green, Magma, Maze and Pink Slimes.
 [ADDED] GT6 Logs can now be crafted into their All-Bark Variant using some Bark. For Non-GT6 Logs you will still have to use the Soft Hammer after placing the Log though.
 [ADDED] Raw Ore Items similar to the ones in the latest Minecraft Snapshots. They will only be dropped if you use a Fortune Tool to harvest the GT6 Ore Blocks.
 

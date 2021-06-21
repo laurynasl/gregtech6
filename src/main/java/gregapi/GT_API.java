@@ -51,6 +51,7 @@ import enviromine.EnviroPotion;
 import gregapi.api.Abstract_Mod;
 import gregapi.api.Abstract_Proxy;
 import gregapi.block.ToolCompat;
+import gregapi.block.multitileentity.IMultiTileEntity.IMTE_CanConnectRedstone;
 import gregapi.block.prefixblock.PrefixBlockFallingEntity;
 import gregapi.block.prefixblock.PrefixBlockTileEntity;
 import gregapi.code.ArrayListNoNulls;
@@ -187,11 +188,14 @@ public class GT_API extends Abstract_Mod {
 		BI.BAROMETER.toString();
 		OP.ore.toString();
 		
+		// Make sure Icons are initialized.
 		Textures.BlockIcons.VOID.toString();
 		Textures.ItemIcons .VOID.toString();
 		ErrorRenderer.INSTANCE.toString();
-		// Guess what, I once got a random Crash from that one not being classloaded...
+		
+		// Guess what, I got a random Crash from one of those not being classloaded...
 		UT.Entities.class.toString();
+		IMTE_CanConnectRedstone.class.toString();
 		
 		try {
 			DW = new DummyWorld();
@@ -530,6 +534,11 @@ public class GT_API extends Abstract_Mod {
 		SPAWN_ZONE_MOB_PROTECTION               = ConfigsGT.GREGTECH.get("general", "PreventMobSpawnsCloseToSpawn"     , T);
 		DISABLE_GT6_CRAFTING_RECIPES            = ConfigsGT.GREGTECH.get("general", "DisableGT6CraftingRecipesDEBUG"   , F);
 		TOOL_SOUNDS                             = ConfigsGT.GREGTECH.get("general", "sound_tools"                      , T);
+		ZOMBIES_DIG_WITH_TOOLS                  = ConfigsGT.GREGTECH.get("general", "Zombies_Dig_With_Tools"           , F);
+		ZOMBIES_DIG_TILEENTITIES                = ConfigsGT.GREGTECH.get("general", "Zombies_Dig_TileEntities"         , F);
+		ZOMBIES_HOLD_PICKAXES                   = ConfigsGT.GREGTECH.get("general", "Zombies_Hold_Pickaxes"            , F);
+		ZOMBIES_HOLD_TNT                        = ConfigsGT.GREGTECH.get("general", "Zombies_Hold_TNT"                 , F);
+		ZOMBIES_IGNITE_HELD_TNT                 = ConfigsGT.GREGTECH.get("general", "Zombies_Ignite_Held_TNT"          , F);
 		UT.Sounds.MULTITHREADED                 = ConfigsGT.GREGTECH.get("general", "sound_multi_threading"            , F);
 		
 		ENABLE_ADDING_IC2_MACERATOR_RECIPES     = ConfigsGT.GREGTECH.get("ic2", "EnableAddingMaceratorRecipes"         , T);
@@ -576,7 +585,7 @@ public class GT_API extends Abstract_Mod {
 		if (ConfigsGT.GREGTECH.get("general", "disable_STDOUT"             , F)) System.out.close();
 		if (ConfigsGT.GREGTECH.get("general", "disable_STDERR"             , F)) System.err.close();
 		if (ConfigsGT.GREGTECH.get("general", "hardermobspawners"          , T)) Blocks.mob_spawner.setHardness(500.0F);
-		if (ConfigsGT.GREGTECH.get("general", "blastresistantmobspawners"  , T)) Blocks.mob_spawner.setResistance(6000000.0F);
+		if (ConfigsGT.GREGTECH.get("general", "blastresistantmobspawners"  , T)) Blocks.mob_spawner.setResistance(6000000.0F); else Blocks.mob_spawner.setResistance(60);
 		
 		FIRE_EXPLOSIONS                     = ConfigsGT.GREGTECH.get("machines", "explode_by_fire"    , T);
 		RAIN_EXPLOSIONS                     = ConfigsGT.GREGTECH.get("machines", "explode_by_rain"    , T);

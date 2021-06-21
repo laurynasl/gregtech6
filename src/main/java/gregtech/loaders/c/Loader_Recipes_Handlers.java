@@ -158,6 +158,7 @@ public class Loader_Recipes_Handlers implements Runnable {
 		RM.Anvil                .add(new RecipeMapHandlerPrefixShredding(crystalline            , 1, null           , 0, NF,  16, 0,    16, NF, dust                    , 1, null       , 0, ST.emptySlot(), NI, T, F, F, new And(ANTIMATTER.NOT, MORTAR)));
 		RM.Anvil                .add(new RecipeMapHandlerPrefixShredding(cleanGravel            , 1, null           , 0, NF,  16, 0,    16, NF, dust                    , 1, null       , 0, ST.emptySlot(), NI, T, F, F, new And(ANTIMATTER.NOT, MORTAR)));
 		RM.Anvil                .add(new RecipeMapHandlerPrefixShredding(cluster                , 1, null           , 0, NF,  16, 0,    16, NF, dust                    , 2, dustTiny   , 1, ST.emptySlot(), NI, T, F, F, new And(ANTIMATTER.NOT, MORTAR)));
+		RM.Anvil                .add(new RecipeMapHandlerPrefixShredding(oreRaw                 , 1, null           , 0, NF,  16, 0,    16, NF, crushed                 , 1, crushedTiny, 6, ST.emptySlot(), NI, T, F, F, new And(ANTIMATTER.NOT, MORTAR)));
 		RM.Anvil                .add(new RecipeMapHandlerPrefixShredding(crushed                , 1, null           , 0, NF,  16, 0,    16, NF, dust                    , 1, dustDiv72  , 9, ST.emptySlot(), NI, T, F, F, new And(ANTIMATTER.NOT, MORTAR)));
 		RM.Anvil                .add(new RecipeMapHandlerPrefixShredding(crushedPurified        , 1, null           , 0, NF,  16, 0,    16, NF, dust                    , 1, dustDiv72  ,18, ST.emptySlot(), NI, T, F, F, new And(ANTIMATTER.NOT, MORTAR)));
 		RM.Anvil                .add(new RecipeMapHandlerPrefixShredding(crushedCentrifuged     , 1, null           , 0, NF,  16, 0,    16, NF, dust                    , 1, dustDiv72  ,27, ST.emptySlot(), NI, T, F, F, new And(ANTIMATTER.NOT, MORTAR)));
@@ -404,6 +405,7 @@ public class Loader_Recipes_Handlers implements Runnable {
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(nugget                          , 9, NF,  16,16,     0, NF, ingot                   , 1, ST.tag( 9), NI, F, F, F, ANTIMATTER.NOT));
 		RM.Boxinator    .add(new RecipeMapHandlerPrefix(chunkGt                         , 4, NF,  16,16,     0, NF, ingot                   , 1, ST.tag( 4), NI, F, F, F, ANTIMATTER.NOT));
 		
+		GameRegistry.addRecipe(new AdvancedCrafting1ToY(oreRaw                      , gem                       , 1, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(oreRaw                      , rawOreChunk               , 3, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(crushed                     , crushedTiny               , 9, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(crushedPurified             , crushedPurifiedTiny       , 9, F));

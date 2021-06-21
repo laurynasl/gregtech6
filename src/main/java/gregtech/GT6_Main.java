@@ -43,6 +43,7 @@ import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import gregapi.api.Abstract_Mod;
 import gregapi.api.Abstract_Proxy;
+import gregapi.block.multitileentity.MultiTileEntityRegistry;
 import gregapi.block.prefixblock.PrefixBlockItem;
 import gregapi.code.ArrayListNoNulls;
 import gregapi.code.IItemContainer;
@@ -330,7 +331,7 @@ public class GT6_Main extends Abstract_Mod {
 			for (Runnable tRunnable : tList) try {tRunnable.run();} catch(Throwable e) {e.printStackTrace(ERR);}
 		}};
 	}
-
+	
 	@Override
 	public void onModInit2(FMLInitializationEvent aEvent) {
 		for (FluidContainerData tData : FluidContainerRegistry.getRegisteredFluidContainerData()) if (tData.filledContainer.getItem() == Items.potionitem && ST.meta_(tData.filledContainer) == 0) {tData.fluid.amount = 0; break;}
@@ -348,7 +349,7 @@ public class GT6_Main extends Abstract_Mod {
 		);
 		for (Runnable tRunnable : tList) try {tRunnable.run();} catch(Throwable e) {e.printStackTrace(ERR);}
 	}
-
+	
 	@Override
 	public void onModPostInit2(FMLPostInitializationEvent aEvent) {
 		ItemStack tLignite = ST.make(MD.UB, "ligniteCoal", 1, 0);
@@ -431,6 +432,25 @@ public class GT6_Main extends Abstract_Mod {
 		if (IL.BTL_Bedrock.exists())        RM.BedrockOreList.addFakeRecipe(F, ST.array(IL.BTL_Bedrock        .get(1)), ST.array(ST.make(Blocks.cobblestone, 1, 0, "Various Cobblestone Types"), OP.dustImpure.mat(MT.Bedrock, 1)), null, new long[] {9990, 10}, FL.array(FL.lube(100)), null, 0, 0, 0);
 		
 		
+		MultiTileEntityRegistry aRegistry = MultiTileEntityRegistry.getRegistry("gt.multitileentity");
+		
+		RM.Other.addFakeRecipe(F, ST.array(
+		  IL.Ceramic_Mold.getWithName(1, "Don't forget to shape the Mold to pour it")
+		, IL.Ceramic_Crucible.getWithName(1, "Wait until it all turns into Steel")
+		, ST.make(aRegistry.getItem(1302), "Point a running Engine into the Crucible to blow Air")
+		, ST.make(OP.ingot.mat(MT.Fe, 1), "Throw Iron into Crucible")
+		, ST.make(aRegistry.getItem(1199), "Heat up the Crucible using a Burning Box")
+		, ST.make(OP.ingot.mat(MT.WroughtIron, 1), "Or throw Wrought Iron into the Crucible, either works")
+		), ST.array(OP.dust.mat(MT.Steel, 1), OP.ingot.mat(MT.Steel, 1), OP.plate.mat(MT.Steel, 1), OP.scrapGt.mat(MT.Steel, 1), OP.stick.mat(MT.Steel, 1), OP.gearGt.mat(MT.Steel, 1)), null, ZL_LONG, FL.array(FL.Air.make(1), FL.Air_Nether.make(1), FL.Air_End.make(1)), ZL_FS, 0, 0, 0);
+		
+		RM.Other.addFakeRecipe(F, ST.array(
+		  ST.make(OP.dust.mat(MT.OREMATS.Cinnabar, 2), "Throw two Units of Cinnabar into Crucible")
+		, IL.Ceramic_Crucible.getWithName(1, "Wait until it melts into Mercury")
+		, IL.Bottle_Empty.getWithName(1, "Rightclick the Crucible with an Empty Bottle")
+		, NI
+		, ST.make(aRegistry.getItem(1199), "Heat up the Crucible using a Burning Box")
+		, NI
+		), ST.array(IL.Bottle_Mercury.get(1)), null, ZL_LONG, ZL_FS, ZL_FS, 0, 0, 0);
 		
 		RM.Other.addFakeRecipe(F, ST.array(
 		  ST.make(BlocksGT.Saplings_AB, 1, 0, "Find a Rubber Tree in a Taiga Biome or similar")
