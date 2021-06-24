@@ -1333,11 +1333,11 @@ public class MT {
 	
 	
 	Charcoal                = coal          ( 8336, "Charcoal"              , SET_LIGNITE           , 100,  70,  70, 255, TICKS_PER_SMELT* 8).setBurning(Ash, U4)                                                                                                   .uumMcfg( 0, C              , 1*U)                                                                                                                          .setSmelting(C, U2).heat(1700, C.mBoilingPoint).setDensity(0.929).aspects(TC.POTENTIA, 2, TC.IGNIS, 2),
-	Coal                    = coal          ( 8334, "Coal"                  , SET_LIGNITE           ,  70,  70,  70, 255, TICKS_PER_SMELT* 8).setBurning(DarkAsh, U4)                                                                                               .uumMcfg( 1, C              , 2*U)                                                                                                                          .setSmelting(C, U2).heat(1700, C.mBoilingPoint).setDensity(0.929).aspects(TC.POTENTIA, 2, TC.IGNIS, 2),
-	CoalCoke                = coal          ( 8349, "Coal Coke"             , SET_LIGNITE           , 140, 140, 170, 255, TICKS_PER_SMELT*16, "Coke").setBurning(DarkAsh, U9)                                                                                       .uumMcfg( 1, C              , 2*U)                                                                                                                          .setSmelting(C, U ).heat(1700, C.mBoilingPoint).setDensity(0.929).aspects(TC.POTENTIA, 3, TC.IGNIS, 1).steal(Coal),
-	Anthracite              = coal          ( 8362, "Anthracite"            , SET_LIGNITE           ,  90,  90,  90, 255, TICKS_PER_SMELT*24).setBurning(DarkAsh, U2)                                                                                               .uumMcfg( 1, C              , 4*U)                                                                                                                          .setSmelting(C, U2).heat(1700, C.mBoilingPoint).aspects(TC.POTENTIA, 3, TC.IGNIS, 3),
-	Prismane                = coal          ( 8363, "Prismane"              , SET_LIGNITE           , 115, 110, 110, 255, TICKS_PER_SMELT*48).setBurning(DarkAsh, U)                                                                                                .uumMcfg( 1, C              , 8*U)                                                                                                                          .aspects(TC.POTENTIA, 4, TC.IGNIS, 4),
-	Lonsdaleite             = coal          ( 8364, "Lonsdaleite"           , SET_DIAMOND           , 140, 130, 130, 255, TICKS_PER_SMELT*96).setBurning(DarkAsh, U*2)                                                                                              .uumMcfg( 1, C              ,16*U)                                                                                                                          .aspects(TC.POTENTIA, 6, TC.IGNIS, 6),
+	Coal                    = coal          ( 8334, "Coal"                  , SET_LIGNITE           ,  70,  70,  70, 255, TICKS_PER_SMELT* 8).setBurning(DarkAsh, U4)                                                                                               .uumMcfg( 0, C              , 1*U)                                                                                                                          .setSmelting(C, U2).heat(1700, C.mBoilingPoint).setDensity(0.929).aspects(TC.POTENTIA, 2, TC.IGNIS, 2),
+	CoalCoke                = coal          ( 8349, "Coal Coke"             , SET_LIGNITE           , 140, 140, 170, 255, TICKS_PER_SMELT*16, "Coke").setBurning(DarkAsh, U9)                                                                                       .uumMcfg( 0, C              , 1*U)                                                                                                                          .setSmelting(C, U ).heat(1700, C.mBoilingPoint).setDensity(0.929).aspects(TC.POTENTIA, 3, TC.IGNIS, 1).steal(Coal),
+	Anthracite              = coal          ( 8362, "Anthracite"            , SET_LIGNITE           ,  90,  90,  90, 255, TICKS_PER_SMELT*24).setBurning(DarkAsh, U2)                                                                                               .uumMcfg( 1, C              , 2*U)                                                                                                                          .setSmelting(C, U2).heat(1700, C.mBoilingPoint).aspects(TC.POTENTIA, 3, TC.IGNIS, 3),
+	Prismane                = coal          ( 8363, "Prismane"              , SET_LIGNITE           , 115, 110, 110, 255, TICKS_PER_SMELT*48).setBurning(DarkAsh, U)                                                                                                .uumMcfg( 1, C              , 4*U)                                                                                                                          .aspects(TC.POTENTIA, 4, TC.IGNIS, 4),
+	Lonsdaleite             = coal          ( 8364, "Lonsdaleite"           , SET_DIAMOND           , 140, 130, 130, 255, TICKS_PER_SMELT*96).setBurning(DarkAsh, U*2)                                                                                              .uumMcfg( 1, C              , 8*U)                                                                                                                          .aspects(TC.POTENTIA, 6, TC.IGNIS, 6),
 	Lignite                 = coal          ( 8337, "Lignite"               , SET_LIGNITE           , 100,  70,  70, 255, TICKS_PER_SMELT* 4).setBurning(DarkAsh, U4)                                                                                               .setMcfg( 7, C              , 2*U, H2O              , 4*U, DarkAsh          , 1*U)                                                                          .setDensity(0.865).setLocal("Lignite Coal"),
 	LigniteCoke             = coal          ( 8365, "Lignite Coke"          , SET_LIGNITE           , 140, 100, 100, 255, TICKS_PER_SMELT* 8).setBurning(DarkAsh, U9)                                                                                               .setMcfg( 7, C              , 2*U, DarkAsh          , 1*U)                                                                                                  .setDensity(0.865),
 	PetCoke                 = coal          ( 8390, "Petroleum Coke"        , SET_LIGNITE           , 150, 150, 180, 255, TICKS_PER_SMELT*32, "PetCoke").setBurning(DarkAsh, U9)                                                                                    .uumMcfg( 1, C              , 2*U, S                , 1*U)                                                                                                  .setDensity(0.929).aspects(TC.POTENTIA, 3, TC.IGNIS, 1).steal(Coal),
@@ -1465,11 +1465,11 @@ public class MT {
 	WroughtIron             = metalmachnd   ( 8643, "Wrought Iron"          , SET_METALLIC          , 200, 180, 180     , RAILS, MORTAR, MAGNETIC_PASSIVE, MOLTEN, "WrougtIron")                                                                                    .uumAloy( 0, Fe             , 1*U)                                                                                                                          .aspects(TC.METALLUM, 2, TC.INSTRUMENTUM, 1).setPulver(Fe, U).steal(Fe).qual(3,  6.0,  384,  2).setRGBaLiquid(255, 80, 40, 255).heat(Fe.mMeltingPoint + 200, Fe.mBoilingPoint),
 	
 	
-	Alduorite               = setalore      ( 8760, "Alduorite"                                     , 159, 180, 180     )                                                                                                                                                                                                                                                                                                       .aspects(TC.METALLUM, 2, TC.PERMUTATIO                          , 1).heat(1567),
-	Infuscolium             = metalore      ( 8761, "Infuscolium"                                   , 146,  33,  86     )                                                                                                                                                                                                                                                                                                       .aspects(TC.METALLUM, 2, TC.PRAECANTIO                          , 1).heat(1828),
-	Rubracium               = metalore      ( 8762, "Rubracium"                                     , 151,  45,  45     )                                                                                                                                                                                                                                                                                                       .aspects(TC.METALLUM, 2, TC.LUCRUM                              , 1).heat(1847),
-	Meutoite                = metalore      ( 8763, "Meutoite"                                      ,  95,  82, 105     )                                                                                                                                                                                                                                                                                                       .aspects(TC.METALLUM, 2, TC.ALIENIS                             , 1).heat(1837),
-	Lemurite                = metalore      ( 8764, "Lemurite"                                      , 219, 219, 219     )                                                                                                                                                                                                                                                                                                       .aspects(TC.METALLUM, 2, TC.MOTUS                               , 1).heat(1179),
+	Alduorite               = setalore      ( 8760, "Alduorite"                                     , 159, 180, 180     , "Adluorite")                                                                                                                                                                                                                                                                                          .aspects(TC.METALLUM, 2, TC.PERMUTATIO                          , 1).qual(3,  5.0,  256, 2).heat(1567),
+	Infuscolium             = metalore      ( 8761, "Infuscolium"                                   , 146,  33,  86     )                                                                                                                                                                                                                                                                                                       .aspects(TC.METALLUM, 2, TC.PRAECANTIO                          , 1).qual(3,  5.0,  256, 2).heat(1828),
+	Rubracium               = metalore      ( 8762, "Rubracium"                                     , 151,  45,  45     )                                                                                                                                                                                                                                                                                                       .aspects(TC.METALLUM, 2, TC.LUCRUM                              , 1).qual(3,  5.0,  256, 2).heat(1847),
+	Meutoite                = metalore      ( 8763, "Meutoite"                                      ,  95,  82, 105     )                                                                                                                                                                                                                                                                                                       .aspects(TC.METALLUM, 2, TC.ALIENIS                             , 1).qual(3,  5.0,  256, 2).heat(1837),
+	Lemurite                = metalore      ( 8764, "Lemurite"                                      , 219, 219, 219     )                                                                                                                                                                                                                                                                                                       .aspects(TC.METALLUM, 2, TC.MOTUS                               , 1).qual(3,  5.0,  256, 2).heat(1179),
 	Aredrite                = metalore      ( 8701, "Aredrite"                                      , 255, 255,   0     )                                                                                                                                                                                                                                                                                                       .aspects(TC.METALLUM, 2, TC.STRONTIO                            , 1).qual(3,  6.0, 1440, 3).heat(2240),
 	Ceruclase               = metalore      ( 8765, "Ceruclase"                                     , 140, 189, 208     )                                                                                                                                                                                                                                                                                                       .aspects(TC.METALLUM, 2, TC.TEMPESTAS                           , 1).qual(3,  6.0, 1280, 2).heat(1867),
 	Oureclase               = metalore      ( 8767, "Oureclase"                                     , 183,  98,  21     )                                                                                                                                                                                                                                                                                                       .aspects(TC.METALLUM, 2, TC.AER                                 , 1).qual(3,  6.0, 1920, 3).heat(2789),
@@ -2340,38 +2340,38 @@ public class MT {
 			
 			Angmallen               .put(MD.MET);
 			Hepatizon               .put(MD.MET);
-			Alduorite               .put(MD.MET).visDefault();
-			Infuscolium             .put(MD.MET).visDefault();
-			Rubracium               .put(MD.MET).visDefault();
-			Meutoite                .put(MD.MET).visDefault();
-			Lemurite                .put(MD.MET).visDefault();
-			Aredrite                .put(MD.MET).visDefault();
-			Ceruclase               .put(MD.MET).visDefault();
-			Atl                     .put(MD.MET);
-			Oureclase               .put(MD.MET).visDefault();
-			Kalendrite              .put(MD.MET).visDefault();
-			Orichalcum              .put(MD.MET).visDefault();
-			Carmot                  .put(MD.MET).visDefault();
-			Sanguinite              .put(MD.MET).visDefault();
-			Vyroxeres               .put(MD.MET).visDefault();
-			Eximite                 .put(MD.MET).visDefault();
-			Prometheum              .put(MD.MET).visDefault();
-			Ignatius                .put(MD.MET).visDefault();
-			Vulcanite               .put(MD.MET).visDefault();
-			DeepIron                .put(MD.MET).visDefault();
-			ShadowIron              .put(MD.MET).visDefault();
 			DamascusSteel           .put(MD.MET);
-			Adamantine              .put(MD.MET);
-			AstralSilver            .put(MD.MET);
-			Midasium                .put(MD.MET);
-			Mithril                 .put(MD.MET);
-			ShadowSteel             .put(MD.MET).visDefault();
-			Inolashite              .put(MD.MET).visDefault();
-			Haderoth                .put(MD.MET).visDefault();
-			Celenegil               .put(MD.MET).visDefault();
-			Desichalkos             .put(MD.MET).visDefault();
-			Tartarite               .put(MD.MET);
-			Amordrine               .put(MD.MET).visDefault();
+			Aredrite                .put(MD.MET); // Fantasy
+			Atl                     .put(MD.MET); // Fantasy
+			Tartarite               .put(MD.MET); // Fantasy
+			Adamantine              .put(MD.MET); // Fantasy
+			AstralSilver            .put(MD.MET); // Fantasy
+			Mithril                 .put(MD.MET); // Fantasy
+			Infuscolium             .put(MD.MET).visDefault(); // Fantasy
+			Rubracium               .put(MD.MET).visDefault(); // Fantasy
+			Oureclase               .put(MD.MET).visDefault(); // Fantasy
+			Orichalcum              .put(MD.MET).visDefault(); // Fantasy
+			Carmot                  .put(MD.MET).visDefault(); // Fantasy
+			Prometheum              .put(MD.MET).visDefault(); // Fantasy
+			DeepIron                .put(MD.MET).visDefault(); // Fantasy
+			Haderoth                .put(MD.MET).visDefault(); // Fantasy
+			Celenegil               .put(MD.MET).visDefault(); // Fantasy
+			Meutoite                .put(MD.MET).visDefault(); // Ender
+			Eximite                 .put(MD.MET).visDefault(); // Ender
+			Desichalkos             .put(MD.MET).visDefault(); // Ender
+			Midasium                .put(MD.MET); // Nether
+			Alduorite               .put(MD.MET).visDefault(); // Nether
+			Lemurite                .put(MD.MET).visDefault(); // Nether
+			Ceruclase               .put(MD.MET).visDefault(); // Nether
+			Kalendrite              .put(MD.MET).visDefault(); // Nether
+			Sanguinite              .put(MD.MET).visDefault(); // Nether
+			Vyroxeres               .put(MD.MET).visDefault(); // Nether
+			Ignatius                .put(MD.MET).visDefault(); // Nether
+			Vulcanite               .put(MD.MET).visDefault(); // Nether
+			ShadowIron              .put(MD.MET).visDefault(); // Nether
+			ShadowSteel             .put(MD.MET).visDefault(); // Nether
+			Inolashite              .put(MD.MET).visDefault(); // Nether
+			Amordrine               .put(MD.MET).visDefault(); // Nether
 			
 			
 			Force                   .put(COMMON_ORE).visDefault(); // Was this one DartCraft?
@@ -2778,23 +2778,25 @@ public class MT {
 			KIO3                            .addOreByProducts(NaCl                      , KCl                       );
 			Endstone                        .addOreByProducts(He_3                      , Be                        );
 			Endium                          .addOreByProducts(OREMATS.Wolframite        , OREMATS.Sperrylite        , OREMATS.Tantalite     , Ke);
-			Glowstone                       .addOreByProducts(Redstone                  , Au                        , Gloomstone            );
+			
+			Glowstone                       .addOreByProducts(Redstone                  , Au                        , Gloomstone            , MT.FluoriteYellow     );
 			GlowstoneCeres                  .addOreByProducts(Redstone                  , Au                        , Glowstone             );
 			GlowstoneIo                     .addOreByProducts(Redstone                  , Au                        , Glowstone             );
 			GlowstoneEnceladus              .addOreByProducts(Redstone                  , Au                        , Glowstone             );
 			GlowstoneProteus                .addOreByProducts(Redstone                  , Au                        , Glowstone             );
 			GlowstonePluto                  .addOreByProducts(Redstone                  , Au                        , Glowstone             );
-			Gloomstone                      .addOreByProducts(Redstone                  , Au                        , Glowstone             );
-			Efrine                          .addOreByProducts(SoulSand                  , Be                        , OREMATS.Pentlandite   , Zircon);
+			Gloomstone                      .addOreByProducts(Redstone                  , Au                        , Glowstone             , MT.FluoriteBlue       );
+			Efrine                          .addOreByProducts(SoulSand                  , Be                        , OREMATS.Pentlandite   , Zircon                , MT.FluoriteGreen);
 			AncientDebris                   .addOreByProducts(SoulSand                  , Efrine                    , OREMATS.Huebnerite    );
-			SoulSand                        .addOreByProducts(Coal                      , NetherQuartz              , Niter                 , Gloomstone);
-			NetherQuartz                    .addOreByProducts(OREMATS.Barite            , Efrine                    , VoidQuartz);
-			VoidQuartz                      .addOreByProducts(OREMATS.Barite            , Efrine                    , NetherQuartz);
+			SoulSand                        .addOreByProducts(Coal                      , NetherQuartz              , Niter                 , Gloomstone            );
+			NetherQuartz                    .addOreByProducts(OREMATS.Barite            , Efrine                    , VoidQuartz            , MT.FluoriteWhite      );
+			VoidQuartz                      .addOreByProducts(OREMATS.Barite            , Efrine                    , NetherQuartz          , MT.FluoriteMagenta    );
 			STONES.Quartzite                .addOreByProducts(CertusQuartz              , OREMATS.Barite            , Fe2O3                 );
 			MilkyQuartz                     .addOreByProducts(CertusQuartz              , OREMATS.Barite            );
 			CertusQuartz                    .addOreByProducts(MilkyQuartz               , OREMATS.Barite            );
 			ChargedCertusQuartz             .addOreByProducts(MilkyQuartz               , OREMATS.Barite            );
 			BlackQuartz                     .addOreByProducts(MilkyQuartz               , OREMATS.Barite            );
+			
 			Syrmorite                       .addOreByProducts(OREMATS.Stannite          , OREMATS.Tetrahedrite      , Be                    );
 			Octine                          .addOreByProducts(OREMATS.Pentlandite       , OREMATS.Huebnerite        , Zircon                );
 			Ga                              .addOreByProducts(Zn                        , Se                        );
@@ -2860,7 +2862,7 @@ public class MT {
 			Mg                              .addOreByProducts(Olivine                   , MgCO3                     );
 			Ardite                          .addOreByProducts(OREMATS.Cobaltite         );
 			Obsidian                        .addOreByProducts(Olivine                   );
-			STONES.Redrock                  .addOreByProducts(ClayBrown                 );
+			STONES.Redrock                  .addOreByProducts(ClayRed                   );
 			STONES.Limestone                .addOreByProducts(CaCO3                     );
 			STONES.Marble                   .addOreByProducts(CaCO3                     );
 			STONES.Eclogite                 .addOreByProducts(TiO2                      );
