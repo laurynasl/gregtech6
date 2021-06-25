@@ -382,7 +382,21 @@ public class Loader_Recipes_Other implements Runnable {
 		CR.remove(x, x, x, dust.mat(MT.Zn, 1));
 		CR.remove(x, y = dust.mat(MT.Ni, 1));
 		CR.remove(x = dust.mat(MT.Fe, 1), x, y);
-		CR.remove(dust.mat(MT.Au, 1), dust.mat(MT.Ag, 1));
+		CR.remove(dust.mat(MT.Cu         , 1), dust.mat(MT.Sn        , 1));
+		CR.remove(dust.mat(MT.Cu         , 1), dust.mat(MT.Zn        , 1));
+		CR.remove(dust.mat(MT.Fe         , 1), dust.mat(MT.Mn        , 1));
+		CR.remove(dust.mat(MT.Fe         , 1), dust.mat(MT.Bronze    , 1));
+		CR.remove(dust.mat(MT.Au         , 1), dust.mat(MT.Bronze    , 1));
+		CR.remove(dust.mat(MT.Au         , 1), dust.mat(MT.Ag        , 1));
+		CR.remove(dust.mat(MT.Au         , 1), dust.mat(MT.Fe        , 1));
+		CR.remove(dust.mat(MT.Infuscolium, 1), dust.mat(MT.DeepIron  , 1));
+		CR.remove(dust.mat(MT.ShadowIron , 1), dust.mat(MT.Lemurite  , 1));
+		CR.remove(dust.mat(MT.Alduorite  , 1), dust.mat(MT.Ceruclase , 1));
+		CR.remove(dust.mat(MT.Mithril    , 1), dust.mat(MT.Rubracium , 1));
+		CR.remove(dust.mat(MT.Pt         , 1), dust.mat(MT.Orichalcum, 1));
+		CR.remove(dust.mat(MT.Eximite    , 1), dust.mat(MT.Meutoite  , 1));
+		CR.remove(dust.mat(MT.Adamantine , 1), dust.mat(MT.Atl       , 1));
+		CR.remove(dust.mat(MT.Prometheum , 1), dust.mat(MT.Kalendrite, 1));
 		CR.remove(x = dust.mat(MT.Clay, 1), x, dust.mat(MT.PotassiumFeldspar, 1), dust.mat(MT.SiO2, 1));
 		CR.remove(dust.mat(MT.Redstone, 1), dust.mat(MT.Nikolite, 1));
 		
@@ -719,7 +733,7 @@ public class Loader_Recipes_Other implements Runnable {
 		RM.CokeOven.addRecipe1(T,  0,  3600, nugget                .mat(MT.Coal    , 9), NF, MT.Creosote.liquid(   U2, F), ingot     .mat(MT.CoalCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  3600, chunkGt               .mat(MT.Coal    , 4), NF, MT.Creosote.liquid(   U2, F), ingot     .mat(MT.CoalCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  3600, ingot                 .mat(MT.Coal    , 1), NF, MT.Creosote.liquid(   U2, F), ingot     .mat(MT.CoalCoke, 1));
-		RM.CokeOven.addRecipe1(T,  0,  3600, oreRaw                .mat(MT.Coal    , 1), NF, MT.Creosote.liquid(   U , F), ingot     .mat(MT.CoalCoke, 2));
+		RM.CokeOven.addRecipe1(T,  0,  7200, oreRaw                .mat(MT.Coal    , 1), NF, MT.Creosote.liquid(   U , F), ingot     .mat(MT.CoalCoke, 2));
 		RM.CokeOven.addRecipe1(T,  0,  3600, crushed               .mat(MT.Coal    , 1), NF, MT.Creosote.liquid(   U2, F), ingot     .mat(MT.CoalCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  3600, crushedTiny           .mat(MT.Coal    , 9), NF, MT.Creosote.liquid(   U2, F), ingot     .mat(MT.CoalCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  3600, crushedPurified       .mat(MT.Coal    , 1), NF, MT.Creosote.liquid(   U2, F), chunkGt   .mat(MT.CoalCoke, 1), chunkGt.mat(MT.CoalCoke, 1), chunkGt.mat(MT.CoalCoke, 1), chunkGt.mat(MT.CoalCoke, 1), chunkGt.mat(MT.CoalCoke, 1));
@@ -734,7 +748,7 @@ public class Loader_Recipes_Other implements Runnable {
 		RM.CokeOven.addRecipe1(T,  0,  3600, nugget                .mat(MT.Lignite , 9), NF, MT.Creosote.liquid( 3*U4, F), ingot     .mat(MT.LigniteCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  3600, chunkGt               .mat(MT.Lignite , 4), NF, MT.Creosote.liquid( 3*U4, F), ingot     .mat(MT.LigniteCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  3600, ingot                 .mat(MT.Lignite , 1), NF, MT.Creosote.liquid( 3*U4, F), ingot     .mat(MT.LigniteCoke, 1));
-		RM.CokeOven.addRecipe1(T,  0,  3600, oreRaw                .mat(MT.Lignite , 1), NF, MT.Creosote.liquid( 3*U2, F), ingot     .mat(MT.LigniteCoke, 2));
+		RM.CokeOven.addRecipe1(T,  0,  7200, oreRaw                .mat(MT.Lignite , 1), NF, MT.Creosote.liquid( 3*U2, F), ingot     .mat(MT.LigniteCoke, 2));
 		RM.CokeOven.addRecipe1(T,  0,  3600, crushed               .mat(MT.Lignite , 1), NF, MT.Creosote.liquid( 3*U4, F), ingot     .mat(MT.LigniteCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  3600, crushedTiny           .mat(MT.Lignite , 9), NF, MT.Creosote.liquid( 3*U4, F), ingot     .mat(MT.LigniteCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  3600, crushedPurified       .mat(MT.Lignite , 1), NF, MT.Creosote.liquid( 3*U4, F), chunkGt   .mat(MT.LigniteCoke, 1), chunkGt.mat(MT.LigniteCoke, 1), chunkGt.mat(MT.LigniteCoke, 1), chunkGt.mat(MT.LigniteCoke, 1), chunkGt.mat(MT.LigniteCoke, 1));
@@ -746,6 +760,13 @@ public class Loader_Recipes_Other implements Runnable {
 		RM.CokeOven.addRecipe1(T,  0, 32400, blockGem              .mat(MT.Lignite , 1), NF, MT.Creosote.liquid(27*U4, F), blockGem  .mat(MT.LigniteCoke, 1));
 		
 		RM.CokeOven.addRecipe1(T,  0,  3600, dust                  .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(  U40, F), dustTiny  .mat(MT.Asphalt, 1));
+		RM.CokeOven.addRecipe1(T,  0,  7200, oreRaw                .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(  U20, F), dustTiny  .mat(MT.Asphalt, 2));
+		RM.CokeOven.addRecipe1(T,  0,  3600, crushed               .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(  U40, F), dustTiny  .mat(MT.Asphalt, 1));
+		RM.CokeOven.addRecipe1(T,  0,  3600, crushedTiny           .mat(MT.Oilshale, 9), NF, MT.Oil     .liquid(  U40, F), dustTiny  .mat(MT.Asphalt, 1));
+		RM.CokeOven.addRecipe1(T,  0,  3600, crushedPurified       .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(  U40, F), dustTiny  .mat(MT.Asphalt, 1));
+		RM.CokeOven.addRecipe1(T,  0,  3600, crushedPurifiedTiny   .mat(MT.Oilshale, 9), NF, MT.Oil     .liquid(  U40, F), dustTiny  .mat(MT.Asphalt, 1));
+		RM.CokeOven.addRecipe1(T,  0,  3600, crushedCentrifuged    .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(  U40, F), dustTiny  .mat(MT.Asphalt, 1));
+		RM.CokeOven.addRecipe1(T,  0,  3600, crushedCentrifugedTiny.mat(MT.Oilshale, 9), NF, MT.Oil     .liquid(  U40, F), dustTiny  .mat(MT.Asphalt, 1));
 		RM.CokeOven.addRecipe1(T,  0, 32400, blockDust             .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(9*U40, F), dust      .mat(MT.Asphalt, 1));
 		
 		
