@@ -173,7 +173,6 @@ public class MultiItemRandomTools extends MultiItemRandom implements IItemRottab
 		for (OreDictMaterial tMat : new OreDictMaterial[] {ANY.WoodPlastic, ANY.Stone, ANY.Wax, ANY.Iron, ANY.Cu, MT.Sn, MT.Zn, MT.Pb, MT.Bi, MT.Brass, MT.Bronze, MT.BismuthBronze, MT.Au}) {
 		CR.shapeless(IL.Ceramic_Ingot_Mold_Raw          .get(1), CR.DEF_NCC, new Object[] {IL.Ceramic_Mold_Raw, OP.ingot.dat(tMat)});
 		CR.shapeless(IL.Ceramic_Chunk_Mold_Raw          .get(1), CR.DEF_NCC, new Object[] {IL.Ceramic_Mold_Raw, OP.chunkGt.dat(tMat)});
-		CR.shapeless(IL.Ceramic_Chunk_Mold_Raw          .get(1), CR.DEF_NCC, new Object[] {IL.Ceramic_Mold_Raw, OP.rockGt.dat(tMat)});
 		CR.shapeless(IL.Ceramic_Nugget_Mold_Raw         .get(1), CR.DEF_NCC, new Object[] {IL.Ceramic_Mold_Raw, OP.nugget.dat(tMat)});
 		CR.shapeless(IL.Ceramic_Plate_Mold_Raw          .get(1), CR.DEF_NCC, new Object[] {IL.Ceramic_Mold_Raw, OP.plate.dat(tMat)});
 		CR.shapeless(IL.Ceramic_Plate_Mold_Raw          .get(1), CR.DEF_NCC, new Object[] {IL.Ceramic_Mold_Raw, OP.plateGem.dat(tMat)});
@@ -475,7 +474,7 @@ public class MultiItemRandomTools extends MultiItemRandom implements IItemRottab
 		IL.Robot_Tip_Chisel                .set(addItem(8005, "Robot Arm Chisel Tip"         , "Infinitely usable inside an Autocrafter", OreDictToolNames.chisel                                                          , "gt:autocrafterinfinite", TC.stack(TC.INSTRUMENTUM, 4)));
 		IL.Robot_Tip_Rubber                .set(addItem(8006, "Robot Arm Rubber Hammer Tip"  , "Infinitely usable inside an Autocrafter", OreDictToolNames.softhammer                                                      , "gt:autocrafterinfinite", TC.stack(TC.INSTRUMENTUM, 4)));
 		IL.Robot_Tip_Blade                 .set(addItem(8007, "Robot Arm Blade Tip"          , "Infinitely usable inside an Autocrafter", OreDictToolNames.sword, OreDictToolNames.blade, OreDictToolNames.hac_cuttingboard, "gt:autocrafterinfinite", TC.stack(TC.INSTRUMENTUM, 4)));
-		IL.Robot_Tip_Drill                 .set(addItem(8008, "Robot Arm Drill Tip"          , "Infinitely usable inside an Autocrafter", OreDictToolNames.drill                                                           , "gt:autocrafterinfinite", TC.stack(TC.INSTRUMENTUM, 4)));
+		IL.Robot_Tip_Drill                 .set(addItem(8008, "Robot Arm Drill Tip"          , "Infinitely usable inside an Autocrafter", OreDictToolNames.drill, OreDictToolNames.handdrill                               , "gt:autocrafterinfinite", TC.stack(TC.INSTRUMENTUM, 4)));
 		IL.Robot_Tip_File                  .set(addItem(8009, "Robot Arm File Tip"           , "Infinitely usable inside an Autocrafter", OreDictToolNames.file                                                            , "gt:autocrafterinfinite", TC.stack(TC.INSTRUMENTUM, 4)));
 		
 		CR.shaped(IL.Robot_Tip_Wrench       .get(1), CR.DEF_REV, "wPh", "CMC", " X ", 'P', OP.plateCurved.dat(MT.SteelGalvanized), 'C', OD_CIRCUITS[3], 'M', IL.MOTORS      [3], 'X', OP.toolHeadWrench.dat(MT.Cr));
@@ -525,7 +524,8 @@ public class MultiItemRandomTools extends MultiItemRandom implements IItemRottab
 		
 		IL.Tape                            .set(addItem(12000, "Tape", "Full Roll", TC.stack(TC.PANNUS, 1), TC.stack(TC.LIMUS, 1)));
 		IL.Tape_Used                       .set(addItem(12001, "Tape", "Used Roll", TC.stack(TC.PANNUS, 1), TC.stack(TC.LIMUS, 1)));
-		CR.shaped(IL.Tape.get(1), CR.DEF, "PPP", " G ", 'P', OD.paperEmpty, 'G', OD.itemGlue);
+		CR.shaped   (IL.Tape.get(1), CR.DEF, "PPP", " G ", 'P', OD.paperEmpty, 'G', OD.itemGlue);
+		CR.shapeless(IL.Tape.get(1), CR.DEF, new Object[] {IL.Tape_Used, IL.Tape_Used, IL.Tape_Used, IL.Tape_Used});
 		tBehaviour = new Behavior_Duct_Tape(null, IL.Tape_Used.get(1), IL.Tape.get(1), 0, 10000);
 		ItemsGT.addNEIRedirects(IL.Tape.get(1), IL.Tape_Used.get(1));
 		BooksGT.BOOK_REGISTER.put(IL.Tape           , (byte)57);
@@ -535,7 +535,8 @@ public class MultiItemRandomTools extends MultiItemRandom implements IItemRottab
 		
 		IL.Duct_Tape                       .set(addItem(12002, "Duct Tape", "Full Roll", TC.stack(TC.FABRICO, 1), TC.stack(TC.LIMUS, 1), OD.craftingDuctTape));
 		IL.Duct_Tape_Used                  .set(addItem(12003, "Duct Tape", "Used Roll", TC.stack(TC.FABRICO, 1), TC.stack(TC.LIMUS, 1)));
-		CR.shaped(IL.Duct_Tape.get(1), CR.DEF, "PPP", " G ", 'P', OP.foil.dat(MT.Plastic), 'G', OD.itemGlue);
+		CR.shaped   (IL.Duct_Tape.get(1), CR.DEF, "PPP", " G ", 'P', OP.foil.dat(MT.Plastic), 'G', OD.itemGlue);
+		CR.shapeless(IL.Duct_Tape.get(1), CR.DEF, new Object[] {IL.Duct_Tape_Used, IL.Duct_Tape_Used, IL.Duct_Tape_Used, IL.Duct_Tape_Used});
 		tBehaviour = new Behavior_Duct_Tape(null, IL.Duct_Tape_Used.get(1), IL.Duct_Tape.get(1), 1, 100000);
 		ItemsGT.addNEIRedirects(IL.Duct_Tape.get(1), IL.Duct_Tape_Used.get(1));
 		BooksGT.BOOK_REGISTER.put(IL.Duct_Tape      , (byte)58);
@@ -545,7 +546,8 @@ public class MultiItemRandomTools extends MultiItemRandom implements IItemRottab
 		
 		IL.Brain_Tape                      .set(addItem(12008, "BrainTech Aerospace Advanced Reinforced Duct Tape FAL-84", "Full Roll", TC.stack(TC.TUTAMEN, 1), TC.stack(TC.LIMUS, 1), OD.craftingDuctTape));
 		IL.Brain_Tape_Used                 .set(addItem(12009, "BrainTech Aerospace Advanced Reinforced Duct Tape FAL-84", "Used Roll", TC.stack(TC.TUTAMEN, 1), TC.stack(TC.LIMUS, 1), OD.craftingDuctTape));
-		CR.shaped(IL.Brain_Tape.get(1), CR.DEF, "PPP", " G ", 'P', OP.foil.dat(ANY.W), 'G', OD.itemGlue);
+		CR.shaped   (IL.Brain_Tape.get(1), CR.DEF, "PPP", " G ", 'P', OP.foil.dat(ANY.W), 'G', OD.itemGlue);
+		CR.shapeless(IL.Brain_Tape.get(1), CR.DEF, new Object[] {IL.Brain_Tape_Used, IL.Brain_Tape_Used, IL.Brain_Tape_Used, IL.Brain_Tape_Used});
 		tBehaviour = new Behavior_Duct_Tape(null, IL.Brain_Tape_Used.get(1), IL.Brain_Tape.get(1), 2, 10000000);
 		ItemsGT.addNEIRedirects(IL.Brain_Tape.get(1), IL.Brain_Tape_Used.get(1));
 		BooksGT.BOOK_REGISTER.put(IL.Brain_Tape     , (byte)59);

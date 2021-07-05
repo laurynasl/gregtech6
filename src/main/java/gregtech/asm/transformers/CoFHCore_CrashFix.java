@@ -19,8 +19,6 @@
 
 package gregtech.asm.transformers;
 
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.AbstractInsnNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodInsnNode;
@@ -36,10 +34,7 @@ public class CoFHCore_CrashFix implements IClassTransformer {
 	@Override
 	public byte[] transform(String name, String transformedName, byte[] basicClass) {
 		if (!name.equals("cofh.CoFHCore") && !name.equals("cofh.core.util.FMLEventHandler")) return basicClass;
-		
-		ClassNode classNode = new ClassNode();
-		ClassReader classReader = new ClassReader(basicClass);
-		classReader.accept(classNode, 0);
+		ClassNode classNode = GT_ASM.makeNodes(basicClass);
 		
 		outer: for (MethodNode m: classNode.methods) {
 //          if (m.name.equals("serverStarting") || m.name.equals("handleIdMappingEvent")) {
@@ -58,8 +53,6 @@ public class CoFHCore_CrashFix implements IClassTransformer {
 			}
 		}
 		
-		ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
-		classNode.accept(writer);
-		return writer.toByteArray();
+		return GT_ASM.writeByteArray(classNode);
 	}
 }

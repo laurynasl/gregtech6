@@ -362,7 +362,10 @@ public final class OreDictManager {
 		
 		mAllRegisteredOres.add(aEvent.Ore);
 		
-		if (!ST.isGT(aEvent.Ore)) triggerVisibility(aEvent.Name);
+		if (!ST.isGT(aEvent.Ore)) {
+			// Another Mod registered something, maybe that makes a Material visible!
+			triggerVisibility(aEvent.Name);
+		}
 		
 		if (aEvent.Name.contains(" ")) {
 			registerOreSafe(aEvent.Name.replaceAll(" ", ""), aEvent.Ore);

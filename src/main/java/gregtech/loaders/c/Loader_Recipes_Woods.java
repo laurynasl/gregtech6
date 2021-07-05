@@ -150,10 +150,10 @@ public class Loader_Recipes_Woods implements Runnable {
 		CR.shaped(plateTiny          .mat(MT.Wood, 9), CR.DEF_NCC,  "s ",  " P"       , 'P', OD.buttonWood);
 		CR.shaped(ring               .mat(MT.Wood, 4), CR.DEF_NCC,  "P ",  " k"       , 'P', OD.buttonWood);
 		CR.shaped(round              .mat(MT.Wood, 9), CR.DEF_NCC,  "P ",  "fk"       , 'P', OD.buttonWood);
-		CR.shaped(toolHeadHammer     .mat(MT.Wood, 1), CR.DEF_NCC, "PP ", "PP ", "PPv", 'P', OD.buttonWood);
+		CR.shaped(toolHeadHammer     .mat(MT.Wood, 1), CR.DEF_NCC, "PP ", "PPg", "PPv", 'P', OD.buttonWood);
 		CR.shaped(toolHeadRawArrow   .mat(MT.Wood, 4), CR.DEF_NCC,        "  P", "r v", 'P', OD.buttonWood);
 		CR.shaped(toolHeadRawSword   .mat(MT.Wood, 1), CR.DEF_NCC,        " P ", "rPv", 'P', OD.buttonWood);
-		CR.shaped(toolHeadRawPickaxe .mat(MT.Wood, 1), CR.DEF_NCC,        "PPP", "r v", 'P', OD.buttonWood);
+		CR.shaped(toolHeadRawPickaxe .mat(MT.Wood, 1), CR.DEF_NCC,        "PPP", "rgv", 'P', OD.buttonWood);
 		CR.shaped(toolHeadRawShovel  .mat(MT.Wood, 1), CR.DEF_NCC,               "rPv", 'P', OD.buttonWood);
 		CR.shaped(toolHeadRawSpade   .mat(MT.Wood, 1), CR.DEF_NCC,        " P ", "r v", 'P', OD.buttonWood);
 		CR.shaped(toolHeadRawAxe     .mat(MT.Wood, 1), CR.DEF_NCC,        " PP", "rPv", 'P', OD.buttonWood);
@@ -223,7 +223,7 @@ public class Loader_Recipes_Woods implements Runnable {
 			RM.pulverizing(aEntry.mPlank, OM.dust(aEntry.mMaterialPlank.mTargetPulver, 1, 1));
 			
 			if (aEntry.mMaterialPlank != MT.PetrifiedWood)
-			RM.Injector.addRecipe1(T, 16, 128, aEntry.mPlank, FL.Mineralwater.make(1000), NF, OP.rockGt.mat(MT.PetrifiedWood, 4));
+			RM.Injector.addRecipe1(T, 16, 128, ST.amount(9, aEntry.mPlank), FL.Mineralwater.make(1000), NF, OP.rockGt.mat(MT.PetrifiedWood, 4));
 			
 			CR.shaped(gearGt             .mat(aEntry.mMaterialPlank, 1), CR.ONLY_IF_HAS_RESULT | CR.DEF_NCC, "BPB", "PsP", "BPB", 'P', aEntry.mPlank, 'B', bolt.dat(aEntry.mMaterialPlank));
 			CR.shaped(gearGtSmall        .mat(aEntry.mMaterialPlank, 1), CR.ONLY_IF_HAS_RESULT | CR.DEF_NCC,  "P ",  " s"       , 'P', aEntry.mPlank);
@@ -232,11 +232,11 @@ public class Loader_Recipes_Woods implements Runnable {
 			CR.shaped(ring               .mat(aEntry.mMaterialPlank, 4), CR.ONLY_IF_HAS_RESULT | CR.DEF_NCC,  "P ",  " k"       , 'P', aEntry.mPlank);
 			CR.shaped(round              .mat(aEntry.mMaterialPlank, 9), CR.ONLY_IF_HAS_RESULT | CR.DEF_NCC,  "P ",  "fk"       , 'P', aEntry.mPlank);
 			CR.shaped(toolHeadBuilderwand.mat(aEntry.mMaterialPlank, 1), CR.ONLY_IF_HAS_RESULT | CR.DEF_NCC,  "ks",  "fP"       , 'P', aEntry.mPlank);
-			CR.shaped(toolHeadHammer     .mat(aEntry.mMaterialPlank, 1), CR.ONLY_IF_HAS_RESULT | CR.DEF_NCC, "PP ", "PP ", "PPv", 'P', aEntry.mPlank);
+			CR.shaped(toolHeadHammer     .mat(aEntry.mMaterialPlank, 1), CR.ONLY_IF_HAS_RESULT | CR.DEF_NCC, "PP ", "PPg", "PPv", 'P', aEntry.mPlank);
 			if (!aEntry.mMaterialPlank.contains(TD.Compounds.COATED)) {
 			CR.shaped(toolHeadRawArrow   .mat(aEntry.mMaterialPlank, 4), CR.ONLY_IF_HAS_RESULT | CR.DEF_NCC,        "  P", "r v", 'P', aEntry.mPlank);
 			CR.shaped(toolHeadRawSword   .mat(aEntry.mMaterialPlank, 1), CR.ONLY_IF_HAS_RESULT | CR.DEF_NCC,        " P ", "rPv", 'P', aEntry.mPlank);
-			CR.shaped(toolHeadRawPickaxe .mat(aEntry.mMaterialPlank, 1), CR.ONLY_IF_HAS_RESULT | CR.DEF_NCC,        "PPP", "r v", 'P', aEntry.mPlank);
+			CR.shaped(toolHeadRawPickaxe .mat(aEntry.mMaterialPlank, 1), CR.ONLY_IF_HAS_RESULT | CR.DEF_NCC,        "PPP", "rgv", 'P', aEntry.mPlank);
 			CR.shaped(toolHeadRawShovel  .mat(aEntry.mMaterialPlank, 1), CR.ONLY_IF_HAS_RESULT | CR.DEF_NCC,               "rPv", 'P', aEntry.mPlank);
 			CR.shaped(toolHeadRawSpade   .mat(aEntry.mMaterialPlank, 1), CR.ONLY_IF_HAS_RESULT | CR.DEF_NCC,        " P ", "r v", 'P', aEntry.mPlank);
 			CR.shaped(toolHeadRawAxe     .mat(aEntry.mMaterialPlank, 1), CR.ONLY_IF_HAS_RESULT | CR.DEF_NCC,        " PP", "rPv", 'P', aEntry.mPlank);
@@ -286,12 +286,13 @@ public class Loader_Recipes_Woods implements Runnable {
 		for (PlankEntry aEntry : WoodDictionary.LIST_STAIRS) {
 			RM.generify(aEntry.mStair, IL.Plank_Stairs.get(1));
 			RM.pulverizing(aEntry.mStair, OM.dust(aEntry.mMaterialPlank.mTargetPulver, 3, 4));
+			
 			ItemStack aPlank = ST.validMeta_(1, aEntry.mPlank);
 			CR.remove(NI, NI, aPlank, NI, aPlank, aPlank, aPlank, aPlank, aPlank);
 			CR.remove(aPlank, NI, NI, aPlank, aPlank, NI, aPlank, aPlank, aPlank);
 			
 			if (aEntry.mMaterialPlank != MT.PetrifiedWood)
-			RM.Injector.addRecipe1(T, 16, 96, aEntry.mPlank, FL.Mineralwater.make(750), NF, OP.rockGt.mat(MT.PetrifiedWood, 3));
+			RM.Injector.addRecipe1(T, 16, 96, ST.amount(9, aEntry.mStair), FL.Mineralwater.make(750), NF, OP.rockGt.mat(MT.PetrifiedWood, 3));
 			
 			if (ST.valid(aEntry.mSlab)) {
 				CR.shaped(ST.validMeta_(1, aEntry.mSlab ), CR.DEF_NCC_MIR, "vP", 'P', aEntry.mStair);
@@ -303,11 +304,12 @@ public class Loader_Recipes_Woods implements Runnable {
 		for (PlankEntry aEntry : WoodDictionary.LIST_SLABS) {
 			RM.generify(aEntry.mSlab, IL.Plank_Slab.get(1));
 			RM.pulverizing(aEntry.mSlab, OM.dust(aEntry.mMaterialPlank.mTargetPulver, 1, 2));
+			
 			ItemStack aPlank = ST.validMeta_(1, aEntry.mPlank);
 			CR.remove(aPlank, aPlank, aPlank);
 			
 			if (aEntry.mMaterialPlank != MT.PetrifiedWood)
-			RM.Injector.addRecipe1(T, 16, 64, aEntry.mPlank, FL.Mineralwater.make(500), NF, OP.rockGt.mat(MT.PetrifiedWood, 2));
+			RM.Injector.addRecipe1(T, 16, 64, ST.amount(9, aEntry.mSlab), FL.Mineralwater.make(500), NF, OP.rockGt.mat(MT.PetrifiedWood, 2));
 			
 			if (ST.valid(aEntry.mStair)) {
 				CR.shaped(ST.validMeta_(2, aEntry.mStair), CR.DEF_NCC_MIR, "vP", "PP", 'P', aEntry.mSlab);

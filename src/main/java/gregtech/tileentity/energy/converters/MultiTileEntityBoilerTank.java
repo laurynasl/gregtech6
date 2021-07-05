@@ -116,7 +116,7 @@ public class MultiTileEntityBoilerTank extends TileEntityBase09FacingSingle impl
 			long tConversions = Math.min(mTanks[1].capacity() / 2560, Math.min(mEnergy / 80, mTanks[0].amount()));
 			if (tConversions > 0) {
 				mTanks[0].remove(tConversions);
-				if (rng(10) == 0 && mEfficiency > 5000 && !FL.distw(mTanks[0])) {
+				if (rng(10) == 0 && mEfficiency > 5000 && mTanks[0].has() && !FL.distw(mTanks[0])) {
 					mEfficiency -= tConversions;
 					if (mEfficiency < 5000) mEfficiency = 5000;
 				}
@@ -128,8 +128,8 @@ public class MultiTileEntityBoilerTank extends TileEntityBase09FacingSingle impl
 			// Remove Steam and Heat during the process of cooling down.
 			if (mCoolDownResetTimer-- <= 0) {
 				mCoolDownResetTimer = 0;
-				mEnergy -= (mOutput * 4) / STEAM_PER_EU;
-				GarbageGT.trash(mTanks[1], mOutput * 4);
+				mEnergy -= (mOutput * 64) / STEAM_PER_EU;
+				GarbageGT.trash(mTanks[1], mOutput * 64);
 				if (mEnergy <= 0) {
 					mEnergy = 0;
 					mCoolDownResetTimer = 128;
@@ -158,7 +158,10 @@ public class MultiTileEntityBoilerTank extends TileEntityBase09FacingSingle impl
 		
 		if (isClientSide()) return 0;
 		
-		if (aTool.equals(TOOL_plunger)) return GarbageGT.trash(mTanks[0]);
+		if (aTool.equals(TOOL_plunger)) {
+			if (mTanks[0].has()) return GarbageGT.trash(mTanks[0]);
+			return GarbageGT.trash(mTanks[1]);
+		}
 		if (aTool.equals(TOOL_chisel)) {
 			int rResult = 10000 - mEfficiency;
 			if (rResult > 0) {

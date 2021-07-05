@@ -113,7 +113,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 	 */
 	public final ItemStack addTool(int aID, String aEnglish, String aToolTip, IToolStats aToolStats, Object... aRandomParameters) {
 		if (aToolTip == null) aToolTip = "";
-		if (aID >= 0 && aID < 32766 && aID % 2 == 0) {
+		if (aID >= 0 && aID < 32766 && isUsableMeta((short)aID)) {
 			LH.add(getUnlocalizedName() + "." +  aID    + ".name"       , aEnglish);
 			LH.add(getUnlocalizedName() + "." +  aID    + ".tooltip"    , aToolTip);
 			LH.add(getUnlocalizedName() + "." + (aID+1) + ".name"       , aEnglish + " (Empty)");
@@ -205,14 +205,15 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 	 * Called by the Block Harvesting Event within the GT_Proxy
 	 */
 	public void onHarvestBlockEvent(ArrayList<ItemStack> aDrops, ItemStack aStack, EntityPlayer aPlayer, Block aBlock, int aX, int aY, int aZ, byte aMeta, int aFortune, boolean aSilkTouch, BlockEvent.HarvestDropsEvent aEvent) {
-		if (ST.instaharvest(aBlock, aMeta)) return;
 		IToolStats tStats = getToolStats(aStack);
-		if (isItemStackUsable(aStack) && getDigSpeed(aStack, aBlock, aMeta) > 0) {
-			int tDamage = tStats.convertBlockDrops(aDrops, aStack, aPlayer, aBlock, (getToolMaxDamage(aStack) - getToolDamage(aStack)) / tStats.getToolDamagePerDropConversion(), aX, aY, aZ, aMeta, aFortune, aSilkTouch, aEvent);
-			if (aBlock == Blocks.ice && !aDrops.isEmpty()) aPlayer.worldObj.setBlockToAir(aX, aY, aZ);
-			if (WD.dimBTL(aPlayer.worldObj) && !getPrimaryMaterial(aStack).contains(TD.Properties.BETWEENLANDS)) tDamage *= 4;
-			if (!UT.Entities.hasInfiniteItems(aPlayer)) doDamage(aStack, tDamage * tStats.getToolDamagePerDropConversion(), aPlayer);
+		if (tStats == null || ST.instaharvest(aBlock, aMeta) || !isItemStackUsable(aStack) || getDigSpeed(aStack, aBlock, aMeta) <= 0) {
+			doDamage(aStack, 0, aPlayer, T);
+			return;
 		}
+		int tDamage = tStats.convertBlockDrops(aDrops, aStack, aPlayer, aBlock, (getToolMaxDamage(aStack) - getToolDamage(aStack)) / tStats.getToolDamagePerDropConversion(), aX, aY, aZ, aMeta, aFortune, aSilkTouch, aEvent);
+		if (aBlock == Blocks.ice && !aDrops.isEmpty()) aPlayer.worldObj.setBlockToAir(aX, aY, aZ);
+		if (WD.dimBTL(aPlayer.worldObj) && !getPrimaryMaterial(aStack).contains(TD.Properties.BETWEENLANDS)) tDamage *= 4;
+		doDamage(aStack, tDamage * tStats.getToolDamagePerDropConversion(), aPlayer, T);
 	}
 	
 	public boolean canCollectDropsDirectly(ItemStack aStack, Block aBlock, byte aMeta) {
@@ -257,18 +258,17 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 						}
 						if (tDamageToDeal < tFullDamage) {
 							tStats.afterDealingDamage(tDamage, tMagicDamage, tFireAspect, tCriticalHit, aEntity, aStack, aPlayer);
-							if (!UT.Entities.hasInfiniteItems(aPlayer)) doDamage(aStack, tStats.getToolDamagePerEntityAttack(), aPlayer);
+							doDamage(aStack, tStats.getToolDamagePerEntityAttack(), aPlayer, T);
 						}
 					} else {
 						if (aEntity.attackEntityFrom(tStats.getDamageSource(aPlayer, aEntity), tFullDamage)) {
 							tStats.afterDealingDamage(tDamage, tMagicDamage, tFireAspect, tCriticalHit, aEntity, aStack, aPlayer);
-							if (!UT.Entities.hasInfiniteItems(aPlayer)) doDamage(aStack, tStats.getToolDamagePerEntityAttack(), aPlayer);
+							doDamage(aStack, tStats.getToolDamagePerEntityAttack(), aPlayer, T);
 						}
 					}
 				}
 			}
 		}
-		if (aStack.stackSize <= 0) aPlayer.destroyCurrentEquippedItem();
 		return T;
 	}
 	
@@ -366,7 +366,7 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		if (aNBT != null) {
 			aNBT = aNBT.getCompoundTag("GT.ToolStats");
 			if (aNBT != null) {
-				if (aNBT.getBoolean("e")) return EnergyStat.makeTool(TD.Energy.EU, aNBT.getLong("f"), aNBT.getLong("g"), 64, ST.make(this, 1, getEmptyMetaData(aStack)), ST.make(this, 1, getChargedMetaData(aStack)), ST.make(this, 1, getChargedMetaData(aStack)));
+				if (aNBT.getBoolean("e")) return EnergyStat.makeTool(TD.Energy.EU, aNBT.getLong("f"), aNBT.getLong("g"), 64, ST.make(this, 1, getUnusableMeta(aStack)), ST.make(this, 1, getUsableMeta(aStack)), ST.make(this, 1, getUsableMeta(aStack)));
 			}
 		}
 		return null;
@@ -405,38 +405,35 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		return F;
 	}
 	
-	public boolean doDamage(ItemStack aStack, long aAmount) {return doDamage(aStack, aAmount, null);}
-	public boolean doDamage(ItemStack aStack, long aAmount, EntityLivingBase aPlayer) {
+	public boolean doDamage(ItemStack aStack, long aAmount) {return doDamage(aStack, aAmount, null, T);}
+	public boolean doDamage(ItemStack aStack, long aAmount, EntityLivingBase aPlayer) {return doDamage(aStack, aAmount, null, T);}
+	public boolean doDamage(ItemStack aStack, long aAmount, EntityLivingBase aPlayer, boolean aAllowBreaking) {
+		if (UT.Entities.hasInfiniteItems(aPlayer)) return T;
 		if (!isItemStackUsable(aStack)) return F;
 		IItemEnergy tElectric = getEnergyStats(aStack);
-		if (tElectric == null || RNGSUS.nextInt(Math.max(5, getPrimaryMaterial(aStack).mToolQuality * 20)) == 0) {
+		if (tElectric == null || RNGSUS.nextInt(Math.max(10, getPrimaryMaterial(aStack).mToolQuality * 20)) == 0) {
 			long tNewDamage = getToolDamage(aStack) + aAmount;
 			setToolDamage(aStack, tNewDamage);
-			if (tNewDamage >= getToolMaxDamage(aStack)) {
+			if (aAllowBreaking && tNewDamage >= getToolMaxDamage(aStack)) {
 				IToolStats tStats = getToolStats(aStack);
 				if (tStats == null) {
-					ST.use(null, aStack);
+					ST.use(aPlayer, T, aStack);
 				} else {
 					if (TOOL_SOUNDS) {
 						if (aPlayer == null) {
-							if (LAST_TOOL_COORDS_BEFORE_DAMAGE == null) {
-								UT.Sounds.play(tStats.getBreakingSound(), 200, 1);
-							} else {
-								UT.Sounds.play(tStats.getBreakingSound(), 200, 1, LAST_TOOL_COORDS_BEFORE_DAMAGE);
-								LAST_TOOL_COORDS_BEFORE_DAMAGE = null;
-							}
+							UT.Sounds.play(tStats.getBreakingSound(), 200, 1, LAST_TOOL_COORDS_BEFORE_DAMAGE);
 						} else {
 							UT.Sounds.play(tStats.getBreakingSound(), 200, 1, aPlayer);
-							LAST_TOOL_COORDS_BEFORE_DAMAGE = null;
 						}
 					}
+					LAST_TOOL_COORDS_BEFORE_DAMAGE = null;
 					ItemStack tBroken = tStats.getBrokenItem(aStack);
 					if (ST.invalid(tBroken) || tBroken.stackSize <= 0) {
-						ST.use(null, aStack);
+						ST.use(aPlayer, T, aStack);
 					} else if (aPlayer instanceof EntityPlayer) {
 						if (tBroken.stackSize > 64) tBroken.stackSize = 64;
 						if (!aPlayer.worldObj.isRemote) UT.Inventories.addStackToPlayerInventoryOrDrop((EntityPlayer)aPlayer, tBroken, F);
-						ST.use(null, aStack);
+						ST.use(aPlayer, T, aStack);
 					} else {
 						if (tBroken.stackSize > 64) tBroken.stackSize = 64;
 						ST.set(aStack, tBroken);
@@ -476,52 +473,49 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 	
 	@Override
 	public boolean onBlockDestroyed(ItemStack aStack, World aWorld, Block aBlock, int aX, int aY, int aZ, EntityLivingBase aPlayer) {
-		if (ST.instaharvest(aBlock)) return T;
+		if (ST.instaharvest(aBlock) || UT.Entities.hasInfiniteItems(aPlayer)) return T;
 		if (!isItemStackUsable(aStack)) return F;
 		IToolStats tStats = getToolStats(aStack);
 		if (tStats == null) return F;
 		if (TOOL_SOUNDS) UT.Sounds.play(tStats.getMiningSound(), 5, 1, aX, aY, aZ);
 		byte aMeta = WD.meta(aWorld, aX, aY, aZ);
 		boolean rReturn = (getDigSpeed(aStack, aBlock, aMeta) > 0);
-		if (!UT.Entities.hasInfiniteItems(aPlayer)) {
-			double tDamage = tStats.getToolDamagePerBlockBreak() * aBlock.getBlockHardness(aWorld, aX, aY, aZ);
-			OreDictMaterial tMaterial = getPrimaryMaterial(aStack);
-			if (WD.dimBTL(aWorld) && tMaterial.contains(TD.Properties.BETWEENLANDS)) tDamage *= 4;
-			if (IL.TF_Mazestone.equal(aBlock)) if (tMaterial.contains(TD.Properties.MAZEBREAKER)) tDamage /= 40; else tDamage *= 16;
-			if (IL.TF_Mazehedge.equal(aBlock)) {
-				if (tMaterial.contains(TD.Properties.MAZEBREAKER)) tDamage /= 40; else tDamage *= 16;
-				if (!aWorld.isRemote && EnchantmentHelper.getEnchantmentLevel(Enchantment.silkTouch.effectId, aStack) <= 0) {
-					if (aPlayer instanceof EntityPlayer && canCollectDropsDirectly(aStack, aBlock, aMeta)) {
-						UT.Inventories.addStackToPlayerInventoryOrDrop((EntityPlayer)aPlayer, IL.TF_Mazehedge.get(1), aWorld, aX, aY, aZ);
-					} else {
-						ST.drop(aWorld, aX, aY, aZ, IL.TF_Mazehedge.get(1));
-					}
+		double tDamage = tStats.getToolDamagePerBlockBreak() * aBlock.getBlockHardness(aWorld, aX, aY, aZ);
+		OreDictMaterial tMaterial = getPrimaryMaterial(aStack);
+		if (WD.dimBTL(aWorld) && tMaterial.contains(TD.Properties.BETWEENLANDS)) tDamage *= 4;
+		if (IL.TF_Mazestone.equal(aBlock)) if (tMaterial.contains(TD.Properties.MAZEBREAKER)) tDamage /= 40; else tDamage *= 16;
+		if (IL.TF_Mazehedge.equal(aBlock)) {
+			if (tMaterial.contains(TD.Properties.MAZEBREAKER)) tDamage /= 40; else tDamage *= 16;
+			if (!aWorld.isRemote && EnchantmentHelper.getEnchantmentLevel(Enchantment.silkTouch.effectId, aStack) <= 0) {
+				if (aPlayer instanceof EntityPlayer && canCollectDropsDirectly(aStack, aBlock, aMeta)) {
+					UT.Inventories.addStackToPlayerInventoryOrDrop((EntityPlayer)aPlayer, IL.TF_Mazehedge.get(1), aWorld, aX, aY, aZ);
+				} else {
+					ST.drop(aWorld, aX, aY, aZ, IL.TF_Mazehedge.get(1));
 				}
 			}
-			doDamage(aStack, UT.Code.roundUp(tDamage), aPlayer);
 		}
+		doDamage(aStack, UT.Code.roundUp(tDamage), aPlayer, F);
 		return rReturn;
 	}
 	
 	@Override
 	public ItemStack getContainerItem(ItemStack aStack) {
-		if (!isItemStackUsable(aStack)) return null;
-		aStack = ST.amount(1, aStack);
+		if (!isUsableMeta(aStack)) return null;
 		IToolStats tStats = getToolStats(aStack);
 		if (tStats == null) return null;
-		doDamage(aStack, tStats.getToolDamagePerContainerCraft(), null);
-		aStack = aStack.stackSize > 0 ? aStack : null;
-		if (TOOL_SOUNDS && aStack != null && LAST_TOOL_COORDS_BEFORE_DAMAGE != null) UT.Sounds.play(tStats.getCraftingSound(), 200, 1, LAST_TOOL_COORDS_BEFORE_DAMAGE);
-		return aStack;
+		if (TOOL_SOUNDS) UT.Sounds.play(tStats.getCraftingSound(), 200, 1, LAST_TOOL_COORDS_BEFORE_DAMAGE);
+		aStack = ST.amount(1, aStack);
+		doDamage(aStack, tStats.getToolDamagePerContainerCraft(), null, T);
+		return aStack.stackSize > 0 ? aStack : null;
 	}
 	
 	@Override
 	public boolean hasContainerItem(ItemStack aStack) {
-		if (!isItemStackUsable(aStack)) return F;
-		aStack = ST.amount(1, aStack);
+		if (!isUsableMeta(aStack)) return F;
 		IToolStats tStats = getToolStats(aStack);
 		if (tStats == null) return F;
-		doDamage(aStack, tStats.getToolDamagePerContainerCraft(), null);
+		aStack = ST.amount(1, aStack);
+		doDamage(aStack, tStats.getToolDamagePerContainerCraft(), null, T);
 		return aStack.stackSize > 0;
 	}
 	
@@ -534,19 +528,18 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 	
 	@Override
 	public boolean isItemStackUsable(ItemStack aStack) {
-		if (ST.invalid(aStack) || aStack.stackSize <= 0) return F;
+		if (aStack.stackSize <= 0) return F;
 		
 		NBTTagCompound aNBT = aStack.getTagCompound();
 		if (aNBT == null) return T;
 		
-		short aMeta = ST.meta_(aStack);
-		if (aMeta % 2 == 1) {
+		if (!isUsableMeta(aStack)) {
 			aNBT.removeTag("ench");
 			return F;
 		}
 		
-		IToolStats tStats = getToolStatsInternal(aMeta);
-		if (tStats == null || getToolDamage(aStack) > getToolMaxDamage(aStack) || !super.isItemStackUsable(aStack)) {
+		IToolStats tStats = getToolStatsInternal(aStack);
+		if (tStats == null || !super.isItemStackUsable(aStack)) {
 			aNBT.removeTag("ench");
 			return F;
 		}
@@ -616,12 +609,23 @@ public class MultiItemTool extends MultiItem implements IItemGTHandTool, IItemGT
 		return T;
 	}
 	
-	public short getChargedMetaData(ItemStack aStack) {
-		return (short)(ST.meta_(aStack) - (ST.meta_(aStack) % 2));
+	public boolean isUsableMeta(short aMeta) {
+		return aMeta % 2 == 0;
 	}
-	
-	public short getEmptyMetaData(ItemStack aStack) {
-		return (short)(ST.meta_(aStack)+1-(ST.meta_(aStack) % 2));
+	public boolean isUsableMeta(ItemStack aStack) {
+		return isUsableMeta(ST.meta(aStack));
+	}
+	public short getUsableMeta(short aMeta) {
+		return (short)(aMeta  -(aMeta % 2));
+	}
+	public short getUsableMeta(ItemStack aStack) {
+		return getUsableMeta(ST.meta(aStack));
+	}
+	public short getUnusableMeta(short aMeta) {
+		return (short)(aMeta+1-(aMeta % 2));
+	}
+	public short getUnusableMeta(ItemStack aStack) {
+		return getUnusableMeta(ST.meta(aStack));
 	}
 	
 	@Override
