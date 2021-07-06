@@ -16,7 +16,7 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 6.14.15: (Not released yet, released whenever it needs to be)
 [FIXED] Advanced Crafting Table was caching Recipes too aggressively.
 [FIXED] Instant Health and Instant Damage Potions not properly working in GT6 Drinkable Fluid Containers or "poisoned" Food Items from the Bathing Pot.
-[REMOVED] Legacy Recipes for processing Inpure/Pure/Refined Piles of Dust have been removed. You can still throw them into a Cauldron or put them into a Shredder though. Impure Bedrock Dust is unaffected by this.
+[REMOVED] Legacy Recipes for processing Impure/Pure/Refined Piles of Dust have been removed. You can still throw them into a Cauldron or put them into a Shredder though. Impure Bedrock Dust is unaffected by this.
 [CHANGED] GT6 Blocks that can set the area around them on Fire will consider Vanilla Chests flammable for the sake of spreading Fire, even though they still cant burn up, so they wont break.
 [CHANGED] Many of the Metallic Utility Blocks are much cheaper now, including the Mass Storages. Now most of them require Screws to be made though, giving people incentive to actually make Screws.
 [CHANGED] Treecapitation now works Top Down instead of Bottom Up
@@ -25,7 +25,14 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 [CHANGED] Large Wooden Tanks now take Lead instead of Iron for their Walls and Valve.
 [CHANGED] Meteoric Iron/Steel has far better Durability now, comparable to Blue Steel and Damascus Steel. This enables both, a way to use the new Big Meteorites, and having the Magnetic ability on more Tools.
 [CHANGED] Crucibles, Anvils, Sifting Tables and Molds/Basins should now handle the copying of certain Textures better.
-[CHANGED] The Material value of Stone Blocks of most Rock Types is now 9 Units instead of 1 Unit. Do note that most things made of Stone will stay their original Value. This also changes the Material Value of small Rocks to be 2.25 Units instead of 0.25 Units, which is an intended Buff.
+[CHANGED]
+The Material value of Stone Blocks of most Rock Types, along with Sand, Soulsand and Glass, is now 9 Units instead of 1 Unit.
+Do note that most things made of these Materials will stay at their original Value, since not all Stone is equally affected.
+This also changes the Material Value of ALL small Rocks to be 2.25 Units instead of 0.25 Units, which is an intended Buff.
+Glass Blocks are 9 Units, Glass Panes are 1 Unit now, With Glass Panes being considered "Glass Plates" now.
+The Basin can now handle pouring Stone and Glass Blocks.
+Gravel is now considered the Block of Stone Dust. Existing Stone Dust Blocks in the World will ofcourse stay themselves.
+Sand, Red Sand and Soulsand are now "Block of ..." of their respective Types, with 9 Dusts being one Block.
 [ADDED] By rightclicking an already OPEN Keybased Safe with a Blank Key, you can now copy that Safe's Key ID.
 [ADDED] Niter Veins can now spawn in Deserts near the Surface.
 [ADDED] Gunpowder Sticks, which work like Dynamite Sticks, but only with Fortune III instead of V.
