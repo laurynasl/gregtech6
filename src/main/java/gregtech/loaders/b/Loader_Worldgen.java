@@ -77,7 +77,7 @@ public class Loader_Worldgen implements Runnable {
 		
 		Block tDeepslate = IL.EtFu_Deepslate.block();
 		if (ST.valid(tDeepslate)) {
-		StoneLayer.DEEPSLATE = new StoneLayer(tDeepslate, 0, IL.EtFu_Deepslate_Cobble.block(), 0, MT.STONES.Slate
+		StoneLayer.DEEPSLATE = new StoneLayer(tDeepslate, 0, IL.EtFu_Deepslate_Cobble.block(), 0, MT.STONES.Deepslate
 		, new StoneLayerOres(MT.Redstone                                , U32,  0,  5)
 		, MD.RP.mLoaded||MD.BP.mLoaded||MD.PR.mLoaded?new StoneLayerOres(MT.Nikolite, U64,  0,  5) : null
 		, MD.HEX .mLoaded ? new StoneLayerOres(MT.HexoriumBlack         , U64,  0,  5) : null
@@ -361,10 +361,11 @@ public class Loader_Worldgen implements Runnable {
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Andesite));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Andesite
 		, new StoneLayerOres(MT.OREMATS.Bromargyrite    , U8 ,  0, 20)
+		, new StoneLayerOres(MT.Niter                   , U6 , 50, 70, BIOMES_DESERT)
 		));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Andesite
 		, new StoneLayerOres(MT.Au                      , U32,  0, 20)
-		, new StoneLayerOres(MT.Niter                   , U6 , 60, 70, BIOMES_DESERT)
+		, new StoneLayerOres(MT.Niter                   , U6 , 50, 70, BIOMES_DESERT)
 		));
 		
 		

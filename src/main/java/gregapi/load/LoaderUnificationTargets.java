@@ -475,7 +475,7 @@ public class LoaderUnificationTargets implements Runnable {
 		OreDictManager.INSTANCE.setTarget(OP.blockIngot     , MT.CrystalMatrix          , MD.AV, "Crystal_Matrix", 0);
 		OreDictManager.INSTANCE.setTarget(OP.bottle         , MT.H2SO4                  , MD.FZ, "acid"           , 0);
 		OreDictManager.INSTANCE.setTarget(OP.bottle         , MT.AquaRegia              , MD.FZ, "acid"           , 1);
-		OreDictManager.INSTANCE.setTarget(OP.dustImpure     , MT.Netherrack             , MD.FZ, "nether_powder"  , 1);
+		OreDictManager.INSTANCE.setTarget(OP.dust           , MT.Netherrack             , MD.FZ, "nether_powder"  , 1);
 		OreDictManager.INSTANCE.setTarget(OP.ingot          , MT.DarkIron               , MD.FZ, "dark_iron_ingot", 0);
 		OreDictManager.INSTANCE.setTarget(OP.gemFlawed      , MT.Diamond                , MD.FZ, "diamond_shard"  , 0);
 		OreDictManager.INSTANCE.setTarget(OP.gemChipped     , MT.EnderPearl             , MD.RT, "ingredient", 2);
@@ -813,6 +813,7 @@ public class LoaderUnificationTargets implements Runnable {
 		OreDictManager.INSTANCE.setTarget(OP.oreDeepslate   , MT.Redstone               , MD.EtFu, "deepslate_redstone_ore", 0);
 		OreDictManager.INSTANCE.setTarget(OP.oreDeepslate   , MT.Redstone               , MD.EtFu, "deepslate_lit_redstone_ore", 0);
 		OreDictManager.INSTANCE.setTarget(OP.oreDeepslate   , MT.Emerald                , MD.EtFu, "deepslate_emerald_ore", 0);
+		OreDictManager.INSTANCE.setTarget(OP.blockSolid     , MT.STONES.Deepslate       , MD.EtFu, "polished_deepslate", 0);
 		OreDictManager.INSTANCE.setTarget(OP.bottle         , MT.Empty                  , ST.make(Items.glass_bottle, 1, 0));
 		OreDictManager.INSTANCE.setTarget(OP.bottle         , MT.H2O                    , ST.make(Items.potionitem, 1, 0));
 		OreDictManager.INSTANCE.setTarget(OP.oreVanillastone, MT.Coal                   , ST.make(Blocks.coal_ore, 1, 0));
