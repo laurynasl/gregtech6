@@ -711,7 +711,7 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 					if ("Bear989Sr".equalsIgnoreCase(aEvent.player.getCommandSenderName())) {
 						if (tCraponite > 0) {
 							// Crazy started to give Bear her Craponite Arrows, lets not let him have those.
-							aEvent.player.addPotionEffect(new PotionEffect(Potion.jump.id, 1400, Math.max(10, tCraponite*5-1), T));
+							aEvent.player.addPotionEffect(new PotionEffect(Potion.poison.id, 1200, tCraponite, T));
 						}
 						if (--BEAR_INVENTORY_COOL_DOWN < 0 && tEmptySlots < 4) {
 							BEAR_INVENTORY_COOL_DOWN = 100;
@@ -723,11 +723,12 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 									if (tPlayer.posY < 30) {
 										UT.Entities.chat(tPlayer, new ChatComponentText(CHAT_GREG + "Stop making Holes in the Ground, Bear!"));
 									} else {
+										// Bear does not like being called these names, so lets annoy him. XD
 										switch(tEmptySlots) {
-										case 0: UT.Entities.chat(tPlayer, new ChatComponentText(CHAT_GREG + "You still have a lot of empty Slots left... In your 2x2 Crafting Grid.")); break;
-										case 1: UT.Entities.chat(tPlayer, new ChatComponentText(CHAT_GREG + "There is like a Gazillion Slots left in your Inventory... If you use that one Slot for a Backpack.")); break;
-										case 2: UT.Entities.chat(tPlayer, new ChatComponentText(CHAT_GREG + "You shouldn't clean up your Inventory... If you want it to be full soon.")); break;
-										case 3: UT.Entities.chat(tPlayer, new ChatComponentText(CHAT_GREG + "Your Inventory is not going to get full... If you stop collecting Items.")); break;
+										case 0: UT.Entities.chat(tPlayer, new ChatComponentText(CHAT_GREG + "Alright Buttercup, your Inventory is full, time to go home.")); break;
+										case 1: UT.Entities.chat(tPlayer, new ChatComponentText(CHAT_GREG + "Your Inventory is starting to get full, Buttercup")); break;
+										case 2: UT.Entities.chat(tPlayer, new ChatComponentText(CHAT_GREG + "Your Inventory is starting to get full, Bean989Sr")); break;
+										case 3: UT.Entities.chat(tPlayer, new ChatComponentText(CHAT_GREG + "Your Inventory is starting to get full, Mr. Bear")); break;
 										}
 									}
 								} else if ("Bear989jr".equalsIgnoreCase(tPlayer.getCommandSenderName())) {

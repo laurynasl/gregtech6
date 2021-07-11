@@ -142,7 +142,7 @@ public class Loader_Recipes_Other implements Runnable {
 			RM.rem_smelting(aEvent.mStack);
 		}});
 		addListener(OD.itemResin, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
-			RM.biomass(aEvent.mStack, 32);
+			RM.biomass(ST.amount(6, aEvent.mStack), 32);
 			RM.rem_smelting(aEvent.mStack);
 			RM.ic2_extractor(aEvent.mStack, OM.ingot(MT.Rubber, 7*U9));
 			RM.Juicer           .addRecipe1(T, 16,   64, aEvent.mStack, NF, FL.Latex.make(L/2), NI);
@@ -554,10 +554,12 @@ public class Loader_Recipes_Other implements Runnable {
 		RM.Press        .addRecipeX(T, 16,   16, ST.array(ST         .tag(1), OM.dust(MT.Dynamite , U*1), plantGtFiber.mat(MT.DATA.Dye_Materials[15-i], 1)), IL.Dynamite       .get(1));
 		RM.Press        .addRecipeX(T, 16,   64, ST.array(ST         .tag(2), OM.dust(MT.Dynamite , U*2), plantGtFiber.mat(MT.DATA.Dye_Materials[15-i], 1)), IL.Dynamite_Strong.get(1));
 		}
-		RM.Press        .addRecipeX(T, 16,   64, ST.array(ST         .tag(2), OM.dust(MT.Gunpowder, U*2), plantGtFiber.mat(MT.Cu , 1)), IL.Boomstick      .get(1));
+		for (OreDictMaterial tMat : ANY.SiO2.mToThis)
+		RM.Press        .addRecipeX(T, 16,   64, ST.array(OM.dust(tMat, U*2), OM.dust(MT.Gunpowder, U*2), plantGtFiber.mat(MT.Cu , 1)), IL.Boomstick      .get(1));
 		RM.Press        .addRecipeX(T, 16,   16, ST.array(ST         .tag(1), OM.dust(MT.Dynamite , U*1), plantGtFiber.mat(MT.Cu , 1)), IL.Dynamite       .get(1));
 		RM.Press        .addRecipeX(T, 16,   64, ST.array(ST         .tag(2), OM.dust(MT.Dynamite , U*2), plantGtFiber.mat(MT.Cu , 1)), IL.Dynamite_Strong.get(1));
-		RM.Press        .addRecipeX(T, 16,   64, ST.array(ST         .tag(2), OM.dust(MT.Gunpowder, U*2), ST.make(Items.string, 1, W)), IL.Boomstick      .get(1));
+		for (OreDictMaterial tMat : ANY.SiO2.mToThis)
+		RM.Press        .addRecipeX(T, 16,   64, ST.array(OM.dust(tMat, U*2), OM.dust(MT.Gunpowder, U*2), ST.make(Items.string, 1, W)), IL.Boomstick      .get(1));
 		RM.Press        .addRecipeX(T, 16,   16, ST.array(ST         .tag(1), OM.dust(MT.Dynamite , U*1), ST.make(Items.string, 1, W)), IL.Dynamite       .get(1));
 		RM.Press        .addRecipeX(T, 16,   64, ST.array(ST         .tag(2), OM.dust(MT.Dynamite , U*2), ST.make(Items.string, 1, W)), IL.Dynamite_Strong.get(1));
 		
@@ -582,7 +584,7 @@ public class Loader_Recipes_Other implements Runnable {
 		RM.Drying       .addRecipe0(T, 16,   20, FL.mul(DYE_FLUIDS_FLOWER[i], 1, 6, T), FL.DistW.make(10), dustTiny.mat(MT.DATA.Dye_Materials[i], 1));
 		}
 		
-		RM.Centrifuge   .addRecipe0(T, 64,   16, MT.FishOil.liquid( U2, T), MT.Hg.liquid(U144, F), ZL_IS);
+		RM.Centrifuge   .addRecipe0(T, 64,   16, MT.FishOil.liquid( U2, T), MT.Hg.liquid(1, T), ZL_IS);
 		
 		RM.Coagulator   .addRecipe0(T,  0,  256, FL.Latex.make(L/9), NF, nugget.mat(MT.Rubber, 1));
 		
