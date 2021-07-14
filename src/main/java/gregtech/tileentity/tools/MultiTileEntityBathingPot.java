@@ -377,7 +377,7 @@ public class MultiTileEntityBathingPot extends TileEntityBase07Paintable impleme
 	sOverlayBottom      = new Textures.BlockIcons.CustomIcon("machines/tools/bathing_pot/overlay/bottom"),
 	sOverlayTableBottom = new Textures.BlockIcons.CustomIcon("machines/tools/bathing_pot/overlay/tablebottom"),
 	sOverlayTableSide   = new Textures.BlockIcons.CustomIcon("machines/tools/bathing_pot/overlay/tableside");
-
+	
 	@Override
 	public ITexture getTexture2(Block aBlock, int aRenderPass, byte aSide, boolean[] aShouldSideBeRendered) {
 		switch(aRenderPass) {
@@ -392,14 +392,14 @@ public class MultiTileEntityBathingPot extends TileEntityBase07Paintable impleme
 				Fluid tFluid = FluidRegistry.getFluid(-mDisplay-2);
 				return tFluid == null ? BlockTextureCopied.get(Blocks.water, SIDE_ANY, 0, UNCOLOURED, F, F, F) : BlockTextureFluid.get(FL.make(tFluid, 1000));
 			}
-			if (UT.Code.exists(mDisplay, OreDictMaterial.MATERIAL_ARRAY)) return BlockTextureDefault.get(OreDictMaterial.MATERIAL_ARRAY[mDisplay], OP.blockDust);
+			if (UT.Code.exists(mDisplay, OreDictMaterial.MATERIAL_ARRAY)) return OreDictMaterial.MATERIAL_ARRAY[mDisplay].getTextureDust();
 			return BlockTextureDefault.get(MT.NULL, OP.blockDust, CA_GRAY_128, F);
 		case  6: return SIDE_TOP    == aSide?BI.nei():null;
 		case  7: return SIDE_TOP    != aSide?SIDE_BOTTOM == aSide?BlockTextureMulti.get(BlockTextureDefault.get(sTextureTableBottom, mRGBa), BlockTextureDefault.get(sOverlayTableBottom)):BlockTextureMulti.get(BlockTextureDefault.get(sTextureTableSide, mRGBa), BlockTextureDefault.get(sOverlayTableSide)):null;
 		}
 		return null;
 	}
-
+	
 	@Override
 	public void addCollisionBoxesToList2(AxisAlignedBB aAABB, List<AxisAlignedBB> aList, Entity aEntity) {
 		box(aAABB, aList, PX_P[14], PX_P[ 0], PX_P[ 0], PX_N[ 0], PX_N[ 8], PX_N[ 0]);
@@ -408,14 +408,14 @@ public class MultiTileEntityBathingPot extends TileEntityBase07Paintable impleme
 		box(aAABB, aList, PX_P[ 0], PX_P[ 0], PX_P[ 0], PX_N[ 0], PX_N[ 8], PX_N[14]);
 		box(aAABB, aList, PX_P[ 0], PX_P[ 0], PX_P[ 0], PX_N[ 0], PX_N[14], PX_N[ 0]);
 	}
-
+	
 	@Override public int getLightOpacity() {return LIGHT_OPACITY_WATER;}
-
+	
 	@Override public boolean addDefaultCollisionBoxToList() {return F;}
 	@Override public AxisAlignedBB getCollisionBoundingBoxFromPool() {return box(PX_P[ 0], PX_P[ 0], PX_P[ 0], PX_N[ 0], PX_N[ 8], PX_N[ 0]);}
 	@Override public AxisAlignedBB getSelectedBoundingBoxFromPool () {return box(PX_P[ 0], PX_P[ 0], PX_P[ 0], PX_N[ 0], PX_N[ 8], PX_N[ 0]);}
 	@Override public void setBlockBoundsBasedOnState(Block aBlock) {box(aBlock, PX_P[ 0], PX_P[ 0], PX_P[ 0], PX_N[ 0], PX_N[ 8], PX_N[ 0]);}
-
+	
 	@Override public float getSurfaceSize           (byte aSide) {return SIDES_VERTICAL[aSide]?1.0F:0.0F;}
 	@Override public float getSurfaceSizeAttachable (byte aSide) {return SIDES_VERTICAL[aSide]?1.0F:0.0F;}
 	@Override public float getSurfaceDistance       (byte aSide) {return SIDES_TOP[aSide]?PX_N[ 8]:0.0F;}
