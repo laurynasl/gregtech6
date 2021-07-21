@@ -47,6 +47,9 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
@@ -101,10 +104,12 @@ public abstract class BlockBaseSpike extends BlockBaseSealable implements IBlock
 			mRenderers[13] = new SpikeRendererXPos(aMat2);
 			mRenderers[14] = mRenderers[15] = new SpikeRendererOmni(aMat2);
 		}
+		
+		if (COMPAT_FR != null) COMPAT_FR.addToBackpacks("builder", ST.make(this, 1, W));
 	}
 	
 	@Override public void onWalkOver(EntityLivingBase aEntity, World aWorld, int aX, int aY, int aZ) {if ((WD.meta(aWorld, aX, aY, aZ) & 7) != SIDE_UP) {aEntity.motionX *= 0.1; aEntity.motionZ *= 0.1;}}
-	@Override public int onBlockPlaced(World aWorld, int aX, int aY, int aZ, int aSide, float aHitX, float aHitY, float aHitZ, int aMeta) {return (aMeta & 7) < 6 ? (aMeta & 8) | OPPOSITES[aSide] : aMeta;}
+	@Override public int onBlockPlaced(World aWorld, int aX, int aY, int aZ, int aSide, float aHitX, float aHitY, float aHitZ, int aMeta) {return (aMeta & 7) < 6 ? (aMeta & 8) | OPOS[aSide] : aMeta;}
 	@Override public void onBlockAdded2(World aWorld, int aX, int aY, int aZ) {if (useGravity(WD.meta(aWorld, aX, aY, aZ))) UT.Sounds.send(aWorld, SFX.MC_ANVIL_LAND, 1, 2, aX, aY, aZ);}
 	
 	@Override public String getHarvestTool(int aMeta) {return TOOL_pickaxe;}
@@ -165,6 +170,12 @@ public abstract class BlockBaseSpike extends BlockBaseSealable implements IBlock
 		case SIDE_Z_NEG: return AxisAlignedBB.getBoundingBox(aX    , aY    , aZ    , aX+1  , aY+1  , aZ+0.6);
 		default: return AxisAlignedBB.getBoundingBox(aX+0.125, aY+0.125, aZ+0.125, aX+0.875, aY+0.875, aZ+0.875);
 		}
+	}
+	
+	@Override
+	public void addCollisionBoxesToList(World aWorld, int aX, int aY, int aZ, AxisAlignedBB aAABB, @SuppressWarnings("rawtypes") List aList, Entity aEntity) {
+		if (aEntity instanceof EntityItem || aEntity instanceof EntityXPOrb || aEntity instanceof IProjectile) return;
+		super.addCollisionBoxesToList(aWorld, aX, aY, aZ, aAABB, aList, aEntity);
 	}
 	
 	@Override public AxisAlignedBB getSelectedBoundingBoxFromPool(World aWorld, int aX, int aY, int aZ) {return AxisAlignedBB.getBoundingBox(aX, aY, aZ, aX+1, aY+1, aZ+1);}

@@ -32,10 +32,11 @@ import net.minecraft.init.Blocks;
 /**
  * @author Gregorius Techneticies
  */
-public class DungeonChunkRoomFarm extends DungeonChunkRoomEmpty {
+public class DungeonChunkRoomFarmCrop extends DungeonChunkRoomEmpty {
 	@Override
 	public boolean generate(DungeonData aData) {
-		super.generate(aData);
+		if (aData.mTags.contains(WorldgenDungeonGT.TAG_FARM_CROP) || !super.generate(aData)) return F;
+		aData.mTags.add(WorldgenDungeonGT.TAG_FARM_CROP);
 		
 		for (int tCoord = 1; tCoord <= 14; tCoord++) if (tCoord <= 4 || tCoord >= 11) {
 			aData.smooth(tCoord,  1,      5, aData.mPrimary.mSlabs[SIDE_Z_NEG], aData.mSecondary.mSlabs[SIDE_Z_NEG]);
@@ -72,7 +73,7 @@ public class DungeonChunkRoomFarm extends DungeonChunkRoomEmpty {
 		, ST.block(MD.HaC, "pambroccoliCrop", null)
 		, ST.block(MD.HaC, "pambrusselsproutCrop", null)
 		, ST.block(MD.HaC, "pamcabbageCrop", null)
-//      , ST.block(MD.HaC, "pamcactusfruitCrop", null) // Does not grow on Farmland
+//      , ST.block(MD.HaC, "pamcactusfruitCrop", null) // Does not grow on Farmland, needs Block of Sand!
 		, ST.block(MD.HaC, "pamcandleberryCrop", null)
 		, ST.block(MD.HaC, "pamcantaloupeCrop", null)
 		, ST.block(MD.HaC, "pamcauliflowerCrop", null)
@@ -81,7 +82,7 @@ public class DungeonChunkRoomFarm extends DungeonChunkRoomEmpty {
 		, ST.block(MD.HaC, "pamcoffeebeanCrop", null)
 		, ST.block(MD.HaC, "pamcornCrop", null)
 		, ST.block(MD.HaC, "pamcottonCrop", null)
-//      , ST.block(MD.HaC, "pamcranberryCrop", null) // Does not grow on Farmland
+//      , ST.block(MD.HaC, "pamcranberryCrop", null) // Does not grow on Farmland, needs Block of Water!
 		, ST.block(MD.HaC, "pamcucumberCrop", null)
 		, ST.block(MD.HaC, "pamcurryleafCrop", null)
 		, ST.block(MD.HaC, "pameggplantCrop", null)
@@ -102,11 +103,11 @@ public class DungeonChunkRoomFarm extends DungeonChunkRoomEmpty {
 		, ST.block(MD.HaC, "pamradishCrop", null)
 		, ST.block(MD.HaC, "pamraspberryCrop", null)
 		, ST.block(MD.HaC, "pamrhubarbCrop", null)
-//      , ST.block(MD.HaC, "pamriceCrop", null) // Does not grow on Farmland
+//      , ST.block(MD.HaC, "pamriceCrop", null) // Does not grow on Farmland, needs Block of Water!
 		, ST.block(MD.HaC, "pamrutabagaCrop", null)
 		, ST.block(MD.HaC, "pamryeCrop", null)
 		, ST.block(MD.HaC, "pamscallionCrop", null)
-//      , ST.block(MD.HaC, "pamseaweedCrop", null) // Does not grow on Farmland
+//      , ST.block(MD.HaC, "pamseaweedCrop", null) // Does not grow on Farmland, needs Block of Water!
 		, ST.block(MD.HaC, "pamsesameseedsCrop", null)
 		, ST.block(MD.HaC, "pamsoybeanCrop", null)
 		, ST.block(MD.HaC, "pamspiceleafCrop", null)
@@ -116,7 +117,7 @@ public class DungeonChunkRoomFarm extends DungeonChunkRoomEmpty {
 		, ST.block(MD.HaC, "pamtealeafCrop", null)
 		, ST.block(MD.HaC, "pamtomatoCrop", null)
 		, ST.block(MD.HaC, "pamturnipCrop", null)
-//      , ST.block(MD.HaC, "pamwaterchestnutCrop", null) // Does not grow on Farmland
+//      , ST.block(MD.HaC, "pamwaterchestnutCrop", null) // Does not grow on Farmland, needs Block of Water!
 		, ST.block(MD.HaC, "pamwhitemushroomCrop", null)
 		, ST.block(MD.HaC, "pamwintersquashCrop", null)
 		, ST.block(MD.HaC, "pamzucchiniCrop", null)

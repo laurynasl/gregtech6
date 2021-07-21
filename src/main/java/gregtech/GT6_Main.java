@@ -56,6 +56,7 @@ import gregapi.data.CS.ConfigsGT;
 import gregapi.data.CS.FluidsGT;
 import gregapi.data.CS.ItemsGT;
 import gregapi.data.CS.ModIDs;
+import gregapi.data.CS.PotionsGT;
 import gregapi.data.CS.ToolsGT;
 import gregapi.data.FL;
 import gregapi.data.IL;
@@ -202,6 +203,7 @@ public class GT6_Main extends Abstract_Mod {
 		EntityRegistry.registerModEntity(EntityArrow_Potion.class  , "GT_Entity_Arrow_Potion", 2, GT, 160, 1, T);
 
 		for (OreDictMaterial tWood : ANY.Wood.mToThis) OP.plate.disableItemGeneration(tWood);
+		OP.blockDust   .disableItemGeneration(MT.OREMATS.Magnetite, MT.OREMATS.GraniticMineralSand, MT.OREMATS.BasalticMineralSand);
 		OP.ingot       .disableItemGeneration(MT.Butter, MT.ButterSalted, MT.Chocolate, MT.Cheese, MT.MeatRaw, MT.MeatCooked, MT.FishRaw, MT.FishCooked, MT.Tofu, MT.SoylentGreen);
 		OP.gemChipped  .disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
 		OP.gemFlawed   .disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
@@ -209,8 +211,8 @@ public class GT6_Main extends Abstract_Mod {
 		OP.gemFlawless .disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
 		OP.gemExquisite.disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
 		OP.gemLegendary.disableItemGeneration(MT.EnergiumRed, MT.EnergiumCyan);
-
-
+		
+		
 		RM.pulverizing(ST.make(Blocks.cobblestone, 1, W), ST.make(Blocks.sand, 1, 0), null, 0, F);
 		RM.pulverizing(ST.make(Blocks.stone      , 1, W), ST.make(Blocks.cobblestone, 1, 0), null, 0, F);
 		RM.pulverizing(ST.make(Blocks.gravel     , 1, W), ST.make(Items.flint, 2, 0), OP.dust.mat(MT.Flint, 1), 10, F);
@@ -432,6 +434,8 @@ public class GT6_Main extends Abstract_Mod {
 											RM.BedrockOreList.addFakeRecipe(F, ST.array(ST.make(Blocks.bedrock, 1, W)), ST.array(ST.make(Blocks.cobblestone, 1, 0, "Various Cobblestone Types"), OP.dust.mat(MT.Bedrock, 1)), null, new long[] {9990, 10}, FL.array(FL.lube(100)), null, 0, 0, 0);
 		if (IL.BTL_Bedrock.exists())        RM.BedrockOreList.addFakeRecipe(F, ST.array(IL.BTL_Bedrock        .get(1)), ST.array(ST.make(Blocks.cobblestone, 1, 0, "Various Cobblestone Types"), OP.dust.mat(MT.Bedrock, 1)), null, new long[] {9990, 10}, FL.array(FL.lube(100)), null, 0, 0, 0);
 		
+		RM.ByProductList.mRecipeMachineList.add(ST.make(Items .cauldron, 1, 0));
+		RM.ByProductList.mRecipeMachineList.add(ST.make(Blocks.cauldron, 1, 0));
 		
 		MultiTileEntityRegistry aRegistry = MultiTileEntityRegistry.getRegistry("gt.multitileentity");
 		
@@ -544,6 +548,15 @@ public class GT6_Main extends Abstract_Mod {
 		), ZL_IS, null, ZL_LONG, ZL_FS, ZL_FS, 0, 0, 0);
 		
 		
+		if (PotionsGT.ID_FLAMMABLE >= 0) {
+			BlocksGT.OilExtraHeavy.addEffect(PotionsGT.ID_FLAMMABLE, 300, 1);
+			BlocksGT.OilHeavy     .addEffect(PotionsGT.ID_FLAMMABLE, 300, 1);
+			BlocksGT.OilMedium    .addEffect(PotionsGT.ID_FLAMMABLE, 300, 1);
+			BlocksGT.OilLight     .addEffect(PotionsGT.ID_FLAMMABLE, 300, 1);
+			BlocksGT.GasNatural   .addEffect(PotionsGT.ID_FLAMMABLE, 100, 1);
+		}
+		
+		
 		if (CODE_CLIENT) {
 			for (OreDictMaterial aMaterial : OreDictMaterial.ALLOYS) {
 				for (IOreDictConfigurationComponent tAlloy : aMaterial.mAlloyCreationRecipes) {
@@ -558,10 +571,10 @@ public class GT6_Main extends Abstract_Mod {
 							tIngots.add(FL.Air.display(UT.Code.units(tMaterial.mAmount, U, 1000, T)));
 							continue;
 						}
-						if (tMaterial.mMaterial == MT.OREMATS.Magnetite          ) {tAddedSpecial = tSpecial.add(ST.make(BlocksGT.Sands, UT.Code.divup(tMaterial.mAmount, U), 0));} else
-						if (tMaterial.mMaterial == MT.OREMATS.BasalticMineralSand) {tAddedSpecial = tSpecial.add(ST.make(BlocksGT.Sands, UT.Code.divup(tMaterial.mAmount, U), 1));} else
-						if (tMaterial.mMaterial == MT.OREMATS.GraniticMineralSand) {tAddedSpecial = tSpecial.add(ST.make(BlocksGT.Sands, UT.Code.divup(tMaterial.mAmount, U), 2));} else
-						if (tMaterial.mMaterial == MT.C                          ) {tAddedSpecial = tSpecial.add(OM.dustOrIngot(MT.Coal, tMaterial.mAmount * 2));}
+						if (tMaterial.mMaterial == MT.OREMATS.Magnetite          ) {tAddedSpecial = tSpecial.add(ST.make(BlocksGT.Sands, UT.Code.divup(tMaterial.mAmount, U*9), 0, "You probably want to craft it into Dust"));} else
+						if (tMaterial.mMaterial == MT.OREMATS.BasalticMineralSand) {tAddedSpecial = tSpecial.add(ST.make(BlocksGT.Sands, UT.Code.divup(tMaterial.mAmount, U*9), 1, "You probably want to craft it into Dust"));} else
+						if (tMaterial.mMaterial == MT.OREMATS.GraniticMineralSand) {tAddedSpecial = tSpecial.add(ST.make(BlocksGT.Sands, UT.Code.divup(tMaterial.mAmount, U*9), 2, "You probably want to craft it into Dust"));} else
+						if (tMaterial.mMaterial == MT.C                          ) {tAddedSpecial = tSpecial.add(OM.dustOrIngot(MT.Coal            , tMaterial.mAmount * 2));}
 						if (tMaterial.mMaterial == MT.CaCO3                      ) {tAddedSpecial = tSpecial.add(OM.dustOrIngot(MT.STONES.Limestone, tMaterial.mAmount * 2));}
 						
 						tMeltingPoints.add(tMaterial.mMaterial.mMeltingPoint);
@@ -584,7 +597,7 @@ public class GT6_Main extends Abstract_Mod {
 				if (tRecipe != null) RM.Replicator.addFakeRecipe(F, tRecipe);
 			}
 		}
-
+		
 		for (MultiItemRandom tItem : ItemsGT.ALL_MULTI_ITEMS) for (Entry<Short, ArrayList<IBehavior<MultiItem>>> tEntry : tItem.mItemBehaviors.entrySet()) for (IBehavior<MultiItem> tBehavior : tEntry.getValue()) if (tBehavior instanceof Behavior_Turn_Into) if (((Behavior_Turn_Into)tBehavior).mTurnInto.exists()) tItem.mVisibleItems.set(tEntry.getKey(), F);
 	}
 

@@ -47,7 +47,6 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import enviromine.EnviroPotion;
 import gregapi.api.Abstract_Mod;
 import gregapi.api.Abstract_Proxy;
 import gregapi.block.ToolCompat;
@@ -532,6 +531,8 @@ public class GT_API extends Abstract_Mod {
 		OBSTRUCTION_CHECKS                      = ConfigsGT.GREGTECH.get("general", "ObstructionChecks"                , T);
 		OWNERSHIP_RESET                         = ConfigsGT.GREGTECH.get("general", "ResetPlayerOwnershipOfGT6Blocks"  , F);
 		SPAWN_ZONE_MOB_PROTECTION               = ConfigsGT.GREGTECH.get("general", "PreventMobSpawnsCloseToSpawn"     , T);
+		SPAWN_NO_BATS                           = ConfigsGT.GREGTECH.get("general", "PreventBatSpawnsOnNonVanillaStone", T);
+		SPAWN_HOSTILES_ONLY_IN_DARKNESS         = ConfigsGT.GREGTECH.get("general", "PreventMobSpawnsAboveLightLevel0" , T);
 		DISABLE_GT6_CRAFTING_RECIPES            = ConfigsGT.GREGTECH.get("general", "DisableGT6CraftingRecipesDEBUG"   , F);
 		TOOL_SOUNDS                             = ConfigsGT.GREGTECH.get("general", "sound_tools"                      , T);
 		ZOMBIES_DIG_WITH_TOOLS                  = ConfigsGT.GREGTECH.get("general", "Zombies_Dig_With_Tools"           , F);
@@ -780,14 +781,20 @@ public class GT_API extends Abstract_Mod {
 	@Override
 	public void onModPostInit2(FMLPostInitializationEvent aEvent) {
 		if (MD.IC2.mLoaded) {
-			PotionsGT.ID_RADIATION = ic2.api.info.Info.POTION_RADIATION.id;
+			PotionsGT.ID_RADIATION    = ic2.api.info.Info.POTION_RADIATION.id;
 		}
 		if (MD.ENVM.mLoaded) {
-			PotionsGT.ID_DEHYDRATION = EnviroPotion.dehydration.id;
-			PotionsGT.ID_FROSTBITE = EnviroPotion.frostbite.id;
-			PotionsGT.ID_HEATSTROKE = EnviroPotion.heatstroke.id;
-			PotionsGT.ID_HYPOTHERMIA = EnviroPotion.hypothermia.id;
-			PotionsGT.ID_INSANITY = EnviroPotion.insanity.id;
+			PotionsGT.ID_DEHYDRATION  = enviromine.EnviroPotion.dehydration.id;
+			PotionsGT.ID_FROSTBITE    = enviromine.EnviroPotion.frostbite.id;
+			PotionsGT.ID_HEATSTROKE   = enviromine.EnviroPotion.heatstroke.id;
+			PotionsGT.ID_HYPOTHERMIA  = enviromine.EnviroPotion.hypothermia.id;
+			PotionsGT.ID_INSANITY     = enviromine.EnviroPotion.insanity.id;
+		}
+		if (MD.IE.mLoaded) {
+			PotionsGT.ID_FLAMMABLE    = blusunrize.immersiveengineering.common.util.IEPotions.flammable.id;
+			PotionsGT.ID_SLIPPERY     = blusunrize.immersiveengineering.common.util.IEPotions.slippery.id;
+			PotionsGT.ID_CONDUCTIVE   = blusunrize.immersiveengineering.common.util.IEPotions.conductive.id;
+			PotionsGT.ID_STICKY       = blusunrize.immersiveengineering.common.util.IEPotions.sticky.id;
 		}
 		
 		EnergyCompat.checkAvailabilities();

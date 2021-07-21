@@ -46,6 +46,9 @@ import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
+import ganymedes01.etfuturum.entities.EntityHusk;
+import ganymedes01.etfuturum.entities.EntityStray;
+import ganymedes01.etfuturum.entities.EntityZombieVillager;
 import ganymedes01.etfuturum.recipes.BlastFurnaceRecipes;
 import ganymedes01.etfuturum.recipes.SmokerRecipes;
 import gregapi.api.Abstract_Mod;
@@ -118,6 +121,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.entity.monster.EntityWitch;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -163,6 +173,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import thaumcraft.common.entities.monster.EntityBrainyZombie;
 
 /**
  * @author Gregorius Techneticies
@@ -861,12 +872,16 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 			tNBT = tNBT.getCompoundTag(NBT_EFFECTS);
 			int tID = tNBT.getInteger("id"), tTime = tNBT.getInteger("time"), tLevel = tNBT.getInteger("lvl"), tChance = tNBT.getInteger("chance");
 			if (tID < -1) switch(tID) {
-			case -2: tID = PotionsGT.ID_RADIATION; break;
-			case -3: tID = PotionsGT.ID_HYPOTHERMIA; break;
-			case -4: tID = PotionsGT.ID_HEATSTROKE; break;
-			case -5: tID = PotionsGT.ID_FROSTBITE; break;
-			case -6: tID = PotionsGT.ID_DEHYDRATION; break;
-			case -7: tID = PotionsGT.ID_INSANITY; break;
+			case - 2: tID = PotionsGT.ID_RADIATION; break;
+			case - 3: tID = PotionsGT.ID_HYPOTHERMIA; break;
+			case - 4: tID = PotionsGT.ID_HEATSTROKE; break;
+			case - 5: tID = PotionsGT.ID_FROSTBITE; break;
+			case - 6: tID = PotionsGT.ID_DEHYDRATION; break;
+			case - 7: tID = PotionsGT.ID_INSANITY; break;
+			case - 8: tID = PotionsGT.ID_FLAMMABLE; break;
+			case - 9: tID = PotionsGT.ID_SLIPPERY; break;
+			case -10: tID = PotionsGT.ID_CONDUCTIVE; break;
+			case -11: tID = PotionsGT.ID_STICKY; break;
 			}
 			if (tID >= 0 && RNGSUS.nextInt(100) < tChance) {
 				if (tLevel >= 0) {
@@ -1247,11 +1262,11 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 			if (tRegistry != null) {
 				OreDictItemData tData = OM.anydata(aStack);
 				if (tData != null) {
-					if (tData.mPrefix == OP.rockGt || tData.mPrefix == OP.oreRaw) for (byte tSide : ALL_SIDES_MIDDLE_DOWN) if (WD.air(aEvent.entity.worldObj, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide]) && tRegistry.mBlock.placeBlock(aEvent.entity.worldObj, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide], SIDE_TOP, (short)32074, ST.save(NBT_VALUE, aStack), T, F)) {aStack.stackSize = 0; aEvent.extraLife = 0; aEvent.entityItem.setDead(); aEvent.setCanceled(T); return;}
-					if (tData.mPrefix == OP.ingot                               ) for (byte tSide : ALL_SIDES_MIDDLE_DOWN) if (WD.air(aEvent.entity.worldObj, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide]) && tRegistry.mBlock.placeBlock(aEvent.entity.worldObj, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide], SIDE_TOP, (short)32084, ST.save(NBT_VALUE, aStack), T, F)) {aStack.stackSize = 0; aEvent.extraLife = 0; aEvent.entityItem.setDead(); aEvent.setCanceled(T); return;}
-					if (tData.mPrefix == OP.plate                               ) for (byte tSide : ALL_SIDES_MIDDLE_DOWN) if (WD.air(aEvent.entity.worldObj, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide]) && tRegistry.mBlock.placeBlock(aEvent.entity.worldObj, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide], SIDE_TOP, (short)32085, ST.save(NBT_VALUE, aStack), T, F)) {aStack.stackSize = 0; aEvent.extraLife = 0; aEvent.entityItem.setDead(); aEvent.setCanceled(T); return;}
-					if (tData.mPrefix == OP.plateGem                            ) for (byte tSide : ALL_SIDES_MIDDLE_DOWN) if (WD.air(aEvent.entity.worldObj, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide]) && tRegistry.mBlock.placeBlock(aEvent.entity.worldObj, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide], SIDE_TOP, (short)32086, ST.save(NBT_VALUE, aStack), T, F)) {aStack.stackSize = 0; aEvent.extraLife = 0; aEvent.entityItem.setDead(); aEvent.setCanceled(T); return;}
-					if (tData.mPrefix == OP.scrapGt                             ) for (byte tSide : ALL_SIDES_MIDDLE_DOWN) if (WD.air(aEvent.entity.worldObj, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide]) && tRegistry.mBlock.placeBlock(aEvent.entity.worldObj, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide], SIDE_TOP, (short)32103, ST.save(NBT_VALUE, aStack), T, F)) {aStack.stackSize = 0; aEvent.extraLife = 0; aEvent.entityItem.setDead(); aEvent.setCanceled(T); return;}
+					if (tData.mPrefix == OP.rockGt || tData.mPrefix == OP.oreRaw) for (byte tSide : ALL_SIDES_MIDDLE_DOWN) if (WD.air(aEvent.entity.worldObj, aX+OFFX[tSide], aY+OFFY[tSide], aZ+OFFZ[tSide]) && tRegistry.mBlock.placeBlock(aEvent.entity.worldObj, aX+OFFX[tSide], aY+OFFY[tSide], aZ+OFFZ[tSide], SIDE_TOP, (short)32074, ST.save(NBT_VALUE, aStack), T, F)) {aStack.stackSize = 0; aEvent.extraLife = 0; aEvent.entityItem.setDead(); aEvent.setCanceled(T); return;}
+					if (tData.mPrefix == OP.ingot                               ) for (byte tSide : ALL_SIDES_MIDDLE_DOWN) if (WD.air(aEvent.entity.worldObj, aX+OFFX[tSide], aY+OFFY[tSide], aZ+OFFZ[tSide]) && tRegistry.mBlock.placeBlock(aEvent.entity.worldObj, aX+OFFX[tSide], aY+OFFY[tSide], aZ+OFFZ[tSide], SIDE_TOP, (short)32084, ST.save(NBT_VALUE, aStack), T, F)) {aStack.stackSize = 0; aEvent.extraLife = 0; aEvent.entityItem.setDead(); aEvent.setCanceled(T); return;}
+					if (tData.mPrefix == OP.plate                               ) for (byte tSide : ALL_SIDES_MIDDLE_DOWN) if (WD.air(aEvent.entity.worldObj, aX+OFFX[tSide], aY+OFFY[tSide], aZ+OFFZ[tSide]) && tRegistry.mBlock.placeBlock(aEvent.entity.worldObj, aX+OFFX[tSide], aY+OFFY[tSide], aZ+OFFZ[tSide], SIDE_TOP, (short)32085, ST.save(NBT_VALUE, aStack), T, F)) {aStack.stackSize = 0; aEvent.extraLife = 0; aEvent.entityItem.setDead(); aEvent.setCanceled(T); return;}
+					if (tData.mPrefix == OP.plateGem                            ) for (byte tSide : ALL_SIDES_MIDDLE_DOWN) if (WD.air(aEvent.entity.worldObj, aX+OFFX[tSide], aY+OFFY[tSide], aZ+OFFZ[tSide]) && tRegistry.mBlock.placeBlock(aEvent.entity.worldObj, aX+OFFX[tSide], aY+OFFY[tSide], aZ+OFFZ[tSide], SIDE_TOP, (short)32086, ST.save(NBT_VALUE, aStack), T, F)) {aStack.stackSize = 0; aEvent.extraLife = 0; aEvent.entityItem.setDead(); aEvent.setCanceled(T); return;}
+					if (tData.mPrefix == OP.scrapGt                             ) for (byte tSide : ALL_SIDES_MIDDLE_DOWN) if (WD.air(aEvent.entity.worldObj, aX+OFFX[tSide], aY+OFFY[tSide], aZ+OFFZ[tSide]) && tRegistry.mBlock.placeBlock(aEvent.entity.worldObj, aX+OFFX[tSide], aY+OFFY[tSide], aZ+OFFZ[tSide], SIDE_TOP, (short)32103, ST.save(NBT_VALUE, aStack), T, F)) {aStack.stackSize = 0; aEvent.extraLife = 0; aEvent.entityItem.setDead(); aEvent.setCanceled(T); return;}
 				}
 			}
 			GarbageGT.trash(aStack);
@@ -1266,14 +1281,33 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 	
 	@SubscribeEvent
 	public void onCheckSpawnEvent(LivingSpawnEvent.CheckSpawn aEvent) {
-		if (aEvent.getResult() == Result.DENY || aEvent.world.provider.dimensionId != 0 || aEvent.y + 16 < WD.waterLevel(aEvent.world)) return;
+		if (aEvent.getResult() == Result.DENY) return;
+		Class<? extends EntityLivingBase> aMobClass = aEvent.entityLiving.getClass();
+		World aWorld = aEvent.world;
+		int aX = UT.Code.roundDown(aEvent.x), aY = (int)UT.Code.bind(0, aWorld.getHeight(), UT.Code.roundDown(aEvent.y)), aZ = UT.Code.roundDown(aEvent.z);
+		
+		if (SPAWN_NO_BATS && aMobClass == EntityBat.class && aWorld.getBlock(aX, aY-2, aZ) != Blocks.stone && aWorld.getBlock(aX, aY+2, aZ) != Blocks.stone) {aEvent.setResult(Result.DENY); return;}
+		
+		if (!WD.dimOverworldLike(aWorld)) return;
+		if (SPAWN_HOSTILES_ONLY_IN_DARKNESS) try {
+			if (aWorld.getChunkFromBlockCoords(aX, aZ).getBlockStorageArray()[aY >> 4].getExtBlocklightValue(aX & 15, aY & 15, aZ & 15) > 0) {
+				// Vanilla Mobs only, just in case.
+				if (aMobClass == EntityCreeper.class || aMobClass == EntityEnderman.class || aMobClass == EntitySkeleton.class || aMobClass == EntityZombie.class || aMobClass == EntitySpider.class || aMobClass == EntityWitch.class || aMobClass == EntityBat.class) {aEvent.setResult(Result.DENY); return;}
+				// Well, that Zombie is kindof like Vanilla, so it counts.
+				if (MD.TC.mLoaded) if (aEvent.entityLiving instanceof EntityBrainyZombie) {aEvent.setResult(Result.DENY); return;}
+				// TODO Add Drowned and other Et Futurum Requiem Mobs once they are released.
+				if (MD.EtFu.mLoaded) if (aEvent.entityLiving instanceof EntityZombieVillager || aEvent.entityLiving instanceof EntityStray || aEvent.entityLiving instanceof EntityHusk) {aEvent.setResult(Result.DENY); return;}
+			}
+		} catch(Throwable e) {e.printStackTrace(ERR);}
+		
+		if (aWorld.provider.dimensionId != 0 || aY + 16 < WD.waterLevel(aWorld)) return;
 		if (GENERATE_BIOMES) {
-			if (UT.Code.inside(-96,  95, (int)aEvent.x) && UT.Code.inside(-96,  95, (int)aEvent.z)) {aEvent.setResult(Result.DENY); return;}
+			if (UT.Code.inside(-96,  95, aX) && UT.Code.inside(-96,  95, aZ)) {aEvent.setResult(Result.DENY); return;}
 		} else if (GENERATE_NEXUS) {
-			if (UT.Code.inside(  0,  48, (int)aEvent.x) && UT.Code.inside(-64, -16, (int)aEvent.z)) {aEvent.setResult(Result.DENY); return;}
+			if (UT.Code.inside(  0,  48, aX) && UT.Code.inside(-64, -16, aZ)) {aEvent.setResult(Result.DENY); return;}
 		}
-		if (GENERATE_STREETS && (UT.Code.inside(-48, 48, (int)aEvent.x) || UT.Code.inside(-48, 48, (int)aEvent.z))) {aEvent.setResult(Result.DENY); return;}
-		if (SPAWN_ZONE_MOB_PROTECTION && UT.Code.inside(-144, 144, ((int)aEvent.x)-aEvent.world.getWorldInfo().getSpawnX()) && UT.Code.inside(-144, 144, ((int)aEvent.z)-aEvent.world.getWorldInfo().getSpawnZ()) && WD.opq(aEvent.world, (int)aEvent.x, 0, (int)aEvent.z, F, F)) {aEvent.setResult(Result.DENY); return;}
+		if (GENERATE_STREETS && (UT.Code.inside(-48, 48, aX) || UT.Code.inside(-48, 48, aZ))) {aEvent.setResult(Result.DENY); return;}
+		if (SPAWN_ZONE_MOB_PROTECTION && UT.Code.inside(-144, 144, aX-aWorld.getWorldInfo().getSpawnX()) && UT.Code.inside(-144, 144, aZ-aWorld.getWorldInfo().getSpawnZ()) && WD.opq(aWorld, aX, 0, aZ, F, F)) {aEvent.setResult(Result.DENY); return;}
 	}
 	
 	@SubscribeEvent

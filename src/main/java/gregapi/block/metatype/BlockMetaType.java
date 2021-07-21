@@ -93,6 +93,8 @@ public class BlockMetaType extends BlockBaseMeta {
 				CR.shaped(ST.make(mSlabs[0], 2, i), CR.DEF, "sX", 'X', ST.make(this, 1, i));
 			}
 		}
+		
+		if (COMPAT_FR != null) COMPAT_FR.addToBackpacks("builder", ST.make(this, 1, W));
 	}
 	
 	protected BlockMetaType makeSlab(Class<? extends ItemBlock> aItemClass, Material aVanillaMaterial, SoundType aVanillaSoundType, String aName, String aDefaultLocalised, OreDictMaterial aMaterial, float aResistanceMultiplier, float aHardnessMultiplier, int aHarvestLevel, int aCount, IIconContainer[] aIcons, byte aSlabType, BlockMetaType aBlock) {
@@ -124,6 +126,8 @@ public class BlockMetaType extends BlockBaseMeta {
 		mSide == SIDE_Y_NEG ? 0.5F : 1.0F,
 		mSide == SIDE_Z_NEG ? 0.5F : 1.0F
 		);
+		
+		if (COMPAT_FR != null) COMPAT_FR.addToBackpacks("builder", ST.make(this, 1, W));
 	}
 	
 	public void onBlockCreation(Class<? extends ItemBlock> aItemClass, Material aVanillaMaterial, SoundType aSoundType, String aName, String aDefaultLocalised, OreDictMaterial aMaterial, float aResistanceMultiplier, float aHardnessMultiplier, int aHarvestLevel, int aCount, IIconContainer[] aIcons) {
@@ -136,7 +140,7 @@ public class BlockMetaType extends BlockBaseMeta {
 	
 	@Override
 	public boolean onBlockActivated(World aWorld, int aX, int aY, int aZ, EntityPlayer aPlayer, int aSide, float aHitX, float aHitY, float aHitZ) {
-		if (mBlock == this || aSide != OPPOSITES[mSide] || (mBlock.getCollisionBoundingBoxFromPool(aWorld, aX, aY, aZ) != null && !aWorld.checkNoEntityCollision(mBlock.getCollisionBoundingBoxFromPool(aWorld, aX, aY, aZ)))) return F;
+		if (mBlock == this || aSide != OPOS[mSide] || (mBlock.getCollisionBoundingBoxFromPool(aWorld, aX, aY, aZ) != null && !aWorld.checkNoEntityCollision(mBlock.getCollisionBoundingBoxFromPool(aWorld, aX, aY, aZ)))) return F;
 		ItemStack aStack = aPlayer.getCurrentEquippedItem();
 		byte aMetaData = WD.meta(aWorld, aX, aY, aZ);
 		if (ST.equal(aStack, mBlock.mSlabs[0], aMetaData)) {
@@ -151,7 +155,7 @@ public class BlockMetaType extends BlockBaseMeta {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess aWorld, int aX, int aY, int aZ, int aSide) {
-		if (aSide == OPPOSITES[mSide]) return T;
+		if (aSide == OPOS[mSide]) return T;
 		if (aSide != mSide && SIDES_VALID[mSide]) {
 			Block aBlock = aWorld.getBlock(aX, aY, aZ);
 			if (aBlock instanceof BlockMetaType && ((BlockMetaType)aBlock).mSide == mSide) return aBlock.getRenderBlockPass() != 0;

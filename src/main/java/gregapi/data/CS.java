@@ -605,40 +605,45 @@ public class CS {
 		{F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T},
 		{F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T}
 	};
-
+	
 	/** Fast lookup to see how many Connections a Mask has. It is recommended to do either &63 or &127 on the Index depending on how you use it. */
 	public static final byte[]              FACE_CONNECTION_COUNT = {0,1,1,2,1,2,2,3,1,2,2,3,2,3,3,4,1,2,2,3,2,3,3,4,2,3,3,4,3,4,4,5,1,2,2,3,2,3,3,4,2,3,3,4,3,4,4,5,2,3,3,4,3,4,4,5,3,4,4,5,4,5,5,6,1,2,2,3,2,3,3,4,2,3,3,4,3,4,4,5,2,3,3,4,3,4,4,5,3,4,4,5,4,5,5,6,2,3,3,4,3,4,4,5,3,4,4,5,4,5,5,6,3,4,4,5,4,5,5,6,4,5,5,6,5,6,6,7};
-
+	
 	/** Side Bits for quick reference.*/
 	public static final byte                SBIT[] = { 1, 2, 4, 8,16,32,64}, SIDE_BITS[] = SBIT, SBIT_D = 1, SBIT_U = 2, SBIT_L = 4, SBIT_F = 8, SBIT_R = 16, SBIT_B = 32, SBIT_N = 4, SBIT_S = 8, SBIT_W = 16, SBIT_E = 32, SBIT_A = 64, SBIT_I = 64;
-
+	
 	/** Those are not representing actual directions! They are for the "FACING_ROTATIONS" Array-Map */
 	public static final byte                SIDE_LEFT = 2, SIDE_FRONT = 3, SIDE_RIGHT = 4, SIDE_BACK = 5;
-
+	
 	/** Converts Sides to a Top-Bottom-Side Value, this limits the Range to a Number between [0 and 2] */
 	public static final byte[]              FACES_TBS = { 0, 1, 2, 2, 2, 2, 2};
 	/** Side->Opposite Mappings. */
-	public static final byte[]              OPPOSITES = { 1, 0, 3, 2, 5, 4, 6};
+	public static final byte[]              OPOS = { 1, 0, 3, 2, 5, 4, 6}, OPPOSITES = { 1, 0, 3, 2, 5, 4, 6};
 	/** Side->Offset Mappings. */
-	public static final byte[]              OFFSETS_X = { 0, 0, 0, 0,-1,+1, 0},
-											OFFSETS_Y = {-1,+1, 0, 0, 0, 0, 0},
-											OFFSETS_Z = { 0, 0,-1,+1, 0, 0, 0};
-
+	public static final byte[]              OFFX = { 0, 0, 0, 0,-1,+1, 0}, OFFSETS_X = { 0, 0, 0, 0,-1,+1, 0},
+											OFFY = {-1,+1, 0, 0, 0, 0, 0}, OFFSETS_Y = {-1,+1, 0, 0, 0, 0, 0},
+											OFFZ = { 0, 0,-1,+1, 0, 0, 0}, OFFSETS_Z = { 0, 0,-1,+1, 0, 0, 0};
+	/** 3x3x3 Mappings. */
+	public static final byte[]              CUBE_3_X = {0, 0, 0, 0, 0,-1,+1, 0, 0,-1,+1, 0, 0,-1,+1,-1,+1,+1,-1,-1,+1,+1,-1,-1,+1,+1,-1},
+											CUBE_3_Y = {0,-1,+1, 0, 0, 0, 0,-1,-1,-1,-1,+1,+1,+1,+1, 0, 0, 0, 0,-1,-1,-1,-1,+1,+1,+1,+1},
+											CUBE_3_Z = {0, 0, 0,-1,+1, 0, 0,-1,+1, 0, 0,-1,+1, 0, 0,-1,+1,-1,+1,-1,+1,-1,+1,-1,+1,-1,+1},
+											CUBE_3[] = {{ 0, 0, 0}, { 0,-1, 0}, { 0,+1, 0}, { 0, 0,-1}, { 0, 0,+1}, {-1, 0, 0}, {+1, 0, 0}, { 0,-1,-1}, { 0,-1,+1}, {-1,-1, 0}, {+1,-1, 0}, { 0,+1,-1}, { 0,+1,+1}, {-1,+1, 0}, {+1,+1, 0}, {-1, 0,-1}, {+1, 0,+1}, {+1, 0,-1}, {-1, 0,+1}, {-1,-1,-1}, {+1,-1,+1}, {+1,-1,-1}, {-1,-1,+1}, {-1,+1,-1}, {+1,+1,+1}, {+1,+1,-1}, {-1,+1,+1}};
+	
 	/** Side->ForgeDirection Mappings. */
 	public static final ForgeDirection[]    FORGE_DIR = {ForgeDirection.DOWN, ForgeDirection.UP, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.WEST, ForgeDirection.EAST, ForgeDirection.UNKNOWN};
 	/** Side->Opposite Mappings with ForgeDirection. */
 	public static final ForgeDirection[]    FORGE_DIR_OPPOSITES = {ForgeDirection.UP, ForgeDirection.DOWN, ForgeDirection.SOUTH, ForgeDirection.NORTH, ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.UNKNOWN};
-
+	
 	/** Compass alike Array for the proper ordering of North, East, South and West. */
 	public static final byte[]              COMPASS_DIRECTIONS      = {SIDE_NORTH, SIDE_EAST, SIDE_SOUTH, SIDE_WEST};
 	/** Side -> Compass Direction. Defaults to North if wrong value. */
 	public static final byte[]              COMPASS_FROM_SIDE       = { 0, 0, 0, 2, 3, 1, 0};
-
+	
 	/** Used for Meta => Side */
 	public static final byte[]              VALIDATE                = { 0, 1, 2, 3, 4, 5, 0, 0, 0, 1, 2, 3, 4, 5, 0, 0},
 											VALIDATE_VERTICAL       = { 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
 											VALIDATE_HORIZONTAL     = { 3, 3, 2, 3, 4, 5, 3, 3, 3, 3, 2, 3, 4, 5, 3, 3};
-
+	
 	/** An Array containing all Sides which follow the Condition, in order to iterate over them for example. */
 	public static final byte[]              ALL_SIDES                   =  {0,1,2,3,4,5,6},
 											ALL_SIDES_MIDDLE            =  {6,0,1,2,3,4,5},
@@ -662,7 +667,7 @@ public class CS {
 											ALL_SIDES_X                 =  {4,5},
 											ALL_SIDES_Y                 =  {0,1},
 											ALL_SIDES_Z                 =  {2,3};
-
+	
 	/** For Facing Checks. */
 	public static final boolean[]           SIDES_BOTTOM            = {T,F,F,F,F,F,F},
 											SIDES_TOP               = {F,T,F,F,F,F,F},
@@ -835,7 +840,7 @@ public class CS {
 	
 	/** Not really Constants, but they set using the Config and therefore should be constant. */
 	@SuppressWarnings("deprecation")
-	public static boolean D1 = F, D2 = F, D3 = F, ALWAYS_TRUE = T, ALWAYS_FALSE = F, CLIENT_BLOCKUPDATE_SOUNDS = F, NEI = F, APRIL_FOOLS = (new Date().getMonth() == 3 && new Date().getDate() <= 2), TOOL_SOUNDS = T, EMIT_EU_AS_RF = F, DISABLE_GT6_CRAFTING_RECIPES = F, ENABLE_ADDING_IC2_MACERATOR_RECIPES = T, DISABLE_ALL_IC2_MACERATOR_RECIPES = F, ENABLE_ADDING_IC2_EXTRACTOR_RECIPES = T, DISABLE_ALL_IC2_EXTRACTOR_RECIPES = F, ENABLE_ADDING_IC2_COMPRESSOR_RECIPES = T, DISABLE_ALL_IC2_COMPRESSOR_RECIPES = F, ENABLE_ADDING_IC2_OREWASHER_RECIPES = T, DISABLE_ALL_IC2_OREWASHER_RECIPES = F, ENABLE_ADDING_IC2_CENTRIFUGE_RECIPES = T, DISABLE_ALL_IC2_CENTRIFUGE_RECIPES = F, FAST_LEAF_DECAY = T, FORCE_GRAVEL_NO_FLINT = F, NERFED_WOOD = T, FOOD_OVERDOSE_DEATH = T, NUTRITION_SYSTEM = T, OBSTRUCTION_CHECKS = T, OWNERSHIP_RESET = F, SPAWN_ZONE_MOB_PROTECTION = T, CONSTANT_ENERGY = T, RAIN_EXPLOSIONS = F, WATER_EXPLOSIONS = F, THUNDER_EXPLOSIONS = F, FIRE_EXPLOSIONS = F, OVERCHARGE_EXPLOSIONS = F, FIRE_BREAKING = F, RAIN_BREAKING = F, WATER_BREAKING = F, THUNDER_BREAKING = F, OVERCHARGE_BREAKING = F, SHOW_MICROBLOCKS = F, SHOW_CHEM_FORMULAS = T, SHOW_INTERNAL_NAMES = F, SHOW_HIDDEN_MATERIALS = F, SHOW_HIDDEN_PREFIXES = F, SHOW_ORE_BLOCK_PREFIXES = F, SHOW_HIDDEN_ITEMS = F, DRINKS_ALWAYS_DRINKABLE = F, HUNGER_BY_INVENTORY_WEIGHT = F, INVENTORY_UNIFICATION = T, XP_ORB_COMBINING = T, ADVENTURE_MODE_KIT = F, SURVIVAL_INTO_ADVENTURE_MODE = F, ZOMBIES_DIG_WITH_TOOLS = F, ZOMBIES_DIG_TILEENTITIES = F, ZOMBIES_HOLD_PICKAXES = T, ZOMBIES_HOLD_TNT = T, ZOMBIES_IGNITE_HELD_TNT = T, DISPLAY_TEMP_TOOLTIP = T, GENERATE_STONE = T, GENERATE_STREETS = F, GENERATE_NEXUS = F, GENERATE_TESTING = F, GENERATE_BEACON = F, GENERATE_BIOMES = F;
+	public static boolean D1 = F, D2 = F, D3 = F, ALWAYS_TRUE = T, ALWAYS_FALSE = F, CLIENT_BLOCKUPDATE_SOUNDS = F, NEI = F, APRIL_FOOLS = (new Date().getMonth() == 3 && new Date().getDate() <= 2), TOOL_SOUNDS = T, EMIT_EU_AS_RF = F, DISABLE_GT6_CRAFTING_RECIPES = F, ENABLE_ADDING_IC2_MACERATOR_RECIPES = T, DISABLE_ALL_IC2_MACERATOR_RECIPES = F, ENABLE_ADDING_IC2_EXTRACTOR_RECIPES = T, DISABLE_ALL_IC2_EXTRACTOR_RECIPES = F, ENABLE_ADDING_IC2_COMPRESSOR_RECIPES = T, DISABLE_ALL_IC2_COMPRESSOR_RECIPES = F, ENABLE_ADDING_IC2_OREWASHER_RECIPES = T, DISABLE_ALL_IC2_OREWASHER_RECIPES = F, ENABLE_ADDING_IC2_CENTRIFUGE_RECIPES = T, DISABLE_ALL_IC2_CENTRIFUGE_RECIPES = F, FAST_LEAF_DECAY = T, FORCE_GRAVEL_NO_FLINT = F, NERFED_WOOD = T, FOOD_OVERDOSE_DEATH = T, NUTRITION_SYSTEM = T, OBSTRUCTION_CHECKS = T, OWNERSHIP_RESET = F, SPAWN_ZONE_MOB_PROTECTION = T, SPAWN_NO_BATS = T, SPAWN_HOSTILES_ONLY_IN_DARKNESS = T, CONSTANT_ENERGY = T, RAIN_EXPLOSIONS = F, WATER_EXPLOSIONS = F, THUNDER_EXPLOSIONS = F, FIRE_EXPLOSIONS = F, OVERCHARGE_EXPLOSIONS = F, FIRE_BREAKING = F, RAIN_BREAKING = F, WATER_BREAKING = F, THUNDER_BREAKING = F, OVERCHARGE_BREAKING = F, SHOW_MICROBLOCKS = F, SHOW_CHEM_FORMULAS = T, SHOW_INTERNAL_NAMES = F, SHOW_HIDDEN_MATERIALS = F, SHOW_HIDDEN_PREFIXES = F, SHOW_ORE_BLOCK_PREFIXES = F, SHOW_HIDDEN_ITEMS = F, DRINKS_ALWAYS_DRINKABLE = F, HUNGER_BY_INVENTORY_WEIGHT = F, INVENTORY_UNIFICATION = T, XP_ORB_COMBINING = T, ADVENTURE_MODE_KIT = F, SURVIVAL_INTO_ADVENTURE_MODE = F, ZOMBIES_DIG_WITH_TOOLS = F, ZOMBIES_DIG_TILEENTITIES = F, ZOMBIES_HOLD_PICKAXES = T, ZOMBIES_HOLD_TNT = T, ZOMBIES_IGNITE_HELD_TNT = T, DISPLAY_TEMP_TOOLTIP = T, GENERATE_STONE = T, GENERATE_STREETS = F, GENERATE_NEXUS = F, GENERATE_TESTING = F, GENERATE_BEACON = F, GENERATE_BIOMES = F;
 	/** This means that Client or Server specific Base Files are definitely existing and loaded! Not if the World is actually client side or server side! */
 	public static boolean CODE_UNCHECKED = T, CODE_CLIENT = F, CODE_SERVER = F;
 	
@@ -1505,11 +1510,13 @@ public class CS {
 		}
 	}
 	
-	/** Contains used Potion Effects. IDs are to be set on API postInit. */
+	/** Contains Potion Effects of other Mods. The real IDs are to be set on API postInit, many things such as Food will detect the negative Numbers and replace them on demand. */
 	public static class PotionsGT {
 		public static int
-		ID_RADIATION = -2,
-		ID_HYPOTHERMIA = -3, ID_HEATSTROKE = -4, ID_FROSTBITE = -5, ID_DEHYDRATION = -6, ID_INSANITY = -7;
+		  ID_RADIATION = -2
+		, ID_HYPOTHERMIA = -3, ID_HEATSTROKE = -4, ID_FROSTBITE = -5, ID_DEHYDRATION = -6, ID_INSANITY = -7
+		, ID_FLAMMABLE = -8, ID_SLIPPERY = -9, ID_CONDUCTIVE = -10, ID_STICKY = -11
+		;
 	}
 	
 	public static class BushesGT {
@@ -2110,6 +2117,7 @@ public class CS {
 		, GT_SCREWDRIVER        = MD.GAPI.mID.toLowerCase() + ":" + "gt.screwdriver"
 
 		, IC_WRENCH             = GT_WRENCH
+		, IC_TREETAP            = MD.IC2.mID.toLowerCase() + ":" + "tools.Treetap"
 		, IC_TRAMPOLINE         = MD.IC2.mID.toLowerCase() + ":" + "tools.RubberTrampoline"
 		, IC_PAINT              = MD.IC2.mID.toLowerCase() + ":" + "tools.Painter"
 		, IC_SPRAY              = MD.IC2.mID.toLowerCase() + ":" + "tools.Painter"

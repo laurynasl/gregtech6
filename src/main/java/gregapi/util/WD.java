@@ -125,10 +125,10 @@ public class WD {
 	
 	public static boolean obstructed(World aWorld, int aX, int aY, int aZ, byte aSide) {
 		if (!OBSTRUCTION_CHECKS) return F;
-		aX += OFFSETS_X[aSide]; aY += OFFSETS_Y[aSide]; aZ += OFFSETS_Z[aSide];
+		aX += OFFX[aSide]; aY += OFFY[aSide]; aZ += OFFZ[aSide];
 		TileEntity tTileEntity = te(aWorld, aX, aY, aZ, T);
 		if (tTileEntity != null) {
-			if (tTileEntity instanceof ITileEntityQuickObstructionCheck) return ((ITileEntityQuickObstructionCheck)tTileEntity).isObstructingBlockAt(OPPOSITES[aSide]);
+			if (tTileEntity instanceof ITileEntityQuickObstructionCheck) return ((ITileEntityQuickObstructionCheck)tTileEntity).isObstructingBlockAt(OPOS[aSide]);
 			if (MD.TC.mLoaded && tTileEntity instanceof INode) return F;
 		}
 		Block tBlock = aWorld.getBlock(aX, aY, aZ);
@@ -162,65 +162,93 @@ public class WD {
 		return aWorld.func_147447_a(vec3, vec3.addVector(tX * tW * tReach, tY * tReach, tZ * tW * tReach), aFlag, !aFlag, F);
 	}
 	
+	public static boolean dimOverworldLike(World aWorld) {return aWorld != null && dimOverworldLike(aWorld.provider);}
+	public static boolean dimOverworldLike(WorldProvider aProvider) {return aProvider.dimensionId == 0 || dimOverworldLike(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimOverworldLike(WorldProvider aProvider, String aProviderClassName) {return aProvider.dimensionId == 0 || dimENVM(aProvider, aProviderClassName) || dimA97(aProvider, aProviderClassName) || dimWTCH(aProvider, aProviderClassName) || dimMYST(aProvider, aProviderClassName) || dimCW2(aProvider, aProviderClassName);}
+	
 	public static boolean dimPlanet(World aWorld) {return aWorld != null && dimPlanet(aWorld.provider);}
-	public static boolean dimPlanet(WorldProvider aProvider) {return !(Math.abs(aProvider.dimensionId) <= 1 || dimMYST(aProvider) || dimTF(aProvider) || dimERE(aProvider) || dimBTL(aProvider) || dimENVM(aProvider) || dimDD(aProvider) || dimLM(aProvider) || dimAETHER(aProvider) || dimALF(aProvider) || dimTROPIC(aProvider) || dimCANDY(aProvider));}
+	public static boolean dimPlanet(WorldProvider aProvider) {return Math.abs(aProvider.dimensionId) > 1 && dimPlanet(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimPlanet(WorldProvider aProvider, String aProviderClassName) {return !(Math.abs(aProvider.dimensionId) <= 1 || dimMYST(aProvider, aProviderClassName) || dimATUM(aProvider, aProviderClassName) || dimWTCH(aProvider, aProviderClassName) || dimA97(aProvider, aProviderClassName) || dimCW2(aProvider, aProviderClassName) || dimTF(aProvider, aProviderClassName) || dimERE(aProvider, aProviderClassName) || dimBTL(aProvider, aProviderClassName) || dimENVM(aProvider, aProviderClassName) || dimDD(aProvider, aProviderClassName) || dimLM(aProvider, aProviderClassName) || dimAETHER(aProvider, aProviderClassName) || dimALF(aProvider, aProviderClassName) || dimTROPIC(aProvider, aProviderClassName) || dimCANDY(aProvider, aProviderClassName));}
 	
 	public static boolean dimMYST(World aWorld) {return aWorld != null && dimMYST(aWorld.provider);}
 	public static boolean dimMYST(WorldProvider aProvider) {return MD.MYST.mLoaded && aProvider.getClass().getName().toLowerCase().contains("com.xcompwiz.mystcraft");}
+	public static boolean dimMYST(WorldProvider aProvider, String aProviderClassName) {return MD.MYST.mLoaded && aProvider.getClass().getName().toLowerCase().contains("com.xcompwiz.mystcraft");}
 	
 	public static boolean dimCANDY(World aWorld) {return aWorld != null && dimCANDY(aWorld.provider);}
-	public static boolean dimCANDY(WorldProvider aProvider) {return MD.CANDY.mLoaded && "WorldProviderCandy".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimCANDY(WorldProvider aProvider) {return MD.CANDY.mLoaded && dimCANDY(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimCANDY(WorldProvider aProvider, String aProviderClassName) {return MD.CANDY.mLoaded && "WorldProviderCandy".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
 	
 	public static boolean dimTROPIC(World aWorld) {return aWorld != null && dimTROPIC(aWorld.provider);}
-	public static boolean dimTROPIC(WorldProvider aProvider) {return MD.TROPIC.mLoaded && "WorldProviderTropicraft".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimTROPIC(WorldProvider aProvider) {return MD.TROPIC.mLoaded && dimTROPIC(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimTROPIC(WorldProvider aProvider, String aProviderClassName) {return MD.TROPIC.mLoaded && "WorldProviderTropicraft".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean dimATUM(World aWorld) {return aWorld != null && dimATUM(aWorld.provider);}
-	public static boolean dimATUM(WorldProvider aProvider) {return MD.ATUM.mLoaded && "AtumWorldProvider".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimATUM(WorldProvider aProvider) {return MD.ATUM.mLoaded && dimATUM(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimATUM(WorldProvider aProvider, String aProviderClassName) {return MD.ATUM.mLoaded && "AtumWorldProvider".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean dimTF(World aWorld) {return aWorld != null && dimTF(aWorld.provider);}
 	public static boolean dimTF(WorldProvider aProvider) {return MD.TF.mLoaded && aProvider.dimensionId == TwilightForestMod.dimensionID;}
+	public static boolean dimTF(WorldProvider aProvider, String aProviderClassName) {return MD.TF.mLoaded && aProvider.dimensionId == TwilightForestMod.dimensionID;}
 	
 	public static boolean dimBTL(World aWorld) {return aWorld != null && dimBTL(aWorld.provider);}
-	public static boolean dimBTL(WorldProvider aProvider) {return MD.BTL.mLoaded && "WorldProviderBetweenlands".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimBTL(WorldProvider aProvider) {return MD.BTL.mLoaded && dimBTL(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimBTL(WorldProvider aProvider, String aProviderClassName) {return MD.BTL.mLoaded && "WorldProviderBetweenlands".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean dimERE(World aWorld) {return aWorld != null && dimERE(aWorld.provider);}
-	public static boolean dimERE(WorldProvider aProvider) {return MD.ERE.mLoaded && "WorldProviderErebus".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimERE(WorldProvider aProvider) {return MD.ERE.mLoaded && dimERE(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimERE(WorldProvider aProvider, String aProviderClassName) {return MD.ERE.mLoaded && "WorldProviderErebus".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean dimALF(World aWorld) {return aWorld != null && dimALF(aWorld.provider);}
-	public static boolean dimALF(WorldProvider aProvider) {return MD.ALF.mLoaded && "WorldProviderAlfheim".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimALF(WorldProvider aProvider) {return MD.ALF.mLoaded && dimALF(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimALF(WorldProvider aProvider, String aProviderClassName) {return MD.ALF.mLoaded && "WorldProviderAlfheim".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean dimDD(World aWorld) {return aWorld != null && dimDD(aWorld.provider);}
-	public static boolean dimDD(WorldProvider aProvider) {return (MD.ExU.mLoaded || MD.ExS.mLoaded) && "WorldProviderUnderdark".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimDD(WorldProvider aProvider) {return (MD.ExU.mLoaded || MD.ExS.mLoaded) && dimDD(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimDD(WorldProvider aProvider, String aProviderClassName) {return (MD.ExU.mLoaded || MD.ExS.mLoaded) && "WorldProviderUnderdark".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean dimLM(World aWorld) {return aWorld != null && dimLM(aWorld.provider);}
-	public static boolean dimLM(WorldProvider aProvider) {return (MD.ExU.mLoaded || MD.ExS.mLoaded) && "WorldProviderEndOfTime".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimLM(WorldProvider aProvider) {return (MD.ExU.mLoaded || MD.ExS.mLoaded) && dimLM(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimLM(WorldProvider aProvider, String aProviderClassName) {return (MD.ExU.mLoaded || MD.ExS.mLoaded) && "WorldProviderEndOfTime".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean dimENVM(World aWorld) {return aWorld != null && dimENVM(aWorld.provider);}
-	public static boolean dimENVM(WorldProvider aProvider) {return MD.ENVM.mLoaded && "WorldProviderCaves".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimENVM(WorldProvider aProvider) {return MD.ENVM.mLoaded && dimENVM(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimENVM(WorldProvider aProvider, String aProviderClassName) {return MD.ENVM.mLoaded && "WorldProviderCaves".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean dimA97(World aWorld) {return aWorld != null && dimA97(aWorld.provider);}
-	public static boolean dimA97(WorldProvider aProvider) {return MD.A97_MINING.mLoaded && "WorldProviderMiner".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimA97(WorldProvider aProvider) {return MD.A97_MINING.mLoaded && dimA97(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimA97(WorldProvider aProvider, String aProviderClassName) {return MD.A97_MINING.mLoaded && "WorldProviderMiner".equalsIgnoreCase(aProviderClassName);}
+	
+	public static boolean dimCW2(World aWorld) {return aWorld != null && dimCW2(aWorld.provider);}
+	public static boolean dimCW2(WorldProvider aProvider) {return MD.CW2.mLoaded && dimCW2(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimCW2(WorldProvider aProvider, String aProviderClassName) {return dimCW2AquaCavern(aProvider, aProviderClassName) || dimCW2Caveland(aProvider, aProviderClassName) || dimCW2Cavenia(aProvider, aProviderClassName) || dimCW2Cavern(aProvider, aProviderClassName) || dimCW2Caveworld(aProvider, aProviderClassName);}
 	
 	public static boolean dimCW2AquaCavern(World aWorld) {return aWorld != null && dimCW2AquaCavern(aWorld.provider);}
-	public static boolean dimCW2AquaCavern(WorldProvider aProvider) {return MD.CW2.mLoaded && "WorldProviderAquaCavern".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimCW2AquaCavern(WorldProvider aProvider) {return MD.CW2.mLoaded && dimCW2AquaCavern(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimCW2AquaCavern(WorldProvider aProvider, String aProviderClassName) {return MD.CW2.mLoaded && "WorldProviderAquaCavern".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean dimCW2Caveland(World aWorld) {return aWorld != null && dimCW2Caveland(aWorld.provider);}
-	public static boolean dimCW2Caveland(WorldProvider aProvider) {return MD.CW2.mLoaded && "WorldProviderCaveland".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimCW2Caveland(WorldProvider aProvider) {return MD.CW2.mLoaded && dimCW2Caveland(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimCW2Caveland(WorldProvider aProvider, String aProviderClassName) {return MD.CW2.mLoaded && "WorldProviderCaveland".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean dimCW2Cavenia(World aWorld) {return aWorld != null && dimCW2Cavenia(aWorld.provider);}
-	public static boolean dimCW2Cavenia(WorldProvider aProvider) {return MD.CW2.mLoaded && "WorldProviderCavenia".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimCW2Cavenia(WorldProvider aProvider) {return MD.CW2.mLoaded && dimCW2Cavenia(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimCW2Cavenia(WorldProvider aProvider, String aProviderClassName) {return MD.CW2.mLoaded && "WorldProviderCavenia".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean dimCW2Cavern(World aWorld) {return aWorld != null && dimCW2Cavern(aWorld.provider);}
-	public static boolean dimCW2Cavern(WorldProvider aProvider) {return MD.CW2.mLoaded && "WorldProviderCavern".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimCW2Cavern(WorldProvider aProvider) {return MD.CW2.mLoaded && dimCW2Cavern(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimCW2Cavern(WorldProvider aProvider, String aProviderClassName) {return MD.CW2.mLoaded && "WorldProviderCavern".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean dimCW2Caveworld(World aWorld) {return aWorld != null && dimCW2Caveworld(aWorld.provider);}
-	public static boolean dimCW2Caveworld(WorldProvider aProvider) {return MD.CW2.mLoaded && "WorldProviderCaveworld".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimCW2Caveworld(WorldProvider aProvider) {return MD.CW2.mLoaded && dimCW2Caveworld(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimCW2Caveworld(WorldProvider aProvider, String aProviderClassName) {return MD.CW2.mLoaded && "WorldProviderCaveworld".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean dimWTCH(World aWorld) {return aWorld != null && dimWTCH(aWorld.provider);}
-	public static boolean dimWTCH(WorldProvider aProvider) {return MD.WTCH.mLoaded && "WorldProviderDreamWorld".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimWTCH(WorldProvider aProvider) {return MD.WTCH.mLoaded && dimWTCH(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimWTCH(WorldProvider aProvider, String aProviderClassName) {return MD.WTCH.mLoaded && "WorldProviderDreamWorld".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean dimAETHER(World aWorld) {return aWorld != null && dimAETHER(aWorld.provider);}
-	public static boolean dimAETHER(WorldProvider aProvider) {return MD.AETHER.mLoaded && "WorldProviderAether".equalsIgnoreCase(UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimAETHER(WorldProvider aProvider) {return MD.AETHER.mLoaded && dimAETHER(aProvider, UT.Reflection.getLowercaseClass(aProvider));}
+	public static boolean dimAETHER(WorldProvider aProvider, String aProviderClassName) {return MD.AETHER.mLoaded && "WorldProviderAether".equalsIgnoreCase(aProviderClassName);}
 	
 	public static boolean move(Entity aEntity, int aDimension, double aX, double aY, double aZ) {
 		WorldServer tTargetWorld = DimensionManager.getWorld(aDimension), tOriginalWorld = DimensionManager.getWorld(aEntity.worldObj.provider.dimensionId);
@@ -418,12 +446,12 @@ public class WD {
 	
 	public static Block block(IBlockAccess aWorld, int aX, int aY, int aZ) {return aWorld.getBlock(aX, aY, aZ);}
 	public static Block block(World        aWorld, int aX, int aY, int aZ, boolean aLoadUnloadedChunks) {return aLoadUnloadedChunks || aWorld.blockExists(aX, aY, aZ) ? aWorld.getBlock(aX, aY, aZ) : NB;}
-	public static Block block(World        aWorld, int aX, int aY, int aZ, byte aSide, boolean aLoadUnloadedChunks) {return block(aWorld, aX+OFFSETS_X[aSide], aY+OFFSETS_Y[aSide], aZ+OFFSETS_Z[aSide], aLoadUnloadedChunks);}
-	public static Block block(World        aWorld, int aX, int aY, int aZ, byte aSide) {return block(aWorld, aX+OFFSETS_X[aSide], aY+OFFSETS_Y[aSide], aZ+OFFSETS_Z[aSide]);}
+	public static Block block(World        aWorld, int aX, int aY, int aZ, byte aSide, boolean aLoadUnloadedChunks) {return block(aWorld, aX+OFFX[aSide], aY+OFFY[aSide], aZ+OFFZ[aSide], aLoadUnloadedChunks);}
+	public static Block block(World        aWorld, int aX, int aY, int aZ, byte aSide) {return block(aWorld, aX+OFFX[aSide], aY+OFFY[aSide], aZ+OFFZ[aSide]);}
 	public static byte  meta (IBlockAccess aWorld, int aX, int aY, int aZ) {return UT.Code.bind4(aWorld.getBlockMetadata(aX, aY, aZ));}
 	public static byte  meta (World        aWorld, int aX, int aY, int aZ, boolean aLoadUnloadedChunks) {return aLoadUnloadedChunks || aWorld.blockExists(aX, aY, aZ) ? UT.Code.bind4(aWorld.getBlockMetadata(aX, aY, aZ)) : 0;}
-	public static byte  meta (World        aWorld, int aX, int aY, int aZ, byte aSide, boolean aLoadUnloadedChunks) {return meta(aWorld, aX+OFFSETS_X[aSide], aY+OFFSETS_Y[aSide], aZ+OFFSETS_Z[aSide], aLoadUnloadedChunks);}
-	public static byte  meta (World        aWorld, int aX, int aY, int aZ, byte aSide) {return meta(aWorld, aX+OFFSETS_X[aSide], aY+OFFSETS_Y[aSide], aZ+OFFSETS_Z[aSide]);}
+	public static byte  meta (World        aWorld, int aX, int aY, int aZ, byte aSide, boolean aLoadUnloadedChunks) {return meta(aWorld, aX+OFFX[aSide], aY+OFFY[aSide], aZ+OFFZ[aSide], aLoadUnloadedChunks);}
+	public static byte  meta (World        aWorld, int aX, int aY, int aZ, byte aSide) {return meta(aWorld, aX+OFFX[aSide], aY+OFFY[aSide], aZ+OFFZ[aSide]);}
 	
 	public static boolean set(World aWorld, int aX, int aY, int aZ, Block aBlock, long aMeta, long aFlags) {
 		return set(aWorld, aX, aY, aZ, aBlock, Code.bind4(aMeta), (byte)aFlags, aBlock.isOpaqueCube());
@@ -590,8 +618,8 @@ public class WD {
 	
 	public static boolean burning(World aWorld, int aX, int aY, int aZ) {return block(aWorld, aX, aY, aZ, F) instanceof BlockFire || block(aWorld, aX+1, aY, aZ, F) instanceof BlockFire || block(aWorld, aX-1, aY, aZ, F) instanceof BlockFire || block(aWorld, aX, aY+1, aZ, F) instanceof BlockFire || block(aWorld, aX, aY-1, aZ, F) instanceof BlockFire || block(aWorld, aX, aY, aZ+1, F) instanceof BlockFire || block(aWorld, aX, aY, aZ-1, F) instanceof BlockFire;}
 	
-	public static void burn(World aWorld, ChunkCoordinates aCoords, boolean aReplaceCenter, boolean aCheckFlammability) {for (byte tSide : aReplaceCenter?ALL_SIDES_MIDDLE_UP:ALL_SIDES_VALID) fire(aWorld, aCoords.posX+OFFSETS_X[tSide], aCoords.posY+OFFSETS_Y[tSide], aCoords.posZ+OFFSETS_Z[tSide], aCheckFlammability);}
-	public static void burn(World aWorld, int aX, int aY, int aZ  , boolean aReplaceCenter, boolean aCheckFlammability) {for (byte tSide : aReplaceCenter?ALL_SIDES_MIDDLE_UP:ALL_SIDES_VALID) fire(aWorld, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide], aCheckFlammability);}
+	public static void burn(World aWorld, ChunkCoordinates aCoords, boolean aReplaceCenter, boolean aCheckFlammability) {for (byte tSide : aReplaceCenter?ALL_SIDES_MIDDLE_UP:ALL_SIDES_VALID) fire(aWorld, aCoords.posX+OFFX[tSide], aCoords.posY+OFFY[tSide], aCoords.posZ+OFFZ[tSide], aCheckFlammability);}
+	public static void burn(World aWorld, int aX, int aY, int aZ  , boolean aReplaceCenter, boolean aCheckFlammability) {for (byte tSide : aReplaceCenter?ALL_SIDES_MIDDLE_UP:ALL_SIDES_VALID) fire(aWorld, aX+OFFX[tSide], aY+OFFY[tSide], aZ+OFFZ[tSide], aCheckFlammability);}
 	
 	public static boolean fire(World aWorld, ChunkCoordinates aCoords, boolean aCheckFlammability) {return fire(aWorld, aCoords.posX, aCoords.posY, aCoords.posZ, aCheckFlammability);}
 	public static boolean fire(World aWorld, int aX, int aY, int aZ, boolean aCheckFlammability) {
@@ -604,7 +632,7 @@ public class WD {
 				for (byte tSide : ALL_SIDES_VALID) {
 					Block tAdjacent = block(aWorld, aX, aY, aZ, tSide);
 					if (tAdjacent == Blocks.chest || tAdjacent == Blocks.trapped_chest) return aWorld.setBlock(aX, aY, aZ, Blocks.fire);
-					if (tAdjacent.getFlammability(aWorld, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide], FORGE_DIR_OPPOSITES[tSide]) > 0) return aWorld.setBlock(aX, aY, aZ, Blocks.fire);
+					if (tAdjacent.getFlammability(aWorld, aX+OFFX[tSide], aY+OFFY[tSide], aZ+OFFZ[tSide], FORGE_DIR_OPPOSITES[tSide]) > 0) return aWorld.setBlock(aX, aY, aZ, Blocks.fire);
 				}
 			} else {
 				return aWorld.setBlock(aX, aY, aZ, Blocks.fire, 0, 3);
@@ -675,9 +703,9 @@ public class WD {
 		
 		if (tBlock == NB || bedrock(tBlock)) {
 			for (byte tSide : ALL_SIDES_BUT_BOTTOM) for (int i = 1; i < 7; i++) {
-				tBlock = aWorld.getBlock(aX+OFFSETS_X[tSide]*i, aY+OFFSETS_Y[tSide]*i, aZ+OFFSETS_Z[tSide]*i);
+				tBlock = aWorld.getBlock(aX+OFFX[tSide]*i, aY+OFFY[tSide]*i, aZ+OFFZ[tSide]*i);
 				if (tBlock != NB && tBlock != tStone && !bedrock(tBlock)) {
-					int tMetaData = aWorld.getBlockMetadata(aX+OFFSETS_X[tSide]*i, aY+OFFSETS_Y[tSide]*i, aZ+OFFSETS_Z[tSide]*i);
+					int tMetaData = aWorld.getBlockMetadata(aX+OFFX[tSide]*i, aY+OFFY[tSide]*i, aZ+OFFZ[tSide]*i);
 					if (BlocksGT.stoneToNormalOres.containsKey(new ItemStackContainer(tBlock, 1, tMetaData))) {
 						return aWorld.setBlock(aX, aY, aZ, tBlock, tMetaData, 0);
 					}

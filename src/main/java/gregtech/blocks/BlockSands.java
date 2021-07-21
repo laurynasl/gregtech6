@@ -25,6 +25,7 @@ import gregapi.block.BlockBaseMeta;
 import gregapi.data.LH;
 import gregapi.data.MD;
 import gregapi.data.MT;
+import gregapi.data.OP;
 import gregapi.data.RM;
 import gregapi.old.Textures;
 import gregapi.recipes.maps.RecipeMapCrucible;
@@ -47,15 +48,16 @@ public class BlockSands extends BlockBaseMeta {
 		MT.OREMATS.BasalticMineralSand.mTextureDust = BlockTextureCopied.get(this, SIDE_TOP, 1);
 		MT.OREMATS.GraniticMineralSand.mTextureDust = BlockTextureCopied.get(this, SIDE_TOP, 2);
 		
-		OM.data(ST.make(this, 1, 0), MT.OREMATS.Magnetite, U);
-		OM.data(ST.make(this, 1, 1), MT.OREMATS.BasalticMineralSand, U);
-		OM.data(ST.make(this, 1, 2), MT.OREMATS.GraniticMineralSand, U);
+		OM.reg(ST.make(this, 1, 0), OP.blockDust.dat(MT.OREMATS.Magnetite          ));
+		OM.reg(ST.make(this, 1, 1), OP.blockDust.dat(MT.OREMATS.BasalticMineralSand));
+		OM.reg(ST.make(this, 1, 2), OP.blockDust.dat(MT.OREMATS.GraniticMineralSand));
 		
 		for (byte i = 0; i < maxMeta(); i++) {
 			((RecipeMapCrucible)RM.CrucibleSmelting).getRecipeFor(ST.make(this, 1, i));
 		}
 		
 		if (MD.RC.mLoaded) try {EntityTunnelBore.addMineableBlock(this);} catch(Throwable e) {e.printStackTrace(ERR);}
+		if (COMPAT_FR  != null) COMPAT_FR.addToBackpacks("digger", ST.make(this, 1, W));
 	}
 	
 	@Override public boolean useGravity(byte aMeta) {return T;}

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 GregTech-6 Team
+ * Copyright (c) 2021 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -35,11 +35,11 @@ import net.minecraftforge.common.ChestGenHooks;
 /**
  * @author Gregorius Techneticies
  */
-public class DungeonChunkRoomPool extends DungeonChunkRoomEmpty {
+public class DungeonChunkRoomFarmFish extends DungeonChunkRoomEmpty {
 	@Override
 	public boolean generate(DungeonData aData) {
-		if (aData.mConnectionCount != 2) return F;
-		super.generate(aData);
+		if (aData.mTags.contains(WorldgenDungeonGT.TAG_FARM_FISH) || !super.generate(aData)) return F;
+		aData.mTags.add(WorldgenDungeonGT.TAG_FARM_FISH);
 		
 		for (int tX = 3; tX <= 12; tX++) for (int tZ = 3; tZ <= 12; tZ++) {
 			if ((tX == 3 || tX == 12 || tZ == 3 || tZ == 12)) {

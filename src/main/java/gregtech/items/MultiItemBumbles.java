@@ -217,7 +217,7 @@ public class MultiItemBumbles extends MultiItemRandom implements IItemBumbleBee 
 	@Override
 	public ChunkCoordinates bumbleCanProduce(World aWorld, int aX, int aY, int aZ, ItemStack aBumbleBee, short aMetaData, int aDistance) {
 		boolean temp = T;
-		for (byte tSide : ALL_SIDES_VALID) if (WD.oxygen(aWorld, aX+OFFSETS_X[tSide], aY+OFFSETS_Y[tSide], aZ+OFFSETS_Z[tSide])) {temp = F; break;}
+		for (byte tSide : ALL_SIDES_VALID) if (WD.oxygen(aWorld, aX+OFFX[tSide], aY+OFFY[tSide], aZ+OFFZ[tSide])) {temp = F; break;}
 		if (temp) return null;
 
 		aDistance = Math.abs(aDistance);
@@ -416,6 +416,7 @@ public class MultiItemBumbles extends MultiItemRandom implements IItemBumbleBee 
 			case    3: return ST.make(this, 1, 10200+aBumbleType);
 			case   63: return ST.make(this, 1, 10500+aBumbleType);
 			}
+			break;
 		case 1053:
 			switch(aMetaDataB / 10) {
 			case   33: return ST.make(this, 1, 20000+aBumbleType);
@@ -427,7 +428,7 @@ public class MultiItemBumbles extends MultiItemRandom implements IItemBumbleBee 
 		}
 		return ST.make(this, 1, (aMetaDataA/10)*10+aBumbleType);
 	}
-
+	
 	@Override
 	public boolean bumbleAttack(ItemStack aBumbleBee, short aMetaData, EntityLivingBase aAttacked) {
 		if (UT.Entities.isWearingFullInsectHazmat(aAttacked)) return F;
