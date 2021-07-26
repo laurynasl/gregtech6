@@ -1,17 +1,30 @@
 This is the most recent Changelog. It also contains some of the changes inside the >>>UPCOMING<<< Versions (most of the time). This is for 1.7.10 btw.
 
 
+6.14.21: (Not released yet, released whenever it needs to be)
+Nothing (I tend to only add finished Stuff to the Changelog).
+
+
+6.14.20: (Not released yet, released whenever it needs to be)
+Nothing (I tend to only add finished Stuff to the Changelog).
+
+
 6.14.19: (Not released yet, released whenever it needs to be)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
 6.14.18: (Not released yet, released whenever it needs to be)
-Nothing (I tend to only add finished Stuff to the Changelog).
+[FIXED] Food Data not being saved properly when players log out or switch dimensions.
+[FIXED] Arrows did not end up with the Implosion Enchantment of Railcraft when applicable.
+[CHANGED] Arrow Heads are now 1 Nugget worth instead of 2 Nuggets. Amounts in Recipes have been adjusted ofcourse.
+[CHANGED] Plastic Cans are now 3 instead of 6 units of Plastic, so they are cheaper to use.
+[CHANGED] Chisels Limestone, which much to the dismay of "many people" generates among the Stone Layers, now will contain Pam's Harvestcrafts Salt Ore, which weirdly fits very well with this Rock Type, as if it was made for it...
+[CHANGED] Dynamite and Boomsticks will now emit a Strong Redstone Signal whenever they are ignited, which makes it probably easier to chain them.
 
 
 6.14.17:
 [FIXED] A bunch of tiny Issues.
-[CHANGED] Mob farm Room is now compatible with Slimes.
+[CHANGED] Mob Farm Room is now compatible with Slimes.
 [ADDED] Red Steel and Blue Steel Spikes. Can deal a little bit more damage than Steel Spikes, while also being able to hurt anything that isn't an Iron Golem.
 
 

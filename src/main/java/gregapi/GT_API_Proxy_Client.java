@@ -144,19 +144,23 @@ public class GT_API_Proxy_Client extends GT_API_Proxy {
 		// Check if OptiFine is loaded in order to disable some GT Render Hooks to fix Glitches.
 		ITexture.Util.OPTIFINE_LOADED = FMLClientHandler.instance().hasOptifine();
 		
+		if (XMAS_IN_JULY) {
+			// Christmas in July! Go look it up, it is an actual thing!
+			Textures.BlockIcons.LEAVES_CD[0] = Textures.BlockIcons.LEAVES_BLUESPRUCE_XMAS;
+			Textures.BlockIcons.LEAVES_CD[8] = Textures.BlockIcons.LEAVES_OPAQUE_BLUESPRUCE_XMAS;
+		}
+		if (XMAS_IN_DECEMBER) {
+			// Normal Holiday Season!
+			Textures.BlockIcons.LEAVES_CD[0] = Textures.BlockIcons.LEAVES_BLUESPRUCE_XMAS;
+			Textures.BlockIcons.LEAVES_CD[8] = Textures.BlockIcons.LEAVES_OPAQUE_BLUESPRUCE_XMAS;
+		}
+		
 		Date tDate = new Date();
 		
 		switch (tDate.getMonth()+1) {// Not going to use Calendar, because it fucking crashes with Missing Resource Exception...
 		case  1:
 			Textures.BlockIcons.LEAVES_AB[1] = Textures.BlockIcons.LEAVES_MAPLE_BROWN;
 			Textures.BlockIcons.LEAVES_AB[9] = Textures.BlockIcons.LEAVES_OPAQUE_MAPLE_BROWN;
-			break;
-		case  7:
-			// Christmas in July! Go look it up, it is an actual thing!
-			if (tDate.getDate() >= 24) {
-				Textures.BlockIcons.LEAVES_CD[0] = Textures.BlockIcons.LEAVES_BLUESPRUCE_XMAS;
-				Textures.BlockIcons.LEAVES_CD[8] = Textures.BlockIcons.LEAVES_OPAQUE_BLUESPRUCE_XMAS;
-			}
 			break;
 		case  9:
 			Textures.BlockIcons.LEAVES_AB[1] = Textures.BlockIcons.LEAVES_MAPLE_YELLOW;
@@ -173,11 +177,6 @@ public class GT_API_Proxy_Client extends GT_API_Proxy {
 		case 12:
 			Textures.BlockIcons.LEAVES_AB[1] = Textures.BlockIcons.LEAVES_MAPLE_BROWN;
 			Textures.BlockIcons.LEAVES_AB[9] = Textures.BlockIcons.LEAVES_OPAQUE_MAPLE_BROWN;
-			// Normal Holiday Season!
-			if (tDate.getDate() >= 24) {
-				Textures.BlockIcons.LEAVES_CD[0] = Textures.BlockIcons.LEAVES_BLUESPRUCE_XMAS;
-				Textures.BlockIcons.LEAVES_CD[8] = Textures.BlockIcons.LEAVES_OPAQUE_BLUESPRUCE_XMAS;
-			}
 			break;
 		}
 	}
@@ -346,7 +345,7 @@ public class GT_API_Proxy_Client extends GT_API_Proxy {
 					if (SHOW_CHEM_FORMULAS && UT.Code.stringValid(tData.mMaterial.mMaterial.mTooltipChemical) && (tData.mPrefix == null ? tData.mByProducts.length == 0 : tData.mPrefix.contains(TD.Prefix.TOOLTIP_MATERIAL))) {
 						aEvent.toolTip.add(LH.Chat.YELLOW + tData.mMaterial.mMaterial.mTooltipChemical);
 					}
-					if ((MD.BP.mLoaded || MD.PR.mLoaded) && tData.mMaterial.mMaterial == MT.Nikolite) {
+					if (tData.mMaterial.mMaterial == MT.Nikolite) {
 						aEvent.toolTip.set(0, aEvent.toolTip.get(0).replaceAll("(Teslatite|Electrotine)", "Nikolite"));
 					}
 					if (tData.hasValidPrefixData()) {

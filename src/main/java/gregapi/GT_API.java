@@ -394,11 +394,13 @@ public class GT_API extends Abstract_Mod {
 		
 		ConfigsGT.CLIENT = new Config(DirectoriesGT.MINECRAFT, "GregTech.cfg");
 		
-		D1 = ConfigsGT.CLIENT.get("debug" , "logs"   , F);
-		D2 = ConfigsGT.CLIENT.get("debug" , "oredict", F);
-		D3 = ConfigsGT.CLIENT.get("debug" , "misc"   , F);
+		D1 = ConfigsGT.CLIENT.get("debug" , "logs"         , F);
+		D2 = ConfigsGT.CLIENT.get("debug" , "oredict"      , F);
+		D3 = ConfigsGT.CLIENT.get("debug" , "misc"         , F);
 		CLIENT_BLOCKUPDATE_SOUNDS = ConfigsGT.CLIENT.get("debug" , "block_update_sounds", F);
-		if ( ConfigsGT.CLIENT.get("debug" , "april"  , F)) APRIL_FOOLS = T;
+		if ( ConfigsGT.CLIENT.get("debug" , "april_fools"  , F)) APRIL_FOOLS = T;
+		if ( ConfigsGT.CLIENT.get("debug" , "xmas_july"    , F)) XMAS_IN_JULY = T;
+		if ( ConfigsGT.CLIENT.get("debug" , "xmas_december", F)) XMAS_IN_DECEMBER = T;
 		
 		if (APRIL_FOOLS) {
 			MT.W.setLocal("Wolframium");
@@ -484,6 +486,7 @@ public class GT_API extends Abstract_Mod {
 			MT.BlackBronze.setLocal("Afroamerican Tinkerers Alloy");
 			MT.Constantan.setLocal("Cupronickel");
 			MT.FakeOsmium.setLocal("Platinum");
+			MT.Amazonite.setLocal("Bezosite");
 			MT.NetherQuartz.setLocal("Weather Quartz");
 			MT.MilkyQuartz.setLocal("Milk Quartz");
 			MT.CertusQuartz.setLocal("Citrus Quartz");
