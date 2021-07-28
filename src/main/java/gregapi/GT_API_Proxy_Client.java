@@ -261,6 +261,10 @@ public class GT_API_Proxy_Client extends GT_API_Proxy {
 				}
 			}
 			
+			if (MD.Mek.owns(aRegName)) {
+				aEvent.toolTip.set(0, aEvent.toolTip.get(0).replaceAll("Osmium", "Germanium"));
+			}
+			
 			if (ItemsGT.RECIPE_REMOVED_USE_TRASH_BIN_INSTEAD.contains(aEvent.itemStack, T)) {
 				aEvent.toolTip.add(LH.Chat.BLINKING_RED + "Recipe has been removed in favour of the GregTech Ender Garbage Bin");
 			}
@@ -347,6 +351,9 @@ public class GT_API_Proxy_Client extends GT_API_Proxy {
 					}
 					if (tData.mMaterial.mMaterial == MT.Nikolite) {
 						aEvent.toolTip.set(0, aEvent.toolTip.get(0).replaceAll("(Teslatite|Electrotine)", "Nikolite"));
+					}
+					if (tData.mMaterial.mMaterial == MT.Ge) {
+						aEvent.toolTip.set(0, aEvent.toolTip.get(0).replaceAll("Osmium", "Germanium"));
 					}
 					if (tData.hasValidPrefixData()) {
 						if (tData.mPrefix.contains(TD.Prefix.NEEDS_SHARPENING)) aEvent.toolTip.add(LH.Chat.CYAN + LH.get(LH.TOOLTIP_NEEDS_SHARPENING));
