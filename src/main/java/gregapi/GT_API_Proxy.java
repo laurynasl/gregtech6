@@ -262,6 +262,8 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 			LAST_BROKEN_TILEENTITY.set(null);
 			
 			if (aEvent.phase == Phase.START) {
+				SYNC_SECOND = (SERVER_TIME % 20 == 0);
+				
 				if (SERVER_TIME++ == 0) {
 					// Unification Stuff
 					HashSetNoNulls<ItemStack> tStacks = new HashSetNoNulls<>(10000);
@@ -1291,7 +1293,7 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 		if (!WD.dimOverworldLike(aWorld)) return;
 		if (SPAWN_HOSTILES_ONLY_IN_DARKNESS) try {
 			Chunk tChunk = aWorld.getChunkFromBlockCoords(aX, aZ);
-			if (tChunk != null && tChunk.getBlockStorageArray() != null && tChunk.getBlockStorageArray()[aY >> 4].getExtBlocklightValue(aX & 15, aY & 15, aZ & 15) > 0) {
+			if (tChunk != null && tChunk.getBlockStorageArray() != null && tChunk.getBlockStorageArray()[aY >> 4] != null && tChunk.getBlockStorageArray()[aY >> 4].getExtBlocklightValue(aX & 15, aY & 15, aZ & 15) > 0) {
 				// Vanilla Mobs only, just in case.
 				if (aMobClass == EntityCreeper.class || aMobClass == EntityEnderman.class || aMobClass == EntitySkeleton.class || aMobClass == EntityZombie.class || aMobClass == EntitySpider.class || aMobClass == EntityWitch.class || aMobClass == EntityBat.class) {aEvent.setResult(Result.DENY); return;}
 				// Well, that Zombie is kindof like Vanilla, so it counts.

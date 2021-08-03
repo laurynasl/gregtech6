@@ -1547,11 +1547,6 @@ public class LoaderItemData implements Runnable {
 		OM.data(MD.IE, "storageSlab"                        , 1,   7, MT.Steel              ,  9* U2);
 		
 		
-		OM.data(MD.Mek, "CompressedCarbon"                  , 1,   0, MT.C                  ,  U * 1);
-		OM.data(MD.Mek, "CompressedRedstone"                , 1,   0, MT.Redstone           ,  U * 1); OM.reg(OD.itemRedstone, ST.make(MD.Mek, "CompressedRedstone", 1, 0));
-		OM.data(MD.Mek, "CompressedDiamond"                 , 1,   0, ANY.Diamond           ,  U * 1);
-		
-		
 		OM.data(MD.MaCu, "tanks"                            , 1,   0, ANY.Cu                ,  U * 4, ANY.Wood              ,  U * 4, MT.Glass              ,  U * 1);
 		OM.data(MD.MaCu, "tanks"                            , 1,   1, MT.Al                 ,  U * 4, MT.Glass              ,  U * 4);
 		OM.data(MD.MaCu, "tanks"                            , 1,   5, MT.Al                 ,  U * 4, ANY.Stone             ,  U * 4);
@@ -1625,7 +1620,7 @@ public class LoaderItemData implements Runnable {
 		OM.dat2(MD.EBXL, "extrabiomes.logturner"            , 1     , ANY.Wood      ,  5* U2);
 		
 		
-		OM.data(MD.UB, "fossilPiece"                        , 1,   W, MT.Bone               ,  U * 1);
+		OM.data(MD.UB, "fossilPiece"                        , 1,   W, MT.Bone               ,  U * 1); // Metadata 0 to 7
 		
 		
 		OM.data(MD.Fossil, "skullBlock"                     , 1,   W, MT.Bone               ,  U * 5);
@@ -2142,6 +2137,8 @@ public class LoaderItemData implements Runnable {
 		OM.data(ST.make(Blocks.snow_layer, 1, W)                    , MT.Snow               ,     -1);
 		OM.data(ST.make(Blocks.redstone_lamp, 1, W)                 , ANY.Glowstone         ,  U * 4, MT.Redstone, U * 4);
 		OM.data(ST.make(Blocks.lit_redstone_lamp, 1, W)             , ANY.Glowstone         ,  U * 4, MT.Redstone, U * 4);
+		OM.data(ST.make(Items.skull                     , 1, 1)     , MT.BoneWither         ,  U * 9);
+		OM.data(ST.make(Items.skull                     , 1, 0)     , MT.Bone               ,  U * 9);
 		OM.data(ST.make(Items.bone                      , 1, W)     , MT.Bone               ,  U * 2);
 		OM.data(ST.make(Items.clay_ball                 , 1, W)     , MT.Clay               ,  U * 1);
 		OM.data(ST.make(Blocks.clay                     , 1, W)     , MT.Clay               ,  U * 4);

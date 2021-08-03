@@ -15,7 +15,7 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 
 6.14.20: (Not released yet, released whenever it needs to be)
 [COMPAT]
-Mekanisms Osmium, which i previously just named 'Osmium' and treated differently from regular Osmium, is now instead completely overhauled to be the actual Material Germanium.
+Mekanisms Osmium, which I previously just named 'Osmium' and treated differently from regular Osmium, is now instead completely overhauled to be the actual Material Germanium.
 That fits with its Circuits at the very least, and makes a lot of internal Mechanics much nicer. Heck these two Materials had a lot of things in common too, before I did this.
 Side Effects of this change include:
 Decorative Fake Osmium based Tool Blocks are now turning into the (newly added) Constantan Decorative Variants.
@@ -23,10 +23,25 @@ Fake Osmium based Item Pipes turn into the (newly added) Germanium Item Pipes th
 Germanium is now attributed to Mekanism, even though it technically did not add it.
 Any mention of "Osmium" inside Mekanism Material Item Names is now turned into "Germanium". (I did the same thing to "Teslatite" and "Electrotine" in an earlier Release, to make them "Nikolite")
 Germanium now has the Byproducts and Tool Stats, that Fake Osmium had before.
-[FIXED] Burning Box not being ignitable by Fire Blocks for some reason anymore.
+[FIXED] Burning Box were not being ignitable by Fire Blocks for some reason anymore.
 [FIXED] Large Turbines were allowing Output of Stuff on Blocks that are not at the Bottom Layer.
+[CHANGED] Tanks, Drums and Pipes can now have the Thermometer used on them.
 [CHANGED] BluePower Stone Tiles are now considered Stone Plates, so that will fix a few conflicts.
-[CHANGED] Furances, Repeaters, Comparators and Levers have additional Recipes now, some of which involve Stone Plates.
+[CHANGED] Furnaces, Repeaters, Comparators and Levers have additional Recipes now, some of which involve Stone Plates.
+[CHANGED] Improved Management of all the "Compat" Stone Layers. Now adding Mods like PFAA, Enchanced Biomes, Mineralogy or Underground Biomes truly wont affect overall Ore bearing Stone Layer distribution. (previously only basic things had no effect like Marble, Limestone and Basalt)
+[ADDED] Bone Ore, which usually spawns either in Underground Biomes Dolomite or in GT Limestone. It is one way to get Skeleton Skulls and Bones in Peaceful.
+[ADDED] Slate Stone Layer. Has a nice Shade of Dark Blue, which is not as radiant as Blue Schist. Slate will be used instead of Deepslate in case Et Futurum Requiem is not loaded.
+[ADDED] Shale Stone Layer. Just another Rock Type. Light Blue in color.
+[ADDED]
+Modular Sandwiches
+Just shiftclick a piece(s) of Toast on a solid Surface, then rightclick all your favourite Sandwich Ingredients on it, and harvest the final result.
+You can make up to 16 Sandwiches at once, by having a Stack of 16 Toasts in your Hand while placing it. Though you need 16 times the Ingredients at once obviously.
+There is absolutely no Law on how you can make your Sandwich!
+Except for not repeating any Ingredients back to back. (acts as Doubleclick protection)
+And having to have a Toast or Toasted Toast as a Base. (You dont have to have a Toast on top though)
+And being limited to one Block of Space.
+And ofcourse the List of valid Ingredients and Condiments.
+And all the possible Health Hazards you can come up with.
 
 
 6.14.19:
@@ -61,7 +76,7 @@ Germanium now has the Byproducts and Tool Stats, that Fake Osmium had before.
 [ADDED] Mossy GT6 Stones can be bonemealed to spread their Moss to adjacent Cobbles and Bricks. They CAN spread to Vanilla Cobble and Stone Bricks too, even though bonemealing those themselves wont spread.
 [ADDED] When Immersive Engineering is installed, some Foods and Liquids will have additional Potion Effects.
 [ADDED] Prismarine Pylons in the Oceans will now contain Pyrolusite or Garnierite Ore, depending on if it is Light Prismarine or Dark Prismarine.
-[ADDED] Shale (see other Mods like Underground Biomes or PFAA) can now be Centrifuged for Clay, Quartz and Calcite.
+[ADDED] Shale can now be Centrifuged for Clay, Quartz and Calcite.
 [ADDED] Blazing Goo can be used as Heat Exchanger Fuel.
 [ADDED] Mob Farm Room to the GT6 Dungeon. The Storage Pillar in the Middle of the Room is so nobody should be tempted to actually use this as a normal Storage Room, because that would reduce Mob Spawns due to being too close.
 [ADDED] Bedrock Vein Room to the GT6 Dungeon. It also contains a veriety of Scaffolds and Steel Bars and demostrates their decorative usage.

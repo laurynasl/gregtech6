@@ -320,6 +320,8 @@ public class CS {
 	
 	/** Current Time on the Server, since the last Reboot. */
 	public static long SERVER_TIME = 0;
+	/** Synchronizes all Server to Client Updates to be at the same time. */
+	public static boolean SYNC_SECOND = T;
 	/** Current Time on the Client. Used for Animations. */
 	public static long CLIENT_TIME = 0;
 	/** Is locked updateEntities and similar are running on the tick. */
@@ -1599,10 +1601,10 @@ public class CS {
 		RailAluminiumDetector, RailMagnaliumDetector, RailBronzeDetector, RailStainlessSteelDetector, RailSteelDetector, RailTitaniumDetector, RailTungstenDetector, RailTungstenCarbideDetector, RailTungstenSteelDetector;
 		
 		/** GT6 Stone Type. */
-		public static BlockBase GraniteBlack, GraniteRed, Basalt, Marble, Limestone, Granite, Diorite, Andesite, Komatiite, SchistGreen, SchistBlue, Kimberlite, Quartzite, PrismarineLight, PrismarineDark;
+		public static BlockBase GraniteBlack, GraniteRed, Basalt, Marble, Limestone, Granite, Diorite, Andesite, Komatiite, SchistGreen, SchistBlue, Kimberlite, Quartzite, PrismarineLight, PrismarineDark, Slate, Shale;
 		/** Contains all GT6 Stone Types. */
 		// Yes, I know those assignments inside the Array are not actually working, but this gives a good overview of the Content, once it got initialised.
-		public static BlockBase[] stones = {GraniteBlack, GraniteRed, Basalt, Marble, Limestone, Granite, Diorite, Andesite, Komatiite, SchistGreen, SchistBlue, Kimberlite, Quartzite, PrismarineLight, PrismarineDark};
+		public static BlockBase[] stones = {GraniteBlack, GraniteRed, Basalt, Marble, Limestone, Granite, Diorite, Andesite, Komatiite, SchistGreen, SchistBlue, Kimberlite, Quartzite, PrismarineLight, PrismarineDark, Slate, Shale};
 		/** Contains the Ore Blocks for all the GT6 Type Stones, corresponding to the Array above. */
 		public static IPrefixBlock[] ores_normal = new IPrefixBlock[stones.length], ores_broken = new IPrefixBlock[stones.length], ores_small = new IPrefixBlock[stones.length];
 		
@@ -1700,7 +1702,31 @@ public class CS {
 		}
 	}
 	
-	/** Contains the IDs for my Book Shelf Stuff. */
+	/** Contains the Registry Stuff for my Sandwiches. */
+	public static class Sandwiches {
+		/** 
+		 *   1 = 1 pixel distance from rim
+		 *   2 = 2 pixel distance from rim
+		 *   3 = 3 pixel distance from rim
+		 *  
+		 *  14 = 4 Slices of Stuff
+		 * 
+		 * Olive/Grape on a Toothpick maybe?
+		 * 
+		 * 252 = Condiment (copies roughly whatever is below it in shape)
+		 * 253 = Toasted Toast
+		 * 254 = Sandwich Toast
+		 * 255 = NULL
+		 */
+		public static final byte    [] INGREDIENT_MODEL_IDS       = new byte    [256];
+		public static final byte    [] INGREDIENT_MODEL_THICKNESS = new byte    [256];
+		public static final ITexture[] INGREDIENT_TEXTURES_TOP    = new ITexture[256];
+		public static final ITexture[] INGREDIENT_TEXTURES_SIDES  = new ITexture[256];
+		
+		public static final ItemStackMap<ItemStackContainer, Byte> INGREDIENTS = new ItemStackMap<>();
+	}
+	
+	/** Contains the Registry Stuff for my Book Shelves. */
 	public static class BooksGT {
 		//   0 = null
 		//   1 = Book/Written Book/Writable Book/Default
