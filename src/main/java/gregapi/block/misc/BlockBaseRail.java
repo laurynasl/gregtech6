@@ -30,6 +30,7 @@ import gregapi.block.ItemBlockBase;
 import gregapi.block.ToolCompat;
 import gregapi.compat.galacticraft.IBlockSealable;
 import gregapi.data.LH;
+import gregapi.data.MD;
 import gregapi.render.IIconContainer;
 import gregapi.util.ST;
 import gregapi.util.UT;
@@ -86,10 +87,8 @@ public class BlockBaseRail extends BlockRailBase implements IBlockBase, IBlockSe
 	@Override
 	@SuppressWarnings("unchecked")
 	public void addInformation(ItemStack aStack, byte aMeta, EntityPlayer aPlayer, @SuppressWarnings("rawtypes") List aList, boolean aF3_H) {
-		aList.add(LH.Chat.CYAN + LH.get(LH.TOOLTIP_RAILSPEED) + LH.Chat.GREEN + (mSpeed/0.4F) + "x");
+		aList.add(LH.Chat.CYAN + LH.get(LH.TOOLTIP_RAILSPEED) + LH.Chat.GREEN + Math.min(MD.RC.mLoaded ? 3 : 10, mSpeed/0.4F) + "x");
 	}
-	
-	@Override public float getRailMaxSpeed(World aWorld, EntityMinecart aCart, int aX, int aY, int aZ) {return mSpeed;}
 	
 	@Override public final String getUnlocalizedName() {return mNameInternal;}
 	@Override public String name(byte aMeta) {return mNameInternal;}
@@ -185,21 +184,21 @@ public class BlockBaseRail extends BlockRailBase implements IBlockBase, IBlockSe
 	}
 	
 	@Override
-	protected void func_150048_a(World aWorld, int aX, int aY, int aZ, int p_150048_5_, int p_150048_6_, Block aBlock) {
+	protected void func_150048_a(World aWorld, int aX, int aY, int aZ, int aMeta, int aData, Block aBlock) {
 		if (mPowerRail) {
 			boolean flag = aWorld.isBlockIndirectlyGettingPowered(aX, aY, aZ);
-			flag = flag || func_150058_a(aWorld, aX, aY, aZ, p_150048_5_, T, 0) || func_150058_a(aWorld, aX, aY, aZ, p_150048_5_, F, 0);
+			flag = flag || func_150058_a(aWorld, aX, aY, aZ, aMeta, T, 0) || func_150058_a(aWorld, aX, aY, aZ, aMeta, F, 0);
 			boolean flag1 = F;
-			if (flag && (p_150048_5_ & 8) == 0) {
-				aWorld.setBlockMetadataWithNotify(aX, aY, aZ, p_150048_6_ | 8, 3);
+			if (flag && (aMeta & 8) == 0) {
+				aWorld.setBlockMetadataWithNotify(aX, aY, aZ, aData | 8, 3);
 				flag1 = T;
-			} else if (!flag && (p_150048_5_ & 8) != 0) {
-				aWorld.setBlockMetadataWithNotify(aX, aY, aZ, p_150048_6_, 3);
+			} else if (!flag && (aMeta & 8) != 0) {
+				aWorld.setBlockMetadataWithNotify(aX, aY, aZ, aData, 3);
 				flag1 = T;
 			}
 			if (flag1) {
 				aWorld.notifyBlocksOfNeighborChange(aX, aY - 1, aZ, this);
-				if (p_150048_6_ == 2 || p_150048_6_ == 3 || p_150048_6_ == 4 || p_150048_6_ == 5) {
+				if (aData == 2 || aData == 3 || aData == 4 || aData == 5) {
 					aWorld.notifyBlocksOfNeighborChange(aX, aY + 1, aZ, this);
 				}
 			}
@@ -225,7 +224,7 @@ public class BlockBaseRail extends BlockRailBase implements IBlockBase, IBlockSe
 		}
 	}
 	
-	@Override public int isProvidingWeakPower(IBlockAccess aWorld, int aX, int aY, int aZ, int aSide) {return mDetectorRail ? (WD.meta(aWorld, aX, aY, aZ) & 8) != 0 ? 15 : 0 : 0;}
+	@Override public int isProvidingWeakPower  (IBlockAccess aWorld, int aX, int aY, int aZ, int aSide) {return mDetectorRail ? (WD.meta(aWorld, aX, aY, aZ) & 8) != 0 ? 15 : 0 : 0;}
 	@Override public int isProvidingStrongPower(IBlockAccess aWorld, int aX, int aY, int aZ, int aSide) {return mDetectorRail ? (WD.meta(aWorld, aX, aY, aZ) & 8) == 0 ? 0 : (aSide == 1 ? 15 : 0) : 0;}
 	
 	private void func_150054_a(World aWorld, int aX, int aY, int aZ, int aMetaData) {
@@ -273,14 +272,28 @@ public class BlockBaseRail extends BlockRailBase implements IBlockBase, IBlockSe
 	}
 	
 	@Override
+	public float getRailMaxSpeed(World aWorld, EntityMinecart aCart, int aX, int aY, int aZ) {
+		switch(WD.meta(aWorld, aX, aY, aZ) & 7) {
+		case  0:
+			if (WD.block(aWorld, aX  , aY, aZ+1) instanceof BlockBaseRail && (WD.meta(aWorld, aX  , aY, aZ+1) & 7) == 0
+			&&  WD.block(aWorld, aX  , aY, aZ-1) instanceof BlockBaseRail && (WD.meta(aWorld, aX  , aY, aZ-1) & 7) == 0) return aWorld.doChunksNearChunkExist(aX, aY, aZ, 17) ? mSpeed : Math.min(mSpeed, 1.0F);
+		case  1:
+			if (WD.block(aWorld, aX+1, aY, aZ  ) instanceof BlockBaseRail && (WD.meta(aWorld, aX+1, aY, aZ  ) & 7) == 1
+			&&  WD.block(aWorld, aX-1, aY, aZ  ) instanceof BlockBaseRail && (WD.meta(aWorld, aX-1, aY, aZ  ) & 7) == 1) return aWorld.doChunksNearChunkExist(aX, aY, aZ, 17) ? mSpeed : Math.min(mSpeed, 1.0F);
+		default:
+			return Math.min(mSpeed, 0.4F);
+		}
+	}
+	
+	@Override
 	public void onMinecartPass(World aWorld, EntityMinecart aCart, int aX, int aY, int aZ) {
 		if (mPowerRail) {
 			byte tRailMeta = WD.meta(aWorld, aX, aY, aZ);
-			double tMotion = Math.sqrt(aCart.motionX * aCart.motionX + aCart.motionZ * aCart.motionZ);
+			double tMotion = Math.sqrt(aCart.motionX*aCart.motionX + aCart.motionZ*aCart.motionZ);
 			if ((tRailMeta & 8) != 0) {
 				if (tMotion > 0.01) {
-					aCart.motionX += aCart.motionX / tMotion * 0.06;
-					aCart.motionZ += aCart.motionZ / tMotion * 0.06;
+					aCart.motionX *= 2;
+					aCart.motionZ *= 2;
 				} else {
 					tRailMeta &= 7;
 					if (tRailMeta == 1) {

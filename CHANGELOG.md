@@ -1,6 +1,14 @@
 This is the most recent Changelog. It also contains some of the changes inside the >>>UPCOMING<<< Versions (most of the time). This is for 1.7.10 btw.
 
 
+6.14.25: (Not released yet, released whenever it needs to be)
+Nothing (I tend to only add finished Stuff to the Changelog).
+
+
+6.14.24: (Not released yet, released whenever it needs to be)
+Nothing (I tend to only add finished Stuff to the Changelog).
+
+
 6.14.23: (Not released yet, released whenever it needs to be)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
@@ -10,10 +18,11 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 
 
 6.14.21: (Not released yet, released whenever it needs to be)
-Nothing (I tend to only add finished Stuff to the Changelog).
+[CHANGED] GT6 Rails now have a slightly better Speed Cap in order for Titanium to be on par with Railcrafts High Speed Rails and Tungstensteel/Tungstencarbide to be better than that.
+[ADDED] Adamantium Rails which have a Rail Top Speed of 10x (Railcraft only lets Carts go up to 3x when installed!). Osmium is its Booster Material. They are very blast resistant.
 
 
-6.14.20: (Not released yet, released whenever it needs to be)
+6.14.20:
 [COMPAT]
 Mekanisms Osmium, which I previously just named 'Osmium' and treated differently from regular Osmium, is now instead completely overhauled to be the actual Material Germanium.
 That fits with its Circuits at the very least, and makes a lot of internal Mechanics much nicer. Heck these two Materials had a lot of things in common too, before I did this.
@@ -25,12 +34,15 @@ Any mention of "Osmium" inside Mekanism Material Item Names is now turned into "
 Germanium now has the Byproducts and Tool Stats, that Fake Osmium had before.
 [FIXED] Burning Box were not being ignitable by Fire Blocks for some reason anymore.
 [FIXED] Large Turbines were allowing Output of Stuff on Blocks that are not at the Bottom Layer.
+[FIXED] Cauldrons were crashing the Game, when used with Ores that did not have any Byproducts.
+[FIXED] Higher Speed Rails of GT6 did not work on vertically sloped areas because the Minecart would somehow bonk into the wall the track is laid on. This means sloped Rails will cap out at 1x Speed.
+[FIXED] An Infinite Hydrogen Power Conversion Exploit, by making MnCl2, MgCl2 and CaCl2 Electrolyzation into Manganese and Chlorine take enough Power, to undo the Energy benefit you get from burning the Hydrogen you get.
 [CHANGED] Tanks, Drums and Pipes can now have the Thermometer used on them.
 [CHANGED] BluePower Stone Tiles are now considered Stone Plates, so that will fix a few conflicts.
-[CHANGED] Furnaces, Repeaters, Comparators and Levers have additional Recipes now, some of which involve Stone Plates.
+[CHANGED] Furnaces, Repeaters, Comparators and Levers have additional Recipes now, some of which involve Stone Plates or Rocks.
 [CHANGED] Dynamite can now be drill-placed in a greater variety of things such as Dirt, Cobblestone and Gravel.
 [CHANGED] Improved Management of all the "Compat" Stone Layers. Now adding Mods like PFAA, Enchanced Biomes, Mineralogy or Underground Biomes truly wont affect overall Ore bearing Stone Layer distribution. (previously only basic things had no effect like Marble, Limestone and Basalt)
-[ADDED] A Stone Layer of Vanilla Stone that contains the original Vanilla Ore Blocks. Mining Shaft Chests will contain Vanilla Ore Blocks too now. This should help a lot with Mods that are very incompatible.
+[ADDED] A Stone Layer of Vanilla Stone that contains the original Vanilla Ore Blocks (including Silverfish!). Mining Shaft Chests will contain Vanilla Ore Blocks too now. This should help a lot with Mods that are very incompatible.
 [ADDED] Bone Ore, which usually spawns either in Underground Biomes Dolomite or in GT Limestone. It is one way to get Skeleton Skulls and Bones in Peaceful.
 [ADDED] Slate Stone Layer. Has a nice Shade of Dark Blue, which is not as radiant as Blue Schist. Slate will be used instead of Deepslate in case Et Futurum Requiem is not loaded.
 [ADDED] Shale Stone Layer. Just another Rock Type. Light Blue in color.

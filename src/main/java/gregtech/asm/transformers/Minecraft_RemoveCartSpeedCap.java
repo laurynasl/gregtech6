@@ -22,6 +22,7 @@ package gregtech.asm.transformers;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.InsnNode;
+import org.objectweb.asm.tree.LdcInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 
 import gregtech.asm.GT_ASM;
@@ -29,18 +30,24 @@ import net.minecraft.launchwrapper.IClassTransformer;
 
 /**
  * @author Gregorius Techneticies
+ * 
+ * I am very aware what the original Speed Cap is for,
+ * but the Rails themselves already have a Speed Cap,
+ * so I will leave the cap to the Rails and not the Carts.
+ * This does not work with Railcraft installed by the way.
  */
-public class Railcraft_RemoveBoreSpam implements IClassTransformer  {
+public class Minecraft_RemoveCartSpeedCap implements IClassTransformer  {
 	@Override
 	public byte[] transform(String name, String transformedName, byte[] basicClass) {
-		if (!transformedName.equals("mods.railcraft.common.modules.orehandlers.BoreOreHandler")) return basicClass;
+		if (!transformedName.equals("net.minecraft.entity.item.EntityMinecart")) return basicClass;
 		ClassNode classNode = GT_ASM.makeNodes(basicClass);
 		
 		for (MethodNode m: classNode.methods) {
-			if (m.name.equals("onOreEvent")) {
-				GT_ASM.logger.info("Transforming mods.railcraft.common.modules.orehandlers.BoreOreHandler.onOreEvent");
+			if (m.name.equals("getMaxCartSpeedOnRail")) {
+				GT_ASM.logger.info("Transforming net.minecraft.entity.item.EntityMinecart.getMaxCartSpeedOnRail");
 				m.instructions.clear();
-				m.instructions.add(new InsnNode(Opcodes.RETURN));
+				m.instructions.add(new LdcInsnNode(4.0F));
+				m.instructions.add(new InsnNode(Opcodes.FRETURN));
 			}
 		}
 		
