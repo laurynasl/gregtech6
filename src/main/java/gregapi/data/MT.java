@@ -417,7 +417,7 @@ public class MT {
 	Co      = transmetal  ( 270, "Cobalt"         , "Co"    ,  27,  32,  1768,  3200,  8.86      , SET_METALLIC,  80,  80, 250, 255, UUM        , COBALT_GROUP                         , WASHING_PERSULFATE, MORTAR, MAGNETIC_PASSIVE, MOLTEN                      ).aspects(TC.METALLUM, 2, TC.INSTRUMENTUM, 1             ).qual(3,  5.0,  256, 3),
 	Co_60   = transmetal  ( 278, "Cobalt-60"      , "Co-60" ,  27,  33,  1768,  3200,  8.86      , SET_RAD     ,  90,  90, 250, 255             , COBALT_GROUP                         , WASHING_PERSULFATE, MORTAR, MAGNETIC_PASSIVE                              ).aspects(TC.METALLUM, 1, TC.INSTRUMENTUM, 1, TC.RADIO, 1).qual(3,  5.0,  256, 3),
 	Ni      = transmetal  ( 280, "Nickel"         , "Ni"    ,  28,  30,  1728,  3186,  8.912     , SET_METALLIC, 250, 250, 200, 255, UUM        , NICKEL_GROUP                         , WASHING_PERSULFATE, MORTAR, MAGNETIC_PASSIVE, MOLTEN                      ).aspects(TC.METALLUM, 2, TC.IGNIS, 1                    ).qual(2,  6.0,   64, 2),
-	Cu      = noblemetal  ( 290, "Copper"         , "Cu"    ,  29,  34,  1357,  2835,  8.96      , SET_COPPER  , 255, 100,   0     , UUM        , COPPER_GROUP   , G_INGOT_MACHINE_ORES, WASHING_PERSULFATE, FURNACE, EXTRUDER_SIMPLE, MORTAR, MOLTEN, RAILS       ).aspects(TC.METALLUM, 2, TC.PERMUTATIO, 1               ).qual(2,  4.0,   64, 0),
+	Cu      = noblemetal  ( 290, "Copper"         , "Cu"    ,  29,  34,  1357,  2835,  8.96      , SET_COPPER  , 255, 130,  90     , UUM        , COPPER_GROUP   , G_INGOT_MACHINE_ORES, WASHING_PERSULFATE, FURNACE, EXTRUDER_SIMPLE, MORTAR, MOLTEN, RAILS       ).aspects(TC.METALLUM, 2, TC.PERMUTATIO, 1               ).qual(2,  4.0,   64, 0),
 	Zn      = transmetal  ( 300, "Zinc"           , "Zn"    ,  30,  35,   692,  1180,  7.134     , SET_COPPER  , 250, 240, 240, 255, UUM        , ZINC_GROUP                           , WASHING_PERSULFATE, WASHING_MERCURY, MOLTEN                               ).aspects(TC.METALLUM, 2, TC.SANO, 1                     ),
 	Ga      = posttrans   ( 310, "Gallium"        , "Ga"    ,  31,  39,   302,  2477,  5.907     , SET_COPPER  , 220, 220, 255     , UUM        , ICOSAGEN                             , BRITTLE                                                                   ).aspects(TC.METALLUM, 2, TC.ELECTRUM, 1                 ),
 	Ge      = metalloid   ( 320, "Germanium"      , "Ge"    ,  32,  40,  1211,  3106,  5.323     , SET_COPPER  , 212, 212, 212, 255, UUM        , CRYSTALLOGEN   , G_INGOT_MACHINE_ORES, FURNACE, EXTRUDER_SIMPLE, MORTAR, "Osmium"                                ).aspects(TC.METALLUM, 2, TC.ELECTRUM, 1                 ).qual(2,  6.0,  256, 2),
@@ -445,7 +445,7 @@ public class MT {
 	Xe      = noblegas    ( 540, "Xenon"          , "Xe"    ,  54,  77,   161,   165,  0.005887  , SET_DULL    ,   0, 255, 255     , UUM                         , CONTAINERS_GAS                                                                                  ).aspects(TC.AER, 3                                      ),
 	Cs      = alkali      ( 550, "Caesium"        , "Cs"    ,  55,  77,   301,   944,  1.873     , SET_SHINY   , 128,  98,  11     , UUM                                                                                                                           ).aspects_met_rad(3, 0                                   ),
 	Ba      = alkaline    ( 560, "Barium"         , "Ba"    ,  56,  81,  1000,  2170,  3.594     , SET_METALLIC, 131, 130,  76     , UUM                                                                                                                           ).aspects(TC.VINCULUM, 3                                 ),
-	La      = lanthanide  ( 570, "Lanthanum"      , "La"    ,  57,  81,  1193,  3737,  6.145     , SET_METALLIC,  93, 117, 117     , UUM                                               , "Lantanum", "Lantanium", "Lanthanium"                                     ).aspects_met_rad(3, 0                                   ),
+	La      = lanthanide  ( 570, "Lanthanium"     , "La"    ,  57,  81,  1193,  3737,  6.145     , SET_METALLIC,  93, 117, 117     , UUM                                               , "Lantanium", "Lantanum", "Lanthanum"                                      ).aspects_met_rad(3, 0                                   ),
 	Ce      = lanthanide  ( 580, "Cerium"         , "Ce"    ,  58,  82,  1068,  3716,  6.77      , SET_SHINY   , 255, 255, 190     , UUM                                                                                                                           ).aspects_met_rad(3, 0                                   ),
 	Pr      = lanthanide  ( 590, "Praseodymium"   , "Pr"    ,  59,  81,  1208,  3793,  6.773     , SET_METALLIC                    , UUM                                                                                                                           ).aspects_met_rad(3, 0                                   ),
 	Nd      = lanthanide  ( 600, "Neodymium"      , "Nd"    ,  60,  84,  1297,  3347,  7.007     , SET_SHINY   , 100, 100, 100     , UUM                                               , MAGNETIC_PASSIVE, MOLTEN                                                  ).aspects(TC.METALLUM, 2, TC.MAGNETO, 2                  ).qual(3, 6.0, 512, 3),
@@ -1527,7 +1527,7 @@ public class MT {
 	HSLA                    = alloymachine  ( 8637, "HSLA-Steel"                                    , 210, 210, 255     , RAILS, CENTRIFUGE, MORTAR, MAGNETIC_PASSIVE, "HSLA")                                                                                      .uumMcfg( 2, WroughtIron    , 1*U)                                                                                                                          .aspects(TC.METALLUM, 2, TC.ORDO, 1).steal(Steel).heat(1873, Fe.mBoilingPoint, Fe.mPlasmaPoint).setRGBaLiquid(180, 80, 30, 255),
 	SpringSteel             = alloymachine  ( 8639, "HSLA-Spring-Steel"                             , 220, 100, 100     , CENTRIFUGE, MAGNETIC_PASSIVE)                                                                                                             .uumMcfg(45, HSLA           ,45*U, Redstone         , 2*U)                                                                                                  .aspects(TC.METALLUM, 2, TC.ORDO, 1).steal(HSLA).setLocal("Spring Steel"),
 	TungstenAlloy           = alloymachine  ( 8766, "HSLA-Tungsten-Alloy"                           , 179, 119, 190     , CENTRIFUGE, MAGNETIC_PASSIVE)                                                                                                             .uumMcfg(180,SpringSteel   ,180*U, W                , 1*U)                                                                                                  .aspects(TC.METALLUM, 2, TC.TUTAMEN, 1).steal(SpringSteel).qual(3,  7.0, 1024, 2).setLocal("Tungsten Alloy"),
-	AnnealedCopper          = metalnd       ( 8640, "Annealed Copper"       , SET_COPPER            , 255, 120,  20     , MOLTEN, FURNACE, EXTRUDER_SIMPLE, MORTAR, WIRES, RAILS)                                                                                   .uumAloy( 0, Cu             , 1*U)                                                                                                                          .aspects(TC.METALLUM, 2, TC.PERMUTATIO, 1         ).setPulver(Cu    , U)                                                                                                                                      .steal(Cu         ).heat(2800, Cu.mBoilingPoint),
+	AnnealedCopper          = metalnd       ( 8640, "Annealed Copper"       , SET_COPPER            , 255, 140, 100     , MOLTEN, FURNACE, EXTRUDER_SIMPLE, MORTAR, WIRES, RAILS)                                                                                   .uumAloy( 0, Cu             , 1*U)                                                                                                                          .aspects(TC.METALLUM, 2, TC.PERMUTATIO, 1         ).setPulver(Cu    , U)                                                                                                                                      .steal(Cu         ).heat(2800, Cu.mBoilingPoint),
 	PigIron                 = metalmachore  ( 8642, "Pig Iron"                                      , 200, 180, 180     , MOLTEN, MORTAR, MAGNETIC_PASSIVE)                                                                                                         .uumMcfg( 0, WroughtIron    , 1*U)                                                                                                                          .aspects(TC.METALLUM, 2, TC.INSTRUMENTUM, 1       ).setPulver(Fe    , U).setSmelting(WroughtIron, U)                                                                                                          .steal(WroughtIron).qual(3,  6.0,  384,  2),
 	IronCompressed          = alloymachnd   ( 8644, "IronCompressed"        , SET_METALLIC          , 128, 128, 128     , CENTRIFUGE, MORTAR, MAGNETIC_PASSIVE)                                                                                                     .uumMcfg( 0, Fe             , 1*U)                                                                                                                          .aspects(TC.METALLUM, 2, TC.TERRA, 1              ).setPulver(Fe    , U).setSmelting(Fe         , U)                                                                                                          .steal(Fe         ).setLocal("Compressed Iron"),
 	IronMagnetic            = metalmachnd   ( 8645, "IronMagnetic"          , SET_MAGNETIC          , 200, 200, 200     , LAYERED, MORTAR, MAGNETIC_ACTIVE)                                                                                                         .uumMcfg( 0, Fe             , 1*U)                                                                                                                          .aspects(TC.METALLUM, 2, TC.MAGNETO, 1            ).setBending(Fe   , U).setCompressing(Fe      , U).setPulver(Fe   , U).setSmashing(Fe   , U).setSmelting(Fe   , U).setWorking(Fe   , U).setForging(Fe   , U).steal(Fe         ).setLocal("Magnetic Iron"),
@@ -1898,6 +1898,8 @@ public class MT {
 			
 			
 			Zn                      .put(MD.GT, COMMON_ORE);
+			Be                      .put(MD.GT, COMMON_ORE);
+			Th                      .put(MD.GT, COMMON_ORE);
 			Li                      .put(MD.GT);
 			Craponite               .put(MD.GT);
 			NitroCarbon             .put(MD.GT);
@@ -2115,6 +2117,8 @@ public class MT {
 			Pu_240                  .put(MD.HBM).visDefault();
 			Asbestos                .put(MD.HBM, COMMON_ORE);
 			OREMATS.Coltan          .put(MD.HBM, COMMON_ORE);
+			Ta                      .put(MD.HBM);
+			Nd                      .put(MD.HBM);
 			
 			
 			In                      .put(MD.ReC);
@@ -2155,6 +2159,7 @@ public class MT {
 			Thaumium                .put(MD.TC, COMMON_ORE).visDefault();
 			Amber                   .put(MD.TC, COMMON_ORE);
 			Hg                      .put(MD.TC, COMMON_ORE);
+			OREMATS.Cinnabar        .put(MD.TC, COMMON_ORE);
 			
 			
 			DarkThaumium            .put(MD.TCFM).visDefault();
@@ -2340,6 +2345,9 @@ public class MT {
 			Kaolinite                  .put(MD.PFAA);
 			OREMATS.BasalticMineralSand.put(MD.PFAA);
 			OREMATS.GraniticMineralSand.put(MD.PFAA);
+			
+			
+			Lignite                 .put(MD.UB, COMMON_ORE);
 			
 			
 			Angmallen               .put(MD.MET);
