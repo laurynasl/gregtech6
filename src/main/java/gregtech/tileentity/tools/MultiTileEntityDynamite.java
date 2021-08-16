@@ -111,11 +111,11 @@ public class MultiTileEntityDynamite extends TileEntityBase09FacingSingle implem
 				
 				while(mSunk) {
 					Block tBlock = getBlockAtSide(OPOS[mFacing]);
+					if (BlocksGT.drillableDynamite.contains(tBlock)) break;
 					if (tBlock.getBlockHardness(worldObj, xCoord+OFFX[OPOS[mFacing]], yCoord+OFFY[OPOS[mFacing]], zCoord+OFFZ[OPOS[mFacing]]) >= 0) {
 						if (tBlock instanceof BlockStones) {
 							if (getMetaDataAtSide(OPOS[mFacing]) < 3) break;
 						} else {
-							if (BlocksGT.drillableDynamite.contains(tBlock)) break;
 							if (StoneLayer.REPLACEABLE_BLOCKS.contains(tBlock)) break;
 							if (WD.ore_stone(tBlock, getMetaDataAtSide(OPOS[mFacing]))) break;
 						}
@@ -230,7 +230,7 @@ public class MultiTileEntityDynamite extends TileEntityBase09FacingSingle implem
 			List tList = mWorld.getEntitiesWithinAABBExcludingEntity(exploder, AxisAlignedBB.getBoundingBox(explosionX - 2, explosionY - 2, explosionZ - 2, explosionX + 2, explosionY + 2, explosionZ + 2));
 			net.minecraftforge.event.ForgeEventFactory.onExplosionDetonate(mWorld, this, tList, explosionSize);
 			DamageSource tSource = DamageSource.setExplosionSource(this);
-			for (Object tEntity : tList) if (!(tEntity instanceof EntityItem)) ((Entity)tEntity).attackEntityFrom(tSource, 2*mMaxExplosionResistance);
+			for (Object tEntity : tList) if (!(tEntity instanceof EntityItem)) ((Entity)tEntity).attackEntityFrom(tSource, 2*mMaxExplosionResistance*TFC_DAMAGE_MULTIPLIER);
 			explosionSize = 1F;
 		}
 		
