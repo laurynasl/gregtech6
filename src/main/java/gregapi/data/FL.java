@@ -120,6 +120,7 @@ public enum FL {
 	, River_Water               ("riverwater"                                               , SIMPLE, LIQUID, FOOD, WATER)
 	, SpDew                     ("spectral_dew"                                             , SIMPLE, LIQUID, FOOD, WATER, INFINITE) // Something is broken with its Fluid Icon and its Bucket Registration. It is "Nether Water" from Netherlicious btw.
 	, Water_Hot                 ("ic2hotwater"                                              , SIMPLE, LIQUID, FOOD, WATER, THERMOS)
+	, Water_Boiling             ("boilingwater"                                             , SIMPLE, LIQUID, FOOD, WATER, THERMOS)
 	, Ice                       ("ice"                                                      , SIMPLE, LIQUID, FOOD, WATER, THERMOS)
 	, Heavy_Reiker              ("rc heavy water"                                           , SIMPLE, LIQUID)
 	, Mineralwater              ("potion.mineralwater"                                      , SIMPLE, LIQUID, FOOD)
@@ -395,6 +396,7 @@ public enum FL {
 	, Oil_Lin                   ("linoil"                   , "linseedoil"                  , SIMPLE, LIQUID, FOOD, COOKING_OIL, BATH)
 	, Oil_Hemp                  ("hempoil"                  , "hempseedoil"                 , SIMPLE, LIQUID, FOOD, COOKING_OIL, BATH)
 	, Oil_Fish                  ("fishoil"                                                  , SIMPLE, LIQUID, FOOD, COOKING_OIL, BATH)
+	, Oil_Whale                 ("whaleoil"                                                 , SIMPLE, LIQUID, FOOD, COOKING_OIL, BATH)
 	, Oil_Canola                ("canolaoil"                                                , SIMPLE, LIQUID)
 	, Oil_Creosote              ("creosote"                                                 , SIMPLE, LIQUID, BATH)
 	, Oil_Soulsand              ("soulsandoil"                                              , SIMPLE, LIQUID)
@@ -455,14 +457,17 @@ public enum FL {
 	, Glowstone_TE              ("glowstone"                                                , GAS) // 250 per Unit
 	
 	, Calcite                   ("molten.calcite"                                           , LIQUID) // 144 per Unit
-
+	
+	, Brass                     ("molten.brass"             , "moltenbrass"                 , LIQUID) // 144 per Unit
+	, Zinc                      ("molten.zinc"              , "moltenzinc"                  , LIQUID) // 144 per Unit
+	
 	, Med_Heal                  ("medicine.heal"                                            , SIMPLE, LIQUID, BATH)
 	, Med_Laxative              ("medicine.laxative"                                        , SIMPLE, LIQUID, BATH)
-
+	
 	, Rotten_Drink              ("rottendrink"                                              , SIMPLE, LIQUID, FOOD)
-
+	
 	, Dragon_Breath             ("dragonbreath"                                             , SIMPLE, GAS, BATH)
-
+	
 	, Potion_Tainted            ("potion.tainted"                                           , SIMPLE, LIQUID, POTION)
 	, Potion_Awkward            ("potion.awkward"                                           , SIMPLE, LIQUID, POTION)
 	, Potion_Thick              ("potion.thick"                                             , SIMPLE, LIQUID, POTION)

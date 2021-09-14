@@ -599,6 +599,8 @@ public class LoaderItemList implements Runnable {
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.HBM, "tile.cluster_iron"               , null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.HBM, "tile.cluster_titanium"           , null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.HBM, "tile.cluster_aluminium"          , null));
+		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.FSP, "steamcraftOre"                   , null));
+		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.SC2, "BlockSteamcraftOre"              , null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.EB, "enhancedbiomes.tile.stoneEB"      , null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.EB, "enhancedbiomes.tile.stoneCobbleEB", null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.FR, "resources"                        , null));
@@ -804,6 +806,15 @@ public class LoaderItemList implements Runnable {
 		IL.IE_Treated_Slab                      .set(ST.make(MD.IE, "woodenDecoration"                      , 1, 2), new OreDictItemData(MT.WoodTreated, U2));
 		IL.IE_Treated_Stairs                    .set(ST.make(MD.IE, "woodenStairs"                          , 1, 0), new OreDictItemData(MT.WoodTreated, 3*U4));
 		IL.IE_Crate                             .set(ST.make(MD.IE, "woodenDevice"                          , 1, 4), new OreDictItemData(MT.WoodTreated, 8*U), OD.craftingChest);
+		
+		
+		IL.SC2_Wrench                           .set(ST.make(MD.SC2, "ItemSpanner"                          , 1, 0)); ItemsGT.SPECIAL_CASE_TOOLS.add(IL.SC2_Wrench.wild(1));
+		IL.SC2_Hammer                           .set(ST.make(MD.SC2, "ItemHammer"                           , 1, 0)); ItemsGT.SPECIAL_CASE_TOOLS.add(IL.SC2_Hammer.wild(1));
+		IL.SC2_Hammer_Gilded                    .set(ST.make(MD.SC2, "ItemBugHammer"                        , 1, 0)); ItemsGT.SPECIAL_CASE_TOOLS.add(IL.SC2_Hammer_Gilded.wild(1));
+		IL.SC2_Teapot_Empty                     .set(ST.make(MD.SC2, "ItemTeapot"                           , 1, 0));
+		IL.SC2_Teapot_Water                     .set(ST.make(MD.SC2, "ItemTeapot"                           , 1, 1));
+		IL.SC2_Teapot_Boiling                   .set(ST.make(MD.SC2, "ItemTeapot"                           , 1, 2));
+		IL.SC2_Teapot_Full                      .set(ST.make(MD.SC2, "ItemTeapot"                           , 1,12));
 		
 		
 		IL.A97_Hammer                           .set(ST.make(MD.A97, "wrench"                               , 1, 0)); ItemsGT.SPECIAL_CASE_TOOLS.add(IL.A97_Hammer.wild(1));

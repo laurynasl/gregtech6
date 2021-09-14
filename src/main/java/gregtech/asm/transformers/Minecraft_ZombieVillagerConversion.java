@@ -19,28 +19,60 @@
 
 package gregtech.asm.transformers;
 
+import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.tree.AbstractInsnNode;
+import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.InsnNode;
+import org.objectweb.asm.tree.LabelNode;
+import org.objectweb.asm.tree.MethodInsnNode;
+import org.objectweb.asm.tree.MethodNode;
+import org.objectweb.asm.tree.VarInsnNode;
+
+import gregtech.asm.GT_ASM;
 import net.minecraft.launchwrapper.IClassTransformer;
 
 /**
- * @author Gregorius Techneticies
+ * @author Gregorius Techneticies, OvermindDL1
  */
 public class Minecraft_ZombieVillagerConversion implements IClassTransformer  {
 	@Override
-	public byte[] transform(String name, String transformedName, byte[] basicClass) {return basicClass;}/*
+	public byte[] transform(String name, String transformedName, byte[] basicClass) {
 		if (!transformedName.equals("net.minecraft.entity.monster.EntityZombie")) return basicClass;
 		ClassNode classNode = GT_ASM.makeNodes(basicClass);
+
+		//GT_ASM.writePrettyPrintedOpCodesToFile(classNode, "zombie.ops");
 		
 		for (MethodNode m: classNode.methods) {
 			if (m.name.equals("onKillEntity") || (m.name.equals("a") && m.desc.equals("(Lsv;)V"))) {
 				GT_ASM.logger.info("Transforming net.minecraft.entity.monster.EntityZombie.onKillEntity");
-				m.instructions.clear();
+
+				AbstractInsnNode cur = m.instructions.getFirst();
+
+				// Get to first label
+				while(!(cur instanceof LabelNode)) cur = cur.getNext();
+
+				// Skip the super call to the next label
+				cur = cur.getNext();
+				while(!(cur instanceof LabelNode)) cur = cur.getNext();
+
+				// Now wipe the rest of the function and replace with a static call to the replacement
+				cur = cur.getNext();
+				while(cur != null) {
+					AbstractInsnNode prior = cur;
+					cur = cur.getNext();
+					m.instructions.remove(prior);
+				}
+
+				// The static replacement call
 				m.instructions.add(new VarInsnNode(Opcodes.ALOAD, 0)); // Load this
 				m.instructions.add(new VarInsnNode(Opcodes.ALOAD, 1)); // Load victim
 				m.instructions.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "gregtech/asm/transformers/minecraft/Replacements", "EntityZombie_onKillEntity", "(Ljava/lang/Object;Ljava/lang/Object;)V", false));
 				m.instructions.add(new InsnNode(Opcodes.RETURN));
 			}
 		}
+
+		// GT_ASM.writePrettyPrintedOpCodesToFile(classNode, "zombie-post.ops");
 		
-		return GT_ASM.writeByteArray(classNode);
-	}*/
+		return GT_ASM.writeByteArraySelfReferenceFixup(classNode);
+	}
 }

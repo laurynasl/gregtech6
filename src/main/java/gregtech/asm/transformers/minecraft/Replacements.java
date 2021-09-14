@@ -19,8 +19,6 @@
 
 package gregtech.asm.transformers.minecraft;
 
-import static gregapi.data.CS.*;
-
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -39,25 +37,37 @@ import net.minecraftforge.common.util.ForgeDirection;
    while transforming other mods though.
  */
 public class Replacements {
-	
+
 	/** Zombies convert their Victim. */
 	public static void EntityZombie_onKillEntity(Object aZombie, Object aVictim) {
 		// Just ALWAYS convert Villagers, not only sometimes or when the stupid Difficulty Setting is right.
 		if (aVictim instanceof EntityVillager) {
 			EntityVillager aVillager = (EntityVillager)aVictim;
 			World aWorld = aVillager.worldObj;
+			// Yep, new Zombie Object.
 			EntityZombie tZombieVillager = new EntityZombie(aWorld);
+			// Location and Head need to point to the right places.
 			tZombieVillager.copyLocationAndAnglesFrom(aVillager);
+			// Do normal spawning Stuff.
 			tZombieVillager.onSpawnWithEgg((IEntityLivingData)null);
+			// Converting Villager Zombies back to Villagers would make it impossible to retrieve the Items, so don't pick up in the first place!
 			tZombieVillager.setCanPickUpLoot(false);
+			// Well yes, he clearly is a Villager Zombie.
 			tZombieVillager.setVillager(true);
+			// STAY THERE! DONT DESPAWN!
 			tZombieVillager.func_110163_bv();
-			if (aVillager.isChild()) tZombieVillager.setChild(true);
-			if (aVillager.hasCustomNameTag()) tZombieVillager.setCustomNameTag(aVillager.getCustomNameTag());
+			// Convert to Child
+			tZombieVillager.setChild(aVillager.isChild());
+			// Transfer Name Tag
+			tZombieVillager.setCustomNameTag(aVillager.getCustomNameTag());
+			// Prevent duping Name Tags
+			aVillager.setCustomNameTag("");
+			// And put the new Zombie into the World!
 			aWorld.spawnEntityInWorld(tZombieVillager);
+			// With Sound ofcourse!
 			aWorld.playAuxSFXAtEntity(null, 1016, (int)tZombieVillager.posX, (int)tZombieVillager.posY, (int)tZombieVillager.posZ, 0);
+			// Villager? What Villager?
 			aWorld.removeEntity(aVillager);
-			DEB.println("TEST");
 		}
 	}
 	

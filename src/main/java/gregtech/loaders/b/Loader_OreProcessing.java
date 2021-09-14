@@ -169,7 +169,6 @@ public class Loader_OreProcessing implements Runnable {
 		stickLong                   .addListener(new OreProcessing_CraftFrom( 1, tCategory + "gem2stickLong"            , new String[][] {{"sf" , " X"        }}, gemFlawless       , null          , null          , null                          , null                          , new And(ANTIMATTER.NOT, COATED.NOT)));
 		stickLong                   .addListener(new OreProcessing_CraftFrom( 2, tCategory + "gem2stickLong"            , new String[][] {{"sf" , " X"        }}, gemExquisite      , null          , null          , null                          , null                          , new And(ANTIMATTER.NOT, COATED.NOT)));
 		stickLong                   .addListener(new OreProcessing_CraftFrom( 4, tCategory + "gem2stickLong"            , new String[][] {{"sf" , " X"        }}, gemLegendary      , null          , null          , null                          , null                          , new And(ANTIMATTER.NOT, COATED.NOT)));
-		stick                       .addListener(new OreProcessing_CraftFrom( 1, tCategory + "ingot2stick"              , new String[][] {{"f " , " I"        }}, null              , null          , null          , null                          , null                          , new And(ANTIMATTER.NOT, COATED.NOT, MT.Wood.NOT)));
 		stick                       .addListener(new OreProcessing_CraftFrom( 2, tCategory + "stickLong2stick"          , new String[][] {{"s " , " X"        }}, stickLong         , null          , null          , null                          , null                          , new And(ANTIMATTER.NOT, COATED.NOT)));
 		stick                       .addListener(new OreProcessing_CraftFrom( 1, tCategory + "gem2stick"                , new String[][] {{"s " , "fX"        }}, gem               , null          , null          , null                          , null                          , new And(ANTIMATTER.NOT, COATED.NOT)));
 		stick                       .addListener(new OreProcessing_CraftFrom( 2, tCategory + "gem2stick"                , new String[][] {{"s " , "fX"        }}, gemFlawless       , null          , null          , null                          , null                          , new And(ANTIMATTER.NOT, COATED.NOT)));
@@ -254,7 +253,12 @@ public class Loader_OreProcessing implements Runnable {
 			List<OreDictMaterialStack> tList = new ArrayListNoNulls<>();
 			if (aEvent.mItemData.mPrefix == null) {
 				for (OreDictMaterialStack tMaterial : aEvent.mItemData.getAllMaterialStacks()) {
-					if (tMaterial.mMaterial == MT.Paper && tMaterial.mAmount >= OP.dustDiv72.mAmount) RM.Mortar.addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(tMaterial.mMaterial, tMaterial.mAmount));
+					if (tMaterial.mAmount >= OP.dustDiv72.mAmount) {
+						if (tMaterial.mMaterial == MT.Paper) RM.Mortar.addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(tMaterial.mMaterial, tMaterial.mAmount));
+						if (aEvent.mItemData.mByProducts.length <= 0) {
+							if (tMaterial.mMaterial == MT.Bone) RM.Mortar.addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(tMaterial.mMaterial, tMaterial.mAmount));
+						}
+					}
 					if (tMaterial.mMaterial.mTargetSmelting.mAmount > 0 && tMaterial.mMaterial.contains(MELTING) && !tMaterial.mMaterial.contains(BLACKLISTED_SMELTER)) OM.stack(UT.Code.units(tMaterial.mAmount, U, tMaterial.mMaterial.mTargetSmelting.mAmount, F), tMaterial.mMaterial.mTargetSmelting.mMaterial).addToList(tList);
 				}
 			} else {

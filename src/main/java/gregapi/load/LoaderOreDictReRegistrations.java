@@ -721,6 +721,12 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistration("listAllostrichraw"               , "listAllmeatraw");
 		OreDictManager.INSTANCE.addReRegistration("listAllturtlecooked"             , "listAllmeatcooked");
 		OreDictManager.INSTANCE.addReRegistration("listAllturtleraw"                , "listAllmeatraw");
+		OreDictManager.INSTANCE.addReRegistration("ingotSoylentGreen"               , OD.listAllmeatsubstitute);
+		OreDictManager.INSTANCE.addReRegistration("plateSoylentGreen"               , OD.listAllmeatsubstitute);
+		OreDictManager.INSTANCE.addReRegistration("dustSoylentGreen"                , OD.listAllmeatsubstitute);
+		OreDictManager.INSTANCE.addReRegistration("ingotTofu"                       , OD.listAllmeatsubstitute);
+		OreDictManager.INSTANCE.addReRegistration("plateTofu"                       , OD.listAllmeatsubstitute);
+		OreDictManager.INSTANCE.addReRegistration("dustTofu"                        , OD.listAllmeatsubstitute);
 		OreDictManager.INSTANCE.addReRegistration("ingotSoylentGreen"               , "listAllribcooked");
 		OreDictManager.INSTANCE.addReRegistration("ingotSoylentGreen"               , "listAllribraw");
 		OreDictManager.INSTANCE.addReRegistration("ingotSoylentGreen"               , "listAllhamcooked");
@@ -741,9 +747,6 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistration("ingotSoylentGreen"               , "listAllturkeyraw");
 		OreDictManager.INSTANCE.addReRegistration("ingotSoylentGreen"               , "listAllvenisoncooked");
 		OreDictManager.INSTANCE.addReRegistration("ingotSoylentGreen"               , "listAllvenisonraw");
-		OreDictManager.INSTANCE.addReRegistration("ingotSoylentGreen"               , "listAllmeatsubstitute");
-		OreDictManager.INSTANCE.addReRegistration("plateSoylentGreen"               , "listAllmeatsubstitute");
-		OreDictManager.INSTANCE.addReRegistration("dustSoylentGreen"                , "listAllmeatsubstitute");
 		OreDictManager.INSTANCE.addReRegistration("ingotTofu"                       , "listAllribcooked");
 		OreDictManager.INSTANCE.addReRegistration("ingotTofu"                       , "listAllribraw");
 		OreDictManager.INSTANCE.addReRegistration("ingotTofu"                       , "listAllhamcooked");
@@ -764,16 +767,14 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistration("ingotTofu"                       , "listAllturkeyraw");
 		OreDictManager.INSTANCE.addReRegistration("ingotTofu"                       , "listAllvenisoncooked");
 		OreDictManager.INSTANCE.addReRegistration("ingotTofu"                       , "listAllvenisonraw");
-		OreDictManager.INSTANCE.addReRegistration("ingotTofu"                       , "listAllmeatsubstitute");
-		OreDictManager.INSTANCE.addReRegistration("plateTofu"                       , "listAllmeatsubstitute");
-		OreDictManager.INSTANCE.addReRegistration("dustTofu"                        , "listAllmeatsubstitute");
 		OreDictManager.INSTANCE.addReRegistration("ingotMeatCooked"                 , "listAllmeatcooked");
 		OreDictManager.INSTANCE.addReRegistration("ingotMeatRaw"                    , "listAllmeatraw");
 		OreDictManager.INSTANCE.addReRegistration("dustMeatCooked"                  , "listAllmeatcooked");
 		OreDictManager.INSTANCE.addReRegistration("dustMeatRaw"                     , "listAllmeatraw");
 		OreDictManager.INSTANCE.addReRegistration("dustSoylentGreen"                , "listAllegg");
 		OreDictManager.INSTANCE.addReRegistration("dustTofu"                        , "listAllegg");
-		OreDictManager.INSTANCE.addReRegistration("itemEgg"                         , "listAllegg");
+		OreDictManager.INSTANCE.addReRegistration(OD.itemEgg                        , "listAllegg");
+		OreDictManager.INSTANCE.addReRegistration("foodWhaleoil"                    , "listAllcookingoil");
 		OreDictManager.INSTANCE.addReRegistration("foodFishoil"                     , "listAllcookingoil");
 		OreDictManager.INSTANCE.addReRegistration("foodSeedoil"                     , "listAllcookingoil");
 		OreDictManager.INSTANCE.addReRegistration("foodHempoil"                     , "listAllcookingoil");
@@ -826,6 +827,7 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistration(OP.bottle.dat(MT.HempOil)         , "foodHempoil");
 		OreDictManager.INSTANCE.addReRegistration(OP.bottle.dat(MT.LinOil)          , "foodLinoil");
 		OreDictManager.INSTANCE.addReRegistration(OP.bottle.dat(MT.FishOil)         , "foodFishoil");
+		OreDictManager.INSTANCE.addReRegistration(OP.bottle.dat(MT.WhaleOil)        , "foodWhaleoil");
 		OreDictManager.INSTANCE.addReRegistration("foodApplecider"                  , "foodCider");
 		OreDictManager.INSTANCE.addReRegistration("foodPeachcider"                  , "foodCider");
 		OreDictManager.INSTANCE.addReRegistration("foodPearcider"                   , "foodCider");
@@ -916,6 +918,7 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistration(OP.bottle.dat(MT.HempOil)         , OD.itemLubricantEarly);
 		OreDictManager.INSTANCE.addReRegistration(OP.bottle.dat(MT.LinOil)          , OD.itemLubricantEarly);
 		OreDictManager.INSTANCE.addReRegistration(OP.bottle.dat(MT.FishOil)         , OD.itemLubricantEarly);
+		OreDictManager.INSTANCE.addReRegistration(OP.bottle.dat(MT.WhaleOil)        , OD.itemLubricantEarly);
 		OreDictManager.INSTANCE.addReRegistration(OD.container1000water             , "fz.waterBucketLike");
 		OreDictManager.INSTANCE.addReRegistration("fz.waterBucketLike"              , "listAllwater");
 		OreDictManager.INSTANCE.addReRegistration(OD.container1000lava              , "listAlllava");
@@ -1275,6 +1278,7 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistration("seedCoca"                        , "listAllseed");
 		OreDictManager.INSTANCE.addReRegistration("seedHops"                        , "listAllseed");
 		OreDictManager.INSTANCE.addReRegistration("seedHemp"                        , "listAllseed");
+		OreDictManager.INSTANCE.addReRegistration("seedTea"                         , "listAllseed");
 		OreDictManager.INSTANCE.addReRegistration("seedRice"                        , "listAllseed");
 		OreDictManager.INSTANCE.addReRegistration("seedOats"                        , "listAllseed");
 		OreDictManager.INSTANCE.addReRegistration("seedAbyssalOats"                 , "listAllseed");
