@@ -508,8 +508,11 @@ public class Loader_Recipes_Handlers implements Runnable {
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(oreRaw                      , gem                       , 1, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(oreRaw                      , rawOreChunk               , 3, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(crushed                     , crushedTiny               , 9, F));
+		GameRegistry.addRecipe(new AdvancedCrafting1ToY(crushed                     , gemFlawed                 , 1, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(crushedPurified             , crushedPurifiedTiny       , 9, F));
+		GameRegistry.addRecipe(new AdvancedCrafting1ToY(crushedPurified             , gemFlawed                 , 1, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(crushedCentrifuged          , crushedCentrifugedTiny    , 9, F));
+		GameRegistry.addRecipe(new AdvancedCrafting1ToY(crushedCentrifuged          , gemFlawed                 , 1, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(ingot                       , nugget                    , 9, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(ingot                       , chunkGt                   , 4, F));
 		GameRegistry.addRecipe(new AdvancedCrafting1ToY(billet                      , nugget                    , 6, F));
@@ -538,10 +541,6 @@ public class Loader_Recipes_Handlers implements Runnable {
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(ingot                   ,  7, nugget                    ,63, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(ingot                   ,  8, billet                    ,12, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(ingot                   ,  9, blockIngot                , 1, F));
-		GameRegistry.addRecipe(new AdvancedCraftingXToY(nugget                  ,  6, billet                    , 1, F));
-		GameRegistry.addRecipe(new AdvancedCraftingXToY(nugget                  ,  9, ingot                     , 1, F));
-		GameRegistry.addRecipe(new AdvancedCraftingXToY(chunkGt                 ,  4, ingot                     , 1, F));
-		GameRegistry.addRecipe(new AdvancedCraftingXToY(chunkGt                 ,  8, ingot                     , 2, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(billet                  ,  2, nugget                    ,12, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(billet                  ,  3, ingot                     , 2, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(billet                  ,  4, nugget                    ,24, F));
@@ -550,6 +549,10 @@ public class Loader_Recipes_Handlers implements Runnable {
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(billet                  ,  7, nugget                    ,42, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(billet                  ,  8, nugget                    ,48, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(billet                  ,  9, ingot                     , 6, F));
+		GameRegistry.addRecipe(new AdvancedCraftingXToY(chunkGt                 ,  4, ingot                     , 1, F));
+		GameRegistry.addRecipe(new AdvancedCraftingXToY(chunkGt                 ,  8, billet                    , 3, F));
+		GameRegistry.addRecipe(new AdvancedCraftingXToY(nugget                  ,  6, billet                    , 1, F));
+		GameRegistry.addRecipe(new AdvancedCraftingXToY(nugget                  ,  9, ingot                     , 1, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(dustDiv72               ,  8, dustTiny                  , 1, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(dustTiny                ,  9, dust                      , 1, F));
 		GameRegistry.addRecipe(new AdvancedCraftingXToY(dustSmall               ,  4, dust                      , 1, F));
@@ -694,6 +697,8 @@ public class Loader_Recipes_Handlers implements Runnable {
 		RM.Generifier   .add(new RecipeMapHandlerMaterial(tMaterial                 , NF                                ,   0,   1, NF, MT.Wood                 , NI, T, tConditionP));
 		for (OreDictMaterial tMaterial : ANY.Wax.mToThis) if (tMaterial != MT.Wax)
 		RM.Generifier   .add(new RecipeMapHandlerMaterial(tMaterial                 , NF                                ,   0,   1, NF, MT.Wax                  , NI, T, tConditionP));
+		for (OreDictMaterial tMaterial : ANY.Phosphorus.mToThis) if (tMaterial != MT.Phosphorus)
+		RM.Generifier   .add(new RecipeMapHandlerMaterial(tMaterial                 , NF                                ,   0,   1, NF, MT.Phosphorus           , NI, T, tConditionP));
 		for (OreDictMaterial tMaterial : ANY.Glowstone.mToThis) if (tMaterial != MT.Glowstone)
 		RM.Generifier   .add(new RecipeMapHandlerMaterial(tMaterial                 , NF                                ,   0,   1, NF, MT.Glowstone            , NI, T, tConditionP));
 		for (OreDictMaterial tMaterial : ANY.Clay.mToThis) if (tMaterial != MT.Clay)

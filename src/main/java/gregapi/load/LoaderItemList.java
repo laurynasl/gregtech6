@@ -1598,6 +1598,7 @@ public class LoaderItemList implements Runnable {
 		
 		IL.HBM_Mercury_Bottle                   .set(ST.make(MD.HBM, "item.bottle_mercury"                  , 1, 0), new OreDictItemData(MT.Hg, U, MT.Glass, U), OP.bottle.dat(MT.Hg));
 		IL.HBM_Mercury_Drop                     .set(ST.make(MD.HBM, "item.nugget_mercury"                  , 1, 0), new OreDictItemData(MT.Hg, U8));
+		IL.HBM_Bedrock_Coltan                   .set(ST.make(MD.HBM, "tile.ore_bedrock_coltan"              , 1, 0));
 		
 		
 		IL.ICBM_Concrete                        .set(ST.make(MD.ICBM, "icbmCConcrete"                       , 1, 0));
@@ -1622,7 +1623,7 @@ public class LoaderItemList implements Runnable {
 		IL.FR_Slabs                             .set(ST.make(MD.FR, "slabs"                                 , 1, 0));
 		IL.FR_Logs_Fireproof                    .set(ST.make(MD.FR, "logsFireproof"                         , 1, 0));
 		IL.FR_Logs                              .set(ST.make(MD.FR, "logs"                                  , 1, 0));
-		IL.FR_Phosphor                          .set(ST.make(MD.FR, "phosphor"                              , 1, 0), new OreDictItemData(MT.P, U));
+		IL.FR_Phosphor                          .set(ST.make(MD.FR, "phosphor"                              , 1, 0));
 		IL.FR_Royal_Jelly                       .set(ST.make(MD.FR, "royalJelly"                            , 1, 0), null, "dropRoyalJelly");
 		IL.FR_Propolis                          .set(ST.make(MD.FR, "propolis"                              , 1, 0), null, OD.listAllpropolis);
 		IL.FR_Propolis_Sticky                   .set(ST.make(MD.FR, "propolis"                              , 1, 1), null, OD.listAllpropolis);
