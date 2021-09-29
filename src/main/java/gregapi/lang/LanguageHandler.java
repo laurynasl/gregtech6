@@ -164,6 +164,7 @@ public class LanguageHandler {
 			if (aPrefix == OP.crushedTiny)                                  return "Tiny Recycled " + aMaterial.mNameLocal;
 			if (aPrefix == OP.nugget)                                       return "Tiny Piece of Netherite Scrap";
 			if (aPrefix == OP.chunkGt)                                      return "Small Piece of Netherite Scrap";
+			if (aPrefix == OP.billet)                                       return "Billet of Netherite Scrap";
 			if (aPrefix == OP.scrap)                                        return "Scrap Piece of Netherite Scrap";
 			if (aPrefix.mNameInternal.startsWith("ore"))                    return aMaterial.mNameLocal;
 			if (aPrefix.mNameInternal.startsWith("crushed"))                return aPrefix.mMaterialPre + aMaterial.mNameLocal;
@@ -430,8 +431,6 @@ public class LanguageHandler {
 			if (aPrefix.mNameInternal.startsWith("ingot"))                  return aPrefix.mMaterialPre + aMaterial.mNameLocal;
 		} else
 		if (ANY.Blaze.mToThis.contains(aMaterial)) {
-			if (aPrefix == OP.dust)                                         return "Big Pile of " + aMaterial.mNameLocal + " Powder";
-			if (aPrefix == OP.dustSmall)                                    return "Medium Pile of " + aMaterial.mNameLocal + " Powder";
 			if (aPrefix.mNameInternal.startsWith("dust"))                   return aPrefix.mMaterialPre + aMaterial.mNameLocal + " Powder";
 			if (aPrefix.mNameInternal.startsWith("stick"))                  return aPrefix.mMaterialPre + aMaterial.mNameLocal + " Rod";
 			if (aPrefix.mNameInternal.startsWith("ingot"))                  return aPrefix.mMaterialPre + aMaterial.mNameLocal + " Bar";

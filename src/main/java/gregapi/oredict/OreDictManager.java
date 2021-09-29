@@ -100,7 +100,7 @@ public final class OreDictManager {
 	private final Set<String> mAutoBlackListedMods = new HashSetNoNulls<>();
 	/** Lists all Names which are definitely not unknown. */
 	private final Set<String> mKnownNames = new HashSetNoNulls<>(F
-	, "oreHeeInstabilityOrb", "oreHeeEndPowder", "oreHeeIgneousRock", "oreHeeStardust", "oreBituminousCoal"
+	, "oreHeeInstabilityOrb", "oreHeeEndPowder", "oreHeeIgneousRock", "oreHeeStardust", "oreBituminousCoal", "oreBrimstone"
 	, "rennetSource", "yeastBrewers", "yeastLager", "yeastBayanus", "yeastEthereal", "yeastOrigin"
 	, "holystone", "darkStone", "whiteStone", "brightStone", "lavastone"
 	, "mycelium", "podzol", "grass", "soulSand", "taintedSoil"
@@ -117,7 +117,7 @@ public final class OreDictManager {
 	, "hempBrick", "hempBlock", "savehempBrick", "savehempBlock", "saveplatedHempBrick", "saveplatedHempBlock", "platedHempBrick", "platedHempBlock", "platedHemp", "savehemp", "saveplatedHemp"
 	);
 	/** Lists all Names which should not be processed due to technical Issues. */
-	private final Set<String> mIgnoredNames = new HashSetNoNulls<>(F, "ingotRefinedGlowstone", "ingotRefinedObsidian", "oreCompass", "oreBentonite", "oreFullersEarth", "oreKaolinite", "dustRefinedObsidian", "dustRefinedGlowstone", "oreNetherQuartz", "oreNetherite", "oreBasalticMineralSand", "oreLifeCrystal", "cropMaplesyrup", "oreTritanium", "oreDuranium", "plateLapis", "shardEntropy", "shardAir", "shardWater", "shardEarth", "shardFire", "shardOrder", "greggy_greg_do_please_kindly_stuff_a_sock_in_it", "halfSheetCylinderMetal", "halfSheetMetal", "quarterSheetMetal", "sheetCurvedFourMetal", "sheetCurvedOneMetal", "sheetCurvedThreeMetal", "sheetCurvedTwoMetal", "sheetCylinderMetal", "sheetMediumConeMetal", "sheetMetal", "sheetMicroConeMetal", "sheetMicroFinMetal", "sheetSmallConeMetal", "sheetSmallCylinderMetal", "sheetSmallFinMetal", "shirtSheetMetal", "rivetSheetMetal", "triangleSheetMetal");
+	private final Set<String> mIgnoredNames = new HashSetNoNulls<>(F, "rawRubber", "plateTungCar", "ingotRefinedGlowstone", "ingotRefinedObsidian", "oreCompass", "oreBentonite", "oreFullersEarth", "oreKaolinite", "dustRefinedObsidian", "dustRefinedGlowstone", "oreNetherQuartz", "oreNetherite", "oreBasalticMineralSand", "oreLifeCrystal", "cropMaplesyrup", "oreTritanium", "oreDuranium", "plateLapis", "shardEntropy", "shardAir", "shardWater", "shardEarth", "shardFire", "shardOrder", "greggy_greg_do_please_kindly_stuff_a_sock_in_it", "halfSheetCylinderMetal", "halfSheetMetal", "quarterSheetMetal", "sheetCurvedFourMetal", "sheetCurvedOneMetal", "sheetCurvedThreeMetal", "sheetCurvedTwoMetal", "sheetCylinderMetal", "sheetMediumConeMetal", "sheetMetal", "sheetMicroConeMetal", "sheetMicroFinMetal", "sheetSmallConeMetal", "sheetSmallCylinderMetal", "sheetSmallFinMetal", "shirtSheetMetal", "rivetSheetMetal", "triangleSheetMetal");
 	/** Lists all Names which have already been registered. Used for the OreDict Listeners, so that certain Recipes (such as Crafting) don't get registered twice.*/
 	private final Set<String> mAlreadyRegisteredNames = new HashSetNoNulls<>();
 	/** Used to check if Recipe Outputs accidentally contain uncopied OreDict Items. */
@@ -330,6 +330,8 @@ public final class OreDictManager {
 			if (MD.TC .owns(aRegName) &&  tLowerCase.endsWith("uicksilver")) return;
 			// This Red/Redstone Alloy is violating two OreDict Materials at the same time with its Name and Composition, so I'm gonna keep it out of my System.
 			if (MD.HBM.owns(aRegName) && (tLowerCase.endsWith("redalloy") || tLowerCase.endsWith("redstonealloy") || tLowerCase.startsWith("platedense"))) return;
+			// Ignore Congealed Slime being registered as Rubber. TODO Whenever I decide to add Materials for Slime, this needs to be revisited.
+			if (MD.SC2.owns(aRegName) &&  tLowerCase.endsWith("rubber")) return;
 			// OreDictPrefix Conflict caused by Galacticraft fixing its OreDict Registrations a little bit late to use Plates instead of Compressed Stuff now.
 			// Note: This can be removed in later MC Versions too, since Galacticraft either does not update or since it has already fixed itself by now.
 			if (aRegName.length() >= 26 && aRegName.startsWith("Gala") && tLowerCase.startsWith("plate")) {
@@ -439,6 +441,8 @@ public final class OreDictManager {
 							setTarget_(aPrefix, aMaterial, aEvent.Ore, T, T);
 						} else if (aPrefix == OP.ore) {
 							addItemData_(aEvent.Ore, aPrefix.dat(aMaterial));
+						} else if (aPrefix == OP.plateSteamcraft) {
+							// Skip these, the only valid ones are the ones from Flaxbeard's Steam Power itself.
 						} else if (aPrefix.contains(TD.Prefix.UNIFICATABLE)) {
 							setTarget_(aPrefix, aMaterial, aEvent.Ore, F, T);
 						}
@@ -606,15 +610,21 @@ public final class OreDictManager {
 	}
 	
 	public boolean equal(boolean aUseBlackList, ItemStack aUnificatableStack, ItemStack aStackToCheckAgainst) {
-		if (ST.invalid(aUnificatableStack) || ST.invalid(aStackToCheckAgainst)) return F;
-		return equal_(aUseBlackList, aUnificatableStack, aStackToCheckAgainst);
+		return equal(aUseBlackList, aUnificatableStack, aStackToCheckAgainst, T);
 	}
 	public boolean equal_(boolean aUseBlackList, ItemStack aUnificatableStack, ItemStack aStackToCheckAgainst) {
-		if (ST.equal(aUnificatableStack, aStackToCheckAgainst, T)) return T;
+		return equal_(aUseBlackList, aUnificatableStack, aStackToCheckAgainst, T);
+	}
+	public boolean equal(boolean aUseBlackList, ItemStack aUnificatableStack, ItemStack aStackToCheckAgainst, boolean aIgnoreNBT) {
+		if (ST.invalid(aUnificatableStack) || ST.invalid(aStackToCheckAgainst)) return F;
+		return equal_(aUseBlackList, aUnificatableStack, aStackToCheckAgainst, aIgnoreNBT);
+	}
+	public boolean equal_(boolean aUseBlackList, ItemStack aUnificatableStack, ItemStack aStackToCheckAgainst, boolean aIgnoreNBT) {
+		if (ST.equal(aUnificatableStack, aStackToCheckAgainst, aIgnoreNBT)) return T;
 		OreDictItemData tAssociation = getAssociation_(aUnificatableStack, T);
 		if (tAssociation == null || (aUseBlackList && tAssociation.mBlocked)) return F;
 		if (tAssociation.mUnificationTarget == null) tAssociation.mUnificationTarget = sName2StackMap.get(tAssociation.toString());
-		return ST.valid(tAssociation.mUnificationTarget) && ST.equal(tAssociation.mUnificationTarget, aStackToCheckAgainst, T);
+		return ST.valid(tAssociation.mUnificationTarget) && ST.equal(tAssociation.mUnificationTarget, aStackToCheckAgainst, aIgnoreNBT);
 	}
 	
 	public boolean addItemData(ItemStack aStack, OreDictItemData aData) {

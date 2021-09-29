@@ -54,13 +54,13 @@ public class Loader_Recipes_Food implements Runnable {
 		RM.food_can(ST.make(Items.rotten_flesh  , 1, W), 4, "Canned Meat", IL.CANS_ROTTEN);
 		RM.food_can(ST.make(Items.spider_eye    , 1, W), 2, "Canned Spider Eye", IL.CANS_ROTTEN);
 		
-		for (ItemStack tStack : ST.array(dustTiny.mat(MT.FishCooked, 9), dustSmall.mat(MT.FishCooked, 4), dust.mat(MT.FishCooked, 1), nugget.mat(MT.FishCooked, 9), chunkGt.mat(MT.FishCooked, 4), ingot.mat(MT.FishCooked, 1)))
+		for (ItemStack tStack : ST.array(dustTiny.mat(MT.FishCooked, 9), dustSmall.mat(MT.FishCooked, 4), dust.mat(MT.FishCooked, 1), nugget.mat(MT.FishCooked, 9), chunkGt.mat(MT.FishCooked, 4), billet.mat(MT.FishCooked, 2), ingot.mat(MT.FishCooked, 1)))
 		RM.food_can(tStack, 2, "Canned Fish", IL.CANS_FISH);
-		for (ItemStack tStack : ST.array(dustTiny.mat(MT.MeatCooked, 9), dustSmall.mat(MT.MeatCooked, 4), dust.mat(MT.MeatCooked, 1), nugget.mat(MT.MeatCooked, 9), chunkGt.mat(MT.MeatCooked, 4), ingot.mat(MT.MeatCooked, 1)))
+		for (ItemStack tStack : ST.array(dustTiny.mat(MT.MeatCooked, 9), dustSmall.mat(MT.MeatCooked, 4), dust.mat(MT.MeatCooked, 1), nugget.mat(MT.MeatCooked, 9), chunkGt.mat(MT.MeatCooked, 4), billet.mat(MT.MeatCooked, 2), ingot.mat(MT.MeatCooked, 1)))
 		RM.food_can(tStack, 2, "Canned Meat", IL.CANS_MEAT);
-		for (ItemStack tStack : ST.array(dustTiny.mat(MT.Tofu, 9), dustSmall.mat(MT.Tofu, 4), dust.mat(MT.Tofu, 1), nugget.mat(MT.Tofu, 9), chunkGt.mat(MT.Tofu, 4), ingot.mat(MT.Tofu, 1)))
+		for (ItemStack tStack : ST.array(dustTiny.mat(MT.Tofu, 9), dustSmall.mat(MT.Tofu, 4), dust.mat(MT.Tofu, 1), nugget.mat(MT.Tofu, 9), chunkGt.mat(MT.Tofu, 4), billet.mat(MT.Tofu, 2), ingot.mat(MT.Tofu, 1)))
 		RM.food_can(tStack, 2, "Canned Tofu", IL.CANS_VEGGIE);
-		for (ItemStack tStack : ST.array(dustTiny.mat(MT.SoylentGreen, 9), dustSmall.mat(MT.SoylentGreen, 4), dust.mat(MT.SoylentGreen, 1), nugget.mat(MT.SoylentGreen, 9), chunkGt.mat(MT.SoylentGreen, 4), ingot.mat(MT.SoylentGreen, 1)))
+		for (ItemStack tStack : ST.array(dustTiny.mat(MT.SoylentGreen, 9), dustSmall.mat(MT.SoylentGreen, 4), dust.mat(MT.SoylentGreen, 1), nugget.mat(MT.SoylentGreen, 9), chunkGt.mat(MT.SoylentGreen, 4), billet.mat(MT.SoylentGreen, 2), ingot.mat(MT.SoylentGreen, 1)))
 		RM.food_can(tStack, 2, "Canned Emerald Green", IL.CANS_VEGGIE);
 		
 		OreDictPrefix[] tPrefixListA = new OreDictPrefix[] {dustTiny, dustSmall, dust}, tPrefixListB = new OreDictPrefix[] {nugget, chunkGt, ingot};
@@ -76,12 +76,14 @@ public class Loader_Recipes_Food implements Runnable {
 		RM.Fermenter.addRecipe1(T, 16, 144, dust     .mat(MT.MeatRaw   , 1), dust      .mat(MT.MeatRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16,  16, nugget   .mat(MT.MeatRaw   , 1), nugget    .mat(MT.MeatRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16,  36, chunkGt  .mat(MT.MeatRaw   , 1), chunkGt   .mat(MT.MeatRotten, 1));
+		RM.Fermenter.addRecipe1(T, 16,  96, billet   .mat(MT.MeatRaw   , 1), billet    .mat(MT.MeatRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16, 144, ingot    .mat(MT.MeatRaw   , 1), ingot     .mat(MT.MeatRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16,  16, dustTiny .mat(MT.MeatCooked, 1), dustTiny  .mat(MT.MeatRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16,  36, dustSmall.mat(MT.MeatCooked, 1), dustSmall .mat(MT.MeatRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16, 144, dust     .mat(MT.MeatCooked, 1), dust      .mat(MT.MeatRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16,  16, nugget   .mat(MT.MeatCooked, 1), nugget    .mat(MT.MeatRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16,  36, chunkGt  .mat(MT.MeatCooked, 1), chunkGt   .mat(MT.MeatRotten, 1));
+		RM.Fermenter.addRecipe1(T, 16,  96, billet   .mat(MT.MeatCooked, 1), billet    .mat(MT.MeatRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16, 144, ingot    .mat(MT.MeatCooked, 1), ingot     .mat(MT.MeatRotten, 1));
 		
 		RM.Fermenter.addRecipe1(T, 16,  16, dustTiny .mat(MT.FishRaw   , 1), dustTiny  .mat(MT.FishRotten, 1));
@@ -89,33 +91,37 @@ public class Loader_Recipes_Food implements Runnable {
 		RM.Fermenter.addRecipe1(T, 16, 144, dust     .mat(MT.FishRaw   , 1), dust      .mat(MT.FishRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16,  16, nugget   .mat(MT.FishRaw   , 1), nugget    .mat(MT.FishRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16,  36, chunkGt  .mat(MT.FishRaw   , 1), chunkGt   .mat(MT.FishRotten, 1));
+		RM.Fermenter.addRecipe1(T, 16,  96, billet   .mat(MT.FishRaw   , 1), billet    .mat(MT.FishRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16, 144, ingot    .mat(MT.FishRaw   , 1), ingot     .mat(MT.FishRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16,  16, dustTiny .mat(MT.FishCooked, 1), dustTiny  .mat(MT.FishRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16,  36, dustSmall.mat(MT.FishCooked, 1), dustSmall .mat(MT.FishRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16, 144, dust     .mat(MT.FishCooked, 1), dust      .mat(MT.FishRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16,  16, nugget   .mat(MT.FishCooked, 1), nugget    .mat(MT.FishRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16,  36, chunkGt  .mat(MT.FishCooked, 1), chunkGt   .mat(MT.FishRotten, 1));
+		RM.Fermenter.addRecipe1(T, 16,  96, billet   .mat(MT.FishCooked, 1), billet    .mat(MT.FishRotten, 1));
 		RM.Fermenter.addRecipe1(T, 16, 144, ingot    .mat(MT.FishCooked, 1), ingot     .mat(MT.FishRotten, 1));
 		
 		new OreDictListenerEvent_Names() {@Override public void addAllListeners() {
 		
-		addListener(dust.dat(MT.Wheat)       , new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.rem_smelting(aEvent.mStack);}});
-		addListener(dustSmall.dat(MT.Wheat)  , new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.rem_smelting(aEvent.mStack);}});
-		addListener(dustTiny.dat(MT.Wheat)   , new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.rem_smelting(aEvent.mStack);}});
+		addListener(dust     .dat(MT.Wheat  ), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.rem_smelting(aEvent.mStack);}});
+		addListener(dustSmall.dat(MT.Wheat  ), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.rem_smelting(aEvent.mStack);}});
+		addListener(dustTiny .dat(MT.Wheat  ), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.rem_smelting(aEvent.mStack);}});
 		
-		addListener(ingot.dat(MT.MeatRaw)    , new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, OM.ingot(MT.MeatCooked    ), F, T, F);}});
-		addListener(chunkGt.dat(MT.MeatRaw)  , new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, OM.ingot(MT.MeatCooked, U4), F, T, F);}});
-		addListener(nugget.dat(MT.MeatRaw)   , new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, OM.ingot(MT.MeatCooked, U9), F, T, F);}});
-		addListener(dust.dat(MT.MeatRaw)     , new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, OM.dust (MT.MeatCooked    ), F, T, F);}});
-		addListener(dustSmall.dat(MT.MeatRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, OM.dust (MT.MeatCooked, U4), F, T, F);}});
-		addListener(dustTiny.dat(MT.MeatRaw) , new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, OM.dust (MT.MeatCooked, U9), F, T, F);}});
+		addListener(ingot    .dat(MT.MeatRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, ingot    .mat(MT.MeatCooked, 1), F, T, F);}});
+		addListener(billet   .dat(MT.MeatRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, billet   .mat(MT.MeatCooked, 1), F, T, F);}});
+		addListener(chunkGt  .dat(MT.MeatRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, chunkGt  .mat(MT.MeatCooked, 1), F, T, F);}});
+		addListener(nugget   .dat(MT.MeatRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, nugget   .mat(MT.MeatCooked, 1), F, T, F);}});
+		addListener(dust     .dat(MT.MeatRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, dust     .mat(MT.MeatCooked, 1), F, T, F);}});
+		addListener(dustSmall.dat(MT.MeatRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, dustSmall.mat(MT.MeatCooked, 1), F, T, F);}});
+		addListener(dustTiny .dat(MT.MeatRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, dustTiny .mat(MT.MeatCooked, 1), F, T, F);}});
 		
-		addListener(ingot.dat(MT.FishRaw)    , new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, OM.ingot(MT.FishCooked    ), F, T, F);}});
-		addListener(chunkGt.dat(MT.FishRaw)  , new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, OM.ingot(MT.FishCooked, U4), F, T, F);}});
-		addListener(nugget.dat(MT.FishRaw)   , new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, OM.ingot(MT.FishCooked, U9), F, T, F);}});
-		addListener(dust.dat(MT.FishRaw)     , new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, OM.dust (MT.FishCooked    ), F, T, F);}});
-		addListener(dustSmall.dat(MT.FishRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, OM.dust (MT.FishCooked, U4), F, T, F);}});
-		addListener(dustTiny.dat(MT.FishRaw) , new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, OM.dust (MT.FishCooked, U9), F, T, F);}});
+		addListener(ingot    .dat(MT.FishRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, ingot    .mat(MT.FishCooked, 1), F, T, F);}});
+		addListener(billet   .dat(MT.FishRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, billet   .mat(MT.FishCooked, 1), F, T, F);}});
+		addListener(chunkGt  .dat(MT.FishRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, chunkGt  .mat(MT.FishCooked, 1), F, T, F);}});
+		addListener(nugget   .dat(MT.FishRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, nugget   .mat(MT.FishCooked, 1), F, T, F);}});
+		addListener(dust     .dat(MT.FishRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, dust     .mat(MT.FishCooked, 1), F, T, F);}});
+		addListener(dustSmall.dat(MT.FishRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, dustSmall.mat(MT.FishCooked, 1), F, T, F);}});
+		addListener(dustTiny .dat(MT.FishRaw), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, dustTiny .mat(MT.FishCooked, 1), F, T, F);}});
 		
 		addListener("foodVanilla", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (!OM.prefixcontains(aEvent.mStack, TD.Prefix.DUST_BASED)) {
@@ -152,51 +158,57 @@ public class Loader_Recipes_Food implements Runnable {
 			RM.Bath             .addRecipe1(T,  0,   16, aEvent.mStack, MT.Chocolate.liquid(U4, T), NF, IL.Food_Raisins_Chocolate.get(1));
 			RM.Mixer            .addRecipe2(T, 16,   16, IL.Food_Ice_Cream.get(1), aEvent.mStack, NF, NF, IL.Food_Ice_Cream_Raisin.get(1));
 		}});
-		addListener("foodSilkentofu", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
-			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)35);
+		addListener(dust.dat(MT.PepperBlack), dust.dat(MT.Licorice), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)(200+DYE_INDEX_Black));
 		}});
-		addListener("foodFirmtofu", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+		addListener(dust.dat(MT.Mint), dust.dat(MT.Tea), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)(200+DYE_INDEX_Lime));
+		}});
+		addListener(dust.dat(MT.Pistachio), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)(200+DYE_INDEX_Green));
+		}});
+		addListener(new Object[] {dust.dat(MT.Snow), dust.dat(MT.Sugar), dust.dat(MT.PEZ), dust.dat(MT.Rice), dust.dat(MT.NaCl), dust.dat(MT.KCl)}, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)(200+DYE_INDEX_White));
+		}});
+		addListener(dust.dat(MT.Ice), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)(200+DYE_INDEX_LightBlue));
+		}});
+		addListener(dust.dat(MT.Curry), dust.dat(MT.Corn), dust.dat(MT.Cheese), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)(200+DYE_INDEX_Yellow));
+		}});
+		addListener(dust.dat(MT.Chili), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)(200+DYE_INDEX_Red));
+		}});
+		addListener(new Object[] {dust.dat(MT.Nougat), dust.dat(MT.Vanilla), dust.dat(MT.Nutmeg), dust.dat(MT.Peanut), dust.dat(MT.Hazelnut), dust.dat(MT.Almond), dust.dat(MT.Cocoa), dust.dat(MT.Chocolate), dust.dat(MT.Cinnamon), dust.dat(MT.Coffee)}, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)(200+DYE_INDEX_Brown));
+		}});
+		addListener("foodSilkentofu", dust.dat(MT.Tofu), "foodFirmtofu", ingot.dat(MT.Tofu), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)35);
 		}});
 		addListener("foodCaramel", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			RM.Mixer            .addRecipe2(T, 16,   16, IL.Food_Ice_Cream.get(1), aEvent.mStack, NF, NF, IL.Food_Ice_Cream_Caramel.get(1));
 			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_Brown);
 		}});
+		addListener("foodSaladdressing", "foodQuark", "foodCustard", "foodMayo", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_White);
+		}});
+		addListener("foodButter", "foodMustard", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_Yellow);
+		}});
+		addListener("foodMangochutney", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_Orange);
+		}});
 		addListener("foodKetchup", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_Red);
 		}});
-		addListener("foodMayo", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
-			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_White);
-		}});
-		addListener("foodMustard", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
-			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_Yellow);
-		}});
-		addListener("foodGravy", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
-			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_Brown);
-		}});
-		addListener("foodMaplesyrup", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
-			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_Brown);
-		}});
-		addListener("foodNutella", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+		addListener("foodNutella", "foodMaplesyrup", "foodGravy", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_Brown);
 		}});
 		addListener("foodSoysauce", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_Lime);
 		}});
-		addListener("foodSaladdressing", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
-			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_White);
-		}});
-		addListener("foodQuark", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
-			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_White);
-		}});
 		addListener("foodVegemite", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_Black);
-		}});
-		addListener("foodMangochutney", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
-			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_Orange);
-		}});
-		addListener("foodButter", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
-			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_Yellow);
 		}});
 		addListener("foodChocolatebar", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)21);
@@ -208,6 +220,14 @@ public class Loader_Recipes_Food implements Runnable {
 		addListener("foodBaconcooked", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (OD.listAllmeatsubstitute.is_(aEvent.mStack)) return;
 			RM.Mixer            .addRecipe2(T, 16,   16, IL.Food_Ice_Cream.get(1), aEvent.mStack, NF, NF, IL.Food_Ice_Cream_Bacon.get(1));
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)38);
+		}});
+		addListener("foodEpicbacon", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (OD.listAllmeatsubstitute.is_(aEvent.mStack)) return;
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)38);
+		}});
+		addListener("foodZombiejerky", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (OD.listAllmeatsubstitute.is_(aEvent.mStack)) return;
 			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)38);
 		}});
 		addListener("foodChum", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
@@ -259,16 +279,34 @@ public class Loader_Recipes_Food implements Runnable {
 		addListener("listAllyogurt", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, DYE_INDEX_White);
 		}});
-		addListener("listAllegg", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+		addListener("foodFriedegg", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (OD.listAllmeatsubstitute.is_(aEvent.mStack)) return;
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)43);
+		}});
+		addListener("foodBoiledegg", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (OD.listAllmeatsubstitute.is_(aEvent.mStack)) return;
+			RM.Slicer           .addRecipe2(T, 16,   16, aEvent.mStack, IL.Shape_Slicer_Flat.get(0), IL.Food_Egg_Sliced.get(4));
+		}});
+		addListener("foodScrambledegg", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (OD.listAllmeatsubstitute.is_(aEvent.mStack)) return;
+			if (!ST.isGT(aEvent.mStack) && !Sandwiches.INGREDIENTS.containsKey(aEvent.mStack, F)) Sandwiches.INGREDIENTS.put(aEvent.mStack, (byte)(200+DYE_INDEX_Yellow));
+		}});
+		addListener(OD.itemEgg, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (OD.listAllmeatsubstitute.is_(aEvent.mStack)) return;
+			if (FL.Water_Hot.exists())
+			RM.Bath             .addRecipe1(T,  0,  128, aEvent.mStack, FL.Water_Hot    .make(100), FL.Water.make(100), (ST.equal(aEvent.mStack, Items.egg)?IL.Food_Brown_Egg_Boiled:IL.Food_White_Egg_Boiled).get(1));
+			if (FL.Water_Boiling.exists())
+			RM.Bath             .addRecipe1(T,  0,  128, aEvent.mStack, FL.Water_Boiling.make(100), FL.Water.make(100), (ST.equal(aEvent.mStack, Items.egg)?IL.Food_Brown_Egg_Boiled:IL.Food_White_Egg_Boiled).get(1));
+			RM.Autoclave        .addRecipe2(T,  0,  128, aEvent.mStack, ST.tag(0), FL.Steam.make(800), FL.DistW.make(5), (ST.equal(aEvent.mStack, Items.egg)?IL.Food_Brown_Egg_Boiled:IL.Food_White_Egg_Boiled).get(1));
+			RM.Mixer            .addRecipe2(T, 16,   16, aEvent.mStack, OP.stick.mat(MT.WoodTreated, 0), IL.Food_Egg_Scrambled.get(1));
+			RM.Juicer           .addRecipe1(T, 16,   16, aEvent.mStack, IL.Food_Egg_White.get(1), IL.Food_Egg_Yolk.get(1)); // There not gonna be a Squeezer Recipe!
+			RM.Centrifuge       .addRecipe1(T, 16,   64, aEvent.mStack, IL.Food_Egg_White.get(1), IL.Food_Egg_Yolk.get(1));
+			RM.add_smelting(aEvent.mStack, IL.Food_Egg_Fried.get(1));
+		}});
+		addListener(OD.itemEgg, "foodScrambledegg", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (OD.listAllmeatsubstitute.is_(aEvent.mStack)) return;
 			for (OreDictMaterial tMat : ANY.Flour.mToThis)
-			RM.Mixer.addRecipe2(T, 16,   16, aEvent.mStack, OM.dust(tMat), IL.Food_Dough_Egg.get(1));
-			
-			for (String tCookingOil : FluidsGT.COOKING_OIL) if (FL.exists(tCookingOil)) for (String tFluid : FluidsGT.VINEGAR) if (FL.exists(tFluid)) {
-			RM.Mixer.addRecipe1(T, 16,   16, aEvent.mStack, FL.array(FL.make(tCookingOil, 100), FL.make(tFluid, 100)), FL.Mayo.make(250), ZL_IS);
-			RM.Mixer.addRecipe1(T, 16,   16, aEvent.mStack, FL.array(FL.make(tCookingOil, 100), FL.Juice_Lemon.make(100)), FL.Mayo.make(250), ZL_IS);
-			RM.Mixer.addRecipe1(T, 16,   16, aEvent.mStack, FL.array(FL.make(tCookingOil, 100), FL.Juice_Lime.make(100)), FL.Mayo.make(250), ZL_IS);
-			}
+			RM.Mixer            .addRecipe2(T, 16,   16, aEvent.mStack, OM.dust(tMat), IL.Food_Dough_Egg.get(1));
 		}});
 		
 		
@@ -315,24 +353,11 @@ public class Loader_Recipes_Food implements Runnable {
 		addListener("foodScrapmeat", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (!ST.isGT(aEvent.mStack)) FoodsGT.put(aEvent.mStack, 0, 0, 4, 0,12);
 			
-			RM.Mixer.addRecipeX(T, 16,  256, ST.array(aEvent.mStack, ST.make(Items.fermented_spider_eye, 1, W), OM.dust(MT.MeatRotten), OM.dust(MT.Bone), IL.Food_Potato_Poisonous.get(1), IL.IC2_Scrap.get(1, ST.make(Blocks.red_mushroom, 1, W))), FL.array(FL.Purple_Drink.make(1000), FL.Oil_Fish.make(1000)), FL.Sludge.make(1000), IL.Food_Chum.get(8));
-			RM.Mixer.addRecipeX(T, 16,  256, ST.array(aEvent.mStack, ST.make(Items.fermented_spider_eye, 1, W), OM.dust(MT.FishRotten), OM.dust(MT.Bone), IL.Food_Potato_Poisonous.get(1), IL.IC2_Scrap.get(1, ST.make(Blocks.red_mushroom, 1, W))), FL.array(FL.Purple_Drink.make(1000), FL.Oil_Fish.make(1000)), FL.Sludge.make(1000), IL.Food_Chum.get(8));
-			
-			if (IL.FZ_Sludge.exists()) {
-			RM.Mixer.addRecipeX(T, 16,  256, ST.array(aEvent.mStack, ST.make(Items.fermented_spider_eye, 1, W), OM.dust(MT.MeatRotten), OM.dust(MT.Bone), IL.FZ_Sludge            .get(1), IL.IC2_Scrap.get(1, ST.make(Blocks.red_mushroom, 1, W))), FL.array(FL.Purple_Drink.make(1000), FL.Oil_Fish.make(1000)), FL.Sludge.make(1000), IL.Food_Chum.get(8));
-			RM.Mixer.addRecipeX(T, 16,  256, ST.array(aEvent.mStack, ST.make(Items.fermented_spider_eye, 1, W), OM.dust(MT.FishRotten), OM.dust(MT.Bone), IL.FZ_Sludge            .get(1), IL.IC2_Scrap.get(1, ST.make(Blocks.red_mushroom, 1, W))), FL.array(FL.Purple_Drink.make(1000), FL.Oil_Fish.make(1000)), FL.Sludge.make(1000), IL.Food_Chum.get(8));
-			}
-			if (IL.IE_Slag.exists()) {
-			RM.Mixer.addRecipeX(T, 16,  256, ST.array(aEvent.mStack, ST.make(Items.fermented_spider_eye, 1, W), OM.dust(MT.MeatRotten), OM.dust(MT.Bone), IL.IE_Slag              .get(1), IL.IC2_Scrap.get(1, ST.make(Blocks.red_mushroom, 1, W))), FL.array(FL.Purple_Drink.make(1000), FL.Oil_Fish.make(1000)), FL.Sludge.make(1000), IL.Food_Chum.get(8));
-			RM.Mixer.addRecipeX(T, 16,  256, ST.array(aEvent.mStack, ST.make(Items.fermented_spider_eye, 1, W), OM.dust(MT.FishRotten), OM.dust(MT.Bone), IL.IE_Slag              .get(1), IL.IC2_Scrap.get(1, ST.make(Blocks.red_mushroom, 1, W))), FL.array(FL.Purple_Drink.make(1000), FL.Oil_Fish.make(1000)), FL.Sludge.make(1000), IL.Food_Chum.get(8));
-			}
-			if (IL.TE_Slag.exists()) {
-			RM.Mixer.addRecipeX(T, 16,  256, ST.array(aEvent.mStack, ST.make(Items.fermented_spider_eye, 1, W), OM.dust(MT.MeatRotten), OM.dust(MT.Bone), IL.TE_Slag              .get(1), IL.IC2_Scrap.get(1, ST.make(Blocks.red_mushroom, 1, W))), FL.array(FL.Purple_Drink.make(1000), FL.Oil_Fish.make(1000)), FL.Sludge.make(1000), IL.Food_Chum.get(8));
-			RM.Mixer.addRecipeX(T, 16,  256, ST.array(aEvent.mStack, ST.make(Items.fermented_spider_eye, 1, W), OM.dust(MT.FishRotten), OM.dust(MT.Bone), IL.TE_Slag              .get(1), IL.IC2_Scrap.get(1, ST.make(Blocks.red_mushroom, 1, W))), FL.array(FL.Purple_Drink.make(1000), FL.Oil_Fish.make(1000)), FL.Sludge.make(1000), IL.Food_Chum.get(8));
-			}
-			if (IL.TE_Slag_Rich.exists()) {
-			RM.Mixer.addRecipeX(T, 16,  256, ST.array(aEvent.mStack, ST.make(Items.fermented_spider_eye, 1, W), OM.dust(MT.MeatRotten), OM.dust(MT.Bone), IL.TE_Slag_Rich         .get(1), IL.IC2_Scrap.get(1, ST.make(Blocks.red_mushroom, 1, W))), FL.array(FL.Purple_Drink.make(1000), FL.Oil_Fish.make(1000)), FL.Sludge.make(1000), IL.Food_Chum.get(8));
-			RM.Mixer.addRecipeX(T, 16,  256, ST.array(aEvent.mStack, ST.make(Items.fermented_spider_eye, 1, W), OM.dust(MT.FishRotten), OM.dust(MT.Bone), IL.TE_Slag_Rich         .get(1), IL.IC2_Scrap.get(1, ST.make(Blocks.red_mushroom, 1, W))), FL.array(FL.Purple_Drink.make(1000), FL.Oil_Fish.make(1000)), FL.Sludge.make(1000), IL.Food_Chum.get(8));
+			for (ItemStack tStack : ST.array(IL.Food_Potato_Poisonous.get(1), IL.FZ_Sludge.get(1), IL.IE_Slag.get(1), IL.TE_Slag.get(1), IL.TE_Slag_Rich.get(1))) if (ST.valid(tStack)) {
+				RM.Mixer.addRecipeX(T, 16,  256, ST.array(aEvent.mStack, ST.make(Items.fermented_spider_eye, 1, W), OM.dust(MT.MeatRotten), OM.dust(MT.Bone), IL.Food_Potato_Poisonous.get(1), IL.IC2_Scrap.get(1, ST.make(Blocks.red_mushroom, 1, W))), FL.array(FL.Purple_Drink.make(1000), FL.Oil_Fish .make(1000)), FL.Sludge.make(1000), IL.Food_Chum.get(8));
+				RM.Mixer.addRecipeX(T, 16,  256, ST.array(aEvent.mStack, ST.make(Items.fermented_spider_eye, 1, W), OM.dust(MT.FishRotten), OM.dust(MT.Bone), IL.Food_Potato_Poisonous.get(1), IL.IC2_Scrap.get(1, ST.make(Blocks.red_mushroom, 1, W))), FL.array(FL.Purple_Drink.make(1000), FL.Oil_Fish .make(1000)), FL.Sludge.make(1000), IL.Food_Chum.get(8));
+				RM.Mixer.addRecipeX(T, 16,  256, ST.array(aEvent.mStack, ST.make(Items.fermented_spider_eye, 1, W), OM.dust(MT.MeatRotten), OM.dust(MT.Bone), IL.Food_Potato_Poisonous.get(1), IL.IC2_Scrap.get(1, ST.make(Blocks.red_mushroom, 1, W))), FL.array(FL.Purple_Drink.make(1000), FL.Oil_Whale.make( 500)), FL.Sludge.make(1000), IL.Food_Chum.get(8));
+				RM.Mixer.addRecipeX(T, 16,  256, ST.array(aEvent.mStack, ST.make(Items.fermented_spider_eye, 1, W), OM.dust(MT.FishRotten), OM.dust(MT.Bone), IL.Food_Potato_Poisonous.get(1), IL.IC2_Scrap.get(1, ST.make(Blocks.red_mushroom, 1, W))), FL.array(FL.Purple_Drink.make(1000), FL.Oil_Whale.make( 500)), FL.Sludge.make(1000), IL.Food_Chum.get(8));
 			}
 		}});
 		addListener("listAllfishraw", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
@@ -627,6 +652,7 @@ public class Loader_Recipes_Food implements Runnable {
 		RM.Smelter          .addRecipe0(T, 16,    1, FL.Oil_Lin      .make(1), FL.Oil_Frying.make(1), ZL_IS);
 		RM.Smelter          .addRecipe0(T, 16,    1, FL.Oil_Seed     .make(1), FL.Oil_Frying.make(1), ZL_IS);
 		RM.Smelter          .addRecipe0(T, 16,    1, FL.Oil_Fish     .make(1), FL.Oil_Frying.make(1), ZL_IS);
+		RM.Smelter          .addRecipe0(T, 16,    1, FL.Oil_Whale    .make(1), FL.Oil_Frying.make(1), ZL_IS);
 		RM.Smelter          .addRecipe0(T, 16,    1, FL.Ice          .make(1), FL.Water     .make(1), ZL_IS);
 		
 		for (OreDictMaterial tMat : ANY.FlourGrains.mToThis) {

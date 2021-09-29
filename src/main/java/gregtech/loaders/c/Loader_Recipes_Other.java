@@ -87,6 +87,10 @@ public class Loader_Recipes_Other implements Runnable {
 		}
 		}
 		
+		RM.Mixer.addRecipe2(T, 16, 64, dust     .mat(MT.Cu   , 1), dust     .mat(MT.Redstone, 1), dust     .mat(MT.Mingrade, 2));
+		RM.Mixer.addRecipe2(T, 16, 16, dustSmall.mat(MT.Cu   , 1), dustSmall.mat(MT.Redstone, 1), dustSmall.mat(MT.Mingrade, 2));
+		RM.Mixer.addRecipe2(T, 16,  8, dustTiny .mat(MT.Cu   , 1), dustTiny .mat(MT.Redstone, 1), dustTiny .mat(MT.Mingrade, 2));
+		
 		for (OreDictMaterial tSapphire : ANY.Sapphire.mToThis) {
 		RM.Mixer.addRecipe2(T, 16,  144, OM.dust(tSapphire, 4*U ), OM.dust(MT.Redstone, 5*U ), OM.dust(MT.EnergiumRed , 9*U));
 		RM.Mixer.addRecipe2(T, 16,  144, OM.dust(tSapphire, 4*U9), OM.dust(MT.Redstone, 5*U9), OM.dust(MT.EnergiumRed ,   U));
@@ -96,8 +100,8 @@ public class Loader_Recipes_Other implements Runnable {
 		
 		
 		for (OreDictMaterial tMat : ANY.Diamond.mToThis) {
-			RM.Mixer   .addRecipe2(T, 16, 256, OP.dust.mat(MT.Obsidian, 1), OP.dust.mat(tMat, 1), OP.dust.mat(MT.RefinedObsidian, 1));
-			RM.Injector.addRecipe2(T, 16, 256, OP.dust.mat(MT.Obsidian, 1), OP.dust.mat(tMat, 1), MT.Ge.liquid(U, T), NF, OP.ingot.mat(MT.RefinedObsidian, 1));
+		RM.Mixer   .addRecipe2(T, 16, 256, OP.dust.mat(MT.Obsidian, 1), OP.dust.mat(tMat, 1), OP.dust.mat(MT.RefinedObsidian, 1));
+		RM.Injector.addRecipe2(T, 16, 256, OP.dust.mat(MT.Obsidian, 1), OP.dust.mat(tMat, 1), MT.Ge.liquid(U, T), NF, OP.ingot.mat(MT.RefinedObsidian, 1));
 		}
 		for (OreDictMaterial tMat : ANY.Glowstone.mToThis)
 		RM.Injector.addRecipe1(T, 16, 256, OP.dust.mat(tMat              , 1), MT.Ge.liquid(U, T), NF, OP.ingot.mat(MT.RefinedGlowstone, 1));
@@ -148,7 +152,7 @@ public class Loader_Recipes_Other implements Runnable {
 		addListener(rockGt.dat(MT.Netherrack), new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {RM.add_smelting(aEvent.mStack, rockGt.mat(MT.NetherBrick, 1), F, F, T);}});
 		
 		
-		addListener(new Object[] {OD.itemRubber, "gemHexorium", "ingotIron", "oreCoal", "oreIron", "oreHematite", "oreMagnetite", "oreBogIron", "oreBrownLimonite", "oreYellowLimonite", "oreSiderite", "oreTaconite", "oreGold", "oreRedstone", "oreLapis", "oreDiamond", "oreEmerald", "oreBauxite", "oreAluminium", "oreRutile", "oreTitanium", "oreTungsten", "oreSulfur", "oreSaltpeter", "oreNiter", "oreNitre"}, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+		addListener(new Object[] {OD.itemRubber, "crushedDraconium", "gemHexorium", "ingotIron", "oreCoal", "oreIron", "oreHematite", "oreMagnetite", "oreBogIron", "oreBrownLimonite", "oreYellowLimonite", "oreSiderite", "oreTaconite", "oreGold", "oreRedstone", "oreLapis", "oreDiamond", "oreEmerald", "oreBauxite", "oreAluminium", "oreRutile", "oreTitanium", "oreTungsten", "oreSulfur", "oreSaltpeter", "oreNiter", "oreNitre"}, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			RM.rem_smelting(aEvent.mStack);
 		}});
 		addListener(OD.itemResin, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
@@ -346,6 +350,7 @@ public class Loader_Recipes_Other implements Runnable {
 		CR.remove(x = dust.mat(MT.Fe, 1), x, y);
 		CR.remove(dust.mat(MT.Cu         , 1), dust.mat(MT.Sn        , 1));
 		CR.remove(dust.mat(MT.Cu         , 1), dust.mat(MT.Zn        , 1));
+		CR.remove(dust.mat(MT.Cu         , 1), dust.mat(MT.Redstone  , 1));
 		CR.remove(dust.mat(MT.Fe         , 1), dust.mat(MT.Mn        , 1));
 		CR.remove(dust.mat(MT.Fe         , 1), dust.mat(MT.Bronze    , 1));
 		CR.remove(dust.mat(MT.Au         , 1), dust.mat(MT.Bronze    , 1));
@@ -551,6 +556,7 @@ public class Loader_Recipes_Other implements Runnable {
 		RM.Mixer.addRecipe1(T, 16, 16, OM.dust(tMat), FL.Oil_Lin       .make(1000), FL.lube(1000), ZL_IS);
 		RM.Mixer.addRecipe1(T, 16, 16, OM.dust(tMat), FL.Oil_Hemp      .make(1000), FL.lube(1000), ZL_IS);
 		RM.Mixer.addRecipe1(T, 16, 16, OM.dust(tMat), FL.Oil_Fish      .make(1000), FL.lube(1000), ZL_IS);
+		RM.Mixer.addRecipe1(T, 16, 16, OM.dust(tMat), FL.Oil_Whale     .make(1000), FL.lube(1000), ZL_IS);
 		RM.Mixer.addRecipe1(T, 16, 16, OM.dust(tMat), FL.Oil_Seed      .make(1000), FL.lube(1000), ZL_IS); if (FL.Oil_Plant.exists())
 		RM.Mixer.addRecipe1(T, 16, 16, OM.dust(tMat), FL.Oil_Plant     .make(1000), FL.lube(1000), ZL_IS); if (FL.Oil_Canola.exists())
 		RM.Mixer.addRecipe1(T, 16, 16, OM.dust(tMat), FL.Oil_Canola    .make(1000), FL.lube(2000), ZL_IS);
@@ -606,7 +612,8 @@ public class Loader_Recipes_Other implements Runnable {
 		RM.Drying       .addRecipe0(T, 16,   20, FL.mul(DYE_FLUIDS_FLOWER[i], 1, 6, T), FL.DistW.make(10), dustTiny.mat(MT.DATA.Dye_Materials[i], 1));
 		}
 		
-		RM.Centrifuge   .addRecipe0(T, 64,   16, MT.FishOil.liquid( U8, T), MT.Hg.liquid(1, T), ZL_IS);
+		RM.Centrifuge   .addRecipe0(T, 64,   16, MT.FishOil .liquid( U8, T), MT.Hg.liquid(1, T), ZL_IS);
+		RM.Centrifuge   .addRecipe0(T, 64,   16, MT.WhaleOil.liquid( U8, T), MT.Hg.liquid(1, T), ZL_IS);
 		
 		RM.Coagulator   .addRecipe0(T,  0,  256, FL.Latex.make(L/9), NF, nugget.mat(MT.Rubber, 1));
 		
@@ -702,6 +709,7 @@ public class Loader_Recipes_Other implements Runnable {
 		RM.CokeOven.addRecipe1(T,  0,  3600, gem                   .mat(MT.Coal    , 1), NF, MT.Creosote.liquid(   U2, F), gem       .mat(MT.CoalCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  3600, nugget                .mat(MT.Coal    , 9), NF, MT.Creosote.liquid(   U2, F), ingot     .mat(MT.CoalCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  3600, chunkGt               .mat(MT.Coal    , 4), NF, MT.Creosote.liquid(   U2, F), ingot     .mat(MT.CoalCoke, 1));
+		RM.CokeOven.addRecipe1(T,  0,  7200, billet                .mat(MT.Coal    , 3), NF, MT.Creosote.liquid(   U , F), ingot     .mat(MT.CoalCoke, 2));
 		RM.CokeOven.addRecipe1(T,  0,  3600, ingot                 .mat(MT.Coal    , 1), NF, MT.Creosote.liquid(   U2, F), ingot     .mat(MT.CoalCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  7200, oreRaw                .mat(MT.Coal    , 1), NF, MT.Creosote.liquid(   U , F), ingot     .mat(MT.CoalCoke, 2));
 		RM.CokeOven.addRecipe1(T,  0,  3600, crushed               .mat(MT.Coal    , 1), NF, MT.Creosote.liquid(   U2, F), ingot     .mat(MT.CoalCoke, 1));
@@ -717,6 +725,7 @@ public class Loader_Recipes_Other implements Runnable {
 		RM.CokeOven.addRecipe1(T,  0,  3600, gem                   .mat(MT.Lignite , 1), NF, MT.Creosote.liquid( 3*U4, F), gem       .mat(MT.LigniteCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  3600, nugget                .mat(MT.Lignite , 9), NF, MT.Creosote.liquid( 3*U4, F), ingot     .mat(MT.LigniteCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  3600, chunkGt               .mat(MT.Lignite , 4), NF, MT.Creosote.liquid( 3*U4, F), ingot     .mat(MT.LigniteCoke, 1));
+		RM.CokeOven.addRecipe1(T,  0,  7200, billet                .mat(MT.Lignite , 3), NF, MT.Creosote.liquid( 3*U2, F), ingot     .mat(MT.LigniteCoke, 2));
 		RM.CokeOven.addRecipe1(T,  0,  3600, ingot                 .mat(MT.Lignite , 1), NF, MT.Creosote.liquid( 3*U4, F), ingot     .mat(MT.LigniteCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  7200, oreRaw                .mat(MT.Lignite , 1), NF, MT.Creosote.liquid( 3*U2, F), ingot     .mat(MT.LigniteCoke, 2));
 		RM.CokeOven.addRecipe1(T,  0,  3600, crushed               .mat(MT.Lignite , 1), NF, MT.Creosote.liquid( 3*U4, F), ingot     .mat(MT.LigniteCoke, 1));

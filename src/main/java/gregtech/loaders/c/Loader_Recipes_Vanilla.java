@@ -212,12 +212,12 @@ public class Loader_Recipes_Vanilla implements Runnable {
 			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', crushedPurified   .dat(MT.P));
 			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', crushedCentrifuged.dat(MT.P));
 			
-			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', oreRaw            .dat(MT.Phosphorus));
-			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', gem               .dat(MT.Phosphorus));
-			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', dust              .dat(MT.Phosphorus));
-			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', crushed           .dat(MT.Phosphorus));
-			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', crushedPurified   .dat(MT.Phosphorus));
-			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', crushedCentrifuged.dat(MT.Phosphorus));
+			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', oreRaw            .dat(ANY.Phosphorus));
+			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', gem               .dat(ANY.Phosphorus));
+			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', dust              .dat(ANY.Phosphorus));
+			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', crushed           .dat(ANY.Phosphorus));
+			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', crushedPurified   .dat(ANY.Phosphorus));
+			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', crushedCentrifuged.dat(ANY.Phosphorus));
 			
 			CR.shaped(tItems[i].get(4), DEF, "X", "S", 'S', tSticks[i], 'X', rockGt            .dat(MT.Peat));
 			CR.shaped(tItems[i].get(4), DEF, "X", "S", 'S', tSticks[i], 'X', oreRaw            .dat(MT.Peat));
@@ -850,6 +850,7 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		RM.Juicer       .addRecipe1(T, 16,   16, 10000, ST.make(Items.spider_eye        , 1, W), NF, FL.Potion_Poison_1.make(125), OM.dust(MT.MeatRaw, U2));
 		RM.Juicer       .addRecipe1(T, 16,   32, 10000, ST.make(Items.fish              , 1, 3), NF, FL.Potion_Poison_2.make(125), OM.dust(MT.FishRaw, U));
 		RM.Juicer       .addRecipe1(T, 16,   16, 10000, IL.Dye_SquidInk                 .get(1), NF, FL.make("squidink", 3*L/2), NI);
+		
 		
 		RM.Bath         .addRecipe1(T,  0,  128, ST.make(Items.golden_apple , 1, 0), MT.Au.liquid(U*64, T), NF, ST.make(Items.golden_apple, 1, 1));
 		RM.Bath         .addRecipe1(T,  0,   16, ST.make(Items.carrot       , 1, W), MT.Au.liquid(8*U9, T), NF, ST.make(Items.golden_carrot, 1, 0));
