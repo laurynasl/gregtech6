@@ -46,7 +46,7 @@ public class BlockVanillaOresA extends BlockBaseMeta {
 	public static byte[] HARVEST_LEVELS = {0, 0, 2, 1, 2, 1, 1, 1, 2, 1, 2, 2, 2, 0, 3, 0};
 	public static int[] BURN_LEVELS = {30, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0, 0};
 	public static float[] HARDNESS_LEVELS = {0.5F, 0.5F, 1.5F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.5F, 1.0F, 1.5F, 1.5F, 1.5F, 0.5F, 2.0F, 0.5F};
-	public static OreDictMaterial[] ORE_MATERIALS = {MT.S, MT.Apatite, MT.Ruby, MT.Amber, MT.Amethyst, MT.OREMATS.Galena, MT.OREMATS.Tetrahedrite, MT.OREMATS.Cassiterite, MT.OREMATS.Cooperite, MT.OREMATS.Pentlandite, MT.OREMATS.Scheelite, MT.TiO2, MT.OREMATS.Bastnasite, MT.Graphite, MT.OREMATS.Azurite, MT.OREMATS.Borax};
+	public static OreDictMaterial[] ORE_MATERIALS = {MT.S, MT.Apatite, MT.Ruby, MT.Amber, MT.Amethyst, MT.OREMATS.Galena, MT.OREMATS.Tetrahedrite, MT.OREMATS.Cassiterite, MT.OREMATS.Cooperite, MT.OREMATS.Pentlandite, MT.OREMATS.Scheelite, MT.TiO2, MT.OREMATS.Bastnasite, MT.Graphite, MT.Azurite, MT.OREMATS.Borax};
 	
 	public BlockVanillaOresA(String aUnlocalised) {
 		super(null, aUnlocalised, Material.rock, soundTypeStone, ORE_MATERIALS.length, Textures.BlockIcons.VANILLA_ORES_A);

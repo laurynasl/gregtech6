@@ -192,7 +192,7 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.Pyrite                  , U12,  0, 30)
 		));
 		
-		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Kimberlite)
+		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Kimberlite
 		, new StoneLayerOres(MT.Pyrite                  , U16,  0, 30)
 		, new StoneLayerOres(MT.OREMATS.Arsenopyrite    , U16,  0, 20)
 		, new StoneLayerOres(MT.OREMATS.Galena          , U8 ,  5, 25)
@@ -201,7 +201,7 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.OREMATS.Powellite       , U32, 35, 50)
 		, new StoneLayerOres(MT.OREMATS.Molybdenite     ,U128, 30, 50)
 		, new StoneLayerOres(MT.OREMATS.Scheelite       , U64,  0, 16, BIOMES_OCEAN_BEACH)
-		);
+		));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Kimberlite
 		, new StoneLayerOres(MT.Diamond                 ,U128,  0, 12)
 		, new StoneLayerOres(MT.Spinel                  , U64, 24, 48, BIOMES_MOUNTAINS)
@@ -420,7 +420,7 @@ public class Loader_Worldgen implements Runnable {
 		StoneLayer.bothsides(MT.Dolomite, MT.KCl
 		, new StoneLayerOres(MT.KIO3                    , U12, 32, 64)
 		);
-		StoneLayer.bothsides(MT.Andesite, MT.STONES.Quartzite
+		StoneLayer.bothsides(MT.STONES.Andesite, MT.STONES.Quartzite
 		, new StoneLayerOres(MT.OREMATS.Kyanite         , U16, 32, 72)
 		, new StoneLayerOres(MT.OREMATS.Lepidolite      , U32, 16, 48)
 		, new StoneLayerOres(MT.OREMATS.Spodumene       , U32, 32, 64)
@@ -431,7 +431,7 @@ public class Loader_Worldgen implements Runnable {
 		StoneLayer.bothsides(MT.Talc, MT.NaCl
 		, new StoneLayerOres(MT.OREMATS.Borax           , U8 , 16, 48)
 		);
-		StoneLayer.bothsides(MT.Diorite, MT.STONES.Quartzite
+		StoneLayer.bothsides(MT.STONES.Diorite, MT.STONES.Quartzite
 		, new StoneLayerOres(MT.Asbestos                , U4 ,  0, 48)
 		, new StoneLayerOres(MT.Talc                    , U4 ,  0, 80)
 		, new StoneLayerOres(MT.OREMATS.Glauconite      , U4 , 32, 80)
