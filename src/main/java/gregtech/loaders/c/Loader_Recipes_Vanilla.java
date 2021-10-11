@@ -711,11 +711,6 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		RM.Loom         .addRecipe2(T, 16,   16, ST.tag(0), plantGtFiber.mat(MT.DATA.Dye_Materials[15-i], 4), ST.make(Blocks.wool, 1, i));
 		}
 		
-		for (FluidStack tWater : FL.array(FL.Water.make(125), FL.SpDew.make(125), FL.DistW.make(100))) {
-		RM.Bath         .addRecipe1(T,  0,   16, ST.make(Items.reeds, 1, W), tWater, NF, ST.make(Items.paper, 1, 0));
-		RM.Bath         .addRecipe1(T,  0,   16, OM.dust(MT.Paper)         , tWater, NF, ST.make(Items.paper, 1, 0));
-		}
-		
 		RM.Bath         .addRecipe1(T,  0,   16, ST.make(Blocks.stained_hardened_clay, 1, W), MT.Cl.fluid(U20, T), NF, ST.make(Blocks.hardened_clay, 1, 0));
 		RM.Bath         .addRecipe1(T,  0,   16, ST.make(Blocks.stained_glass        , 1, W), MT.Cl.fluid(U20, T), NF, ST.make(Blocks.glass        , 1, 0));
 		RM.Bath         .addRecipe1(T,  0,   16, ST.make(Blocks.stained_glass_pane   , 1, W), MT.Cl.fluid(U50, T), NF, ST.make(Blocks.glass_pane   , 1, 0));
@@ -724,6 +719,8 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		RM.Loom         .addRecipe2(T, 16,   16, ST.tag(0), ST.make(Items.string, 4, W), ST.make(Blocks.wool, 1, 0));
 		RM.Loom         .addRecipe2(T, 16,   64, ST.tag(1), ST.make(Items.string, 4, W), ST.make(Blocks.web, 1, 0));
 		RM.Loom         .addRecipe2(T, 16,   16, ST.tag(0), ST.make(Items.reeds, 1, W), ST.make(Items.paper, 1, 0));
+		for (FluidStack tWater : FL.waters(125, 100))
+		RM.Bath         .addRecipe1(T,  0,   16, ST.make(Items.reeds, 1, W), tWater, NF, ST.make(Items.paper, 1, 0));
 		
 		for (OreDictMaterial tMat2 : ANY.Iron.mToThis)
 		RM.Loom         .addRecipe2(T, 64,  128, ST.make(Items.leather, 6, W), (tMat2==MT.Enori?plateGem:plate).mat(tMat2     , 8), ST.make(Items.iron_horse_armor, 1, 0));
@@ -856,15 +853,12 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		RM.Bath         .addRecipe1(T,  0,   16, ST.make(Items.carrot       , 1, W), MT.Au.liquid(8*U9, T), NF, ST.make(Items.golden_carrot, 1, 0));
 		RM.Bath         .addRecipe1(T,  0,   16, ST.make(Items.melon        , 1, W), MT.Au.liquid(8*U9, T), NF, ST.make(Items.speckled_melon, 1, 0));
 		RM.Mixer        .addRecipe2(T, 16,   16, ST.make(Items.melon        , 1, W), nugget.mat(MT.Au, 8), ST.make(Items.speckled_melon, 1, 0));
-		RM.Mixer        .addRecipe0(T, 16,   16, FL.array(FL.Water.make(50), FL.Lava.make(1000)), NF, ST.make(Blocks.obsidian, 1, 0));
-		RM.Mixer        .addRecipe0(T, 16,   16, FL.array(FL.SpDew.make(50), FL.Lava.make(1000)), NF, ST.make(Blocks.obsidian, 1, 0));
-		RM.Mixer        .addRecipe0(T, 16,   16, FL.array(FL.DistW.make(50), FL.Lava.make(1000)), NF, ST.make(Blocks.obsidian, 1, 0));
-		RM.Mixer        .addRecipe0(T, 16,   16, FL.array(FL.Water.make(50), FL.Lava_Pahoehoe.make(1000)), NF, ST.make(BlocksGT.Basalt, 1, BlockStones.STONE));
-		RM.Mixer        .addRecipe0(T, 16,   16, FL.array(FL.SpDew.make(50), FL.Lava_Pahoehoe.make(1000)), NF, ST.make(BlocksGT.Basalt, 1, BlockStones.STONE));
-		RM.Mixer        .addRecipe0(T, 16,   16, FL.array(FL.DistW.make(50), FL.Lava_Pahoehoe.make(1000)), NF, ST.make(BlocksGT.Basalt, 1, BlockStones.STONE));
-		RM.Mixer        .addRecipe1(T, 16,   16, OM.dust(MT.STONES.Redrock), FL.Water.make(3000), NF, IL.Clay_Ball_Red.get(4));
-		RM.Mixer        .addRecipe1(T, 16,   16, OM.dust(MT.STONES.Redrock), FL.SpDew.make(3000), NF, IL.Clay_Ball_Red.get(4));
-		RM.Mixer        .addRecipe1(T, 16,   16, OM.dust(MT.STONES.Redrock), FL.DistW.make(3000), NF, IL.Clay_Ball_Red.get(4));
+		for (FluidStack tWater : FL.waters(50))
+		RM.Mixer        .addRecipe0(T, 16,   16, FL.array(tWater, FL.Lava.make(1000)), NF, ST.make(Blocks.obsidian, 1, 0));
+		for (FluidStack tWater : FL.waters(50))
+		RM.Mixer        .addRecipe0(T, 16,   16, FL.array(tWater, FL.Lava_Pahoehoe.make(1000)), NF, ST.make(BlocksGT.Basalt, 1, BlockStones.STONE));
+		for (FluidStack tWater : FL.waters(3000))
+		RM.Mixer        .addRecipe1(T, 16,   16, OM.dust(MT.STONES.Redrock), tWater, NF, IL.Clay_Ball_Red.get(4));
 		RM.Mixer        .addRecipe2(T, 16,   16, OM.dust(MT.EnderPearl     ), OM.dust(MT.Blaze, U9), OM.dust(MT.EnderEye     ));
 		RM.Mixer        .addRecipe2(T, 16,  144, OM.dust(MT.EnderPearl, U*9), OM.dust(MT.Blaze    ), OM.dust(MT.EnderEye, U*9));
 		RM.Mixer        .addRecipeX(T, 16,   16, ST.array(OM.dust(MT.Sugar              ), ST.make(Items.spider_eye, 1, W), ST.make(Blocks.brown_mushroom, 1, W)), ST.make(Items.fermented_spider_eye, 1, 0));
@@ -875,9 +869,6 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		RM.Mixer        .addRecipeX(T, 16,   16, ST.array(OM.dust(MT.LigniteCoke        ), OM.dust(MT.Blaze, U9), OM.dust(MT.Gunpowder)), ST.make(Items.fire_charge, 3, 0));
 		
 		
-		RM.Electrolyzer .addRecipe1(T, 16, 3200, ST.tag(0), FL.Water.make(3000), MT.H.gas(2*U, F), MT.O.gas(U, F));
-		RM.Electrolyzer .addRecipe1(T, 16, 3200, ST.tag(0), FL.SpDew.make(3000), MT.H.gas(2*U, F), MT.O.gas(U, F));
-		RM.Electrolyzer .addRecipe1(T, 16, 3000, ST.tag(0), FL.DistW.make(3000), MT.H.gas(2*U, F), MT.O.gas(U, F));
 		RM.Electrolyzer .addRecipe2(T, 64,  576, ST.tag(0), ST.make(Blocks.sand, 1, 0), OM.dust(MT.SiO2, U*9));
 		RM.Electrolyzer .addRecipe2(T, 64,   64, ST.tag(0), OM.dust(MT.Sand), OM.dust(MT.SiO2));
 		
