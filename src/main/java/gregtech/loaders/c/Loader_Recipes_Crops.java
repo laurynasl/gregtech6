@@ -44,6 +44,7 @@ import gregapi.util.ST;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 public class Loader_Recipes_Crops implements Runnable {
 	@Override public void run() {
@@ -87,18 +88,46 @@ public class Loader_Recipes_Crops implements Runnable {
 		
 		
 		addListener(OD.baleGrassRotten, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (IL.IC2_Plantball.exists()) {
+			RM.ic2_compressor(ST.amount( 1, aEvent.mStack), IL.IC2_Plantball.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(1, aEvent.mStack), IL.IC2_Plantball.get(1));
+			} else if (IL.HBM_Biomass.exists()) {
+			RM.ic2_compressor(ST.amount( 1, aEvent.mStack), IL.HBM_Biomass.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(1, aEvent.mStack), IL.HBM_Biomass.get(1));
+			}
 			RM.biomass(ST.amount(1, aEvent.mStack), 16);
 			RM.unpack(aEvent.mStack, IL.Grass_Rotten.get(9));
 		}});
 		addListener(OD.baleGrassMoldy, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (IL.IC2_Plantball.exists()) {
+			RM.ic2_compressor(ST.amount( 1, aEvent.mStack), IL.IC2_Plantball.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(1, aEvent.mStack), IL.IC2_Plantball.get(1));
+			} else if (IL.HBM_Biomass.exists()) {
+			RM.ic2_compressor(ST.amount( 1, aEvent.mStack), IL.HBM_Biomass.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(1, aEvent.mStack), IL.HBM_Biomass.get(1));
+			}
 			RM.biomass(ST.amount(1, aEvent.mStack), 16);
 			RM.unpack(aEvent.mStack, IL.Grass_Moldy.get(9));
 		}});
 		addListener(OD.baleGrassDry, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (IL.IC2_Plantball.exists()) {
+			RM.ic2_compressor(ST.amount( 1, aEvent.mStack), IL.IC2_Plantball.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(1, aEvent.mStack), IL.IC2_Plantball.get(1));
+			} else if (IL.HBM_Biomass.exists()) {
+			RM.ic2_compressor(ST.amount( 1, aEvent.mStack), IL.HBM_Biomass.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(1, aEvent.mStack), IL.HBM_Biomass.get(1));
+			}
 			RM.biomass(ST.amount(1, aEvent.mStack));
 			RM.unpack(aEvent.mStack, IL.Grass_Dry.get(9));
 		}});
 		addListener(OD.baleGrass, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (IL.IC2_Plantball.exists()) {
+			RM.ic2_compressor(ST.amount( 1, aEvent.mStack), IL.IC2_Plantball.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(1, aEvent.mStack), IL.IC2_Plantball.get(1));
+			} else if (IL.HBM_Biomass.exists()) {
+			RM.ic2_compressor(ST.amount( 1, aEvent.mStack), IL.HBM_Biomass.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(1, aEvent.mStack), IL.HBM_Biomass.get(1));
+			}
 			RM.Drying.addRecipe1(T, 16, 360, aEvent.mStack, NF, FL.DistW.make(180), IL.Bale_Dry.get(1));
 			RM.biomass(ST.amount(1, aEvent.mStack));
 			RM.unpack(aEvent.mStack, IL.Grass.get(9));
@@ -121,6 +150,13 @@ public class Loader_Recipes_Crops implements Runnable {
 			RM.compact(aEvent.mStack, 9, IL.Bale.get(1));
 		}});
 		addListener(OD.itemPlantRemains, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (IL.IC2_Plantball.exists()) {
+			RM.ic2_compressor(ST.amount( 8, aEvent.mStack), IL.IC2_Plantball.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(8, aEvent.mStack), IL.IC2_Plantball.get(1));
+			} else if (IL.HBM_Biomass.exists()) {
+			RM.ic2_compressor(ST.amount( 8, aEvent.mStack), IL.HBM_Biomass.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(8, aEvent.mStack), IL.HBM_Biomass.get(1));
+			}
 			RM.biomass(ST.amount(8, aEvent.mStack));
 			RM.generify(aEvent.mStack, IL.Remains_Plant.get(1));
 		}});
@@ -130,9 +166,8 @@ public class Loader_Recipes_Crops implements Runnable {
 		addListener("cropRice", "cropWildRice", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (OP.dust.contains(aEvent.mStack)) return;
 			RM.Drying       .addRecipe1(T, 16, 40, aEvent.mStack, NF, FL.DistW.make(20), IL.Grass_Dry.get(1));
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.Water.make(250), FL.Mash_Rice.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.SpDew.make(250), FL.Mash_Rice.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.DistW.make(250), FL.Mash_Rice.make(250), ZL_IS);
+			for (FluidStack tWater : FL.waters(250))
+			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, tWater, FL.Mash_Rice.make(250), ZL_IS);
 			RM.Shredder     .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.Rice), IL.Grass.get(1));
 			RM.Mortar       .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.Rice, U2), IL.Grass.get(1));
 			RM.ae_grinder(4, aEvent.mStack, OM.dust(MT.Rice), IL.Grass.get(1), 0.8F);
@@ -149,9 +184,8 @@ public class Loader_Recipes_Crops implements Runnable {
 		addListener("cropOats", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (OP.dust.contains(aEvent.mStack)) return;
 			RM.Drying       .addRecipe1(T, 16, 40, aEvent.mStack, NF, FL.DistW.make(20), IL.Grass_Dry.get(1));
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.Water.make(250), FL.Mash_Grain.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.SpDew.make(250), FL.Mash_Grain.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.DistW.make(250), FL.Mash_Grain.make(250), ZL_IS);
+			for (FluidStack tWater : FL.waters(250))
+			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, tWater, FL.Mash_Grain.make(250), ZL_IS);
 			RM.Shredder     .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.Oat), IL.Grass.get(1));
 			RM.Mortar       .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.Oat, U2), IL.Grass.get(1));
 			RM.ae_grinder(4, aEvent.mStack, OM.dust(MT.Oat), IL.Grass.get(1), 0.8F);
@@ -169,9 +203,8 @@ public class Loader_Recipes_Crops implements Runnable {
 			if (OP.dust.contains(aEvent.mStack)) return;
 			// Those things grow in the Nether, that's why dry.
 			RM.Drying       .addRecipe1(T, 16, 10, aEvent.mStack, NF, FL.DistW.make(5), IL.Grass_Dry.get(1));
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.Water.make(250), FL.Mash_Grain.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.SpDew.make(250), FL.Mash_Grain.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.DistW.make(250), FL.Mash_Grain.make(250), ZL_IS);
+			for (FluidStack tWater : FL.waters(250))
+			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, tWater, FL.Mash_Grain.make(250), ZL_IS);
 			RM.Shredder     .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.OatAbyssal), IL.Grass_Dry.get(1));
 			RM.Mortar       .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.OatAbyssal, U2), IL.Grass_Dry.get(1));
 			RM.ae_grinder(4, aEvent.mStack, OM.dust(MT.OatAbyssal), IL.Grass_Dry.get(1), 0.8F);
@@ -189,9 +222,8 @@ public class Loader_Recipes_Crops implements Runnable {
 		addListener("cropBarley", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (OP.dust.contains(aEvent.mStack)) return;
 			RM.Drying       .addRecipe1(T, 16, 40, aEvent.mStack, NF, FL.DistW.make(20), IL.Grass_Dry.get(1));
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.Water.make(250), FL.Mash_Grain.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.SpDew.make(250), FL.Mash_Grain.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.DistW.make(250), FL.Mash_Grain.make(250), ZL_IS);
+			for (FluidStack tWater : FL.waters(250))
+			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, tWater, FL.Mash_Grain.make(250), ZL_IS);
 			RM.Shredder     .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.Barley), IL.Grass.get(1));
 			RM.Mortar       .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.Barley, U2), IL.Grass.get(1));
 			RM.ae_grinder(4, aEvent.mStack, OM.dust(MT.Barley), IL.Grass.get(1), 0.8F);
@@ -208,9 +240,8 @@ public class Loader_Recipes_Crops implements Runnable {
 		addListener("cropRye", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (OP.dust.contains(aEvent.mStack)) return;
 			RM.Drying       .addRecipe1(T, 16, 40, aEvent.mStack, NF, FL.DistW.make(20), IL.Grass_Dry.get(1));
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.Water.make(250), FL.Mash_Rye.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.SpDew.make(250), FL.Mash_Rye.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.DistW.make(250), FL.Mash_Rye.make(250), ZL_IS);
+			for (FluidStack tWater : FL.waters(250))
+			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, tWater, FL.Mash_Rye.make(250), ZL_IS);
 			RM.Shredder     .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.Rye), IL.Grass.get(1));
 			RM.Mortar       .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.Rye, U2), IL.Grass.get(1));
 			RM.ae_grinder(4, aEvent.mStack, OM.dust(MT.Rye), IL.Grass.get(1), 0.8F);
@@ -227,9 +258,8 @@ public class Loader_Recipes_Crops implements Runnable {
 		addListener("cropWheat", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			if (OP.dust.contains(aEvent.mStack)) return;
 			RM.Drying       .addRecipe1(T, 16, 40, aEvent.mStack, NF, FL.DistW.make(20), IL.Grass_Dry.get(1));
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.Water.make(250), FL.Mash_Wheat.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.SpDew.make(250), FL.Mash_Wheat.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.DistW.make(250), FL.Mash_Wheat.make(250), ZL_IS);
+			for (FluidStack tWater : FL.waters(250))
+			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, tWater, FL.Mash_Wheat.make(250), ZL_IS);
 			RM.Shredder     .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.Wheat), IL.Grass.get(1));
 			RM.Mortar       .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.Wheat, U2), IL.Grass.get(1));
 			RM.ae_grinder(4, aEvent.mStack, OM.dust(MT.Wheat), IL.Grass.get(1), 0.8F);
@@ -320,6 +350,13 @@ public class Loader_Recipes_Crops implements Runnable {
 			}
 		}});
 		addListener("cropIvy", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (IL.HBM_Poison_Powder.exists()) {
+			RM.pulverizing(aEvent.mStack, IL.HBM_Poison_Powder.get(1));
+			RM.Shredder     .addRecipe1(T, 16, 16, aEvent.mStack, IL.HBM_Poison_Powder.get(1));
+			} else if (IL.IC2_Grin_Powder.exists()) {
+			RM.pulverizing(aEvent.mStack, IL.IC2_Grin_Powder.get(1));
+			RM.Shredder     .addRecipe1(T, 16, 16, aEvent.mStack, IL.IC2_Grin_Powder.get(1));
+			}
 			RM.Squeezer     .addRecipe1(T, 16, 16, 7000, aEvent.mStack, NF, FL.Potion_Poison_1.make(500), IL.Remains_Plant.get(1));
 			RM.Juicer       .addRecipe1(T, 16, 16, 8000, aEvent.mStack, NF, FL.Potion_Poison_1.make(250), IL.Remains_Plant.get(1));
 			RM.Distillery   .addRecipe1(T, 16, 48, aEvent.mStack, FL.Potion_Awkward.make(750), FL.Potion_Poison_1.make(750), ZL_IS);
@@ -360,9 +397,8 @@ public class Loader_Recipes_Crops implements Runnable {
 			RM.ae_grinder(4, aEvent.mStack, OP.dustTiny.mat(MT.Tea, 1), OP.dustTiny.mat(MT.Tea, 1), 0.25F, OP.dustTiny.mat(MT.Tea, 1), 0.25F);
 		}});
 		addListener("cropHops", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
-			RM.Mixer.addRecipe1(T, 16, 16, aEvent.mStack, FL.Water.make(250), FL.Mash_Hops.make(250), ZL_IS);
-			RM.Mixer.addRecipe1(T, 16, 16, aEvent.mStack, FL.SpDew.make(250), FL.Mash_Hops.make(250), ZL_IS);
-			RM.Mixer.addRecipe1(T, 16, 16, aEvent.mStack, FL.DistW.make(250), FL.Mash_Hops.make(250), ZL_IS);
+			for (FluidStack tWater : FL.waters(250))
+			RM.Mixer.addRecipe1(T, 16, 16, aEvent.mStack, tWater, FL.Mash_Hops.make(250), ZL_IS);
 		}});
 		addListener("cropTobacco", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			ItemStack tStack = OreDictManager.INSTANCE.getFirstOre("leafTobaccoDried", 1); if (ST.valid(tStack))
@@ -440,9 +476,8 @@ public class Loader_Recipes_Crops implements Runnable {
 		
 		addListener("cropCorn", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			RM.food_can(aEvent.mStack, Math.max(1, ST.food(aEvent.mStack)), "Canned Corn", IL.CANS_VEGGIE);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.Water.make(250), FL.Mash_Corn.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.SpDew.make(250), FL.Mash_Corn.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.DistW.make(250), FL.Mash_Corn.make(250), ZL_IS);
+			for (FluidStack tWater : FL.waters(250))
+			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, tWater, FL.Mash_Corn.make(250), ZL_IS);
 			RM.Shredder     .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.Corn));
 			RM.Mortar       .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.Corn, U2));
 			RM.ae_grinder(4, aEvent.mStack, OM.dust(MT.Corn));
@@ -450,9 +485,8 @@ public class Loader_Recipes_Crops implements Runnable {
 		}});
 		addListener("cropDevilishMaize", new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			RM.food_can(aEvent.mStack, Math.max(1, ST.food(aEvent.mStack)), "Canned Devilish Maize", IL.CANS_VEGGIE);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.Water.make(250), FL.Mash_Corn.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.SpDew.make(250), FL.Mash_Corn.make(250), ZL_IS);
-			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, FL.DistW.make(250), FL.Mash_Corn.make(250), ZL_IS);
+			for (FluidStack tWater : FL.waters(250))
+			RM.Mixer        .addRecipe1(T, 16, 16, aEvent.mStack, tWater, FL.Mash_Corn.make(250), ZL_IS);
 			RM.Shredder     .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.Corn));
 			RM.Mortar       .addRecipe1(T, 16, 16, aEvent.mStack, OM.dust(MT.Corn, U2));
 			RM.ae_grinder(4, aEvent.mStack, OM.dust(MT.Corn));
@@ -867,6 +901,13 @@ public class Loader_Recipes_Crops implements Runnable {
 		crop.addListener(new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			OreDictItemData tData = OM.data(aEvent.mStack);
 			if (tData == null || !tData.hasValidPrefixMaterialData()) {
+			if (IL.IC2_Plantball.exists()) {
+			RM.ic2_compressor(ST.amount( 8, aEvent.mStack), IL.IC2_Plantball.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(8, aEvent.mStack), IL.IC2_Plantball.get(1));
+			} else if (IL.HBM_Biomass.exists()) {
+			RM.ic2_compressor(ST.amount( 8, aEvent.mStack), IL.HBM_Biomass.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(8, aEvent.mStack), IL.HBM_Biomass.get(1));
+			}
 			RM.Shredder     .addRecipe1(T, 16, 16, 9000, ST.amount(1, aEvent.mStack), IL.Remains_Plant.get(1));
 			RM.Mortar       .addRecipe1(T, 16, 16, 4500, aEvent.mStack, IL.Remains_Plant.get(1));
 			}
@@ -874,15 +915,36 @@ public class Loader_Recipes_Crops implements Runnable {
 		flower.addListener(new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
 			OreDictItemData tData = OM.data(aEvent.mStack);
 			if (tData == null || !tData.hasValidPrefixMaterialData()) {
+			if (IL.IC2_Plantball.exists()) {
+			RM.ic2_compressor(ST.amount( 8, aEvent.mStack), IL.IC2_Plantball.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(8, aEvent.mStack), IL.IC2_Plantball.get(1));
+			} else if (IL.HBM_Biomass.exists()) {
+			RM.ic2_compressor(ST.amount( 8, aEvent.mStack), IL.HBM_Biomass.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(8, aEvent.mStack), IL.HBM_Biomass.get(1));
+			}
 			RM.Shredder     .addRecipe1(T, 16, 16, 4000, ST.amount(1, aEvent.mStack), IL.Remains_Plant.get(1));
 			RM.Mortar       .addRecipe1(T, 16, 16, 2000, aEvent.mStack, IL.Remains_Plant.get(1));
 			}
 		}});
 		treeLeaves.addListener(new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (IL.IC2_Plantball.exists()) {
+			RM.ic2_compressor(ST.amount( 8, aEvent.mStack), IL.IC2_Plantball.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(8, aEvent.mStack), IL.IC2_Plantball.get(1));
+			} else if (IL.HBM_Biomass.exists()) {
+			RM.ic2_compressor(ST.amount( 8, aEvent.mStack), IL.HBM_Biomass.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(8, aEvent.mStack), IL.HBM_Biomass.get(1));
+			}
 			RM.Shredder     .addRecipe1(T, 16, 16, 6000, ST.amount(1, aEvent.mStack), IL.Remains_Plant.get(1));
 			RM.Mortar       .addRecipe1(T, 16, 16, 3000, aEvent.mStack, IL.Remains_Plant.get(1));
 		}});
 		treeSapling.addListener(new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
+			if (IL.IC2_Plantball.exists()) {
+			RM.ic2_compressor(ST.amount( 4, aEvent.mStack), IL.IC2_Plantball.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(4, aEvent.mStack), IL.IC2_Plantball.get(1));
+			} else if (IL.HBM_Biomass.exists()) {
+			RM.ic2_compressor(ST.amount( 4, aEvent.mStack), IL.HBM_Biomass.get(1));
+			RM.Compressor   .addRecipe1(T, 16, 16, ST.amount(4, aEvent.mStack), IL.HBM_Biomass.get(1));
+			}
 			RM.Shredder     .addRecipe1(T, 16, 16, 6000, ST.amount(1, aEvent.mStack), IL.Remains_Plant.get(2));
 			RM.Mortar       .addRecipe1(T, 16, 16, 3000, aEvent.mStack, IL.Remains_Plant.get(2));
 		}});

@@ -232,6 +232,9 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("blockLapis"                 , "blockGemLapis");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("blockMalachite"             , "blockGemMalachite");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("blockApatite"               , "blockGemApatite");
+		OreDictManager.INSTANCE.addReRegistrationWithReversal("blockChargedCertusQuartz"   , "blockGemChargedCertusQuartz");
+		OreDictManager.INSTANCE.addReRegistrationWithReversal("blockCertusQuartz"          , "blockGemCertusQuartz");
+		OreDictManager.INSTANCE.addReRegistrationWithReversal("blockNetherQuartz"          , "blockGemNetherQuartz");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("blockFuelCoke"              , "blockGemCoalCoke");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("blockChimerite"             , "blockGemChimerite");
 		OreDictManager.INSTANCE.addReRegistrationWithReversal("blockSunstone"              , "blockGemSunstone");
@@ -402,12 +405,18 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistration("wireGt01AnyIronSteel"            , "wireSteel");
 		OreDictManager.INSTANCE.addReRegistration("wireGt01AnyCopper"               , "wireCopper");
 		OreDictManager.INSTANCE.addReRegistration("gearGtAnyWood"                   , "gearWood");
+		OreDictManager.INSTANCE.addReRegistration("gearGtAnyWood"                   , "gearAnyWood");
 		OreDictManager.INSTANCE.addReRegistration("gearGtAnyStone"                  , "gearStone");
+		OreDictManager.INSTANCE.addReRegistration("gearGtAnyStone"                  , "gearAnyStone");
 		OreDictManager.INSTANCE.addReRegistration("gearGtAnyIron"                   , "gearIron");
+		OreDictManager.INSTANCE.addReRegistration("gearGtAnyIron"                   , "gearAnyIron");
+		OreDictManager.INSTANCE.addReRegistration("gearGtSteel"                     , "gearSteel");
 		OreDictManager.INSTANCE.addReRegistration("gearGtGold"                      , "gearGold");
 		OreDictManager.INSTANCE.addReRegistration("gearGtDiamond"                   , "gearDiamond");
+		OreDictManager.INSTANCE.addReRegistration("gearGtDiamond"                   , "gearAnyDiamond");
 		OreDictManager.INSTANCE.addReRegistration("gearGtTin"                       , "gearTin");
 		OreDictManager.INSTANCE.addReRegistration("gearGtAnyCopper"                 , "gearCopper");
+		OreDictManager.INSTANCE.addReRegistration("gearGtAnyCopper"                 , "gearAnyCopper");
 		OreDictManager.INSTANCE.addReRegistration("gearGtBronze"                    , "gearBronze");
 		OreDictManager.INSTANCE.addReRegistration("gearGtSilver"                    , "gearSilver");
 		OreDictManager.INSTANCE.addReRegistration("gearGtLead"                      , "gearLead");
@@ -420,6 +429,7 @@ public class LoaderOreDictReRegistrations implements Runnable {
 		OreDictManager.INSTANCE.addReRegistration("gearGtLumium"                    , "gearLumium");
 		OreDictManager.INSTANCE.addReRegistration("gearGtEnderium"                  , "gearEnderium");
 		OreDictManager.INSTANCE.addReRegistration("gearGtThaumium"                  , "gearThaumium");
+		OreDictManager.INSTANCE.addReRegistration("gearGtTitanium"                  , "gearTitanium");
 		OreDictManager.INSTANCE.addReRegistration("aetherRecord"                    , OD.record);
 		OreDictManager.INSTANCE.addReRegistration("slimeRod"                        , "stickSlime");
 		OreDictManager.INSTANCE.addReRegistration("blueslimeRod"                    , "stickBlueslime");

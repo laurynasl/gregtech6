@@ -839,15 +839,22 @@ public class LoaderUnificationTargets implements Runnable {
 		OreDictManager.INSTANCE.setTarget(OP.ingot          , MT.OREMATS.Coltan         , MD.HBM, "item.fragment_coltan"            , 0);
 		OreDictManager.INSTANCE.setTarget(OP.blockIngot     , MT.OREMATS.Coltan         , MD.HBM, "tile.block_coltan"               , 0);
 		OreDictManager.INSTANCE.setTarget(OP.dust           , MT.OREMATS.Tantalite      , MD.HBM, "item.powder_coltan"              , 0);
-	//  OreDictManager.INSTANCE.setTarget(OP.dust           , MT.Ta                     , MD.HBM, "item.powder_tantalium"           , 0); // Does not exist (yet?)
+		OreDictManager.INSTANCE.setTarget(OP.dust           , MT.Ta                     , MD.HBM, "item.powder_tantalium"           , 0);
 		OreDictManager.INSTANCE.setTarget(OP.gem            , MT.Ta                     , MD.HBM, "item.gem_tantalium"              , 0);
 		OreDictManager.INSTANCE.setTarget(OP.nugget         , MT.Ta                     , MD.HBM, "item.nugget_tantalium"           , 0);
 		OreDictManager.INSTANCE.setTarget(OP.ingot          , MT.Ta                     , MD.HBM, "item.ingot_tantalium"            , 0);
 		OreDictManager.INSTANCE.setTarget(OP.blockIngot     , MT.Ta                     , MD.HBM, "tile.block_tantalium"            , 0);
 		OreDictManager.INSTANCE.setTarget(OP.dust           , MT.Zr                     , MD.HBM, "item.powder_zirconium"           , 0);
 		OreDictManager.INSTANCE.setTarget(OP.nugget         , MT.Zr                     , MD.HBM, "item.nugget_zirconium"           , 0);
+		OreDictManager.INSTANCE.setTarget(OP.billet         , MT.Zr                     , MD.HBM, "item.billet_zirconium"           , 0);
 		OreDictManager.INSTANCE.setTarget(OP.ingot          , MT.Zr                     , MD.HBM, "item.ingot_zirconium"            , 0);
+		OreDictManager.INSTANCE.setTarget(OP.dust           , MT.Be                     , MD.HBM, "item.powder_beryllium"           , 0);
+		OreDictManager.INSTANCE.setTarget(OP.nugget         , MT.Be                     , MD.HBM, "item.nugget_beryllium"           , 0);
+		OreDictManager.INSTANCE.setTarget(OP.billet         , MT.Be                     , MD.HBM, "item.billet_beryllium"           , 0);
+		OreDictManager.INSTANCE.setTarget(OP.ingot          , MT.Be                     , MD.HBM, "item.ingot_beryllium"            , 0);
+		OreDictManager.INSTANCE.setTarget(OP.blockIngot     , MT.Be                     , MD.HBM, "tile.block_beryllium"            , 0);
 		OreDictManager.INSTANCE.setTarget(OP.nugget         , MT.Bi                     , MD.HBM, "item.nugget_bismuth"             , 0);
+		OreDictManager.INSTANCE.setTarget(OP.billet         , MT.Bi                     , MD.HBM, "item.billet_bismuth"             , 0);
 		OreDictManager.INSTANCE.setTarget(OP.ingot          , MT.Bi                     , MD.HBM, "item.ingot_bismuth"              , 0);
 		OreDictManager.INSTANCE.setTarget(OP.blockIngot     , MT.Bi                     , MD.HBM, "tile.block_bismuth"              , 0);
 		OreDictManager.INSTANCE.setTarget(OP.dust           , MT.Co_60                  , MD.HBM, "item.powder_co60"                , 0);
@@ -931,6 +938,8 @@ public class LoaderUnificationTargets implements Runnable {
 		OreDictManager.INSTANCE.setTarget(OP.dustTiny       , MT.Nb                     , MD.HBM, "item.powder_niobium_tiny"        , 0);
 		OreDictManager.INSTANCE.setTarget(OP.dust           , MT.Nb                     , MD.HBM, "item.powder_niobium"             , 0);
 		OreDictManager.INSTANCE.setTarget(OP.nugget         , MT.Nb                     , MD.HBM, "item.fragment_niobium"           , 0);
+		OreDictManager.INSTANCE.setTarget(OP.ingot          , MT.Nb                     , MD.HBM, "item.ingot_niobium"              , 0);
+		OreDictManager.INSTANCE.setTarget(OP.blockIngot     , MT.Nb                     , MD.HBM, "tile.block_niobium"              , 0);
 		OreDictManager.INSTANCE.setTarget(OP.dustTiny       , MT.Nd                     , MD.HBM, "item.powder_neodymium_tiny"      , 0);
 		OreDictManager.INSTANCE.setTarget(OP.dust           , MT.Nd                     , MD.HBM, "item.powder_neodymium"           , 0);
 		OreDictManager.INSTANCE.setTarget(OP.nugget         , MT.Nd                     , MD.HBM, "item.fragment_neodymium"         , 0);
