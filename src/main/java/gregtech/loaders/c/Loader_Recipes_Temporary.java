@@ -23,6 +23,8 @@ import static gregapi.data.CS.*;
 import static gregapi.data.OP.*;
 import static gregapi.util.CR.*;
 
+import java.util.Map.Entry;
+
 import gregapi.data.ANY;
 import gregapi.data.CS.BlocksGT;
 import gregapi.data.CS.FluidsGT;
@@ -618,6 +620,9 @@ public class Loader_Recipes_Temporary implements Runnable {
 		RM.generify   (FL.Steam_IC2               .make( 1), FL.Steam.make(1));
 		RM.generify   (FL.DistW                   .make( 1), FL.Water.make(1));
 		RM.generify   (FL.SpDew                   .make( 1), FL.Water.make(1));
+		RM.generify   (FL.Water_Geothermal        .make( 1), FL.Water.make(1));
+		RM.generify   (FL.Water_Boiling           .make( 1), FL.Water.make(1));
+		RM.generify   (FL.Water_Hot               .make( 1), FL.Water.make(1));
 		RM.generify   (FL.Oil_Lin                 .make( 1), FL.Oil_Seed.make(1));
 		RM.generify   (FL.Oil_Hemp                .make( 1), FL.Oil_Seed.make(1));
 		RM.generify   (FL.Oil_Olive               .make( 1), FL.Oil_Seed.make(1));
@@ -625,5 +630,7 @@ public class Loader_Recipes_Temporary implements Runnable {
 		RM.generify   (FL.Oil_Nut                 .make( 1), FL.Oil_Seed.make(1));
 		
 		for (String tFluid : FluidsGT.JUICE) if (FL.exists(tFluid)) RM.generify(FL.make(tFluid, 1), FL.Juice.make(1));
+		
+		for (Entry<String, String> tEntry : FluidsGT.FLUID_RENAMINGS.entrySet()) RM.generify(FL.make(tEntry.getKey(), 1), FL.make(tEntry.getValue(), 1));
 	}
 }

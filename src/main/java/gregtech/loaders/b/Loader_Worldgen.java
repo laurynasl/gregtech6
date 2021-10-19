@@ -323,6 +323,7 @@ public class Loader_Worldgen implements Runnable {
 		StoneLayer.LAYERS.add(new StoneLayer(null, MT.STONES.Gneiss, ST.block(MD.HBM, "tile.stone_gneiss")
 		, new StoneLayerOres(MT.Graphite                , U8 ,  0, 64)
 		, new StoneLayerOres(MT.Asbestos                , U8 ,  0, 48, ST.block(MD.HBM, "tile.ore_gneiss_asbestos"))
+		//, MD.HBM     .mLoaded ? new StoneLayerOres(MT.CH4               , U6 ,  0, 48, ST.block(MD.HBM, "tile.ore_gneiss_gas"    )) : null
 		//, MD.HBM     .mLoaded ? new StoneLayerOres(MT.OREMATS.Uraninite , U16,  0, 48, ST.block(MD.HBM, "tile.ore_gneiss_uranium")) : null
 		));
 		
@@ -361,7 +362,12 @@ public class Loader_Worldgen implements Runnable {
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Slate, MT.STONES.Slate, ST.block(MD.MIN, "slate")));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Slate, MT.STONES.Slate, ST.block(MD.EB, "enhancedbiomes.tile.stoneEB"), 4, ST.block(MD.EB, "enhancedbiomes.tile.stoneCobbleEB"), 4));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Slate, MT.STONES.Slate, ST.block(MD.PFAA, "mediumStone"), 3, ST.block(MD.PFAA, "mediumCobble"), 3));
-		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Slate));
+		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Slate, MT.STONES.Slate, ST.block(MD.SC2, "BlockSlate"), 0, ST.block(MD.SC2, "BlockSlate"), 3));
+		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Slate, MT.STONES.Slate, ST.block(MD.SC2, "BlockSlate"), 1, ST.block(MD.SC2, "BlockSlate"), 4));
+		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Slate, MT.STONES.Slate, ST.block(MD.SC2, "BlockSlate"), 2, ST.block(MD.SC2, "BlockSlate"), 5));
+		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Slate, MT.STONES.Slate, ST.block(MD.SC2, "BlockLightSlate"), 0, ST.block(MD.SC2, "BlockLightSlate"), 3));
+		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Slate, MT.STONES.Slate, ST.block(MD.SC2, "BlockLightSlate"), 1, ST.block(MD.SC2, "BlockLightSlate"), 4));
+		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Slate, MT.STONES.Slate, ST.block(MD.SC2, "BlockLightSlate"), 2, ST.block(MD.SC2, "BlockLightSlate"), 5));
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Slate));
 		
 		StoneLayer.LAYERS.add(new StoneLayer(BlocksGT.Quartzite, MT.RedSand, ST.block(MD.PFAA, "strongStone"), 9, ST.block(MD.PFAA, "strongCobble"), 9
@@ -560,14 +566,14 @@ public class Loader_Worldgen implements Runnable {
 		
 		new WorldgenDungeonGT("overworld.structure.dungeon.large", T, 100, 3, 7, 20, 20, 6, T, F, F, T, T, T, T, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC);
 		
-		new WorldgenFluidSpring("overworld.fluid.oil.extraheavy", T, BlocksGT.OilExtraHeavy,  7,  1, 50,200, 0, 16, null, F, tInfiniteOil ? FL.Oil_ExtraHeavy.make( 6000) : NF, 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT, GEN_TFC);
-		new WorldgenFluidSpring("overworld.fluid.oil.heavy"     , T, BlocksGT.OilHeavy     ,  7,  1, 60,150, 0, 16, null, F, tInfiniteOil ? FL.Oil_Heavy     .make( 6000) : NF, 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT, GEN_TFC);
-		new WorldgenFluidSpring("overworld.fluid.oil.medium"    , T, BlocksGT.OilMedium    ,  7,  1, 70,100, 0, 16, null, F, tInfiniteOil ? FL.Oil_Medium    .make( 6000) : NF, 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT, GEN_TFC);
-		new WorldgenFluidSpring("overworld.fluid.oil.light"     , T, BlocksGT.OilLight     ,  7,  1, 80, 50, 0, 16, null, F, tInfiniteOil ? FL.Oil_Light     .make( 6000) : NF, 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT, GEN_TFC);
-		new WorldgenFluidSpring("overworld.fluid.gas.natural"   , T, BlocksGT.GasNatural   ,  7,  1, 80, 25, 0, 16, null, F, tInfiniteGas ? FL.Gas_Natural   .make( 3000) : NF, 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT, GEN_TFC);
-		new WorldgenFluidSpring("overworld.fluid.water"         , T, Blocks.water          ,  0,  1, 50, 50, 0, 16, null, F,                FL.Water         .make(    1)     , 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT, GEN_TFC);
-		new WorldgenFluidSpring("overworld.fluid.lava"          , T, Blocks.lava           ,  0,  1, 50, 50, 0, 16, null, F,                FL.Lava          .make( 1000)     , 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT);
-		new WorldgenFluidSpring("nether.fluid.lava"             , T, Blocks.lava           ,  0,  1, 90, 25, 0, 16, null, F,                FL.Lava          .make(  500)     , 10, GEN_NETHER);
+		new WorldgenFluidSpring("overworld.fluid.oil.extraheavy", T, BlocksGT.OilExtraHeavy  ,  7,  1, 50,200, 0, 16, null, F, tInfiniteOil ? FL.Oil_ExtraHeavy  .make( 6000) : NF, 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT, GEN_TFC);
+		new WorldgenFluidSpring("overworld.fluid.oil.heavy"     , T, BlocksGT.OilHeavy       ,  7,  1, 60,150, 0, 16, null, F, tInfiniteOil ? FL.Oil_Heavy       .make( 6000) : NF, 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT, GEN_TFC);
+		new WorldgenFluidSpring("overworld.fluid.oil.medium"    , T, BlocksGT.OilMedium      ,  7,  1, 70,100, 0, 16, null, F, tInfiniteOil ? FL.Oil_Medium      .make( 6000) : NF, 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT, GEN_TFC);
+		new WorldgenFluidSpring("overworld.fluid.oil.light"     , T, BlocksGT.OilLight       ,  7,  1, 80, 50, 0, 16, null, F, tInfiniteOil ? FL.Oil_Light       .make( 6000) : NF, 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT, GEN_TFC);
+		new WorldgenFluidSpring("overworld.fluid.gas.natural"   , T, BlocksGT.GasNatural     ,  7,  1, 80, 25, 0, 16, null, F, tInfiniteGas ? FL.Gas_Natural     .make( 3000) : NF, 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT, GEN_TFC);
+		new WorldgenFluidSpring("overworld.fluid.water"         , T, BlocksGT.WaterGeothermal,  7,  1, 50, 50, 0,  8, null, F,                FL.Water_Geothermal.make(  500)     , 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT, GEN_TFC);
+		new WorldgenFluidSpring("overworld.fluid.lava"          , T, Blocks.lava             ,  0,  1, 50, 50, 0,  8, null, F,                FL.Lava            .make( 1000)     , 10, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT);
+		new WorldgenFluidSpring("nether.fluid.lava"             , T, Blocks.lava             ,  0,  1, 90, 25, 0,  8, null, F,                FL.Lava            .make(  500)     , 10, GEN_NETHER);
 		
 		for (BlockBase tStone : BlocksGT.stones) if (tStone != BlocksGT.PrismarineDark && tStone != BlocksGT.PrismarineLight) {
 		new WorldgenStone("overworld.stone."+ ((BlockStones)tStone).mMaterial.mNameInternal.toLowerCase(), F, tStone,  0,  1, 200, 100, 0, 120, null, F, GEN_OVERWORLD, GEN_PFAA, GEN_A97, GEN_TFC, GEN_ENVM, GEN_CW2_AquaCavern, GEN_CW2_Caveland, GEN_CW2_Cavenia, GEN_CW2_Cavern, GEN_CW2_Caveworld);
@@ -691,7 +697,7 @@ public class Loader_Worldgen implements Runnable {
 		new WorldgenOresBedrock("ore.bedrock.custom" + (i<10?"0":"") + i, F, T, 100000, MT.NULL, BlocksGT.FlowersA, 7, GEN_FLOOR);
 		}
 		
-		new WorldgenColtan ("ore.special.coltan"           , T,   0,  60,  32, 480, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC);
+		new WorldgenColtan ("ore.special.coltan"           , T,  20,  40,  32, 480, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_TFC);
 		
 		//new WorldgenOresSmall("ore.small.copper"           , T,  60, 120,  16, MT.Cu                  , GEN_OVERWORLD, GEN_GT          , GEN_A97, GEN_A97_GT, GEN_ENVM, GEN_ENVM_GT, GEN_CW2_AquaCavern, GEN_CW2_AquaCavern_GT, GEN_CW2_Caveland, GEN_CW2_Caveland_GT, GEN_CW2_Cavenia, GEN_CW2_Cavenia_GT, GEN_CW2_Cavern, GEN_CW2_Cavern_GT, GEN_CW2_Caveworld, GEN_CW2_Caveworld_GT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM, GEN_ALFHEIM, GEN_AETHER            , GEN_END, GEN_MARS, GEN_ASTEROIDS, GEN_MOON, GEN_PLANETS);
 		//new WorldgenOresSmall("ore.small.chalcopyrite"     , T,  60, 120,  16, MT.OREMATS.Chalcopyrite, GEN_OVERWORLD, GEN_GT          , GEN_A97, GEN_A97_GT, GEN_ENVM, GEN_ENVM_GT, GEN_CW2_AquaCavern, GEN_CW2_AquaCavern_GT, GEN_CW2_Caveland, GEN_CW2_Caveland_GT, GEN_CW2_Cavenia, GEN_CW2_Cavenia_GT, GEN_CW2_Cavern, GEN_CW2_Cavern_GT, GEN_CW2_Caveworld, GEN_CW2_Caveworld_GT, GEN_EREBUS, GEN_BETWEENLANDS, GEN_ATUM                                     , GEN_END, GEN_MARS);

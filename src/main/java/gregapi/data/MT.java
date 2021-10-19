@@ -1000,7 +1000,7 @@ public class MT {
 	CyanVitriol             = lqudaciddcmp  ( 8408, "Cyan Vitriol"                                  , 111, 222, 222, 255, LIQUID, "SolutionNickelSulfate", "SolutionNickelSulphate")                                                                                .uumMcfg( 0, Ni             , 1*U, S                , 1*U, O                , 4*U)                                                                          .heat( 200,  400),
 	WhiteVitriol            = lqudaciddcmp  ( 8409, "White Vitriol"                                 , 222, 222, 222, 255, LIQUID)                                                                                                                                   .uumMcfg( 0, Zn             , 1*U, S                , 1*U, O                , 4*U)                                                                          .heat( 200,  400),
 	GrayVitriol             = lqudaciddcmp  ( 8410, "Gray Vitriol"                                  , 111, 111, 111, 255, LIQUID)                                                                                                                                   .uumMcfg( 0, Mn             , 1*U, S                , 1*U, O                , 4*U)                                                                          .heat( 200,  400),
-	MartianVitriol          = lqudaciddcmp  ( 8411, "Martian Vitriol"                               , 222,  66, 222, 255, LIQUID)                                                                                                                                   .uumMcfg( 0, Fe             , 2*U, S                , 3*U, O                ,12*U)                                                                          .heat( 200,  400),
+	MartianVitriol          = lqudaciddcmp  ( 8411, "Martian Vitriol"                               , 222,  66, 222, 255, LIQUID)                                                                                                                                   .uumMcfg(18, Fe             , 2*U, S                , 3*U, O                ,12*U)                                                                          .heat( 200,  400),
 	VitriolOfClay           = lqudaciddcmp  ( 8412, "Vitriol Of Clay"                               ,  66, 222, 222, 255, LIQUID)                                                                                                                                   .uumMcfg( 0, Al2O3          , 5*U, S                , 3*U, O                , 9*U)                                                                          .heat( 200,  400),
 	
 	
@@ -1638,7 +1638,8 @@ public class MT {
 	Efrine                  = metalore      ( 8747, "Efrine"                                        ,  80, 107,  72     ,            UNBURNABLE, MAGNETIC_PASSIVE, WITHER_PROOF, MOLTEN, WASHING_MERCURY).qual(3, 9.0,  500, 3)                                                                                                                                                                                                 .aspects(TC.METALLUM, 2, TC.GELUM, 2).heat(MeteoricSteel),
 	
 	
-	Desh                    = alloymachore  ( 8750, "Desh"                  , SET_DULL              ,  40,  40,  40     ).qual(3,  4.0,   1280,  3)                                                                                                                 .uumAloy(36, C              ,36*U, Hg               , 9*U, B, 8*U, La, 8*U, Nd, 4*U, Nb, 4*U, Co, 4*U, Ce, 4*U, Li, 4*U)                                    .aspects(TC.METALLUM, 2, TC.ALIENIS, 1, TC.TELUM, 1),
+	Desh                    = alloymachore  ( 8750, "Desh"                  , SET_DULL              ,  40,  40,  40     ).qual(3,  4.0,   1280,  3)                                                                                                                 .uumAloy( 0, B              , 2*U, La               , 2*U, Nd, 1*U, Nb, 1*U, Co, 1*U, Ce, 1*U, Li, 1*U)                                                     .aspects(TC.METALLUM, 2, TC.ALIENIS, 1, TC.TELUM, 1),
+	DeshAlloy               = alloymachine  ( 8780, "Desh Alloy"                                    , 216,  42,  42     ).qual(3,  7.0,   2560,  2)                                                                                                                 .uumMcfg( 4, Desh           , 4*U, Hg               , 1*U)                                                                                                  .aspects(TC.METALLUM, 2, TC.ALIENIS, 1, TC.TELUM, 1).setLocal("Refined Desh"),
 	DuraniumAlloy           = alloymachine  ( 8751, "Duranium"                                      ,  75, 175, 175     ).qual(3,  8.0,   1280,  4)                                                                                                                 .uumAloy( 0, Dn             , 7*U, Mg               , 1*U)                                                                                                  .aspects(TC.METALLUM, 2, TC.TUTAMEN, 2).setLocal("Duranium Alloy"), // That Info with Magnesium/Magnesite was pretty hard to find, but I found it!
 	TritaniumAlloy          = alloymachine  ( 8752, "Tritanium"                                     ,  55, 155, 155     ).qual(3, 12.0,   2560,  5)                                                                                                                 .uumAloy( 0, Tn             , 3*U, Dn               , 1*U)                                                                                                  .aspects(TC.METALLUM, 2, TC.TUTAMEN, 3, TC.VITREUS, 1).setLocal("Tritanium Alloy"),
 	Dolamide                = oredust       ( 8753, "Dolamide"              , SET_METALLIC          , 188, 100, 122, 255)                                                                                                                                                                                                                                                                                                       .aspects(TC.POTENTIA, 3, TC.RADIO, 2),
@@ -2149,6 +2150,7 @@ public class MT {
 			PhosphorusWhite         .put(MD.HBM);
 			Ta                      .put(MD.HBM);
 			Nd                      .put(MD.HBM);
+			DeshAlloy               .put(MD.HBM);
 			
 			
 			In                      .put(MD.ReC);
@@ -2288,7 +2290,7 @@ public class MT {
 			BlueTopaz               .put(MD.ARS, COMMON_ORE);
 			
 			
-			Desh                    .put(MD.GC, COMMON_ORE).visDefault();
+			Desh                    .put(MD.GC, COMMON_ORE);
 			Cheese                  .put(MD.GC, COMMON_ORE);
 			STONES.MoonTurf         .put(MD.GC).visDefault();
 			STONES.MoonRock         .put(MD.GC).visDefault();
@@ -3153,6 +3155,14 @@ public class MT {
 			, "As Weapon it is very useful in order to kill Shapeshifters, since it is highly Toxic to them. Now, if there were Shapeshifters in our World this Information would be more useful."
 			};
 			
+			Desh.mDescription = new String[] {
+			// ========================================================================================================================================================================================================
+			  "Desh is a Material that is very hard to alloy, which is typically only found naturally on Mars (the Planet, not the God, Pokemon Trainer or Candy Bar)."
+			, "In order to create this Alloy, it is advised to insert Materials with a low Boiling Point such as Lithium very last and all at once into the Crucible."
+			, "It is also advised to use a Crucible with a high Heat Capacity as well as drip feeding low Amounts of Material, so the Temperature does not go down too much upon insertion."
+			, "Desh is a completely fictional Material made up by Galacticraft, and is only used by Galacticraft itself, it's Addons and also HBM's Mods."
+			};
+			
 			Tc.mDescription = new String[] {
 			// ========================================================================================================================================================================================================
 			  "Technetium, named after Gregorius Techneticies, is the first Element of the Periodic System, which has no stable Isotope. Its usage is mostly limited to Medical Applications."
@@ -3455,7 +3465,8 @@ public class MT {
 		Migmatite    = stone    ( 9181, "Migmatite"               ,  70,  40,  40, 255)                                                                                                                                                                      .aspects(TC.TERRA       , 1).qual(1, 2.0, 16, 1),
 		Chert        = stone    ( 9186, "Chert"                   , 105,  10,  10, 255)                                                                                                                                                                      .aspects(TC.TERRA       , 1).qual(1, 2.0, 16, 0),
 		Dacite       = stone    ( 9187, "Dacite"                  , 131, 131, 131, 255)                                                                                                                                                                      .aspects(TC.TERRA       , 1).qual(1, 2.0, 16, 1),
-		Slate        = stone    ( 9222, "Slate"                   , 148, 151, 156, 255)                                                                                                                                                                      .aspects(TC.TERRA       , 1).qual(1, 2.0, 16, 0), Deepslate = Slate, // TODO
+		Slate        = stone    ( 9222, "Slate"                   , 148, 151, 156, 255)                                                                                                                                                                      .aspects(TC.TERRA       , 1).qual(1, 2.0, 16, 0),
+		Deepslate    = stone    ( 9248, "Deepslate"               ,  57,  59,  61, 255)                                                                                                                                                                      .aspects(TC.TERRA       , 1).qual(1, 2.0, 32, 1),
 		Eclogite     = stone    ( 9191, "Eclogite"                ,  90,  40,  40, 255)                                                                                                                                                                      .aspects(TC.TERRA       , 1).qual(1, 2.0, 16, 1);
 	}
 	

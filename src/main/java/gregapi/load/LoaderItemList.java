@@ -578,6 +578,7 @@ public class LoaderItemList implements Runnable {
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.HBM, "tile.ore_coltan"                 , null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.HBM, "tile.ore_copper"                 , null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.HBM, "tile.ore_fluorite"               , null));
+		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.HBM, "tile.ore_gneiss_gas"             , null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.HBM, "tile.ore_gneiss_asbestos"        , null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.HBM, "tile.ore_gneiss_copper"          , null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.HBM, "tile.ore_gneiss_gold"            , null));
@@ -601,6 +602,8 @@ public class LoaderItemList implements Runnable {
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.HBM, "tile.cluster_aluminium"          , null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.FSP, "steamcraftOre"                   , null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.SC2, "BlockSteamcraftOre"              , null));
+		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.SC2, "BlockSlate"                      , null));
+		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.SC2, "BlockLightSlate"                 , null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.EB, "enhancedbiomes.tile.stoneEB"      , null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.EB, "enhancedbiomes.tile.stoneCobbleEB", null));
 		StoneLayer.REPLACEABLE_BLOCKS.add(ST.block(MD.FR, "resources"                        , null));
@@ -797,7 +800,7 @@ public class LoaderItemList implements Runnable {
 		
 		IL.IE_Creosote_Bottle                   .set(ST.make(MD.IE, "fluidContainers"                       , 1, 0), null, "bottleCreosote", OD.container1000creosote);
 		IL.IE_Creosote_Bucket                   .set(ST.make(MD.IE, "fluidContainers"                       , 1, 1), new OreDictItemData(ANY.Fe, U*3), "bucketCreosote", OD.container1000creosote);
-		IL.IE_Hammer                            .set(ST.make(MD.IE, "tool"                                  , 1, 0), new OreDictItemData(ANY.Fe, U*2, ANY.Wood, U)); ItemsGT.SPECIAL_CASE_TOOLS.add(IL.IE_Hammer.wild(1));
+		IL.IE_Hammer                            .set(ST.make(MD.IE, "tool"                                  , 1, 0), new OreDictItemData(ANY.Fe, U*2, ANY.Wood, U)); ItemsGT.SPECIAL_CASE_TOOLS.add(IL.IE_Hammer.get(1));
 		IL.IE_Slag                              .set(ST.make(MD.IE, "material"                              , 1,13), null, OD.itemSlag);
 		IL.IE_Blueprint_Projectiles_Common      .set(ST.make(MD.IE, "blueprint"                             , 1, 0), new OreDictItemData(MT.Paper, 3*U));
 		IL.IE_Blueprint_Projectiles_Specialized .set(ST.make(MD.IE, "blueprint"                             , 1, 1), new OreDictItemData(MT.Paper, 3*U));
@@ -1875,6 +1878,10 @@ public class LoaderItemList implements Runnable {
 		IL.FR_WaxCapsule                        .set(ST.make(MD.FR, "waxCapsule"                            , 1, 0), new OreDictItemData(MT.WaxBee, 3*U4));
 		IL.FR_RefractoryCapsule                 .set(ST.make(MD.FR, "refractoryEmpty"                       , 1, 0), new OreDictItemData(MT.WaxRefractory, 3*U4));
 		IL.FR_MagicCapsule                      .set(ST.make(MD.FRMB, "capsule.magic"                       , 1, 0), new OreDictItemData(MT.WaxMagic, 3*U4));
+		IL.FR_SeedOil_Bucket                    .set(ST.make(MD.FR, "bucketSeedOil"                         , 1, 0), new OreDictItemData(ANY.Fe, U*3), OD.container1000seedoil, "bucketSeedoil");
+		IL.FR_SeedOil_Can                       .set(ST.make(MD.FR, "canSeedOil"                            , 1, 0), null, OD.container1000seedoil);
+		IL.FR_SeedOil_Capsule                   .set(ST.make(MD.FR, "waxCapsuleSeedOil"                     , 1, 0), null, OD.container1000seedoil);
+		IL.FR_SeedOil_RefractoryCapsule         .set(ST.make(MD.FR, "refractorySeedOil"                     , 1, 0), null, OD.container1000seedoil);
 		IL.FR_Honey_Bucket                      .set(ST.make(MD.FR, "bucketHoney"                           , 1, 0), new OreDictItemData(ANY.Fe, U*3), OD.container1000honey, "bucketHoney");
 		IL.FR_Honey_Can                         .set(ST.make(MD.FR, "canHoney"                              , 1, 0), null, OD.container1000honey);
 		IL.FR_Honey_Capsule                     .set(ST.make(MD.FR, "waxCapsuleHoney"                       , 1, 0), null, OD.container1000honey);

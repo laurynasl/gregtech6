@@ -135,6 +135,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
+import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
@@ -809,6 +811,12 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 		if (!UT.Entities.isPlayer(aEvent.entityPlayer)) return;
 		// No Creative Mode Refill!
 		if (UT.Entities.hasInfiniteItems(aEvent.entityPlayer)) return;
+		// Tool Break Fatique.
+		if (TOOL_BREAK_FATIQUE && (ST.item_(aEvent.original) instanceof ItemSword || ST.item_(aEvent.original) instanceof ItemTool || ST.item_(aEvent.original) instanceof MultiItemTool)) {
+			// If you work so hard that your Tool breaks, you should probably take a break yourself. :P
+			aEvent.entityPlayer.addPotionEffect(new PotionEffect(Potion.weakness   .id, 300, 2, F));
+			aEvent.entityPlayer.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 300, 2, F));
+		}
 		// 
 		ItemStack[] tInv = aEvent.entityPlayer.inventory.mainInventory;
 		// Only work on Vanilla-Sized Player Inventories!
@@ -990,7 +998,7 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 						return;
 					}
 					// Instant breaking for those Hard Hammers.
-					if (IL.IE_Hammer.equal(aStack, T, T) || IL.A97_Hammer.equal(aStack, T, T) || IL.SC2_Hammer.equal(aStack, T, T) || IL.SC2_Hammer_Gilded.equal(aStack, T, T)) {
+					if (IL.IE_Hammer.equal(aStack, F, T) || IL.A97_Hammer.equal(aStack, T, T) || IL.SC2_Hammer.equal(aStack, T, T) || IL.SC2_Hammer_Gilded.equal(aStack, T, T)) {
 						List<String> tChatReturn = new ArrayListNoNulls<>();
 						long tDamage = IBlockToolable.Util.onToolClick(TOOL_hammer, Long.MAX_VALUE, 3, aEvent.entityPlayer, tChatReturn, aEvent.entityPlayer.inventory, aEvent.entityPlayer.isSneaking(), aStack, aEvent.entityPlayer.worldObj, (byte)aEvent.face, aEvent.x, aEvent.y, aEvent.z, 0.5F, 0.5F, 0.5F);
 						UT.Entities.sendchat(aEvent.entityPlayer, tChatReturn, F);
