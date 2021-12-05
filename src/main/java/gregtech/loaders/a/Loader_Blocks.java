@@ -28,6 +28,7 @@ import gregapi.block.fluid.BlockBaseFluid;
 import gregapi.data.ANY;
 import gregapi.data.CS.BlocksGT;
 import gregapi.data.CS.ItemsGT;
+import gregapi.data.CS.PotionsGT;
 import gregapi.data.FL;
 import gregapi.data.MD;
 import gregapi.data.MT;
@@ -110,11 +111,13 @@ public class Loader_Blocks implements Runnable {
 		
 		
 		BlocksGT.Bars_Wood                                                      = new BlockBarsWood             ("gt.block.bars.wood");
+		BlocksGT.Bars_Brass                                                     = new BlockBarsBrass            ("gt.block.bars.brass");
 		BlocksGT.Bars_Steel                                                     = new BlockBarsSteel            ("gt.block.bars.steel");
 		BlocksGT.Bars_Titanium                                                  = new BlockBarsTitanium         ("gt.block.bars.titanium");
 		BlocksGT.Bars_TungstenSteel                                             = new BlockBarsTungstenSteel    ("gt.block.bars.tungstensteel");
 		BlocksGT.Bars_Adamantium                                                = new BlockBarsAdamantium       ("gt.block.bars.adamantium");
 		if (COMPAT_TC != null) COMPAT_TC.registerThaumcraftAspectsToItem(ST.make(BlocksGT.Bars_Wood         , 1, W), F, TC.stack(TC.VINCULUM, 2), TC.stack(TC.ARBOR, 4));
+		if (COMPAT_TC != null) COMPAT_TC.registerThaumcraftAspectsToItem(ST.make(BlocksGT.Bars_Brass        , 1, W), F, TC.stack(TC.VINCULUM, 3), TC.stack(TC.METALLUM, 2));
 		if (COMPAT_TC != null) COMPAT_TC.registerThaumcraftAspectsToItem(ST.make(BlocksGT.Bars_Steel        , 1, W), F, TC.stack(TC.VINCULUM, 4), TC.stack(TC.METALLUM, 3));
 		if (COMPAT_TC != null) COMPAT_TC.registerThaumcraftAspectsToItem(ST.make(BlocksGT.Bars_Titanium     , 1, W), F, TC.stack(TC.VINCULUM, 6), TC.stack(TC.METALLUM, 5));
 		if (COMPAT_TC != null) COMPAT_TC.registerThaumcraftAspectsToItem(ST.make(BlocksGT.Bars_TungstenSteel, 1, W), F, TC.stack(TC.VINCULUM, 8), TC.stack(TC.METALLUM, 7));
@@ -145,14 +148,14 @@ public class Loader_Blocks implements Runnable {
 		tNBTList.appendTag(new NBTTagString(ST.regName(BlocksGT.Ocean)));
 		FMLInterModComms.sendMessage(MD.IC2C.mID, "watergen", UT.NBT.make("blocks", tNBTList));
 		
-		BlocksGT.WaterGeothermal                                                = new BlockBaseFluid            ("gt.block.fluid.water.geothermal"  , FL.Water_Geothermal,    0, Material.water      ).setLighterThanWater().addEffect(Potion.regeneration.id, 100, 0).addEffect(Potion.resistance.id, 2400, 2);
+		BlocksGT.WaterGeothermal                                                = new BlockBaseFluid            ("gt.block.fluid.water.geothermal"  , FL.Water_Geothermal,    0, Material.water      ).setLighterThanWater().addEffectBathing(Potion.regeneration.id, 100, 0).addEffectBathing(Potion.resistance.id, 2400, 2);
 		if (COMPAT_TC != null) COMPAT_TC.registerThaumcraftAspectsToItem(ST.make(BlocksGT.WaterGeothermal, 1, W), F, TC.stack(TC.AQUA, 3), TC.stack(TC.SANO, 3));
 		
-		BlocksGT.OilExtraHeavy                                                  = new BlockBaseFluid            ("gt.block.fluid.oil.extraheavy"    , FL.Oil_ExtraHeavy  , 1000, MaterialOil.instance).setLighterThanWater().addEffect(Potion.poison.id, 300, 0).addEffect(Potion.confusion.id, 120, 0).addEffect(Potion.blindness.id, 60, 1).setWeb();
-		BlocksGT.OilHeavy                                                       = new BlockBaseFluid            ("gt.block.fluid.oil.heavy"         , FL.Oil_Heavy       , 1000, MaterialOil.instance).setLighterThanWater().addEffect(Potion.poison.id, 300, 0).addEffect(Potion.confusion.id, 120, 0).addEffect(Potion.blindness.id, 60, 1).setWeb();
-		BlocksGT.OilMedium                                                      = new BlockBaseFluid            ("gt.block.fluid.oil.medium"        , FL.Oil_Medium      , 1000, MaterialOil.instance).setLighterThanWater().addEffect(Potion.poison.id, 300, 0).addEffect(Potion.confusion.id, 120, 0).addEffect(Potion.blindness.id, 60, 1);
-		BlocksGT.OilLight                                                       = new BlockBaseFluid            ("gt.block.fluid.oil.light"         , FL.Oil_Light       , 1000, MaterialOil.instance).setLighterThanWater().addEffect(Potion.poison.id, 300, 0).addEffect(Potion.confusion.id, 120, 0).addEffect(Potion.blindness.id, 60, 1);
-		BlocksGT.GasNatural                                                     = new BlockBaseFluid            ("gt.block.fluid.gas.natural"       , FL.Gas_Natural     , 1000, MaterialGas.instance).setLighterThanWater().addEffect(Potion.poison.id, 300, 0).addEffect(Potion.confusion.id, 120, 0);
+		BlocksGT.OilExtraHeavy                                                  = new BlockBaseFluid            ("gt.block.fluid.oil.extraheavy"    , FL.Oil_ExtraHeavy  , 1000, MaterialOil.instance).setLighterThanWater().addEffectBreathing(Potion.poison.id, 300, 0).addEffectBreathing(Potion.confusion.id, 120, 0).addEffectBathing(PotionsGT.ID_FLAMMABLE, 300, 1).addEffectBathing(PotionsGT.ID_STICKY  , 300, 1).addEffectBathing(Potion.blindness.id, 60, 1).setWeb();
+		BlocksGT.OilHeavy                                                       = new BlockBaseFluid            ("gt.block.fluid.oil.heavy"         , FL.Oil_Heavy       , 1000, MaterialOil.instance).setLighterThanWater().addEffectBreathing(Potion.poison.id, 300, 0).addEffectBreathing(Potion.confusion.id, 120, 0).addEffectBathing(PotionsGT.ID_FLAMMABLE, 300, 1).addEffectBathing(PotionsGT.ID_STICKY  , 300, 1).addEffectBathing(Potion.blindness.id, 60, 1).setWeb();
+		BlocksGT.OilMedium                                                      = new BlockBaseFluid            ("gt.block.fluid.oil.medium"        , FL.Oil_Medium      , 1000, MaterialOil.instance).setLighterThanWater().addEffectBreathing(Potion.poison.id, 300, 0).addEffectBreathing(Potion.confusion.id, 120, 0).addEffectBathing(PotionsGT.ID_FLAMMABLE, 300, 1).addEffectBathing(PotionsGT.ID_SLIPPERY, 300, 1).addEffectBathing(Potion.blindness.id, 60, 1);
+		BlocksGT.OilLight                                                       = new BlockBaseFluid            ("gt.block.fluid.oil.light"         , FL.Oil_Light       , 1000, MaterialOil.instance).setLighterThanWater().addEffectBreathing(Potion.poison.id, 300, 0).addEffectBreathing(Potion.confusion.id, 120, 0).addEffectBathing(PotionsGT.ID_FLAMMABLE, 300, 1).addEffectBathing(PotionsGT.ID_SLIPPERY, 300, 1).addEffectBathing(Potion.blindness.id, 60, 1);
+		BlocksGT.GasNatural                                                     = new BlockBaseFluid            ("gt.block.fluid.gas.natural"       , FL.Gas_Natural     , 1000, MaterialGas.instance).setLighterThanWater().addEffectBreathing(Potion.poison.id, 300, 0).addEffectBreathing(Potion.confusion.id, 120, 0);
 		if (COMPAT_TC != null) COMPAT_TC.registerThaumcraftAspectsToItem(ST.make(BlocksGT.OilExtraHeavy  , 1, W), F, TC.stack(TC.AQUA, 1), TC.stack(TC.IGNIS, 1), TC.stack(TC.POTENTIA, 3));
 		if (COMPAT_TC != null) COMPAT_TC.registerThaumcraftAspectsToItem(ST.make(BlocksGT.OilHeavy       , 1, W), F, TC.stack(TC.AQUA, 1), TC.stack(TC.IGNIS, 1), TC.stack(TC.POTENTIA, 2));
 		if (COMPAT_TC != null) COMPAT_TC.registerThaumcraftAspectsToItem(ST.make(BlocksGT.OilMedium      , 1, W), F, TC.stack(TC.AQUA, 1), TC.stack(TC.IGNIS, 1), TC.stack(TC.POTENTIA, 1));

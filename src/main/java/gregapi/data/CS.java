@@ -649,28 +649,29 @@ public class CS {
 											VALIDATE_HORIZONTAL     = { 3, 3, 2, 3, 4, 5, 3, 3, 3, 3, 2, 3, 4, 5, 3, 3};
 	
 	/** An Array containing all Sides which follow the Condition, in order to iterate over them for example. */
-	public static final byte[]              ALL_SIDES                   =  {0,1,2,3,4,5,6},
-											ALL_SIDES_MIDDLE            =  {6,0,1,2,3,4,5},
-											ALL_SIDES_MIDDLE_UP         =  {6,1,2,3,4,5,0},
-											ALL_SIDES_MIDDLE_DOWN       =  {6,0,2,3,4,5,1},
-											ALL_SIDES_VALID             =  {0,1,2,3,4,5  },
-											ALL_SIDES_VALID_ORDER[]     = {{0,1,2,3,4,5  },{1,2,3,4,5,0  },{2,3,4,5,0,1  },{3,4,5,0,1,2  },{4,5,0,1,2,3  },{5,0,1,2,3,4  },{0,1,2,3,4,5  }},
-											ALL_SIDES_VALID_FIRST[]     = {{0,1,2,3,4,5  },{1,0,2,3,4,5  },{2,0,1,3,4,5  },{3,0,1,2,4,5  },{4,0,1,2,3,5  },{5,0,1,2,3,4  },{0,1,2,3,4,5  }},
-											ALL_SIDES_VALID_ONLY[]      = {{0            },{1            },{2            },{3            },{4            },{5            },{0,1,2,3,4,5  }},
-											ALL_SIDES_VALID_BUT[]       = {{  1,2,3,4,5  },{0  ,2,3,4,5  },{0,1  ,3,4,5  },{0,1,2  ,4,5  },{0,1,2,3  ,5  },{0,1,2,3,4    },{0,1,2,3,4,5  }},
-											ALL_SIDES_VALID_BUT_AXIS[]  = {{    2,3,4,5  },{    2,3,4,5  },{0,1    ,4,5  },{0,1    ,4,5  },{0,1,2,3      },{0,1,2,3      },{0,1,2,3,4,5  }},
-											ALL_SIDES_THIS_AND_ANY[]    = {{0          ,6},{1          ,6},{2          ,6},{3          ,6},{4          ,6},{5          ,6},{0,1,2,3,4,5,6}},
-											ALL_SIDES_VERTICAL          =  {0,1},
-											ALL_SIDES_BOTTOM            =  {0},
-											ALL_SIDES_TOP               =  {1},
-											ALL_SIDES_HORIZONTAL        =  {2,3,4,5},
-											ALL_SIDES_HORIZONTAL_UP     =  {2,3,4,5,1},
-											ALL_SIDES_HORIZONTAL_DOWN   =  {2,3,4,5,0},
-											ALL_SIDES_BUT_TOP           =  {0,2,3,4,5},
-											ALL_SIDES_BUT_BOTTOM        =  {1,2,3,4,5},
-											ALL_SIDES_X                 =  {4,5},
-											ALL_SIDES_Y                 =  {0,1},
-											ALL_SIDES_Z                 =  {2,3};
+	public static final byte[]              ALL_SIDES                    =  {0,1,2,3,4,5,6},
+											ALL_SIDES_MIDDLE             =  {6,0,1,2,3,4,5},
+											ALL_SIDES_MIDDLE_UP          =  {6,1,2,3,4,5,0},
+											ALL_SIDES_MIDDLE_DOWN        =  {6,0,2,3,4,5,1},
+											ALL_SIDES_VALID              =  {0,1,2,3,4,5  },
+											ALL_SIDES_VALID_ORDER[]      = {{0,1,2,3,4,5  },{1,2,3,4,5,0  },{2,3,4,5,0,1  },{3,4,5,0,1,2  },{4,5,0,1,2,3  },{5,0,1,2,3,4  },{0,1,2,3,4,5  }},
+											ALL_SIDES_VALID_FIRST[]      = {{0,1,2,3,4,5  },{1,0,2,3,4,5  },{2,0,1,3,4,5  },{3,0,1,2,4,5  },{4,0,1,2,3,5  },{5,0,1,2,3,4  },{0,1,2,3,4,5  }},
+											ALL_SIDES_VALID_ONLY[]       = {{0            },{1            },{2            },{3            },{4            },{5            },{0,1,2,3,4,5  }},
+											ALL_SIDES_VALID_BUT[]        = {{  1,2,3,4,5  },{0  ,2,3,4,5  },{0,1  ,3,4,5  },{0,1,2  ,4,5  },{0,1,2,3  ,5  },{0,1,2,3,4    },{0,1,2,3,4,5  }},
+											ALL_SIDES_VALID_BUT_AXIS[]   = {{    2,3,4,5  },{    2,3,4,5  },{0,1    ,4,5  },{0,1    ,4,5  },{0,1,2,3      },{0,1,2,3      },{0,1,2,3,4,5  }},
+											ALL_SIDES_THIS_AND_ANY[]     = {{0          ,6},{1          ,6},{2          ,6},{3          ,6},{4          ,6},{5          ,6},{0,1,2,3,4,5,6}},
+											ALL_SIDES_VERTICAL           =  {0,1},
+											ALL_SIDES_BOTTOM             =  {0},
+											ALL_SIDES_TOP                =  {1},
+											ALL_SIDES_HORIZONTAL_ORDER[] = {{2,3,4,5}, {3,4,5,2}, {4,5,2,3}, {5,2,3,4}},
+											ALL_SIDES_HORIZONTAL         =  {2,3,4,5},
+											ALL_SIDES_HORIZONTAL_UP      =  {2,3,4,5,1},
+											ALL_SIDES_HORIZONTAL_DOWN    =  {2,3,4,5,0},
+											ALL_SIDES_BUT_TOP            =  {0,2,3,4,5},
+											ALL_SIDES_BUT_BOTTOM         =  {1,2,3,4,5},
+											ALL_SIDES_X                  =  {4,5},
+											ALL_SIDES_Y                  =  {0,1},
+											ALL_SIDES_Z                  =  {2,3};
 	
 	/** For Facing Checks. */
 	public static final boolean[]           SIDES_BOTTOM            = {T,F,F,F,F,F,F},
@@ -843,7 +844,7 @@ public class CS {
 	public static final double WEIGHT_AIR_KG_PER_UNIT = WEIGHT_AIR_KG_PER_CUBIC_METER / 9;
 	
 	/** Not really Constants, but they set using the Config and therefore should be constant. */
-	public static boolean D1 = F, D2 = F, D3 = F, ALWAYS_TRUE = T, ALWAYS_FALSE = F, CLIENT_BLOCKUPDATE_SOUNDS = F, NEI = F, TOOL_SOUNDS = T, EMIT_EU_AS_RF = F, DISABLE_GT6_CRAFTING_RECIPES = F, ENABLE_ADDING_IC2_MACERATOR_RECIPES = T, DISABLE_ALL_IC2_MACERATOR_RECIPES = F, ENABLE_ADDING_IC2_EXTRACTOR_RECIPES = T, DISABLE_ALL_IC2_EXTRACTOR_RECIPES = F, ENABLE_ADDING_IC2_COMPRESSOR_RECIPES = T, DISABLE_ALL_IC2_COMPRESSOR_RECIPES = F, ENABLE_ADDING_IC2_OREWASHER_RECIPES = T, DISABLE_ALL_IC2_OREWASHER_RECIPES = F, ENABLE_ADDING_IC2_CENTRIFUGE_RECIPES = T, DISABLE_ALL_IC2_CENTRIFUGE_RECIPES = F, FAST_LEAF_DECAY = T, FORCE_GRAVEL_NO_FLINT = F, NERFED_WOOD = T, FOOD_OVERDOSE_DEATH = T, NUTRITION_SYSTEM = T, OBSTRUCTION_CHECKS = T, OWNERSHIP_RESET = F, SPAWN_ZONE_MOB_PROTECTION = T, SPAWN_NO_BATS = T, SPAWN_HOSTILES_ONLY_IN_DARKNESS = T, CONSTANT_ENERGY = T, RAIN_EXPLOSIONS = F, WATER_EXPLOSIONS = F, THUNDER_EXPLOSIONS = F, FIRE_EXPLOSIONS = F, OVERCHARGE_EXPLOSIONS = F, FIRE_BREAKING = F, RAIN_BREAKING = F, WATER_BREAKING = F, THUNDER_BREAKING = F, OVERCHARGE_BREAKING = F, SHOW_MICROBLOCKS = F, SHOW_CHEM_FORMULAS = T, SHOW_INTERNAL_NAMES = F, SHOW_HIDDEN_MATERIALS = F, SHOW_HIDDEN_PREFIXES = F, SHOW_ORE_BLOCK_PREFIXES = F, SHOW_HIDDEN_ITEMS = F, SHOW_BUMBLEBEES = F, DRINKS_ALWAYS_DRINKABLE = F, HUNGER_BY_INVENTORY_WEIGHT = F, TOOL_BREAK_FATIQUE = T, INVENTORY_UNIFICATION = T, XP_ORB_COMBINING = T, ADVENTURE_MODE_KIT = F, SURVIVAL_INTO_ADVENTURE_MODE = F, ZOMBIES_DIG_WITH_TOOLS = F, ZOMBIES_DIG_TILEENTITIES = F, ZOMBIES_HOLD_PICKAXES = T, ZOMBIES_HOLD_TNT = T, ZOMBIES_IGNITE_HELD_TNT = T, DISPLAY_TEMP_TOOLTIP = T, GENERATE_STONE = T, GENERATE_STREETS = F, GENERATE_NEXUS = F, GENERATE_TESTING = F, GENERATE_BEACON = F, GENERATE_BIOMES = F;
+	public static boolean D1 = F, D2 = F, D3 = F, ALWAYS_TRUE = T, ALWAYS_FALSE = F, CLIENT_BLOCKUPDATE_SOUNDS = F, NEI = F, TOOL_SOUNDS = T, EMIT_EU_AS_RF = F, DISABLE_GT6_CRAFTING_RECIPES = F, ENABLE_ADDING_IC2_MACERATOR_RECIPES = T, DISABLE_ALL_IC2_MACERATOR_RECIPES = F, ENABLE_ADDING_IC2_EXTRACTOR_RECIPES = T, DISABLE_ALL_IC2_EXTRACTOR_RECIPES = F, ENABLE_ADDING_IC2_COMPRESSOR_RECIPES = T, DISABLE_ALL_IC2_COMPRESSOR_RECIPES = F, ENABLE_ADDING_IC2_OREWASHER_RECIPES = T, DISABLE_ALL_IC2_OREWASHER_RECIPES = F, ENABLE_ADDING_IC2_CENTRIFUGE_RECIPES = T, DISABLE_ALL_IC2_CENTRIFUGE_RECIPES = F, FAST_LEAF_DECAY = T, FORCE_GRAVEL_NO_FLINT = F, NERFED_WOOD = T, FOOD_OVERDOSE_DEATH = T, NUTRITION_SYSTEM = T, OBSTRUCTION_CHECKS = T, OWNERSHIP_RESET = F, SPAWN_ZONE_MOB_PROTECTION = T, SPAWN_NO_BATS = T, SPAWN_HOSTILES_ONLY_IN_DARKNESS = T, CONSTANT_ENERGY = T, RAIN_EXPLOSIONS = F, WATER_EXPLOSIONS = F, THUNDER_EXPLOSIONS = F, FIRE_EXPLOSIONS = F, OVERCHARGE_EXPLOSIONS = F, FIRE_BREAKING = F, RAIN_BREAKING = F, WATER_BREAKING = F, THUNDER_BREAKING = F, OVERCHARGE_BREAKING = F, SHOW_MICROBLOCKS = F, SHOW_CHEM_FORMULAS = T, SHOW_INTERNAL_NAMES = F, SHOW_HIDDEN_MATERIALS = F, SHOW_HIDDEN_PREFIXES = F, SHOW_ORE_BLOCK_PREFIXES = F, SHOW_HIDDEN_ITEMS = F, SHOW_BUMBLEBEES = F, DRINKS_ALWAYS_DRINKABLE = F, HUNGER_BY_INVENTORY_WEIGHT = F, TOOL_BREAK_FATIQUE = T, INVENTORY_UNIFICATION = T, XP_ORB_COMBINING = T, ADVENTURE_MODE_KIT = F, SURVIVAL_INTO_ADVENTURE_MODE = F, MOBS_DROP_LEAD = T, MOBS_DROP_MEAT = T, MOBS_DROP_JUNK = T, MOBS_DROP_BOOK = T, MOBS_DROP_NAME = T, ZOMBIES_DIG_WITH_TOOLS = F, ZOMBIES_DIG_TILEENTITIES = F, ZOMBIES_HOLD_PICKAXES = T, ZOMBIES_HOLD_TNT = T, ZOMBIES_IGNITE_HELD_TNT = T, DISPLAY_TEMP_TOOLTIP = T, GENERATE_STONE = T, GENERATE_STREETS = F, GENERATE_NEXUS = F, GENERATE_TESTING = F, GENERATE_BEACON = F, GENERATE_BIOMES = F, GENERATING_SPECIAL = F;
 	/** Date based Shenanigans */
 	@SuppressWarnings("deprecation")
 	public static boolean
@@ -1412,22 +1413,32 @@ public class CS {
 			if (aTanks == null || aIndex < 0 || aIndex >= aTanks.length) return 0;
 			return trash(aTanks[aIndex]);
 		}
-
-
+		public static long trash(FluidStack[] aFluids) {
+			if (aFluids == null) return 0;
+			long rTrashed = 0;
+			for (int i = 0; i < aFluids.length; i++) rTrashed += trash(aFluids[i]);
+			return rTrashed;
+		}
+		public static long trash(FluidStack[] aFluids, int aIndex) {
+			if (aFluids == null || aIndex < 0 || aIndex >= aFluids.length) return 0;
+			return trash(aFluids[aIndex]);
+		}
+		
+		
 		public static void onServerSave(File aSaveLocation) {
 			File aTargetFile = new File(new File(aSaveLocation, "gregtech"), "endergarbage.items.dat");
 			if (!aTargetFile.exists()) {try {aTargetFile.createNewFile();} catch (Throwable e) {e.printStackTrace(ERR);}}
 			NBTTagCompound aNBT = UT.NBT.make();
 			for (int i = 0; i < GARBAGE_ITEMS.size(); i++) ST.save(aNBT, ""+i, GARBAGE_ITEMS.get(i));
 			try {CompressedStreamTools.write(aNBT, aTargetFile);} catch (Throwable e) {e.printStackTrace(ERR);}
-
+			
 			aTargetFile = new File(new File(aSaveLocation, "gregtech"), "endergarbage.fluids.dat");
 			if (!aTargetFile.exists()) {try {aTargetFile.createNewFile();} catch (Throwable e) {e.printStackTrace(ERR);}}
 			aNBT = UT.NBT.make();
 			for (int i = 0; i < GARBAGE_FLUIDS.size(); i++) GARBAGE_FLUIDS.get(i).writeToNBT(aNBT, ""+i);
 			try {CompressedStreamTools.write(aNBT, aTargetFile);} catch (Throwable e) {e.printStackTrace(ERR);}
 		}
-
+		
 		public static void onServerLoad(File aSaveLocation) {
 			GARBAGE_ITEMS.clear();
 			File aTargetFile = new File(new File(aSaveLocation, "gregtech"), "endergarbage.items.dat");
@@ -1457,17 +1468,19 @@ public class CS {
 			}
 		}
 	}
-
+	
 	public static class DrinksGT {
 		public static Map<String, IFoodStat> REGISTER = new HashMap<>();
 	}
-
+	
 	public static class FluidsGT {
 		public static Map<String, String> FLUID_RENAMINGS = new HashMap<>();
 		
 		public static Set<String>
 		  SIMPLE = new HashSetNoNulls<>(F, "poison")
-		, ACID = new HashSetNoNulls<>(F, "acid", "creeper_acid", "sulfuricacid", "nitricacid", "aquaregia", "hydrochloricacid", "mutagen", "liquiddna", "binnie.dna.raw", "binnie.bacteriavector", "binnie.bacteriapoly", "binnie.bacteria")
+		, ACID = new HashSetNoNulls<>(F, "acid", "acid_fluid", "creeper_acid", "schrabidic_fluid", "sulfuricacid", "nitricacid", "aquaregia", "hydrochloricacid", "mutagen", "liquiddna", "binnie.dna.raw", "binnie.bacteriavector", "binnie.bacteriapoly", "binnie.bacteria")
+		, TOXIC = new HashSetNoNulls<>(F, "poison", "toxic_fluid", "mud_fluid", "bacterialsludge", "sludge", "fluiddeath")
+		, THAUMIC_FLUX = new HashSetNoNulls<>(F, "fluxgoo", "fluxgas")
 		, LIQUID = new HashSetNoNulls<>(F, "poison", "liquidnitrogen", "liquiddna")
 		, GAS = new HashSetNoNulls<>()
 		, PLASMA = new HashSetNoNulls<>(F, "rc fusion plasma")
@@ -1475,7 +1488,7 @@ public class CS {
 		, AIR = new HashSetNoNulls<>()
 		, OXYGEN = new HashSetNoNulls<>()
 		, LIQUID_OXYGEN = new HashSetNoNulls<>()
-		, ENCHANTED_EFFECT = new HashSetNoNulls<>()
+		, ENCHANTED_EFFECT = new HashSetNoNulls<>(F, "fluidpure")
 		, VOID_OVERFLOW = new HashSetNoNulls<>()
 		, NONSTANDARD = new HashSetNoNulls<>()
 		, BROKEN = new HashSetNoNulls<>()
@@ -1499,6 +1512,7 @@ public class CS {
 		, TEA = new HashSetNoNulls<>()
 		, COOKING_OIL = new HashSetNoNulls<>()
 		, SLIME = new HashSetNoNulls<>()
+		, BLOOD = new HashSetNoNulls<>(F, "blood")
 		
 		, ALCOHOLIC = new HashSetNoNulls<>()
 		, VINEGAR = new HashSetNoNulls<>()
@@ -1594,7 +1608,7 @@ public class CS {
 		public static BlockBase Planks, PlanksFireProof, Planks2, Planks2FireProof;
 		
 		public static BlockBase CFoam, CFoamFresh, Concrete, ConcreteReinforced, Asphalt, Glass, GlowGlass;
-		public static BlockBase Bars_Wood, Bars_Steel, Bars_Titanium, Bars_TungstenSteel, Bars_Adamantium;
+		public static BlockBase Bars_Wood, Bars_Brass, Bars_Steel, Bars_Titanium, Bars_TungstenSteel, Bars_Adamantium;
 		public static BlockBase Spikes_Sharp, Spikes_Steel, Spikes_Super, Spikes_Metal, Spikes_Fancy;
 		public static BlockBase LongDistWire01, LongDistPipe01;
 		
@@ -1624,15 +1638,16 @@ public class CS {
 		, blockToSilk = new ItemStackMap<>()
 		;
 		
-		public static final Set<Object> stoneOverridable  = new HashSetNoNulls<>(F);
-		public static final Set<Object> instaharvest      = new HashSetNoNulls<Object>(F, Blocks.torch, Blocks.redstone_torch, Blocks.unlit_redstone_torch, Blocks.redstone_wire, Blocks.powered_comparator, Blocks.unpowered_comparator, Blocks.powered_repeater, Blocks.unpowered_repeater, Blocks.skull, Blocks.monster_egg);
-		public static final Set<Object> breakableGlass    = new HashSetNoNulls<Object>(F, Blocks.glass, Blocks.glass_pane, Blocks.stained_glass, Blocks.stained_glass_pane);
-		public static final Set<Object> openableCrowbar   = new HashSetNoNulls<Object>(F, Blocks.iron_block, Blocks.gold_block, Blocks.lapis_block, Blocks.diamond_block, Blocks.emerald_block, Blocks.redstone_block, Blocks.coal_block);
-		public static final Set<Object> drillableDynamite = new HashSetNoNulls<Object>(F, Blocks.grass, Blocks.dirt, Blocks.mycelium, Blocks.clay, Blocks.snow, Blocks.gravel, Blocks.sandstone, Blocks.cobblestone, Blocks.mossy_cobblestone, Blocks.netherrack, Blocks.end_stone, Blocks.hardened_clay, Blocks.stained_hardened_clay, Blocks.iron_ore, Blocks.gold_ore, Blocks.lapis_ore, Blocks.diamond_ore, Blocks.emerald_ore, Blocks.redstone_ore, Blocks.lit_redstone_ore, Blocks.coal_ore, Blocks.quartz_ore, Blocks.monster_egg);
-		public static final Set<Object> harvestableSpade  = new HashSetNoNulls<Object>(F, Blocks.grass, Blocks.dirt, Blocks.mycelium, Blocks.clay, Blocks.snow, Blocks.gravel);
-		public static final Set<Object> plantableGreens   = new HashSetNoNulls<Object>(F, Blocks.grass, Blocks.dirt, Blocks.farmland);
-		public static final Set<Object> plantableTrees    = new HashSetNoNulls<Object>(F, Blocks.grass, Blocks.dirt);
-		public static final Set<Object> plantableGrass    = new HashSetNoNulls<Object>(F, Blocks.grass);
+		public static final Set<Object> stoneOverridable      = new HashSetNoNulls<>(F);
+		public static final Set<Object> instaharvest          = new HashSetNoNulls<Object>(F, Blocks.torch, Blocks.redstone_torch, Blocks.unlit_redstone_torch, Blocks.redstone_wire, Blocks.powered_comparator, Blocks.unpowered_comparator, Blocks.powered_repeater, Blocks.unpowered_repeater, Blocks.skull, Blocks.monster_egg);
+		public static final Set<Object> breakableGlass        = new HashSetNoNulls<Object>(F, Blocks.glass, Blocks.glass_pane, Blocks.stained_glass, Blocks.stained_glass_pane);
+		public static final Set<Object> openableCrowbar       = new HashSetNoNulls<Object>(F, Blocks.iron_block, Blocks.gold_block, Blocks.lapis_block, Blocks.diamond_block, Blocks.emerald_block, Blocks.redstone_block, Blocks.coal_block);
+		public static final Set<Object> drillableDynamite     = new HashSetNoNulls<Object>(F, Blocks.grass, Blocks.dirt, Blocks.mycelium, Blocks.clay, Blocks.snow, Blocks.gravel, Blocks.sandstone, Blocks.cobblestone, Blocks.mossy_cobblestone, Blocks.netherrack, Blocks.end_stone, Blocks.hardened_clay, Blocks.stained_hardened_clay, Blocks.iron_ore, Blocks.gold_ore, Blocks.lapis_ore, Blocks.diamond_ore, Blocks.emerald_ore, Blocks.redstone_ore, Blocks.lit_redstone_ore, Blocks.coal_ore, Blocks.quartz_ore, Blocks.monster_egg);
+		public static final Set<Object> harvestableJackhammer = new HashSetNoNulls<Object>(F, Blocks.stone, Blocks.sandstone, Blocks.cobblestone, Blocks.mossy_cobblestone, Blocks.netherrack, Blocks.end_stone, Blocks.hardened_clay, Blocks.stained_hardened_clay, Blocks.monster_egg);
+		public static final Set<Object> harvestableSpade      = new HashSetNoNulls<Object>(F, Blocks.grass, Blocks.dirt, Blocks.mycelium, Blocks.clay, Blocks.snow, Blocks.gravel);
+		public static final Set<Object> plantableGreens       = new HashSetNoNulls<Object>(F, Blocks.grass, Blocks.dirt, Blocks.farmland);
+		public static final Set<Object> plantableTrees        = new HashSetNoNulls<Object>(F, Blocks.grass, Blocks.dirt);
+		public static final Set<Object> plantableGrass        = new HashSetNoNulls<Object>(F, Blocks.grass);
 		
 		/** Blocks to not generate Ores in. */
 		public static ItemStackSet<ItemStackContainer> sDontGenerateOresIn = new ItemStackSet<>();
@@ -1939,6 +1954,7 @@ public class CS {
 		
 		, NePl              = "netheriteplus"
 		, NeLi              = "netherlicious"
+		, EnLi              = "enderlicious"
 		, EtFu              = "etfuturum"
 		, BB                = "betterbeginnings"
 		, DYNAMIC_TREES     = "dynamictrees"

@@ -76,7 +76,6 @@ import gregapi.data.CS.FluidsGT;
 import gregapi.data.CS.FoodsGT;
 import gregapi.data.CS.GarbageGT;
 import gregapi.data.CS.ItemsGT;
-import gregapi.data.CS.PotionsGT;
 import gregapi.data.CS.SFX;
 import gregapi.enchants.Enchantment_WerewolfDamage;
 import gregapi.item.IItemNoGTOverride;
@@ -85,6 +84,7 @@ import gregapi.item.IItemProjectile.EntityProjectile;
 import gregapi.item.IItemRottable.RottingUtil;
 import gregapi.item.multiitem.MultiItemRandom;
 import gregapi.item.multiitem.MultiItemTool;
+import gregapi.item.multiitem.tools.IToolStats;
 import gregapi.network.packets.PacketConfig;
 import gregapi.network.packets.PacketDeathPoint;
 import gregapi.network.packets.PacketPrefix;
@@ -212,39 +212,52 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 		return tTileEntity instanceof ITileEntityGUI ? ((ITileEntityGUI)tTileEntity).getGUIClient(aGUIID, aPlayer) : null;
 	}
 	
-	public File mSaveLocation = null;
+	private File mSaveLocation = null;
+	
+	/**
+	 * Check if the Save Location passed in matches the current Save Location.
+	 */
+	public boolean checkSaveLocation(File aSaveLocation, boolean aSaveTheWorldIfNull) {
+		boolean tSave = F, tLoad = F;
+		if (aSaveLocation == null) {
+			tSave = (aSaveTheWorldIfNull && mSaveLocation != null);
+		} else if (mSaveLocation == null) {
+			tLoad = T;
+		} else {
+			tSave = tLoad = !mSaveLocation.equals(aSaveLocation);
+		}
+		
+		if (tSave) {
+			OUT.println("Saving  World! " + mSaveLocation);
+			new File(mSaveLocation, "gregtech").mkdirs();
+			GarbageGT.onServerSave(mSaveLocation);
+			MultiTileEntityRegistry.onServerSave(mSaveLocation);
+		}
+		if (tLoad) {
+			OUT.println("Loading World! " + aSaveLocation);
+			mSaveLocation = aSaveLocation;
+			new File(mSaveLocation, "gregtech").mkdirs();
+			GarbageGT.onServerLoad(mSaveLocation);
+			MultiTileEntityRegistry.onServerLoad(mSaveLocation);
+		}
+		return tSave || tLoad;
+	}
 	
 	@Override
 	public void onProxyBeforeServerStarted(Abstract_Mod aMod, FMLServerStartedEvent aEvent) {
 		SERVER_TIME = 0;
-		
-		if (mSaveLocation == null) {
-			ERR.println("WARNING: World Specific Save Files could not be loaded!");
-		} else {
-			new File(mSaveLocation, "gregtech").mkdirs();
-			
-			GarbageGT.onServerLoad(mSaveLocation);
-			MultiTileEntityRegistry.onServerLoad(mSaveLocation);
-		}
+		MultiTileEntityRegistry.onServerStart();
 	}
 	
 	@Override
 	public void onProxyAfterServerStopping(Abstract_Mod aMod, FMLServerStoppingEvent aEvent) {
-		if (mSaveLocation == null) {
-			ERR.println("WARNING: World Specific Save Files could not be saved!");
-		} else {
-			new File(mSaveLocation, "gregtech").mkdirs();
-			
-			GarbageGT.onServerSave(mSaveLocation);
-			MultiTileEntityRegistry.onServerSave(mSaveLocation);
-		}
-		
-		mSaveLocation = null;
+		checkSaveLocation(null, T);
+		MultiTileEntityRegistry.onServerStop();
 	}
 	
-	@SubscribeEvent public void onWorldSave  (WorldEvent.Save   aEvent) {if (mSaveLocation == null) mSaveLocation = aEvent.world.getSaveHandler().getWorldDirectory();}
-	@SubscribeEvent public void onWorldLoad  (WorldEvent.Load   aEvent) {if (mSaveLocation == null) mSaveLocation = aEvent.world.getSaveHandler().getWorldDirectory();}
-	@SubscribeEvent public void onWorldUnload(WorldEvent.Unload aEvent) {if (mSaveLocation == null) mSaveLocation = aEvent.world.getSaveHandler().getWorldDirectory();}
+	@SubscribeEvent public void onWorldSave  (WorldEvent.Save   aEvent) {checkSaveLocation(aEvent.world.getSaveHandler().getWorldDirectory(), F);}
+	@SubscribeEvent public void onWorldLoad  (WorldEvent.Load   aEvent) {checkSaveLocation(aEvent.world.getSaveHandler().getWorldDirectory(), F);}
+	@SubscribeEvent public void onWorldUnload(WorldEvent.Unload aEvent) {checkSaveLocation(aEvent.world.getSaveHandler().getWorldDirectory(), F);}
 	
 	public  static final List<ITileEntityServerTickPre  > SERVER_TICK_PRE                = new ArrayListNoNulls<>(), SERVER_TICK_PR2  = new ArrayListNoNulls<>();
 	public  static final List<ITileEntityServerTickPost > SERVER_TICK_POST               = new ArrayListNoNulls<>(), SERVER_TICK_PO2T = new ArrayListNoNulls<>();
@@ -622,7 +635,7 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 			}
 			
 			if (SERVER_TIME % 20 == 1) {
-				mSaveLocation = aEvent.world.getSaveHandler().getWorldDirectory();
+				checkSaveLocation(aEvent.world.getSaveHandler().getWorldDirectory(), T);
 				
 				for (int i = 0; i < aEvent.world.loadedTileEntityList.size(); i++) {
 					TileEntity aTileEntity = (TileEntity)aEvent.world.loadedTileEntityList.get(i);
@@ -703,7 +716,7 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 							if (tData != null && tData.hasValidMaterialData()) {
 								if ((tData.mMaterial.mMaterial == MT.Bedrockium || tData.mMaterial.mMaterial == MT.Neutronium) && (tData.mPrefix != null || tData.mByProducts.length <= 0)) {
 									PotionEffect tEffect = null;
-									aEvent.player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, Math.max(140, ((tEffect = aEvent.player.getActivePotionEffect(Potion.moveSlowdown))==null?0:tEffect.getDuration())), 3));
+									UT.Entities.applyPotion(aEvent.player, Potion.moveSlowdown.id, Math.max(140, ((tEffect = aEvent.player.getActivePotionEffect(Potion.moveSlowdown))==null?0:tEffect.getDuration())), 3, F);
 								}
 								if (tData.mMaterial.mMaterial == MT.Craponite) {
 									tCraponite++;
@@ -720,7 +733,7 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 					if ("Bear989Sr".equalsIgnoreCase(aEvent.player.getCommandSenderName())) {
 						if (tCraponite > 0) {
 							// Crazy started to give Bear her Craponite Arrows, lets not let him have those.
-							aEvent.player.addPotionEffect(new PotionEffect(Potion.poison.id, 1200, tCraponite, T));
+							UT.Entities.applyPotion(aEvent.player, Potion.poison, 1200, tCraponite, T);
 						}
 						if (--BEAR_INVENTORY_COOL_DOWN < 0 && tEmptySlots < 4) {
 							BEAR_INVENTORY_COOL_DOWN = 100;
@@ -812,10 +825,16 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 		// No Creative Mode Refill!
 		if (UT.Entities.hasInfiniteItems(aEvent.entityPlayer)) return;
 		// Tool Break Fatique.
-		if (TOOL_BREAK_FATIQUE && (ST.item_(aEvent.original) instanceof ItemSword || ST.item_(aEvent.original) instanceof ItemTool || ST.item_(aEvent.original) instanceof MultiItemTool)) {
-			// If you work so hard that your Tool breaks, you should probably take a break yourself. :P
-			aEvent.entityPlayer.addPotionEffect(new PotionEffect(Potion.weakness   .id, 300, 2, F));
-			aEvent.entityPlayer.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 300, 2, F));
+		if (TOOL_BREAK_FATIQUE) {
+			if (ST.item_(aEvent.original) instanceof MultiItemTool) {
+				IToolStats tStats = ((MultiItemTool)ST.item_(aEvent.original)).getToolStats(aEvent.original);
+				if (tStats != null) tStats.afterBreaking(aEvent.original, aEvent.entityPlayer);
+			} else
+			if (ST.item_(aEvent.original) instanceof ItemSword || ST.item_(aEvent.original) instanceof ItemTool) {
+				// If you work so hard that your Tool breaks, you should probably take a break yourself. :P
+				UT.Entities.applyPotion(aEvent.entityPlayer, Potion.weakness   , 300, 2, F);
+				UT.Entities.applyPotion(aEvent.entityPlayer, Potion.digSlowdown, 300, 2, F);
+			}
 		}
 		// 
 		ItemStack[] tInv = aEvent.entityPlayer.inventory.mainInventory;
@@ -863,37 +882,18 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 		if (tStats != null) {
 			EntityFoodTracker tTracker = EntityFoodTracker.get(aEvent.entityPlayer);
 			if (tTracker != null) {
-				if (tStats.length > 0 && tStats[0] != 0) tTracker.changeAlcohol(tStats[0]);
-				if (tStats.length > 1 && tStats[1] != 0) tTracker.changeCaffeine(tStats[1]);
+				if (tStats.length > 0 && tStats[0] != 0) tTracker.changeAlcohol    (tStats[0]);
+				if (tStats.length > 1 && tStats[1] != 0) tTracker.changeCaffeine   (tStats[1]);
 				if (tStats.length > 2 && tStats[2] != 0) tTracker.changeDehydration(tStats[2]);
-				if (tStats.length > 3 && tStats[3] != 0) tTracker.changeSugar(tStats[3]);
-				if (tStats.length > 4 && tStats[4] != 0) tTracker.changeFat(tStats[4]);
+				if (tStats.length > 3 && tStats[3] != 0) tTracker.changeSugar      (tStats[3]);
+				if (tStats.length > 4 && tStats[4] != 0) tTracker.changeFat        (tStats[4]);
 			}
 		}
 		
 		NBTTagCompound tNBT = aEvent.item.getTagCompound();
 		if (tNBT != null && tNBT.hasKey(NBT_EFFECTS)) {
 			tNBT = tNBT.getCompoundTag(NBT_EFFECTS);
-			int tID = tNBT.getInteger("id"), tTime = tNBT.getInteger("time"), tLevel = tNBT.getInteger("lvl"), tChance = tNBT.getInteger("chance");
-			if (tID < -1) switch(tID) {
-			case - 2: tID = PotionsGT.ID_RADIATION; break;
-			case - 3: tID = PotionsGT.ID_HYPOTHERMIA; break;
-			case - 4: tID = PotionsGT.ID_HEATSTROKE; break;
-			case - 5: tID = PotionsGT.ID_FROSTBITE; break;
-			case - 6: tID = PotionsGT.ID_DEHYDRATION; break;
-			case - 7: tID = PotionsGT.ID_INSANITY; break;
-			case - 8: tID = PotionsGT.ID_FLAMMABLE; break;
-			case - 9: tID = PotionsGT.ID_SLIPPERY; break;
-			case -10: tID = PotionsGT.ID_CONDUCTIVE; break;
-			case -11: tID = PotionsGT.ID_STICKY; break;
-			}
-			if (tID >= 0 && RNGSUS.nextInt(100) < tChance) {
-				if (tLevel >= 0) {
-					aEvent.entityPlayer.addPotionEffect(new PotionEffect(tID, tTime, tLevel, F));
-				} else {
-					aEvent.entityPlayer.removePotionEffect(tID);
-				}
-			}
+			if (RNGSUS.nextInt(100) < tNBT.getInteger("chance")) UT.Entities.applyPotion(aEvent.entityPlayer, tNBT.getInteger("id"), tNBT.getInteger("time"), tNBT.getInteger("lvl"), F);
 		}
 		
 		if (aEvent.item.getItem() == Items.apple) {
