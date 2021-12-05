@@ -54,13 +54,13 @@ import net.minecraft.util.AxisAlignedBB;
  * @author Gregorius Techneticies
  */
 public class MultiTileEntitySapBag extends TileEntityBase09FacingSingle implements ITileEntityQuickObstructionCheck, IMTE_IgnorePlayerCollisionWhenPlacing, IMTE_SetBlockBoundsBasedOnState, IMTE_GetCollisionBoundingBoxFromPool, IMTE_GetSelectedBoundingBoxFromPool {
-	public boolean mFull = F, oFull = F;
+	public boolean mFull = F;
 	public FluidTankGT mTank = new FluidTankGT(8000);
 	
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
 		super.readFromNBT2(aNBT);
-		if (aNBT.hasKey(NBT_ACTIVE)) mFull = oFull = aNBT.getBoolean(NBT_ACTIVE);
+		if (aNBT.hasKey(NBT_ACTIVE)) mFull = aNBT.getBoolean(NBT_ACTIVE);
 		mTank.setCapacity(aNBT.getLong(NBT_TANK_CAPACITY));
 		mTank.readFromNBT(aNBT, NBT_TANK);
 	}
@@ -90,19 +90,10 @@ public class MultiTileEntitySapBag extends TileEntityBase09FacingSingle implemen
 					}
 				}
 			}
+			boolean tFull = mFull;
 			mFull = (mTank.has() || slotHas(0));
+			if (tFull != mFull) updateClientData();
 		}
-	}
-	
-	@Override
-	public boolean onTickCheck(long aTimer) {
-		return super.onTickCheck(aTimer) || mFull != oFull;
-	}
-	
-	@Override
-	public void onTickResetChecks(long aTimer, boolean aIsServerSide) {
-		super.onTickResetChecks(aTimer, aIsServerSide);
-		oFull = mFull;
 	}
 	
 	@Override

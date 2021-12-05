@@ -118,20 +118,8 @@ public class MultiTileEntityChest extends TileEntityBase05Inventories implements
 	}
 	
 	@Override
-	public boolean onTickCheck(long aTimer) {
-		return mUsingPlayers != oUsingPlayers || super.onTickCheck(aTimer);
-	}
-	
-	@Override
-	public void onTickResetChecks(long aTimer, boolean aIsServerSide) {
-		super.onTickResetChecks(aTimer, aIsServerSide);
-		oUsingPlayers = mUsingPlayers;
-	}
-	
-	@Override
 	public IPacket getClientDataPacket(boolean aSendAll) {
-		if (aSendAll) return getClientDataPacketByteArray(aSendAll, mFacing, mUsingPlayers, (byte)getSizeInventory(), (byte)UT.Code.getR(mRGBa), (byte)UT.Code.getG(mRGBa), (byte)UT.Code.getB(mRGBa));
-		return getClientDataPacketByte(aSendAll, mUsingPlayers);
+		return getClientDataPacketByteArray(aSendAll, mFacing, mUsingPlayers, (byte)getSizeInventory(), (byte)UT.Code.getR(mRGBa), (byte)UT.Code.getG(mRGBa), (byte)UT.Code.getB(mRGBa));
 	}
 	
 	@Override
@@ -143,7 +131,7 @@ public class MultiTileEntityChest extends TileEntityBase05Inventories implements
 	@Override
 	public void onTick(long aTimer, boolean aIsServerSide) {
 		super.onTick(aTimer, aIsServerSide);
-		if (isServerSide()) {
+		if (aIsServerSide) {
 			if (mInventoryChanged) {
 				for (byte tSide : ALL_SIDES_VALID) {
 					DelegatorTileEntity<TileEntity> tDelegator = getAdjacentTileEntity(tSide);
@@ -152,15 +140,29 @@ public class MultiTileEntityChest extends TileEntityBase05Inventories implements
 					}
 				}
 			}
-			if (mUsingPlayers > 0 && aTimer % 1200 == 0) mUsingPlayers = UT.Code.bind7(getOpenGUIs());
+			if (mUsingPlayers > 0 && aTimer % 1200 == 0) {
+				mUsingPlayers = UT.Code.bind7(getOpenGUIs());
+			}
+		} else {
+			oLidAngle = mLidAngle;
+			if (mUsingPlayers > 0) {
+				mLidAngle = Math.min(1, mLidAngle+0.1F);
+				if (mLidAngle > 0.1F && oLidAngle <= 0.1F) UT.Sounds.play("random.chestopen"  , 10, 0.5F, RNGSUS.nextFloat() * 0.1F + 0.9F, getCoords());
+			} else {
+				mLidAngle = Math.max(0, mLidAngle-0.1F);
+				if (mLidAngle < 0.5F && oLidAngle >= 0.5F) UT.Sounds.play("random.chestclosed", 10, 0.5F, RNGSUS.nextFloat() * 0.1F + 0.9F, getCoords());
+			}
 		}
-		oLidAngle = mLidAngle;
-		if (mUsingPlayers > 0 && mLidAngle == 0.0F) worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.chestopen", 0.5F, RNGSUS.nextFloat() * 0.1F + 0.9F);
-		if (mUsingPlayers == 0 && mLidAngle > 0.0F || mUsingPlayers > 0 && mLidAngle < 1.0F) {
-			if (mUsingPlayers > 0) mLidAngle += 0.1F; else mLidAngle -= 0.1F;
-			if (mLidAngle > 1.0F) mLidAngle = 1.0F; else if (mLidAngle < 0.0F) mLidAngle = 0.0F;
-			if (mLidAngle < 0.5F && oLidAngle >= 0.5F) worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.chestclosed", 0.5F, RNGSUS.nextFloat() * 0.1F + 0.9F);
-		}
+	}
+	
+	@Override
+	public boolean onTickCheck(long aTimer) {
+		return mUsingPlayers != oUsingPlayers || super.onTickCheck(aTimer);
+	}
+	@Override
+	public void onTickResetChecks(long aTimer, boolean aIsServerSide) {
+		super.onTickResetChecks(aTimer, aIsServerSide);
+		oUsingPlayers = mUsingPlayers;
 	}
 	
 	@Override
@@ -224,7 +226,7 @@ public class MultiTileEntityChest extends TileEntityBase05Inventories implements
 		mUsingPlayers = aData[1];
 		if (UT.Code.unsignB(aData[2]) != getSizeInventory()) setInventory(new ItemStack[UT.Code.unsignB(aData[2])]);
 		mRGBa = UT.Code.getRGBInt(new short[] {UT.Code.unsignB(aData[3]), UT.Code.unsignB(aData[4]), UT.Code.unsignB(aData[5])});
-		return true;
+		return T;
 	}
 	
 	@Override public boolean unpaint() {if (mIsPainted) {mIsPainted=F; mRGBa=UT.Code.getRGBInt(mMaterial.fRGBaSolid); updateClientData(); return T;} return F;}

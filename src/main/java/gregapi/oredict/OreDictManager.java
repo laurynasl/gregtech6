@@ -337,8 +337,8 @@ public final class OreDictManager {
 			// In order to fix a ThaumCraft Bug I have to ignore this registration under all circumstances. I registered it under the proper Name manually.
 			// Note: This has been fixed on TC Side, so it can be removed in later MC versions.
 			if (MD.TC == aMod && tLowerCase.endsWith("uicksilver")) return;
-			// This Red/Redstone Alloy is violating two OreDict Materials at the same time with its Name and Composition, so I'm gonna keep it out of my System.
-			if (MD.HBM.owns(aRegName) && (tLowerCase.endsWith("redalloy") || tLowerCase.endsWith("redstonealloy") || tLowerCase.startsWith("platedense"))) return;
+			// This Red/Redstone Alloy is violating two OreDict Materials at the same time with its Name and Composition, so I'm gonna keep it out of my System. And some other things need to be ignored too.
+			if (MD.HBM.owns(aRegName) && (tLowerCase.endsWith("desh") || tLowerCase.endsWith("redalloy") || tLowerCase.endsWith("redstonealloy") || tLowerCase.startsWith("platedense"))) return;
 			// Ignore Congealed Slime being registered as Rubber. TODO Whenever I decide to add Materials for Slime, this needs to be revisited.
 			if (MD.SC2.owns(aRegName) &&  tLowerCase.endsWith("rubber")) return;
 			// OreDictPrefix Conflict caused by Galacticraft fixing its OreDict Registrations a little bit late to use Plates instead of Compressed Stuff now.
@@ -565,7 +565,10 @@ public final class OreDictManager {
 	
 	public ItemStack getStack(Object aName, ItemStack aReplacement, long aAmount, boolean aMentionPossibleTypos, boolean aNoInvalidAmounts) {
 		if (aNoInvalidAmounts && aAmount < 1) return aReplacement;
-		if (!sName2StackMap.containsKey(aName.toString()) && aMentionPossibleTypos) ERR.println("Unknown Key for Unification, Typo? " + aName);
+		if (!sName2StackMap.containsKey(aName.toString()) && aMentionPossibleTypos) {
+			ERR.println("Unknown Key for Unification, Typo? " + aName);
+			int i = 0; for (StackTraceElement tElement : new Exception().getStackTrace()) if (i++<1 && i<11) ERR.println("\tat " + tElement); else break;
+		}
 		ItemStack rStack = sName2StackMap.get(aName.toString());
 		if (rStack == null) rStack = getFirstOre(aName, aAmount);
 		return rStack == null ? aReplacement : ST.amount(aAmount, rStack);

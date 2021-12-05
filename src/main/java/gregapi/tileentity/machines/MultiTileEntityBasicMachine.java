@@ -610,6 +610,8 @@ public class MultiTileEntityBasicMachine extends TileEntityBase09FacingSingle im
 		setStateOnOff(T);
 		GarbageGT.trash(mTanksInput);
 		GarbageGT.trash(mTanksOutput);
+		GarbageGT.trash(mOutputItems);
+		GarbageGT.trash(mOutputFluids);
 		return super.breakBlock();
 	}
 	
@@ -627,10 +629,10 @@ public class MultiTileEntityBasicMachine extends TileEntityBase09FacingSingle im
 	public int canOutput(Recipe aRecipe) {
 		int rMaxTimes = mParallel;
 		
-		// Don't do more than 1-4 Minutes worth of Input at a time, when doing the Chain Processing.
+		// Don't do more than 30 to 120 Seconds worth of Input at a time, when doing Chain Processing.
 		if (mParallelDuration) {
 			// Ugh, I do not feel like Maths right now, but the previous incarnation of this seemed a tiny bit wrong, so I will make sure it works properly.
-			while (rMaxTimes > 1 && aRecipe.getAbsoluteTotalPower() * rMaxTimes > mInputMax * 1200) rMaxTimes--;
+			while (rMaxTimes > 1 && aRecipe.getAbsoluteTotalPower() * rMaxTimes > mInputMax * 600) rMaxTimes--;
 		}
 		
 		for (int i = 0, j = mRecipes.mInputItemsCount; i < mRecipes.mOutputItemsCount && i < aRecipe.mOutputs.length; i++, j++) if (ST.valid(aRecipe.mOutputs[i])) {
@@ -695,8 +697,12 @@ public class MultiTileEntityBasicMachine extends TileEntityBase09FacingSingle im
 			ST.moveAll(getItemInputTarget(tAutoInput), delegator(tAutoInput));
 		}
 		
+		int tInputItemsCount = 0, tInputFluidsCount = 0;
 		ItemStack[] tInputs = new ItemStack[mRecipes.mInputItemsCount];
-		for (int i = 0; i < mRecipes.mInputItemsCount; i++) tInputs[i] = slot(i);
+		for (int i = 0; i < mRecipes.mInputItemsCount; i++) {
+			tInputs[i] = slot(i);
+			if (ST.valid(tInputs[i])) tInputItemsCount++;
+		}
 		
 		tAutoInput = FACING_TO_SIDE[mFacing][mFluidAutoInput];
 		if (aUseAutoInputs && !mDisabledFluidInput && SIDES_VALID[tAutoInput]) {
@@ -708,6 +714,11 @@ public class MultiTileEntityBasicMachine extends TileEntityBase09FacingSingle im
 				}
 			}
 		}
+		for (FluidTankGT tTank : mTanksInput) if (tTank.has()) tInputFluidsCount++;
+		
+		if (tInputItemsCount                     < mRecipes.mMinimalInputItems ) return DID_NOT_FIND_RECIPE;
+		if (tInputFluidsCount                    < mRecipes.mMinimalInputFluids) return DID_NOT_FIND_RECIPE;
+		if (tInputItemsCount + tInputFluidsCount < mRecipes.mMinimalInputs     ) return DID_NOT_FIND_RECIPE;
 		
 		Recipe tRecipe = mRecipes.findRecipe(this, mLastRecipe, F, mEnergyTypeAccepted == TD.Energy.RF ? mInputMax / RF_PER_EU : mInputMax, slot(mRecipes.mInputItemsCount+mRecipes.mOutputItemsCount), mTanksInput, tInputs);
 		
@@ -1001,7 +1012,6 @@ public class MultiTileEntityBasicMachine extends TileEntityBase09FacingSingle im
 	@Override public Object getGUIServer2(int aGUIID, EntityPlayer aPlayer) {return new ContainerCommonBasicMachine(aPlayer.inventory, this, mRecipes, aGUIID);}
 	
 	@Override public byte getVisualData() {return (byte)((mActive?1:0)|(mRunning?2:0));}
-	
 	@Override public void setVisualData(byte aData) {mRunning=((aData&2)!=0); mActive=((aData&1)!=0);}
 	@Override public byte getDefaultSide() {return SIDE_FRONT;}
 	@Override public boolean[] getValidSides() {return mActive ? SIDES_THIS[mFacing] : SIDES_HORIZONTAL;}
@@ -1014,9 +1024,9 @@ public class MultiTileEntityBasicMachine extends TileEntityBase09FacingSingle im
 	@Override public long getGibblValue   (byte aSide) {long rGibbl = 0; for (int i = 0; i < mTanksInput.length; i++) rGibbl += mTanksInput[i].amount  (); return rGibbl;}
 	@Override public long getGibblMax     (byte aSide) {long rGibbl = 0; for (int i = 0; i < mTanksInput.length; i++) rGibbl += mTanksInput[i].capacity(); return rGibbl;}
 	
-	@Override public boolean getStateRunningPossible() {return mCouldUseRecipe || mActive || mMaxProgress > 0 || mChargeRequirement > 0 || (mIgnited > 0 && !mDisabledItemOutput && mOutputBlocked != 0);}
-	@Override public boolean getStateRunningPassively() {return mRunning;}
-	@Override public boolean getStateRunningActively() {return mActive;}
+	@Override public boolean getStateRunningPossible    () {return mCouldUseRecipe || mActive || mMaxProgress > 0 || mChargeRequirement > 0 || (mIgnited > 0 && !mDisabledItemOutput && mOutputBlocked != 0);}
+	@Override public boolean getStateRunningPassively   () {return mRunning;}
+	@Override public boolean getStateRunningActively    () {return mActive;}
 	@Override public boolean getStateRunningSuccessfully() {return mSuccessful;}
 	@Override public boolean setStateOnOff(boolean aOnOff) {if (mStopped == aOnOff) {mStopped = !aOnOff; updateAdjacentToggleableEnergySources();} return !mStopped;}
 	@Override public boolean getStateOnOff() {return !mStopped;}

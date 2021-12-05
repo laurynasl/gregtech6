@@ -56,7 +56,6 @@ import gregapi.data.CS.ConfigsGT;
 import gregapi.data.CS.FluidsGT;
 import gregapi.data.CS.ItemsGT;
 import gregapi.data.CS.ModIDs;
-import gregapi.data.CS.PotionsGT;
 import gregapi.data.CS.ToolsGT;
 import gregapi.data.FL;
 import gregapi.data.IL;
@@ -228,8 +227,8 @@ public class GT6_Main extends Abstract_Mod {
 		new Loader_Tools().run();
 		new Loader_Items().run();
 		new Loader_PrefixBlocks().run();
-		new Loader_Rocks().run();
 		new Loader_Blocks().run();
+		new Loader_Rocks().run();
 		new Loader_Woods().run();
 		new Loader_Rails().run();
 		new Loader_Ores().run();
@@ -445,10 +444,10 @@ public class GT6_Main extends Abstract_Mod {
 		  ST.make(OP.dust.mat(MT.OREMATS.Cinnabar, 3), "Throw three Units of Cinnabar into Crucible")
 		, IL.Ceramic_Crucible.getWithName(1, "Wait until it melts into Mercury")
 		, IL.Bottle_Empty.getWithName(1, "Rightclick the Crucible with an Empty Bottle")
-		, NI
+		, IL.TC_Shimmerleaf.getWithName(1, "Or just throw a Shimmerleaf into it")
 		, ST.make(aRegistry.getItem(1199), "Heat up the Crucible using a Burning Box")
 		, NI
-		), ST.array(IL.Bottle_Mercury.get(1), ST.make(OP.ingot.mat(MT.Hg, 1), "Pouring this into Molds only works in very cold Biomes!")), null, ZL_LONG, FL.array(MT.Hg.liquid(1, T)), FL.array(MT.Hg.liquid(1, T)), 0, 0, 0);
+		), ST.array(IL.Bottle_Mercury.get(1), ST.make(OP.ingot.mat(MT.Hg, 1), "Pouring this into Molds only works with additional Cooling!"), ST.make(OP.nugget.mat(MT.Hg, 1), "Pouring this into Molds only works with additional Cooling!")), null, ZL_LONG, FL.array(MT.Hg.liquid(1, T)), FL.array(MT.Hg.liquid(1, T)), 0, 0, 0);
 		
 		RM.Other.addFakeRecipe(F, ST.array(
 		  IL.Ceramic_Mold.getWithName(1, "Don't forget to shape the Mold to pour it")
@@ -548,15 +547,6 @@ public class GT6_Main extends Abstract_Mod {
 		, NI
 		, NI
 		), ZL_IS, null, ZL_LONG, ZL_FS, ZL_FS, 0, 0, 0);
-		
-		
-		if (PotionsGT.ID_FLAMMABLE >= 0) {
-			BlocksGT.OilExtraHeavy.addEffect(PotionsGT.ID_FLAMMABLE, 300, 1);
-			BlocksGT.OilHeavy     .addEffect(PotionsGT.ID_FLAMMABLE, 300, 1);
-			BlocksGT.OilMedium    .addEffect(PotionsGT.ID_FLAMMABLE, 300, 1);
-			BlocksGT.OilLight     .addEffect(PotionsGT.ID_FLAMMABLE, 300, 1);
-			BlocksGT.GasNatural   .addEffect(PotionsGT.ID_FLAMMABLE, 100, 1);
-		}
 		
 		
 		if (CODE_CLIENT) {

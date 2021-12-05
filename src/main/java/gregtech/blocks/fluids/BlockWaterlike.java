@@ -41,7 +41,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
@@ -57,6 +56,8 @@ import net.minecraftforge.fluids.FluidStack;
  * @author Gregorius Techneticies
  */
 public abstract class BlockWaterlike extends BlockFluidClassic implements IBlock, IItemGT, IBlockOnHeadInside {
+	public static int WATER_UPDATE_FLAGS = 0;
+	
 	public final Fluid mFluid;
 	
 	public BlockWaterlike(String aName, Fluid aFluid) {
@@ -117,17 +118,17 @@ public abstract class BlockWaterlike extends BlockFluidClassic implements IBlock
 		
 		
 		if (canDisplace(aWorld, aX, aY+densityDir, aZ)) {
-			if (displaceIfPossible(aWorld, aX, aY+densityDir, aZ)) aWorld.setBlock(aX, aY+densityDir, aZ, this, 1, 3);
+			if (displaceIfPossible(aWorld, aX, aY+densityDir, aZ)) aWorld.setBlock(aX, aY+densityDir, aZ, this, 1, WATER_UPDATE_FLAGS | 1);
 			return;
 		}
 		
 		int tFlowMeta  = (aWorld.getBlock(aX, aY-densityDir, aZ) instanceof BlockWaterlike ? 1 : quantaPerBlock - quantaRemaining + 1);
 		if (tFlowMeta >= quantaPerBlock) return;
 		
-		if (aWorld.blockExists(aX  , aY, aZ-1) && displaceIfPossible(aWorld, aX  , aY, aZ-1)) aWorld.setBlock(aX  , aY, aZ-1, this, tFlowMeta, 3);
-		if (aWorld.blockExists(aX  , aY, aZ+1) && displaceIfPossible(aWorld, aX  , aY, aZ+1)) aWorld.setBlock(aX  , aY, aZ+1, this, tFlowMeta, 3);
-		if (aWorld.blockExists(aX-1, aY, aZ  ) && displaceIfPossible(aWorld, aX-1, aY, aZ  )) aWorld.setBlock(aX-1, aY, aZ  , this, tFlowMeta, 3);
-		if (aWorld.blockExists(aX+1, aY, aZ  ) && displaceIfPossible(aWorld, aX+1, aY, aZ  )) aWorld.setBlock(aX+1, aY, aZ  , this, tFlowMeta, 3);
+		if (aWorld.blockExists(aX  , aY, aZ-1) && displaceIfPossible(aWorld, aX  , aY, aZ-1)) aWorld.setBlock(aX  , aY, aZ-1, this, tFlowMeta, WATER_UPDATE_FLAGS | 1);
+		if (aWorld.blockExists(aX  , aY, aZ+1) && displaceIfPossible(aWorld, aX  , aY, aZ+1)) aWorld.setBlock(aX  , aY, aZ+1, this, tFlowMeta, WATER_UPDATE_FLAGS | 1);
+		if (aWorld.blockExists(aX-1, aY, aZ  ) && displaceIfPossible(aWorld, aX-1, aY, aZ  )) aWorld.setBlock(aX-1, aY, aZ  , this, tFlowMeta, WATER_UPDATE_FLAGS | 1);
+		if (aWorld.blockExists(aX+1, aY, aZ  ) && displaceIfPossible(aWorld, aX+1, aY, aZ  )) aWorld.setBlock(aX+1, aY, aZ  , this, tFlowMeta, WATER_UPDATE_FLAGS | 1);
 	}
 	
 	@Override
@@ -218,7 +219,7 @@ public abstract class BlockWaterlike extends BlockFluidClassic implements IBlock
 	@Override
 	public void onHeadInside(EntityLivingBase aEntity, World aWorld, int aX, int aY, int aZ) {
 		if (!mEffects.isEmpty() && (FL.gas(mFluid) ? !UT.Entities.isImmuneToBreathingGases(aEntity) : !UT.Entities.isWearingFullChemHazmat(aEntity))) {
-			for (int[] tEffects : mEffects) aEntity.addPotionEffect(new PotionEffect(tEffects[0], tEffects[1], tEffects[2], F));
+			for (int[] tEffects : mEffects) UT.Entities.applyPotion(aEntity, tEffects[0], tEffects[1], tEffects[2], F);
 			if (getMaterial() != Material.water && SERVER_TIME % 20 == 0) aEntity.attackEntityFrom(DamageSource.drown, 2.0F);
 		}
 	}

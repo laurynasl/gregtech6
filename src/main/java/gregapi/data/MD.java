@@ -96,6 +96,7 @@ public class MD {
 	
 	, NePl              = new ModData(ModIDs.NePl               , "Netherite Plus")
 	, NeLi              = new ModData(ModIDs.NeLi               , "Netherlicious")
+	, EnLi              = new ModData(ModIDs.EnLi               , "Enderlicious")
 	, EtFu              = new ModData(ModIDs.EtFu               , "Et Futurum")
 	, BB                = new ModData(ModIDs.BB                 , "Better Beginnings")
 	, DYNAMIC_TREES     = new ModData(ModIDs.DYNAMIC_TREES      , "Dynamic Trees")
@@ -140,7 +141,7 @@ public class MD {
 	
 	, MgC               = new ModData(ModIDs.MgC                , "Magneticraft")
 	, BR                = new ModData(ModIDs.BR                 , "Big Reactors")
-	, HBM               = new ModData(ModIDs.HBM                , "HBM's Nuclear Tech")
+	, HBM               = new ModData(ModIDs.HBM                , "HBM's Nuclear Tech Mod")
 	, ELN               = new ModData(ModIDs.ELN                , "Electrical Age")
 	
 	, DRGN              = new ModData(ModIDs.DRGN               , "Dragon API")
