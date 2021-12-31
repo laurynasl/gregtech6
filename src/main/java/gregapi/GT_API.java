@@ -228,14 +228,23 @@ public class GT_API extends Abstract_Mod {
 		OP.foil             .addTextureSet(MD.GT, F);
 		
 		// It is VERY important that those are registered first. Otherwise GregTech would output its own Storage Blocks.
-		OreDictManager.INSTANCE.setTarget_(OP.blockSolid, MT.Obsidian, ST.make(Blocks.obsidian      , 1, 0), T, F, T);
-		OreDictManager.INSTANCE.setTarget_(OP.blockIngot, MT.Fe      , ST.make(Blocks.iron_block    , 1, 0), T, F, T);
-		OreDictManager.INSTANCE.setTarget_(OP.blockIngot, MT.Au      , ST.make(Blocks.gold_block    , 1, 0), T, F, T);
-		OreDictManager.INSTANCE.setTarget_(OP.blockGem  , MT.Diamond , ST.make(Blocks.diamond_block , 1, 0), T, F, T);
-		OreDictManager.INSTANCE.setTarget_(OP.blockGem  , MT.Emerald , ST.make(Blocks.emerald_block , 1, 0), T, F, T);
-		OreDictManager.INSTANCE.setTarget_(OP.blockGem  , MT.Lapis   , ST.make(Blocks.lapis_block   , 1, 0), T, F, T);
-		OreDictManager.INSTANCE.setTarget_(OP.blockGem  , MT.Coal    , ST.make(Blocks.coal_block    , 1, 0), T, F, T);
-		OreDictManager.INSTANCE.setTarget_(OP.blockDust , MT.Redstone, ST.make(Blocks.redstone_block, 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockDust , MT.Stone     , ST.make(Blocks.gravel           , 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockDust , MT.SoulSand  , ST.make(Blocks.soul_sand        , 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockDust , MT.Sand      , ST.make(Blocks.sand             , 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockDust , MT.RedSand   , ST.make(Blocks.sand             , 1, 1), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockSolid, MT.Sand      , ST.make(Blocks.sandstone        , 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockSolid, MT.Glass     , ST.make(Blocks.glass            , 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockSolid, MT.Stone     , ST.make(Blocks.double_stone_slab, 1, 8), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockSolid, MT.Netherrack, ST.make(Blocks.netherrack       , 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockSolid, MT.Endstone  , ST.make(Blocks.end_stone        , 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockSolid, MT.Obsidian  , ST.make(Blocks.obsidian         , 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockIngot, MT.Fe        , ST.make(Blocks.iron_block       , 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockIngot, MT.Au        , ST.make(Blocks.gold_block       , 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockGem  , MT.Diamond   , ST.make(Blocks.diamond_block    , 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockGem  , MT.Emerald   , ST.make(Blocks.emerald_block    , 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockGem  , MT.Lapis     , ST.make(Blocks.lapis_block      , 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockGem  , MT.Coal      , ST.make(Blocks.coal_block       , 1, 0), T, F, T);
+		OreDictManager.INSTANCE.setTarget_(OP.blockDust , MT.Redstone  , ST.make(Blocks.redstone_block   , 1, 0), T, F, T);
 		
 		// Fixing missing Container Items.
 		Items.mushroom_stew.setContainerItem(Items.bowl);
@@ -510,6 +519,7 @@ public class GT_API extends Abstract_Mod {
 			DEB = OUT;
 			for (String tString : tList) DEB.println(tString);
 		}
+		
 		
 		for (OreDictPrefix tPrefix : OreDictPrefix.VALUES) if (!tPrefix.contains(TD.Prefix.PREFIX_UNUSED)) {
 			tPrefix.setConfigStacksize(tStackConfig.get("stacksizes", tPrefix.mNameInternal+"_"+tPrefix.mDefaultStackSize, tPrefix.mDefaultStackSize).getInt());
