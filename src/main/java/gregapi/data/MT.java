@@ -199,7 +199,7 @@ public class MT {
 	static OreDictMaterial valgemcent   (int aID, String aNameOreDict, TextureSet[] aSets, long aR, long aG, long aB, long aA    , Object... aRandomData)  {return valgemdcmp      (aID, aNameOreDict, aSets           , aR, aG, aB, aA, aRandomData).put(CENTRIFUGE);}
 	static OreDictMaterial valgemelec   (int aID, String aNameOreDict, TextureSet[] aSets, long aR, long aG, long aB, long aA    , Object... aRandomData)  {return valgemdcmp      (aID, aNameOreDict, aSets           , aR, aG, aB, aA, aRandomData).put(ELECTROLYSER);}
 	static OreDictMaterial diamond      (int aID, String aNameOreDict                    , long aR, long aG, long aB, byte aColor, Object... aRandomData)  {return valgemdcmp      (aID, aNameOreDict, SET_DIAMOND     , aR, aG, aB,127, aRandomData).lens(aColor).put(ANY.Diamond   , COMMON_ORE                               ).steal(C).aspects(TC.VITREUS, 3, TC.LUCRUM , 4                ).qual(3, 8.0,1280, 3).setSmelting(C    , 2*U  ).setBurning(Ash, U);}
-	static OreDictMaterial sapphire     (int aID, String aNameOreDict                    , long aR, long aG, long aB, byte aColor, Object... aRandomData)  {return valgemcent      (aID, aNameOreDict, SET_GEM_VERTICAL, aR, aG, aB,127, aRandomData).lens(aColor).put(ANY.Sapphire  , COMMON_ORE, MELTING, RANDOM_SMALL_GEM_ORE)         .aspects(TC.VITREUS, 3, TC.LUCRUM , 4                ).qual(3, 7.0, 512, 3).setSmelting(Al2O3, 3*U4 );}
+	static OreDictMaterial sapphire     (int aID, String aNameOreDict                    , long aR, long aG, long aB, byte aColor, Object... aRandomData)  {return valgemcent      (aID, aNameOreDict, SET_GEM_VERTICAL, aR, aG, aB,127, aRandomData).lens(aColor).put(ANY.Sapphire  , COMMON_ORE, MELTING, RANDOM_SMALL_GEM_ORE)         .aspects(TC.VITREUS, 3, TC.LUCRUM , 4                ).qual(3, 7.0, 512, 3)/*.setSmelting(Al2O3, 3*U4 )*/;}
 	static OreDictMaterial emerald      (int aID, String aNameOreDict                    , long aR, long aG, long aB, byte aColor, Object... aRandomData)  {return valgemelec      (aID, aNameOreDict, SET_EMERALD     , aR, aG, aB,127, aRandomData).lens(aColor).put(ANY.Emerald   , COMMON_ORE, MELTING, RANDOM_SMALL_GEM_ORE)         .aspects(TC.VITREUS, 3, TC.LUCRUM , 3                ).qual(3, 9.0, 128, 2).setSmelting(Be   ,   U36);}
 	static OreDictMaterial garnet       (int aID, String aNameOreDict                    , long aR, long aG, long aB, byte aColor, Object... aRandomData)  {return valgemelec      (aID, aNameOreDict, SET_RUBY        , aR, aG, aB,127, aRandomData).lens(aColor).put(ANY.Garnet    , MD.GT              , RANDOM_SMALL_GEM_ORE)         .aspects(TC.VITREUS, 3, TC.LUCRUM , 1                ).qual(3, 7.0, 128, 2);}
 	static OreDictMaterial jasper       (int aID, String aNameOreDict                    , long aR, long aG, long aB, byte aColor, Object... aRandomData)  {return valgemelec      (aID, aNameOreDict, SET_GLASS       , aR, aG, aB,150, aRandomData).lens(aColor).put(ANY.Jasper    , MD.RH              , RANDOM_SMALL_GEM_ORE)         .aspects(TC.VITREUS, 2, TC.LUCRUM , 2, TC.METALLUM, 1).qual(3, 7.0, 256, 2).uumMcfg( 0, SiO2, 2*U, Fe, 1*U);}
@@ -2694,8 +2694,8 @@ public class MT {
 			OREMATS.Cassiterite             .addOreByProducts(OREMATS.Molybdenite       , OREMATS.Wolframite        , FluoriteWhite         , OREMATS.Arsenopyrite  , OREMATS.Stannite      , OREMATS.Sperrylite    , OREMATS.Huebnerite    , Apatite); // Tourmaline
 			Sb                              .addOreByProducts(Zn                        , OREMATS.Realgar           , OREMATS.Cinnabar      , OREMATS.Galena        , OREMATS.Arsenopyrite  , Pyrite                , OREMATS.Barite        , CaCO3);
 			OREMATS.Stibnite                .addOreByProducts(Sb                        , OREMATS.Realgar           , OREMATS.Cinnabar      , OREMATS.Galena        , OREMATS.Arsenopyrite  , Pyrite                , OREMATS.Barite        , CaCO3);
-			OREMATS.Bauxite                 .addOreByProducts(Kaolinite                 , OREMATS.Ilmenite          , Fe2O3                 , Al2O3                 , AlO3H3                );
-			AlO3H3                          .addOreByProducts(OREMATS.Bauxite           , OREMATS.Ilmenite          , Fe2O3                 , Al2O3                 );
+			OREMATS.Bauxite                 .addOreByProducts(Kaolinite                 , OREMATS.Ilmenite          , Fe2O3                 /*, Al2O3                 , AlO3H3*/                );
+			AlO3H3                          .addOreByProducts(OREMATS.Bauxite           , OREMATS.Ilmenite          , Fe2O3                 /*, Al2O3*/                 );
 			OREMATS.Ilmenite                .addOreByProducts(TiO2                      , Fe2O3                     , MgCO3                 , MnO2                  );
 			TiO2                            .addOreByProducts(Fe2O3                     , Zircon                    );
 			Ti                              .addOreByProducts(Fe2O3                     , Zircon                    );
@@ -2711,7 +2711,7 @@ public class MT {
 			OREMATS.Stannite                .addOreByProducts(Ge                        , Pyrite                    , OREMATS.Kesterite     );
 			OREMATS.Kesterite               .addOreByProducts(Ge                        , Pyrite                    , OREMATS.Stannite      );
 			
-			OREMATS.Glauconite              .addOreByProducts(Na                        , Al2O3                     , Fe2O3                 );
+			OREMATS.Glauconite              .addOreByProducts(Na                        /*, Al2O3*/                     , Fe2O3                 );
 			OREMATS.Diatomite               .addOreByProducts(OREMATS.Mica              , Opal                      , Biotite               , OREMATS.Perlite       , Sapphire);
 			OREMATS.Mica                    .addOreByProducts(OREMATS.Vermiculite       , Asbestos                  , Biotite               , OREMATS.Perlite       );
 			OREMATS.Vermiculite             .addOreByProducts(OREMATS.Mica              , Asbestos                  , Biotite               , OREMATS.Diatomite     );
@@ -2747,14 +2747,14 @@ public class MT {
 			OREMATS.Zeolite                 .addOreByProducts(OREMATS.Pollucite         , NaCl                      );
 			OREMATS.Pollucite               .addOreByProducts(OREMATS.Zeolite           , Cs                        , Rb                    );
 			
-			Be                              .addOreByProducts(Al2O3                     , Emerald                   , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
-			Emerald                         .addOreByProducts(Al2O3                     , Be                        , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
-			Aquamarine                      .addOreByProducts(Al2O3                     , Be                        , Emerald               , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
-			Morganite                       .addOreByProducts(Al2O3                     , Be                        , Emerald               , Aquamarine            , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
-			Goshenite                       .addOreByProducts(Al2O3                     , Be                        , Emerald               , Aquamarine            , Morganite             , Bixbite               , Heliodor              , Maxixe    );
-			Bixbite                         .addOreByProducts(Al2O3                     , Be                        , Emerald               , Aquamarine            , Morganite             , Goshenite             , Heliodor              , Maxixe    );
-			Heliodor                        .addOreByProducts(Al2O3                     , Be                        , Emerald               , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Maxixe    );
-			Maxixe                          .addOreByProducts(Al2O3                     , Be                        , Emerald               , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Heliodor  );
+			Be                              .addOreByProducts(/*Al2O3                     ,*/ Emerald                   , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
+			Emerald                         .addOreByProducts(/*Al2O3                     ,*/ Be                        , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
+			Aquamarine                      .addOreByProducts(/*Al2O3                     ,*/ Be                        , Emerald               , Morganite             , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
+			Morganite                       .addOreByProducts(/*Al2O3                     ,*/ Be                        , Emerald               , Aquamarine            , Goshenite             , Bixbite               , Heliodor              , Maxixe    );
+			Goshenite                       .addOreByProducts(/*Al2O3                     ,*/ Be                        , Emerald               , Aquamarine            , Morganite             , Bixbite               , Heliodor              , Maxixe    );
+			Bixbite                         .addOreByProducts(/*Al2O3                     ,*/ Be                        , Emerald               , Aquamarine            , Morganite             , Goshenite             , Heliodor              , Maxixe    );
+			Heliodor                        .addOreByProducts(/*Al2O3                     ,*/ Be                        , Emerald               , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Maxixe    );
+			Maxixe                          .addOreByProducts(/*Al2O3                     ,*/ Be                        , Emerald               , Aquamarine            , Morganite             , Goshenite             , Bixbite               , Heliodor  );
 			
 			Sapphire                        .addOreByProducts(Ruby                      , PurpleSapphire            , GreenSapphire         );
 			BlueSapphire                    .addOreByProducts(Ruby                      , PurpleSapphire            , GreenSapphire         );
@@ -2792,7 +2792,7 @@ public class MT {
 			AventurineBlue                  .addOreByProducts(AventurineGreen           , AventurineBrown           , AventurineYellow      , AventurineBlack       , AventurineRed         );
 			AventurineRed                   .addOreByProducts(AventurineGreen           , AventurineBrown           , AventurineYellow      , AventurineBlack       , AventurineBlue        );
 			
-			Spinel                          .addOreByProducts(Al2O3                     , BalasRuby                 );
+			Spinel                          .addOreByProducts(/*Al2O3                     ,*/ BalasRuby                 );
 			BalasRuby                       .addOreByProducts(OREMATS.Chromite          , Spinel                    );
 			
 			HexoriumRed                     .addOreByProducts(HexoriumWhite             , HexoriumBlack             );
@@ -2878,7 +2878,7 @@ public class MT {
 			W                               .addOreByProducts(MnO2                      , OREMATS.Molybdenite       );
 			Fe                              .addOreByProducts(Ni                        , Sn                        );
 			OREMATS.Lepidolite              .addOreByProducts(LiCl                      , Cs                        , Rb                    );
-			OREMATS.Spodumene               .addOreByProducts(Al2O3                     , LiCl                      );
+			OREMATS.Spodumene               .addOreByProducts(/*Al2O3                     ,*/ LiCl                      );
 			OREMATS.Kyanite                 .addOreByProducts(STONES.Quartzite          , OREMATS.Lepidolite        , OREMATS.Spodumene     );
 			OREMATS.Alunite                 .addOreByProducts(STONES.Quartzite          );
 			OREMATS.Smithsonite             .addOreByProducts(Zn                        , OREMATS.Bromargyrite      );
@@ -2892,8 +2892,8 @@ public class MT {
 			Prismane                        .addOreByProducts(Lonsdaleite               , Th                        , OREMATS.Pitchblende   );
 			Lonsdaleite                     .addOreByProducts(Th                        , OREMATS.Uraninite         , U_238                );
 
-			Al                              .addOreByProducts(OREMATS.Bauxite           , Al2O3                     , AlO3H3                );
-			Al2O3                           .addOreByProducts(OREMATS.Bauxite           , Al2O3                     , AlO3H3                );
+			Al                              .addOreByProducts(OREMATS.Bauxite           /*, Al2O3                     , AlO3H3*/                );
+			Al2O3                           .addOreByProducts(OREMATS.Bauxite           /*, Al2O3                     , AlO3H3*/                );
 			Bi                              .addOreByProducts(OREMATS.Russellite        , OREMATS.Galena            , OREMATS.Kesterite     );
 			Cr                              .addOreByProducts(OREMATS.Chromite          , Fe2O3                     , MgCO3                 );
 			OREMATS.Ferrovanadium           .addOreByProducts(OREMATS.Magnetite         , VanadiumPentoxide         );
