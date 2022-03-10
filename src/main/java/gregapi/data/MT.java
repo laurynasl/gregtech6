@@ -2665,7 +2665,7 @@ public class MT {
 			U_238                           .addOreByProducts(Pb                        , Th                        , Pu                    , Am                    );
 			Am                              .addOreByProducts(Pb                        , U_238                     , Pu                    );
 			Pu                              .addOreByProducts(Pb                        , U_238                     , Am                    );
-			Th                              .addOreByProducts(Pb                        , U_238                     );
+			Th                              .addOreByProducts(Pb                        , U_238                     , OREMATS.Pitchblende);
 			
 			for (OreDictMaterial tMat : ANY.CaF2.mToThis) {
 				if (tMat != CaF2) F.addOreByProducts(tMat);
@@ -2888,7 +2888,7 @@ public class MT {
 			Brass                           .addOreByProducts(Cu                        , Zn                        );
 			Coal                            .addOreByProducts(Lignite                   , S                         , Anthracite            );
 			Lignite                         .addOreByProducts(Coal                      , S                         , Ge                    );
-			Anthracite                      .addOreByProducts(Prismane                  , Lonsdaleite);
+			Anthracite                      .addOreByProducts(Prismane                  , Lonsdaleite               , Prismane              , Th);
 			Prismane                        .addOreByProducts(Lonsdaleite               , Th                        , OREMATS.Pitchblende   );
 			Lonsdaleite                     .addOreByProducts(Th                        , OREMATS.Uraninite         , U_238                );
 
