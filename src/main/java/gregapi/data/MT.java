@@ -2888,7 +2888,7 @@ public class MT {
 			Brass                           .addOreByProducts(Cu                        , Zn                        );
 			Coal                            .addOreByProducts(Lignite                   , S                         , Anthracite            );
 			Lignite                         .addOreByProducts(Coal                      , S                         , Ge                    );
-			Anthracite                      .addOreByProducts(Prismane                  , Lonsdaleite               , Prismane              , Th);
+			Anthracite                      .addOreByProducts(Prismane                  , Lonsdaleite               , Th);
 			Prismane                        .addOreByProducts(Lonsdaleite               , Th                        , OREMATS.Pitchblende   );
 			Lonsdaleite                     .addOreByProducts(Th                        , OREMATS.Uraninite         , U_238                );
 
