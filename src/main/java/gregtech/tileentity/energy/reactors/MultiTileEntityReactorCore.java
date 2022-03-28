@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 GregTech-6 Team
+ * Copyright (c) 2022 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -136,7 +136,7 @@ public abstract class MultiTileEntityReactorCore extends TileEntityBase10FacingD
 				GT_API_Proxy.SERVER_TICK_PO2T.add(this);
 				mHasToAddTimer = F;
 			}
-			if (mTanks[0].isHalf()) FL.move(mTanks[0], getAdjacentTank(mSecondFacing), mTanks[0].amount() - mTanks[0].capacity() / 2);
+			if (mTanks[0].isHalf() && mSecondFacing != mFacing) FL.move(mTanks[0], getAdjacentTank(mSecondFacing), mTanks[0].amount() - mTanks[0].capacity() / 2);
 			if (mTanks[1].has()) FL.move(mTanks[1], getAdjacentTank(mFacing));
 			
 			if (mTanks[0].check()) updateClientData();
