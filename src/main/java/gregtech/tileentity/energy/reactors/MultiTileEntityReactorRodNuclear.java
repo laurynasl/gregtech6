@@ -80,7 +80,7 @@ public class MultiTileEntityReactorRodNuclear extends MultiTileEntityReactorRodB
 		aList.add(LH.Chat.CYAN + "The " + LH.Chat.GREEN +  "Maximum" + LH.Chat.CYAN + " describes how many Neutrons can be on this Rod while lasting the advertised duration");
 		aList.add(LH.Chat.CYAN + "A greater " + LH.Chat.YELLOW +  "Factor" + LH.Chat.CYAN + " means the Rod emits more extra Neutrons for the amount of Neutrons on it");
 		if (mModerated || oModerated) aList.add(LH.Chat.DBLUE + "This Fuel is " + LH.Chat.WHITE + "Moderated");
-		aList.add(LH.Chat.CYAN + "Remaining: " + LH.Chat.WHITE + (mDurability / 120000) + LH.Chat.CYAN + " Minutes");
+		aList.add(LH.Chat.CYAN + "Remaining: " + LH.Chat.WHITE + (mDurability / 1200000) + LH.Chat.CYAN + " Minutes");
 		switch ((int) ((CLIENT_TIME / 100) % 10)) {
 			case 0:
 				aList.add(LH.Chat.CYAN + "When used with Distilled or Semiheavy Water:");
@@ -219,6 +219,7 @@ public class MultiTileEntityReactorRodNuclear extends MultiTileEntityReactorRodB
 			mModerated = oModerated = T;
 		}
 		long tDurabilityLoss = aReactor.oNeutronCounts[aSlot] < tNeutronMax ? 100 : UT.Code.divup(400 * aReactor.oNeutronCounts[aSlot], tNeutronMax);
+		tDurabilityLoss *= 10;
 		if (oModerated) tDurabilityLoss *= 4;
 		mDurability = tDurabilityLoss > mDurability ? -1 : mDurability - tDurabilityLoss;
 		UT.NBT.set(aStack, writeItemNBT(aStack.hasTagCompound() ? aStack.getTagCompound() : UT.NBT.make()));
