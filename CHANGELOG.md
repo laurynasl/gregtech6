@@ -16,9 +16,13 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 [FIXED] Tools of other Mods being single use on NON-GT6 Stuff too, instead of only being single use on GT6 Stuff.
 [FIXED] A Bug with Bedrock Fluid Springs also spawning in Void Worlds.
 [FIXED] Some weird Bug with GT6 Items and Creative Tabs.
+[FIXED] Grass Path conversion from Et Futurum to GT6 was a little bit iffy.
+[FIXED] An internal Item mover Function duplicating Items when Stuff with a Stacksize greater than its normal Maximum Size is inserted. Typically happened with 19+ sized Stacks of Scrap in a Queue Hopper, but there was other ways too.
+[CHANGED] Waterlike Non-Source Blocks will now only spread 2 instead of 7 Blocks. This should reduce Cave Flooding in Non-Ocean Biomes.
 [CHANGED] Shredder now has better Output Management for certain things.
 [CHANGED] You can get Niobium from smelting Coltan or Columbite now.
 [ADDED] Mass Storages and Item Barrels can now bundle and unbundle bare GT6 Wires. (Wires does NOT mean Cables!)
+All the Reactor Stuff Erik did:
 [CHANGED] Fuel rod maximum stat now relates to the number of neutrons on a fuel rod rather than its neutron output.
 [NOTE] Because of changes to the fission breeding system, old fully automatic breeder reactor designs might not work anymore. There is however no risk of "explosions" from this change.
 [CHANGED] Breeder rods now have a new stat, the neutron loss, which gets subtracted from any amount of neutrons put onto the rod from any side.
@@ -34,9 +38,11 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 [CHANGED] Helium as a reactor coolant now doesn't decrease the factor of fuel rods inside as well as not increasing the self stat anymore, now just offering a lower emission stat.
 [CHANGED] Molten Tin/Molten Sodium as a reactor coolant will now increase the neutron maximum of fuel rods in it in addition to their previous effects.
 [CHANGED] Molten Thorium Salt is now slightly cheaper to produce and able to be produced with all sizes of dust.
-[ADDED] A config option (EasyU235Extraction) to enable centrifuging U-238 from refined uranium ore. Disabled by default.
+[ADDED] A config option (EasyU235Extraction) to enable centrifuging U-235 from refined uranium ore. Disabled by default.
 [ADDED] A config option (Enable1x1ReactorCore) to enable the crafting recipe for the 1x1 reactor core. Disabled by default.
 [FIXED] Neutron Sensor previously behaving differently in maximum related modes on reactors using industrial coolant.
+[ADDED] Guide Book for designing and operating the fission reactors.
+[CHANGED] Setting the Secondary Facing of a Reactor Core to the same side as the Primary Facing will now disable the Secondary Facing.
 
 
 6.14.23:
