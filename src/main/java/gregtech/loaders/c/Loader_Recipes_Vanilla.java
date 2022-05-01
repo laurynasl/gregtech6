@@ -37,6 +37,9 @@ import static gregapi.util.CR.*;
 
 public class Loader_Recipes_Vanilla implements Runnable {
 	@Override public void run() {
+		RM.rem_smelting(ST.make(Items.bone, 1, W), ST.make(Items.slime_ball, 1, W));
+		RM.rem_smelting(ST.make(Items.dye , 1, W), ST.make(Items.slime_ball, 1, W));
+		
 		CR.remove(ST.make(Items.reeds, 1, 0));
 		CR.remove(ST.make(Items.reeds, 1, 0), ST.make(Items.reeds, 1, 0), ST.make(Items.reeds, 1, 0));
 		CR.remove(ST.make(Blocks.cobblestone, 1, 0), ST.make(Items.quartz, 1, 0), NI, ST.make(Items.quartz, 1, 0), ST.make(Blocks.cobblestone, 1, 0));
@@ -183,8 +186,8 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		CR.shaped(IL.Stick.get(1), DEF, "k", "X", 'X', treeSapling);
 		
 		// Normal Torches need to be the absolute last in this Array!
-		IL[] tItems = new IL[] {IL.NeLi_Bonetorch, IL.Torch};
-		Object[] tSticks = new Object[] {Items.bone, OD.stickAnyWood};
+		IL[] tItems = new IL[] {IL.NeLi_Bonetorch, IL.TiC_Stonetorch, IL.Torch};
+		Object[] tSticks = new Object[] {Items.bone, OP.stick.dat(ANY.Stone), OD.stickAnyWood};
 		
 		for (int i = 0; i < tItems.length; i++) if (tItems[i].exists()) {
 			// Torches, lots and lots of Torches.
@@ -867,7 +870,7 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		RM.Electrolyzer .addRecipe2(T, 64,   64, ST.tag(0), OM.dust(MT.Sand), OM.dust(MT.SiO2));
 		
 		RM.Centrifuge   .addRecipe1(T, 16,   16, OM.dust(MT.SlimyBone), NF, FL.Slime_Green.make(250), OM.dust(MT.Bone));
-		RM.Centrifuge   .addRecipe1(T, 16,   16, ST.make(Items.magma_cream, 1, W), NF, FL.Slime_Green.make(250), ST.make(Items.blaze_powder, 1, 0));
+		RM.Centrifuge   .addRecipe1(T, 16,   16, ST.make(Items.magma_cream, 1, W), NF, FL.Slime_Green.make(125), ST.make(Items.blaze_powder, 1, 0));
 		for (String tFluid : FluidsGT.SLIME) if (FL.exists(tFluid)) {
 		RM.Centrifuge   .addRecipe0(T, 16,   64, FL.make(tFluid, 250), FL.Latex.make(L/2), FL.Glue.make(250));
 		RM.Mixer        .addRecipe1(T, 16,   16, OM.dust(MT.Blaze, U9), FL.make(tFluid, 250), NF, ST.make(Items.magma_cream, 1, 0));

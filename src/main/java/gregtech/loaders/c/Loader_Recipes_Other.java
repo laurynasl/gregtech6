@@ -22,7 +22,6 @@ package gregtech.loaders.c;
 import gregapi.block.metatype.BlockMetaType;
 import gregapi.block.multitileentity.MultiTileEntityRegistry;
 import gregapi.data.*;
-import gregapi.data.CS.*;
 import gregapi.oredict.OreDictMaterial;
 import gregapi.oredict.OreDictPrefix;
 import gregapi.oredict.event.IOreDictListenerEvent;
@@ -147,8 +146,9 @@ public class Loader_Recipes_Other implements Runnable {
 			RM.rem_smelting(aEvent.mStack);
 		}});
 		addListener(OD.itemResin, new IOreDictListenerEvent() {@Override public void onOreRegistration(OreDictRegistrationContainer aEvent) {
-			RM.biomass(ST.amount(6, aEvent.mStack), 32);
 			RM.rem_smelting(aEvent.mStack);
+			if (MD.TiC.owns(aEvent.mStack)) return;
+			RM.biomass(ST.amount(6, aEvent.mStack), 32);
 			RM.ic2_extractor(aEvent.mStack, OM.ingot(MT.Rubber, 7*U9));
 			RM.Juicer           .addRecipe1(T, 16,   64, aEvent.mStack, NF, FL.Latex.make(L/2), NI);
 			RM.Squeezer         .addRecipe1(T, 16,   64, aEvent.mStack, NF, FL.Latex.make(L  ), NI);
@@ -560,7 +560,7 @@ public class Loader_Recipes_Other implements Runnable {
 		}
 		
 		// Other
-		RM.Lightning    .addRecipe2(T, 16, 2048, ST.tag(1), gem.mat(MT.CertusQuartz, 1), gem.mat(MT.ChargedCertusQuartz, 1));
+		RM.Lightning    .addRecipe2(T,  16, 2048, ST.tag(1), gem.mat(MT.CertusQuartz, 1), gem.mat(MT.ChargedCertusQuartz, 1));
 		
 		
 		for (OreDictMaterial tMat : ANY.SiO2.mToThis) {

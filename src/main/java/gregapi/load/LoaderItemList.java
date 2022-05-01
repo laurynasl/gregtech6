@@ -31,6 +31,7 @@ import gregapi.util.ST;
 import gregapi.worldgen.StoneLayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 
 import static gregapi.data.CS.*;
 
@@ -721,6 +722,8 @@ public class LoaderItemList implements Runnable {
 		IL.Food_Potato                          .set(ST.make(Items.potato, 1, 0), null, "cropPotato");
 		IL.Food_Potato_Baked                    .set(ST.make(Items.baked_potato, 1, 0));
 		IL.Food_Potato_Poisonous                .set(ST.make(Items.poisonous_potato, 1, 0));
+		
+		IL.TiC_Stonetorch                       .set(ST.make(MD.TiC, "decoration.stonetorch", 1, 0), null, OD.blockTorch);
 		
 		IL.TFC_Torch                            .set(ST.make(MD.TFCP.mLoaded?MD.TFCP:MD.TFC, "Torch"        , 1, 0), null, OD.blockTorch);
 		IL.TFC_Stick                            .set(ST.make(MD.TFCP.mLoaded?MD.TFCP:MD.TFC, "item.stick"   , 1, 0));
@@ -1596,6 +1599,7 @@ public class LoaderItemList implements Runnable {
 		
 		IL.HBM_Bedrock_Coltan                   .set(ST.make(MD.HBM, "tile.ore_bedrock_coltan"              , 1, 0));
 		IL.HBM_Bedrock_Oil                      .set(ST.make(MD.HBM, "tile.ore_bedrock_oil"                 , 1, 0));
+		IL.HBM_Crushed_Obsidian                 .set(ST.make(MD.HBM, "tile.gravel_obsidian"                 , 1, 0), new OreDictItemData(MT.Obsidian, U*8));
 		IL.HBM_Mercury_Bottle                   .set(ST.make(MD.HBM, "item.bottle_mercury"                  , 1, 0), new OreDictItemData(MT.Hg, U, MT.Glass, U), OP.bottle.dat(MT.Hg));
 		IL.HBM_Mercury_Drop                     .set(ST.make(MD.HBM, "item.nugget_mercury"                  , 1, 0), new OreDictItemData(MT.Hg, U8));
 		IL.HBM_Mercury_Drop_Tiny                .set(ST.make(MD.HBM, "item.nugget_mercury_tiny"             , 1, 0), new OreDictItemData(MT.Hg, U72));
@@ -1926,7 +1930,10 @@ public class LoaderItemList implements Runnable {
 		
 		IL.Ancient_Debris.set((IL.EtFu_Ancient_Debris.exists() ? IL.EtFu_Ancient_Debris : IL.NePl_Ancient_Debris).get(1));
 		
-		ST.item(MD.BINNIE, "containerGlass", Items.potionitem).setContainerItem(Items.glass_bottle);
+		if (MD.BINNIE.mLoaded) {Item
+		tItem = ST.item(MD.BINNIE, "containerGlass"     ); if (tItem != null) tItem.setContainerItem(Items.glass_bottle);
+		tItem = ST.item(MD.BINNIE, "containerBucket"    ); if (tItem != null) tItem.setContainerItem(Items.bucket);
+		}
 		
 		if (MD.IC2C.mLoaded) {
 		IL.IC2_Iridium_Shard                    .set(NI);
