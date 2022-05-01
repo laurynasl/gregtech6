@@ -570,6 +570,8 @@ public class Loader_Recipes_Temporary implements Runnable {
 			}
 		}
 		
+		RM.generify(IL.RC_Crushed_Obsidian .get(1), IL.HBM_Crushed_Obsidian.get(1));
+		RM.generify(IL.HBM_Crushed_Obsidian.get(1), IL.RC_Crushed_Obsidian .get(1));
 		
 		// Some of these aren't Temporary, but I like having all Generifier Recipes for Fluids in on place.
 		RM.generify   (FL.make("molten.meteoriciron"   , 1), FL.make("molten.iron", 1));
@@ -614,6 +616,7 @@ public class Loader_Recipes_Temporary implements Runnable {
 		RM.genericycle(FL.Oxygen                  .make( 1), FL.Reikygen.make(1));
 		RM.genericycle(FL.Liquid_Oxygen           .make( 1), FL.Liquid_Reikygen.make(1));
 		RM.genericycle(FL.make("molten.latex"          , 1), FL.Latex.make(1));
+		RM.generify   (FL.Slime_Blue              .make( 1), FL.Slime_Green.make(1));
 		RM.generify   (FL.Slime_Pink              .make( 1), FL.Slime_Green.make(1));
 		RM.generify   (FL.RoyalJelly              .make( 1), FL.Honey.make(10));
 		RM.genericycle(FL.Honey                   .make( 1), FL.HoneyGrC.make(1), FL.HoneyBoP.make(1));

@@ -1,15 +1,30 @@
 This is the most recent Changelog. It also contains some of the changes inside the >>>UPCOMING<<< Versions (most of the time). This is for 1.7.10 btw.
 
 
-6.14.26: (Not released yet, released whenever it needs to be)
+6.15.04: (Not released yet, released whenever it needs to be)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.14.25: (Not released yet, released whenever it needs to be)
+6.15.03: (Not released yet, released whenever it needs to be)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.14.24: (Not released yet, released whenever it needs to be)
+6.15.02: (Not released yet, released whenever it needs to be)
+Nothing (I tend to only add finished Stuff to the Changelog).
+
+
+6.15.01:
+[FIXED] An exploit with AlF3 due to a copypaste accident.
+[FIXED] GT6 Prospecting Journal Addon was crashing due to one of my refactors.
+[CHANGED] River Black Sand now generates 2 times less often, but has two Layers again. This should avoid an edge case Bug that resulted in an infinite Worldgen Loop.
+[CHANGED] Most Immersive Engineering Crusher and Arc Furnace Recipes, because pretty much all of them were bad. And their Recipe System is as laggy as vanilla Crafting so I sure as heck wont add my own giant set of Recipes to it. But I will add a FEW Recipes so they are not completely dead.
+[CHANGED] Adamantium Production is now slightly more difficult.
+[CHANGED] The Prefix Filter Block will use the "ore" Prefix to include all regular "Ore Blocks" regardless of the Stone they are inside of.
+[ADDED] You can now dye written Books and empty Books if you dont like their Color. Though there are only 11 Colors available. I did add Brown to the List, so you can get rid of the enchantment glint that vanilla written Books have too. It is Crafting only though, not Bathinng Pot though.
+[ADDED] A DidYouKnow Page for Bookshelves.
+
+
+6.15.00:
 [WARNING] Helium, Molten Tin and Molten Sodium as a reactor coolant has been buffed, your old reactor designs using these coolants might be able to "explode" (reactor explosions are still disabled, they will just delete their inventory) when running. Shut those reactors down before updating and evaluate that they will explode before turning them back on. Reactors running other coolants are not in danger of exploding, but might not produce as many neutrons as before.
 [NOTE] Neutrons needed for breeder rods got reduced, but this change is not retroactive, already crafted breeder rods might take a good bit longer to breed.
 [FIXED] OpenComputers did not accept Electric GT6 Power even though it should, but ONLY if Galacticraft or Funky Locomotion were installed. But now it works.
@@ -18,13 +33,15 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 [FIXED] Some weird Bug with GT6 Items and Creative Tabs.
 [FIXED] Grass Path conversion from Et Futurum to GT6 was a little bit iffy.
 [FIXED] An internal Item mover Function duplicating Items when Stuff with a Stacksize greater than its normal Maximum Size is inserted. Typically happened with 19+ sized Stacks of Scrap in a Queue Hopper, but there was other ways too.
+[FIXED] Unstable Ingots will now explode in the Advanced Crafting Table.
+[CHANGED] Cups, Jugs and Measuring Pots along a few other but not all Fluid Containers can now be filled by a Tap placed above them.
 [CHANGED] AlF3 will now exit the Mixer in MOLTEN State, which might end up melting or corroding your current Water Output Pipes! Also that one AlF3 Recipe wont void SiO2 anymore, since I now got space for that Output.
 [CHANGED] If you click a Dust in NEI to look at Recipes producing it, it will also show Crushed/purified/Refined Ores.
 [CHANGED] Waterlike Non-Source Blocks will now only spread 2 instead of 7 Blocks. This should reduce Cave Flooding in Non-Ocean Biomes.
 [CHANGED] Shredder now has better Output Management for certain things.
-[CHANGED] You can get Niobium from smelting Coltan or Columbite now.
 [CHANGED] Mariculture Diving and Scuba Gear counts as Chemical/Gas Protection.
 [CHANGED] Niobium and Tantalum now have a Chemical Processing Path after Aluminium Tier. Niobium may require you picking up molten Aluminium from a Crucible, if you dont have Tungsten for a Smelter yet.
+[CHANGED] MFR Laser Drill now requires Adamantium, so you cant just use it to super easily get that Stuff before you have a Bedrock Drill anymore.
 [ADDED] Mass Storages and Item Barrels can now bundle and unbundle bare GT6 Wires. (Wires does NOT mean Cables!)
 [ADDED] Firestone, Pyrotheum and Octine can now be used similar to Sodium Persulfate to process Refractory Metals.
 All the Reactor Stuff Erik did:
@@ -42,7 +59,7 @@ All the Reactor Stuff Erik did:
 [CHANGED] Carbon Dioxide as a reactor coolant now doesn't increase the factor of fuel rods inside anymore, now just offering an increase to the self stat.
 [CHANGED] Helium as a reactor coolant now doesn't decrease the factor of fuel rods inside as well as not increasing the self stat anymore, now just offering a lower emission stat.
 [CHANGED] Molten Tin/Molten Sodium as a reactor coolant will now increase the neutron maximum of fuel rods in it in addition to their previous effects.
-[CHANGED] Molten Thorium Salt is now slightly cheaper to produce and able to be produced with all sizes of dust.
+[CHANGED] Molten Thorium Salt is now slightly cheaper to produce and lasts much longer and able to be produced with all sizes of dust.
 [ADDED] A config option (EasyU235Extraction) to enable centrifuging U-235 from refined uranium ore. Disabled by default.
 [ADDED] A config option (Enable1x1ReactorCore) to enable the crafting recipe for the 1x1 reactor core. Disabled by default.
 [FIXED] Neutron Sensor previously behaving differently in maximum related modes on reactors using industrial coolant.
@@ -51,6 +68,9 @@ All the Reactor Stuff Erik did:
 [ADDED] Tritium can now be turned into Tritiated Water, useful as a reactor coolant when obtaining Tritium from Lithium breeder rods.
 [FIXED] Fuel rods with neutron counts at the exact neutron maximum now won't have their duration effected. 
 [FIXED] First second of neutron output of fuel rods being potentially lower than emission stat (in some cases even negative)
+
+
+//=== Version Number Jump due to changes in the way Reactors work, and because Greg had to re-setup a lot of Dev Stuff due to new Computer. ===//
 
 
 6.14.23:
