@@ -64,8 +64,8 @@ public class Loader_Recipes_Ores implements Runnable {
 		RM.MagneticSeparator.addRecipe1(T, 16, 1296, new long[] { 3000, 972, 972, 972, 972, 972}, blockDust .mat(MT.STONES.MoonTurf , 1), dust     .mat(MT.STONES.Basalt, 9), dustTiny.mat(MT.MeteoricIron, 9), dustTiny.mat(MT.Nd, 1), dustTiny.mat(MT.Ni, 1), dustTiny.mat(MT.Co, 1), dustTiny.mat(MT.Mn, 1));
 		// TODO MARS SAND, SPACE DUST
 		
-		RM.Drying           .addRecipe1(T, 16, 2592, OP.crushedPurified    .mat(MT.Biotite, 1), NF, MT.Ar.gas(90*U1000, T), OP.crushedCentrifuged    .mat(MT.Biotite, 1));
-		RM.Drying           .addRecipe1(T, 16,  288, OP.crushedPurifiedTiny.mat(MT.Biotite, 1), NF, MT.Ar.gas(10*U1000, T), OP.crushedCentrifugedTiny.mat(MT.Biotite, 1));
+		RM.Drying           .addRecipe1(T, 16, 2592, OP.crushedPurified    .mat(MT.Biotite, 1), NF, MT.Ar.gas(9*U100, T), OP.crushedCentrifuged    .mat(MT.Biotite, 1));
+		RM.Drying           .addRecipe1(T, 16,  288, OP.crushedPurifiedTiny.mat(MT.Biotite, 1), NF, MT.Ar.gas(  U100, T), OP.crushedCentrifugedTiny.mat(MT.Biotite, 1));
 		
 		RM.Centrifuge       .addRecipe1(T, 64,   16, new long[] {   72,  72,  72,  72,  72,  72}, dustTiny              .mat(MT.RareEarth, 1), dustTiny.mat(MT.Nd, 8), dustTiny.mat(MT.Y, 8), dustTiny.mat(MT.La, 8), dustTiny.mat(MT.Ce, 8), dustTiny.mat(MT.Cd, 8), dustTiny.mat(MT.Cs, 8));
 		RM.Centrifuge       .addRecipe1(T, 64,   36, new long[] {  162, 162, 162, 162, 162, 162}, dustSmall             .mat(MT.RareEarth, 1), dustTiny.mat(MT.Nd, 8), dustTiny.mat(MT.Y, 8), dustTiny.mat(MT.La, 8), dustTiny.mat(MT.Ce, 8), dustTiny.mat(MT.Cd, 8), dustTiny.mat(MT.Cs, 8));
@@ -90,9 +90,9 @@ public class Loader_Recipes_Ores implements Runnable {
 		RM.Centrifuge       .addRecipe1(T, 64,  144, new long[] {9000, 1000, 1000, 1000            }, ST.make(Blocks.soul_sand, 1, W), NF, FL.Oil_Soulsand.make(45), dust.mat(MT.Sand, 9), dustTiny.mat(MT.Niter, 9), dustTiny.mat(MT.Coal, 9), dustTiny.mat(MT.Bone, 9));
 		RM.Centrifuge       .addRecipe1(T, 64,   16, new long[] {9000, 1000, 1000, 1000            }, OM.dust(MT.SoulSand           ), NF, FL.Oil_Soulsand.make( 5), dust.mat(MT.Sand, 1), dustTiny.mat(MT.Niter, 1), dustTiny.mat(MT.Coal, 1), dustTiny.mat(MT.Bone, 1));
 		RM.Centrifuge       .addRecipe1(T, 64,   64, new long[] {5625, 9900, 5625,  625            }, OM.dust(MT.Netherrack         ), dustTiny.mat(MT.Redstone, 1), dustSmall.mat(MT.S, 1), dustTiny.mat(MT.Coal, 1), dustTiny.mat(MT.Au, 1));
-		RM.Centrifuge       .addRecipe1(T, 64,  144, new long[] {9000,  625, 2500                  }, OM.dust(MT.Endstone           ), ZL_FS, FL.array(MT.He.gas(U8, F), MT.He_3.gas(U20, F), MT.NO2.gas(U4, F), MT.CO2.gas(U4, F), MT.H.gas(U8, F), MT.D.gas(U8, F)), ST.make(Blocks.sand, 1, 0), dustTiny.mat(MT.Pt, 1), dustTiny.mat(MT.WO3, 1));
-		RM.Centrifuge       .addRecipe1(T, 64,  144, new long[] {9000,  625,  625                  }, OM.dust(MT.STONES.SpaceRock   ), ZL_FS, FL.array(MT.He.gas(U8, F), MT.He_3.gas(U20, F), MT.NO2.gas(U4, F), MT.CO2.gas(U4, F), MT.H.gas(U8, F), MT.D.gas(U8, F)), ST.make(Blocks.sand, 1, 0), dustTiny.mat(MT.Pt, 1), dustTiny.mat(MT.MeteoricIron, 1));
-		RM.Centrifuge       .addRecipe1(T, 64,  288, new long[] {9000, 9000, 9000, 9000, 9000, 1000}, OM.dust(MT.STONES.MoonTurf    ), ZL_FS, FL.array(MT.He.gas(U8, F), MT.He_3.gas(U20, F), MT.NO2.gas(U4, F), MT.CO2.gas(U4, F), MT.H.gas(U8, F), MT.D.gas(U8, F)), dustTiny.mat(MT.SiO2, 2), dustTiny.mat(MT.STONES.Basalt, 2), dustTiny.mat(MT.Al2O3, 1), dustTiny.mat(MT.OREMATS.Ilmenite, 1), dustTiny.mat(MT.MnO2, 1), dustTiny.mat(MT.MeteoricIron, 1));
+		RM.Centrifuge       .addRecipe1(T, 64,  144, new long[] {9000,  625, 2500                  }, OM.dust(MT.Endstone           ), ZL_FS, FL.array(MT.He.gas(U8, F), MT.He_3.gas(U50, F), MT.NO2.gas(U4, F), MT.CO2.gas(U4, F), MT.H.gas(U8, F), MT.D.gas(U8, F)), ST.make(Blocks.sand, 1, 0), dustTiny.mat(MT.Pt, 1), dustTiny.mat(MT.WO3, 1));
+		RM.Centrifuge       .addRecipe1(T, 64,  144, new long[] {9000,  625,  625                  }, OM.dust(MT.STONES.SpaceRock   ), ZL_FS, FL.array(MT.He.gas(U8, F), MT.He_3.gas(U50, F), MT.NO2.gas(U4, F), MT.CO2.gas(U4, F), MT.H.gas(U8, F), MT.D.gas(U8, F)), ST.make(Blocks.sand, 1, 0), dustTiny.mat(MT.Pt, 1), dustTiny.mat(MT.MeteoricIron, 1));
+		RM.Centrifuge       .addRecipe1(T, 64,  288, new long[] {9000, 9000, 9000, 9000, 9000, 1000}, OM.dust(MT.STONES.MoonTurf    ), ZL_FS, FL.array(MT.He.gas(U8, F), MT.He_3.gas(U50, F), MT.NO2.gas(U4, F), MT.CO2.gas(U4, F), MT.H.gas(U8, F), MT.D.gas(U8, F)), dustTiny.mat(MT.SiO2, 2), dustTiny.mat(MT.STONES.Basalt, 2), dustTiny.mat(MT.Al2O3, 1), dustTiny.mat(MT.OREMATS.Ilmenite, 1), dustTiny.mat(MT.MnO2, 1), dustTiny.mat(MT.MeteoricIron, 1));
 		RM.Centrifuge       .addRecipe1(T, 64,  144, new long[] {9000, 5000, 4000, 3000, 1000,  500}, OM.dust(MT.STONES.MoonRock    ), NF, NF, dustSmall.mat(MT.STONES.Basalt, 3), dustTiny.mat(MT.SiO2, 1), dustTiny.mat(MT.Al2O3, 1), dustTiny.mat(OREMATS.Ilmenite, 1), dustTiny.mat(MT.RareEarth, 1), dustTiny.mat(MT.Pt, 1));
 		// TODO MARS ROCKS AND SAND => Ice
 		
@@ -302,12 +302,10 @@ public class Loader_Recipes_Ores implements Runnable {
 		
 		RM.Lightning    .addRecipe2(T,512, 2304, ST.tag(1), crushedPurified       .mat(MT.Dolamide , 1), crushedCentrifuged    .mat(MT.Dolamide , 1));
 		RM.Lightning    .addRecipe2(T,512,  256, ST.tag(1), crushedPurifiedTiny   .mat(MT.Dolamide , 1), crushedCentrifugedTiny.mat(MT.Dolamide , 1));
-		RM.Lightning    .addRecipe2(T,512, 2304, ST.tag(1), crushedPurified       .mat(MT.Dilithium, 1), crushedCentrifuged    .mat(MT.Dilithium, 1));
-		RM.Lightning    .addRecipe2(T,512,  256, ST.tag(1), crushedPurifiedTiny   .mat(MT.Dilithium, 1), crushedCentrifugedTiny.mat(MT.Dilithium, 1));
 		RM.Nanofab      .addRecipe2(T, 64, 2048, ST.tag(0), crushedCentrifuged    .mat(MT.Dolamide , 1), gem.mat(MT.Dilithium, 2));
 		RM.Nanofab      .addRecipe2(T, 64, 2048, ST.tag(0), crushedCentrifugedTiny.mat(MT.Dolamide , 9), gem.mat(MT.Dilithium, 2));
-		RM.Nanofab      .addRecipe2(T, 64, 2048, ST.tag(0), crushedCentrifuged    .mat(MT.Dilithium, 1), gem.mat(MT.Dilithium, 2));
-		RM.Nanofab      .addRecipe2(T, 64, 2048, ST.tag(0), crushedCentrifugedTiny.mat(MT.Dilithium, 9), gem.mat(MT.Dilithium, 2));
+		RM.Nanofab      .addRecipe2(T,512, 2048, ST.tag(0), dust                  .mat(MT.Dolamide , 2), gem.mat(MT.Dilithium, 1)); // Maybe don't just turn everything you see into Dust ;)
+		RM.Nanofab      .addRecipe2(T,512, 4096, ST.tag(0), dust                  .mat(MT.Dilithium, 2), gem.mat(MT.Dilithium, 1)); // Maybe don't just turn everything you see into Dust ;)
 		
 		
 		RM.Mixer        .addRecipe2(T, 16,  256, crushedPurified    .mat(MT.Yellorite, 1), dust.mat(MT.Al, 1), crushedCentrifuged.mat(MT.Yellorium, 1));
