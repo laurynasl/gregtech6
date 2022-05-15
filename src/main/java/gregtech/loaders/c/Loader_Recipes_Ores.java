@@ -419,7 +419,7 @@ public class Loader_Recipes_Ores implements Runnable {
 				}
 				//for (FluidStack tWater : FL.waters(100))
 				//RM.Bath.addRecipe2(T, T, F, F, T, 0,  16, tCrushedTiny             , OP.dustTiny.mat(tFirestone , 1), tWater, FL.Steam.make(100*STEAM_PER_WATER), OM.crushedPurifiedTiny(aMat, 1), tByproductFirestone);
-				//}
+				}
 			}
 			
 			ItemStack tPurified = crushedPurified.mat(aMat, 1), tPurifiedTiny = crushedPurifiedTiny.mat(aMat, 1);
