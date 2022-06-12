@@ -143,6 +143,14 @@ public class MultiTileEntityBush extends TileEntityBase09FacingSingle implements
 					if (getLightLevelOffset(OFFX[mFacing], SIDES_TOP[mFacing]?1:2, OFFZ[mFacing]) > 9) for (int i = 0; i < mSpeed; i++) if (++mGrowth == 0) mStage++;
 				}
 			}
+			else if (mStage == 3 && SERVER_TIME % 128 == 0 && ST.valid(mBerry)) {
+				mGrowth++;
+				if (mGrowth == 0)
+				{
+					ST.drop(worldObj, xCoord, yCoord, zCoord, ST.amount(1+rng(2), mBerry));
+					mStage = 0;
+				}
+			}
 		}
 	}
 	
