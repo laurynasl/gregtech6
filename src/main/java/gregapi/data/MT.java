@@ -3025,11 +3025,11 @@ public class MT {
 			OREMATS.Tungstate               .addOreByProducts(MnO2                      , Ag                        , LiCl                  );
 			OREMATS.Scheelite               .addOreByProducts(MnO2                      , OREMATS.Molybdenite       , CaCO3                 );
 			OREMATS.Huebnerite              .addOreByProducts(OREMATS.Wolframite        , OREMATS.Molybdenite       , FluoriteGreen         , OREMATS.Arsenopyrite  , OREMATS.Cassiterite   , Topaz                 ); // Tourmaline, Rhodochrosite
-			OREMATS.Wolframite              .addOreByProducts(OREMATS.Tungstate         , Fe2O3                     , OREMATS.Stannite      , MgCO3);
-			OREMATS.Ferberite               .addOreByProducts(OREMATS.Tungstate         , Fe2O3                     );
-			OREMATS.Russellite              .addOreByProducts(OREMATS.Tungstate         , Bi                        );
-			OREMATS.Stolzite                .addOreByProducts(OREMATS.Tungstate         , Pb                        );
-			OREMATS.Pinalite                .addOreByProducts(OREMATS.Tungstate         , Pb                        );
+			OREMATS.Wolframite              .addOreByProducts(OREMATS.Scheelite         , Fe2O3                     , OREMATS.Stannite      , MgCO3);
+			OREMATS.Ferberite               .addOreByProducts(OREMATS.Scheelite         , Fe2O3                     );
+			OREMATS.Russellite              .addOreByProducts(OREMATS.Scheelite         , Bi                        );
+			OREMATS.Stolzite                .addOreByProducts(OREMATS.Scheelite         , Pb                        );
+			OREMATS.Pinalite                .addOreByProducts(OREMATS.Scheelite         , Pb                        );
 			NaCl                            .addOreByProducts(KCl                       , KIO3                      , OREMATS.Borax         );
 			KCl                             .addOreByProducts(KIO3                      , NaCl                      );
 			KIO3                            .addOreByProducts(NaCl                      , KCl                       );
