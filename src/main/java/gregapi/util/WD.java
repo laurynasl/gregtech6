@@ -81,9 +81,7 @@ import net.minecraftforge.fluids.*;
 import thaumcraft.api.nodes.INode;
 import twilightforest.TwilightForestMod;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
+import java.util.*;
 
 import static gregapi.data.CS.*;
 
@@ -105,6 +103,24 @@ public class WD {
 			}
 		}
 		return null;
+	}
+	public static List<ItemStack> suckAll(IHasWorldAndCoords aCoordinates) {return suckAll(aCoordinates.getWorld(), aCoordinates.getX(), aCoordinates.getY(), aCoordinates.getZ());}
+	public static List<ItemStack> suckAll(World aWorld, double aX, double aY, double aZ) {return suckAll(aWorld, aX, aY, aZ, 1, 1, 1);}
+	@SuppressWarnings("unchecked")
+	public static List<ItemStack> suckAll(World aWorld, double aX, double aY, double aZ, double aL, double aH, double aW) {
+		List<EntityItem> tList = aWorld.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.getBoundingBox(aX, aY, aZ, aX+aL, aY+aH, aZ+aW));
+		if (tList.isEmpty()) return Collections.emptyList();
+		List<ItemStack> rOutput = new ArrayListNoNulls<>();
+		for (EntityItem tItem : tList) {
+			if (!tItem.isDead) {
+				aWorld.removeEntity(tItem);
+				ItemStack rStack = tItem.getEntityItem();
+				tItem.setEntityItemStack(ST.amount(0, rStack));
+				tItem.setDead();
+				rOutput.add(rStack);
+			}
+		}
+		return rOutput;
 	}
 	
 	public static boolean obstructed(World aWorld, int aX, int aY, int aZ, byte aSide) {
@@ -473,10 +489,17 @@ public class WD {
 	
 	public static Random random(World aWorld, long aChunkX, long aChunkZ) {return random(aChunkX >> 4, aChunkZ >> 4, aWorld.getSeed() ^ aWorld.provider.dimensionId);}
 	public static Random random(long aSeed, long aChunkX, long aChunkZ) {
+		// Seed is XOR-ed with the Dimension ID to prevent multiple Dimensions from being identical in Ore Generation.
+		// Yes that actually happened with Aromas Mining World, and resulted in a prospecting exploit.
 		Random rRandom = new Random(aSeed);
+		// Javas Random sucks so bad, the first few results are to be discarded
 		for (int i = 0; i < 50; i++) rRandom.nextInt(0x00ffffff);
+		// And then I use the first Result as a Seed for a second Random because it is THAT bad!
 		rRandom = new Random(aSeed ^ ((rRandom.nextLong() >> 2 + 1L) * aChunkX + (rRandom.nextLong() >> 2 + 1L) * aChunkZ));
+		// Javas Random still sucks badly, discarding some results again.
 		for (int i = 0; i < 50; i++) rRandom.nextInt(0x00ffffff);
+		// There we have it, a somewhat working Random function that is actually random
+		// and does not cause my Code to generate almost perfect Diagonal Lines of Ores.
 		return rRandom;
 	}
 	

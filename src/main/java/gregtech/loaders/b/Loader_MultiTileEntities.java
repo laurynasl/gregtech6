@@ -137,7 +137,7 @@ public class Loader_MultiTileEntities implements Runnable {
 		aRegistry.add("Mechanical " + aMat.getLocal() + " Safe"          , "Safes"          , 2000+aID,  2010, MultiTileEntitySafeMechanical.class       , aMat.mToolQuality, 16, aMachine, UT.NBT.make(NBT_MATERIAL, aMat    , NBT_HARDNESS, aHardness*2, NBT_RESISTANCE, aResistance*2, NBT_INV_SIZE, 15                                                    ), "PGP", "GOS", "PGP", 'P', OP.plateQuintuple.dat(aMat), 'G', OP.gearGtSmall.dat(aMat), 'O', OP.gearGt.dat(aMat), 'S', OP.stick.dat(aMat));
 		aRegistry.add("Key Locked " + aMat.getLocal() + " Safe"          , "Safes"          , 3000+aID,  2010, MultiTileEntitySafeKeyLocked.class        , aMat.mToolQuality, 16, aMachine, UT.NBT.make(NBT_MATERIAL, aMat    , NBT_HARDNESS, aHardness*2, NBT_RESISTANCE, aResistance*2, NBT_INV_SIZE, 15                                                    ), "PGP", "OGS", "PGP", 'P', OP.plateQuintuple.dat(aMat), 'G', OP.gearGtSmall.dat(aMat), 'O', OP.gearGt.dat(aMat), 'S', OP.stick.dat(aMat));
 		aRegistry.add("Advanced Crafting Table ("    +aMat.getLocal()+")", "Crafting Tables", 5000+aID,  5010, MultiTileEntityAdvancedCraftingTable.class, aMat.mToolQuality, 16, aMachine, UT.NBT.make(NBT_MATERIAL, aMat    , NBT_HARDNESS, aHardness  , NBT_RESISTANCE, aResistance                                                                        ), "PdP", "TWT", "PCP", 'T', OP.screw.dat(aMat), 'P', OP.plate.dat(aMat), 'W', OD.craftingWorkBench, 'C', OD.craftingChest);
-		aRegistry.add("Charging Crafting Table ("    +aMat.getLocal()+")", "Crafting Tables", 5500+aID,  5010, MultiTileEntityChargingCraftingTable.class, aMat.mToolQuality, 16, aMachine, UT.NBT.make(NBT_MATERIAL, aMat    , NBT_HARDNESS, aHardness  , NBT_RESISTANCE, aResistance  , NBT_GUI, RES_PATH_GUI + "machines/AdvancedCraftingTableCharging.png"), "TCT", "dMx", "WWW", 'T', OP.screw.dat(aMat), 'M', aRegistry.getItem(5000+aID), 'W', MT.DATA.CABLES_04[3], 'C', OD_CIRCUITS[3]);
+		aRegistry.add("Charging Crafting Table ("    +aMat.getLocal()+")", "Crafting Tables", 5500+aID,  5010, MultiTileEntityChargingCraftingTable.class, aMat.mToolQuality, 16, aMachine, UT.NBT.make(NBT_MATERIAL, aMat    , NBT_HARDNESS, aHardness  , NBT_RESISTANCE, aResistance  , NBT_GUI, RES_PATH_GUI + "machines/AdvancedCraftingTableCharging.png"), "WTW", "dMx", "WTW", 'T', OP.screw.dat(aMat), 'M', aRegistry.getItem(5000+aID), 'W', MT.DATA.CABLES_04[3]);
 		aRegistry.add("Locker ("+ aMat.getLocal() + ")"                  , "Storage"        , 7300+aID, 32751, MultiTileEntityLocker.class               , aMat.mToolQuality, 16, aMachine, UT.NBT.make(NBT_MATERIAL, aMat    , NBT_HARDNESS, aHardness  , NBT_RESISTANCE, aResistance                                                                        ), "SdS", "LCL", "TMT", 'T', OP.screw.dat(aMat), 'C', aRegistry.getItem(aID), 'M', OP.casingMachine.dat(aMat), 'S', OP.stick.dat(aMat), 'L', OD.craftingLeather);
 		aRegistry.add("Charging Locker ("+ aMat.getLocal() + ")"         , "Storage"        , 7500+aID, 32751, MultiTileEntityLockerCharging.class       , aMat.mToolQuality, 16, aMachine, UT.NBT.make(NBT_MATERIAL, aMat    , NBT_HARDNESS, aHardness  , NBT_RESISTANCE, aResistance                                                                        ), "WCW", "WMW", "WCW", 'M', aRegistry.getItem(7300+aID), 'W', MT.DATA.CABLES_01[3], 'C', OD_CIRCUITS[3]);
 		aRegistry.add("Compartment Drawer ("+ aMat.getLocal() + ")"      , "Storage"        , 4000+aID, 32751, MultiTileEntityDrawerQuad.class           , aMat.mToolQuality, 16, aMachine, UT.NBT.make(NBT_MATERIAL, aMat    , NBT_HARDNESS, aHardness  , NBT_RESISTANCE, aResistance                                                                        ), "CTC", "TdT", "CTC", 'T', OP.screw.dat(aMat), 'C', aRegistry.getItem(aID));
@@ -189,7 +189,7 @@ public class Loader_MultiTileEntities implements Runnable {
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Sb                    ,   47,   4.0F,   4.0F,  2);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Ni                    ,   22,   4.0F,   4.0F,  3);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Bronze                ,    9,   7.0F,   7.0F,  3);
-		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Constantan            ,   37,   2.0F,   2.0F,  3);
+		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Constantan            ,   37,   4.0F,   4.0F,  3);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Al                    ,    1,   2.0F,   2.0F,  4);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Brass                 ,    8,   2.5F,   2.5F,  4);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.TinAlloy              ,    5,   3.0F,   3.0F,  4);
@@ -199,10 +199,10 @@ public class Loader_MultiTileEntities implements Runnable {
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Invar                 ,    6,   4.0F,   4.0F,  5);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Steel                 ,   10,   6.0F,   6.0F,  5);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.HSLA                  ,   18,   6.0F,   6.0F,  6);
-		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Au                    ,    2,   2.0F,   2.0F,  6);
-		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Ag                    ,    3,   2.0F,   2.0F,  6);
+		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Au                    ,    2,   3.0F,   3.0F,  6);
+		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Ag                    ,    3,   3.0F,   3.0F,  6);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Mn                    ,   46,   6.0F,   6.0F,  6);
-		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Manyullyn             ,   39,   3.0F,   3.0F,  6);
+		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Manyullyn             ,   39,   4.0F,   4.0F,  6);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Lumium                ,   54,   2.0F,   2.0F,  6);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Knightmetal           ,   25,   7.0F,   7.0F,  7);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.SteelGalvanized       ,   19,   6.0F,   6.0F,  7);
@@ -211,7 +211,7 @@ public class Loader_MultiTileEntities implements Runnable {
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.GildedIron            ,   20,   6.0F,   6.0F,  8);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Mo                    ,   49,   6.0F,   6.0F,  8);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Syrmorite             ,   44,   4.0F,   4.0F,  9);
-		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Electrum              ,    7,   2.0F,   2.0F,  9);
+		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Electrum              ,    7,   3.0F,   3.0F,  9);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.StainlessSteel        ,   11,   5.0F,   5.0F,  9);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Thaumium              ,   27,   9.0F,   9.0F,  9);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Manasteel             ,   40,   9.0F,   9.0F,  9);
@@ -232,7 +232,7 @@ public class Loader_MultiTileEntities implements Runnable {
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.DeshAlloy             ,   55,  15.0F,  15.0F, 27);
 		metalset(aRegistry, aMetal, aMachine, aWooden, ANY.W                    ,   26,  10.0F,  10.0F, 36);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Ir                    ,   15,  15.0F,  15.0F, 36);
-		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Os                    ,   29,   3.0F,   3.0F, 36);
+		metalset(aRegistry, aMetal, aMachine, aWooden, MT.Os                    ,   29,   9.0F,   9.0F, 36);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.VoidMetal             ,   28,  30.0F,  30.0F, 36);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.ElvenElementium       ,   41,  30.0F,  30.0F, 36);
 		metalset(aRegistry, aMetal, aMachine, aWooden, MT.TritaniumAlloy        ,   32,  30.0F,  30.0F, 36);
@@ -1974,8 +1974,8 @@ public class Loader_MultiTileEntities implements Runnable {
 		aRegistry.add("Rubber Resin Hole"                                   , "Untyped"                             , 32762, 32764, MultiTileEntityResinHoleRubber.class                    ,                 0,  1, aWooden        , null);
 		aRegistry.add("Tapped Maple"                                        , "Untyped"                             , 32761, 32764, MultiTileEntitySapHoleMaple.class                       ,                 0,  1, aWooden        , null);
 		aRegistry.add("Tapped Rainbowood"                                   , "Untyped"                             , 32760, 32764, MultiTileEntitySapHoleRainbowood.class                  ,                 0,  1, aWooden        , null);
-		aRegistry.add("Berry Bush"                                          , "Untyped"                             , 32759, 32764, MultiTileEntityBush.class                               ,                 0, 64, aBush          , UT.NBT.make(NBT_HARDNESS, 0.5F, NBT_RESISTANCE, 0.3F));
-		aRegistry.add("Greg o'Lantern"                                      , "Untyped"                             , 32758, 32764, MultiTileEntityGregOLantern.class                       ,                 0, 64, aUtilWood      , null, "Pk", "T ", 'P', Blocks.pumpkin, 'T', OD.blockTorch);
+		aRegistry.add("Berry Bush"                                          , "Untyped"                             , 32759, 32764, MultiTileEntityBush.class                               ,                 0, 64, aBush          , UT.NBT.make(NBT_HARDNESS, 0.5F, NBT_RESISTANCE, 0.3F)); RM.biomass(aRegistry.getItem());
+		aRegistry.add("Greg o'Lantern"                                      , "Untyped"                             , 32758, 32764, MultiTileEntityGregOLantern.class                       ,                 0, 64, aUtilWood      , null, "Pk", "T ", 'P', Blocks.pumpkin, 'T', OD.blockTorch); RM.biomass(aRegistry.getItem());
 		aRegistry.add("Sandwich"                                            , "Untyped"                             , 32105, 32764, MultiTileEntitySandwich.class                           ,                 0, 64, aUtilWool      , null);
 		aRegistry.add("Rock"                                                , "Untyped"                             , 32757, 32764, gregtech.tileentity.misc.MultiTileEntityRock.class      ,                 0, 64, aUtilStone     , null); // yes I have to pass the "gregtech.tileentity.misc.MultiTileEntityRock" Version!
 		aRegistry.add("Rock"                                                , "Untyped"                             , 32074, 32764, MultiTileEntityRockPlaced.class                         ,                 0, 64, aUtilStone     , null);

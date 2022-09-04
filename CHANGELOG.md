@@ -1,25 +1,42 @@
 This is the most recent Changelog. It also contains some of the changes inside the >>>UPCOMING<<< Versions (most of the time). This is for 1.7.10 btw.
 
 
+6.15.06: (Not released yet, released whenever it needs to be)
+Nothing (I tend to only add finished Stuff to the Changelog).
+
+
+6.15.05: (Not released yet, released whenever it needs to be)
+Nothing (I tend to only add finished Stuff to the Changelog).
+
+
 6.15.04: (Not released yet, released whenever it needs to be)
-Nothing (I tend to only add finished Stuff to the Changelog).
+[FIXED] Scythe on Hunger Overhaul modified Crops. Requires Default Config Pack or setting "enableRightClickHarvesting=false" in the Hunger Overhaul Config.
+[FIXED] Creepers crashing Servers.
+[FIXED] The Storage Drawers Mod was not working in Adventure Mode, unless you had an Axe or so in Hand while leftclicking the Drawers.
+[CHANGED] Seed Oils and the likes have a Burn Value similar to Biomass now, making them actually worth processing in the first place.
 
 
-6.15.03: (Not released yet, released whenever it needs to be)
-Nothing (I tend to only add finished Stuff to the Changelog).
-
-
-6.15.02: (Not released yet, released whenever it needs to be)
-[NOTE] Be sure to update your Geiger Counter Sensors if using the %-mode for controlling your Thorium Salt or Lithium Chloride reactors.
+6.15.03:
+[NOTE] Be sure to update your Geiger Counter Sensors if using the percentage-mode for controlling your Thorium Salt or Lithium Chloride reactors.
 [FIXED] Basic Machines and their Multiblock Counterparts will no longer accept Fluid Input from the Side that they are Auto-Outputting to.
-[CHANGED] The old Supporter Lists and Update Checker Functionality are now removed, so GT6 is now using the internal Supporter Lists inside the Jar always. The Lists themselves are still on the Server for older Versions to download them. This also means that the GT6 Update Notification you might have gotten is the last one you will ever receive.
+[CHANGED] The old Supporter Lists and Update Checker Functionality are now removed, so GT6 is now using the internal Supporter Lists inside the Jar always. The Lists themselves are still on the Server for older Versions and alternative Ports to download them. This also means that the GT6 Update Notification you might have gotten is the last one you will ever receive.
 [CHANGED] Crucibles now have a Thermal Mass Tooltip, that way inconsistencies with how to interpret the F3+H Tooltip are avoided.
+[CHANGED] The way that Looting Enchantments stack with Butchery Knives and the likes is now always beneficial (whatever the higher level of the two options is, plus 1). This applies to all Tools that have a built in Enchantment Level.
+[CHANGED] Branch Cutters and Scissors should now harvest Vines as is.
+[CHANGED] Scythes with the Auto Collect Modifier (Magnetic Material) should now properly rightclick harvest IC2 and Pams Crops.
 [ADDED] Power Cell, which can be filled with Hydrogen to directly produce electric Power in a Battery Box of up to HV Tier (1 EU/t to 512 EU/t). This is the most efficient way to turn 200_000L of Hydrogen into 3_200_000EU Electricity, even if a little bit cumbersome.
 [ADDED] Portable Aneutronic Fusion Reactor, which acts like a Power Cell of sorts, and can output anything from 1 EU/t to 8192 EU/t in a regular Battery Box. You have to fill it with 200_000L of Helium-3 to get 1_024_000_000EU total from it. It can only be made after you get Vibranium from a regular Fusion Reactor though.
 [ADDED] Higher Tier Germanium Solar Panel that produces 16 EU/t instead of 8 EU/t.
 [ADDED] Dilithium can now be used to make Molten Ender. Also added a way to process Dolamide Dust, should you have made the mistake of turning your crushed Ore into that.
 [FIXED] Some small errors in the reactor guide book.
-[FIXED] Geiger Counter Sensor now takes coolant into account for %-modes and not just use the base maximum of the fuel rods.
+[FIXED] Geiger Counter Sensor now takes coolant into account for percentage-modes and not just use the base maximum of the fuel rods.
+[FIXED] Log Spam when having certain GT6 Crafting Recipes in Forestry Worktables.
+[FIXED] C-Foamed Pipes and Wires are no longer Flammable by outside sources of Fire. You do not need to wait for the Foam to dry to get this Effect.
+[FIXED] The Daylight Detector Recipe did not accept any type of Quartz, and one of the Cookie Dough Recipes was not Slicer compatible.
+
+
+6.15.02:
+[NOTE] Human Error caused this Number to somehow be skipped. Damn Autosaving Script File before running it...
 
 
 6.15.01:

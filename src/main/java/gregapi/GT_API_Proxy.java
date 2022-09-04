@@ -928,7 +928,7 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 					// Dollies won't work on GT6 TileEntities, so to prevent a Crash and deleted Resources, I just disable the interaction.
 					if (IL.JABBA_Dolly.equal(aStack, T, T) || IL.JABBA_Dolly_Diamond.equal(aStack, T, T)) {
 						if (aTileEntity instanceof ITileEntitySpecificPlacementBehavior) {
-							UT.Entities.chat(aEvent.entityPlayer, CHAT_GREG + "The Dolly Code is sadly not smart enough to move this TileEntity.", CHAT_GREG + "It would crash if it actually did, so be glad I prevented that mistake.", CHAT_GREG + "Would be great if it did work though...");
+							UT.Entities.chat(aEvent.entityPlayer, CHAT_GREG + "The Dolly Code is sadly not smart enough to move this TileEntity.", CHAT_GREG + "It would crash if it actually did, so be glad I prevented your mistake.", CHAT_GREG + "Would be great if it did work though...");
 							aEvent.setCanceled(T);
 						}
 						return;
@@ -1121,10 +1121,10 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 			if (aTool != null) {
 				boolean
 				tFireAspect = (EnchantmentHelper.getEnchantmentLevel(Enchantment.fireAspect.effectId, aTool) >= 3),
-				tCanCollect = (aTool.getItem() instanceof MultiItemTool && ((MultiItemTool)aTool.getItem()).canCollectDropsDirectly(aTool, aBlock, (byte)aEvent.blockMetadata));
+				tCanCollect = (ST.item_(aTool) instanceof MultiItemTool && ((MultiItemTool)ST.item_(aTool)).canCollectDropsDirectly(aTool, aBlock, (byte)aEvent.blockMetadata));
 				
-				if (aTool.getItem() instanceof MultiItemTool) {
-					((MultiItemTool)aTool.getItem()).onHarvestBlockEvent(aEvent.drops, aTool, aEvent.harvester, aBlock, aEvent.x, aEvent.y, aEvent.z, (byte)aEvent.blockMetadata, aEvent.fortuneLevel, aEvent.isSilkTouching, aEvent);
+				if (ST.item_(aTool) instanceof MultiItemTool) {
+					((MultiItemTool)ST.item_(aTool)).onHarvestBlockEvent(aEvent.drops, aTool, aEvent.harvester, aBlock, aEvent.x, aEvent.y, aEvent.z, (byte)aEvent.blockMetadata, aEvent.fortuneLevel, aEvent.isSilkTouching, aEvent);
 				}
 				
 				for (ItemStack tDrop : aEvent.drops) {
@@ -1208,8 +1208,8 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 		ItemStack aStack = aEvent.entityItem.getEntityItem();
 		int aX = UT.Code.roundDown(aEvent.entity.posX), aY = UT.Code.roundDown(aEvent.entity.posY), aZ = UT.Code.roundDown(aEvent.entity.posZ);
 		if (ST.valid(aStack)) {
-			if (aStack.getItem() instanceof MultiTileEntityItemInternal) {
-				long tExtraLife = ((MultiTileEntityItemInternal)aStack.getItem()).onDespawn(aEvent.entityItem, aStack);
+			if (ST.item_(aStack) instanceof MultiTileEntityItemInternal) {
+				long tExtraLife = ((MultiTileEntityItemInternal)ST.item_(aStack)).onDespawn(aEvent.entityItem, aStack);
 				if (aStack.stackSize <= 0) {
 					aEvent.extraLife = 0;
 					aEvent.entityItem.setDead();

@@ -382,6 +382,7 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		CR.shaped(ST.make(Items.repeater                , 1, 0), DEF                            ,        "TDT", "SSS", 'T', OD.craftingRedstoneTorch, 'D', OD.itemRedstone  , 'S', plate.dat(ANY.Stone));
 		CR.shaped(ST.make(Items.comparator              , 1, 0), DEF | DEL_OTHER_SHAPED_RECIPES , " T ", "TQT", "SSS", 'T', OD.craftingRedstoneTorch, 'Q', OD.craftingQuartz, 'S', stoneSmooth         );
 		CR.shaped(ST.make(Items.comparator              , 1, 0), DEF                            , " T ", "TQT", "SSS", 'T', OD.craftingRedstoneTorch, 'Q', OD.craftingQuartz, 'S', plate.dat(ANY.Stone));
+		CR.shaped(ST.make(Blocks.daylight_detector      , 1, 0), DEF                            , "GGG", "QQQ", "PPP", 'P', OD.slabWood             , 'Q', OD.craftingQuartz, 'G', plate.dat(MT.Glass ));
 		CR.shaped(ST.make(Blocks.piston                 , 1, 0), DEF | DEL_OTHER_SHAPED_RECIPES , "WWW", "CBC", "CRC", 'W', OD.plankAnyWood, 'C', stoneCobble, 'B', OD.craftingPistonIngot, 'R', OD.itemRedstone);
 		CR.shaped(ST.make(Blocks.sticky_piston          , 1, 0), DEF | DEL_OTHER_SHAPED_RECIPES ,  "G" ,  "P"        , 'G', OD.craftingPistonGlue, 'P', Blocks.piston);
 		CR.shaped(ST.make(Items.bow                     , 1, 0), DEF_MIR                        , " WS", "WkS", " WS", 'S', OD.itemString, 'W', OD.stickAnyWood);
@@ -928,6 +929,11 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		RM.biomass(ST.make(Items.poisonous_potato, 9, W));
 		RM.biomass(IL.Dye_Cactus.get(16));
 		RM.biomass(IL.Dye_Cocoa.get(16));
+		
+		RM.biomass(blockDust.mat(MT.MeatRotten, 1), 16);
+		RM.biomass(blockDust.mat(MT.FishRotten, 1), 16);
+		RM.biomass(dust.mat(MT.MeatRotten, 9), 16);
+		RM.biomass(dust.mat(MT.FishRotten, 9), 16);
 		
 		RM.add_smelting(ST.make(Blocks.sticky_piston, 1, W), ST.make(Blocks.piston    , 1, 0), F, T, F);
 		RM.add_smelting(ST.make(Items.glass_bottle  , 1, W), ST.make(Blocks.glass_pane, 1, 0), F, F, F);
