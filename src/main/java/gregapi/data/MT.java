@@ -468,7 +468,7 @@ public class MT {
 	static OreDictMaterial astatine       () {return metalloid   ( 850, "Astatine"       , "At"    ,  85, 124,   575,   610,  7.0       , SET_RAD     ,  33,  33,  33, 255             , HALOGEN        , CONTAINERS_GAS      , GASES, "Astatine209"                                                          , "At209").aspects(TC.POTENTIA, 2, TC.RADIO, 1                    );}
 	static OreDictMaterial radon          () {return noblegas    ( 860, "Radon"          , "Rn"    ,  86, 134,   202,   211,  0.00973   , SET_DULL    , 255,   0, 255                                   , CONTAINERS_GAS                                                                                               ).aspects(TC.AER, 2, TC.RADIO, 1                         );}
 	static OreDictMaterial francium       () {return alkali      ( 870, "Francium"       , "Fr"    ,  87, 134,   300,   950,  1.87      , SET_RAD                                                                                                                                                                      ).aspects_met_rad(2, 1                                   );}
-	static OreDictMaterial radium         () {return alkaline    ( 880, "Radium"         , "Ra"    ,  88, 136,   973,  2010,  5.5       , SET_RAD     , 255, 255, 205                                                         , "Radium226"                                                                            ).aspects_met_rad(2, 1                                   );}
+	static OreDictMaterial radium         () {return alkaline    ( 880, "Radium"         , "Ra"    ,  88, 138,   973,  2010,  5.5       , SET_RAD     , 255, 255, 205                                                         , "Radium226"                                                                            ).aspects_met_rad(2, 1                                   );}
 	static OreDictMaterial actinium       () {return actinide    ( 890, "Actinium"       , "Ac"    ,  89, 136,  1323,  3471, 10.07      , SET_RAD     , 125, 113, 113                                                                                                                                                  ).aspects_met_rad(2, 1                                   );}
 	static OreDictMaterial thorium        () {return actinide    ( 900, "Thorium"        , "Th"    ,  90, 142,  2115,  5061, 11.72      , SET_RAD     ,   0,  30,   0                                                         , "Thorium232"                                                                  , "Th232").aspects_met_rad(2, 1                                   );}
 	static OreDictMaterial protactinium   () {return actinide    ( 910, "Protactinium"   , "Pa"    ,  91, 138,  1841,  4300, 15.37      , SET_RAD                                                                                                                                                                      ).aspects_met_rad(2, 1                                   );}
@@ -1974,6 +1974,7 @@ public class MT {
 			NaNO3                   .setOreMultiplier( 3);
 			KNO3                    .setOreMultiplier( 3);
 			Apatite                 .setOreMultiplier( 4);
+			Bone                    .setOreMultiplier( 4);
 			Lapis                   .setOreMultiplier( 5);
 			Sodalite                .setOreMultiplier( 5);
 			Lazurite                .setOreMultiplier( 5);
@@ -2845,17 +2846,19 @@ public class MT {
 			RedMatter               .addEnchantmentForArmors(Enchantment.blastProtection, 5);
 			Infinity                .addEnchantmentForArmors(Enchantment.blastProtection,10);
 			
-			Yellorite                       .addOreByProducts(Pb                        , Cyanite                   , Yellorium             , Ra                    , RareEarth             );
-			Yellorium                       .addOreByProducts(Pb                        , Cyanite                   , Blutonium             , Am                    );
-			Blutonium                       .addOreByProducts(Pb                        , Yellorium                 , Am                    );
-			Ludicrite                       .addOreByProducts(Pb                        , Blutonium                 , Yellorium             );
 			
 			OREMATS.Pitchblende             .addOreByProducts(Pb                        , Th                        , U_238                 , Ra                    , RareEarth             );
 			OREMATS.Uraninite               .addOreByProducts(Pb                        , Th                        , U_238                 , Ra                    , RareEarth             );
-			U_238                           .addOreByProducts(Pb                        , Th                        , Pu                    , Am                    );
-			Am                              .addOreByProducts(Pb                        , U_238                     , Pu                    );
-			Pu                              .addOreByProducts(Pb                        , U_238                     , Am                    );
+			Yellorite                       .addOreByProducts(Pb                        , Ra                        , RareEarth             , Th                    );
+			
 			Th                              .addOreByProducts(Pb                        , U_238                     , OREMATS.Pitchblende);
+			Cyanite                         .addOreByProducts(Pb                        , Ra                        , RareEarth             );
+			U_238                           .addOreByProducts(Pb                        , Ra                        , RareEarth             );
+			Yellorium                       .addOreByProducts(Pb                        , Ra                        , RareEarth             );
+			Pu                              .addOreByProducts(Pb                        , Ra                        , RareEarth             );
+			Blutonium                       .addOreByProducts(Pb                        , Ra                        , RareEarth             );
+			Am                              .addOreByProducts(Pb                        , Ra                        , RareEarth             );
+			Ludicrite                       .addOreByProducts(Pb                        , Ra                        , RareEarth             );
 			
 			for (OreDictMaterial tMat : ANY.CaF2.mToThis) tMat.addOreByProducts(OREMATS.Huebnerite, Y, Ce, Fe2O3, Na, Ba);
 			
@@ -3127,9 +3130,9 @@ public class MT {
 			LiCl                            .addOreByProducts(Li                        );
 			
 			
-			Nq_528                          .addOreByProducts(Nq                        , Nq_522                      , OREMATS.DuraniumHexafluoride);
-			Nq_522                          .addOreByProducts(Nq                        , Nq_528                      , OREMATS.TritaniumHexafluoride);
-			Nq                              .addOreByProducts(Nq_528                    , OREMATS.DuraniumHexachloride);
+			Nq_528                          .addOreByProducts(Nq                        , OREMATS.DuraniumHexafluoride);
+			Nq_522                          .addOreByProducts(Nq                        , OREMATS.TritaniumHexafluoride);
+			Nq                              .addOreByProducts(                            OREMATS.DuraniumHexachloride);
 			Ke                              .addOreByProducts(Sn                        , TiO2                        , Fe2O3, OREMATS.DuraniumHexaiodide);
 			Dn                              .addOreByProducts(OREMATS.TritaniumDioxide  , Ke                          );
 			DuraniumAlloy                   .addOreByProducts(OREMATS.TritaniumDioxide  , Ke                          );
@@ -3508,15 +3511,13 @@ public class MT {
 			OP.circuit.dat(Quantum)
 		};
 		
+		public static final OreDictMaterial[]
+		Dye_Materials           = {Black, Red, Green, Brown, Blue, Purple, Cyan, LightGray, Gray, Pink, Lime, Yellow, LightBlue, Magenta, Orange, White},
 		
-		
-		public static final OreDictMaterial
-		Dye_Materials[]             = {Black, Red, Green, Brown, Blue, Purple, Cyan, LightGray, Gray, Pink, Lime, Yellow, LightBlue, Magenta, Orange, White},
-		
-		Heat_T[]                    = {ANY.Stone, ANY.Steel      , Invar    , Ti            , TungstenCarbide, ANY.W   , ANY.W          , ANY.W          , ANY.W          , ANY.W          , ANY.W          , ANY.W          , ANY.W          , ANY.W          , ANY.W          , ANY.W          },
-		Kinetic_T[]                 = {ANY.Wood , Bronze         , ANY.Steel, Ti            , TungstenSteel  , Ir      , Os             , Os             , Os             , Os             , Os             , Os             , Os             , Os             , Os             , Os             },
-		Electric_T[]                = {TinAlloy , SteelGalvanized, Al       , StainlessSteel, Cr             , Ti      , Ir             , Os             , Trinitanium    , Trinaquadalloy , Neutronium     , Neutronium     , Neutronium     , Neutronium     , Neutronium     , Neutronium     },
-		Flux_T[]                    = {Sn       , Pb             , Invar    , Electrum      , EnderiumBase   , Enderium, TungstenCarbide, TungstenCarbide, TungstenCarbide, TungstenCarbide, TungstenCarbide, TungstenCarbide, TungstenCarbide, TungstenCarbide, TungstenCarbide, TungstenCarbide};
+		Heat_T                  = {ANY.Stone, ANY.Steel      , Invar    , Ti            , TungstenCarbide, ANY.W   , ANY.W          , ANY.W          , ANY.W          , ANY.W          , ANY.W          , ANY.W          , ANY.W          , ANY.W          , ANY.W          , ANY.W          },
+		Kinetic_T               = {ANY.Wood , Bronze         , ANY.Steel, Ti            , TungstenSteel  , Ir      , Os             , Os             , Os             , Os             , Os             , Os             , Os             , Os             , Os             , Os             },
+		Electric_T              = {TinAlloy , SteelGalvanized, Al       , StainlessSteel, Cr             , Ti      , Ir             , Os             , Trinitanium    , Trinaquadalloy , Neutronium     , Neutronium     , Neutronium     , Neutronium     , Neutronium     , Neutronium     },
+		Flux_T                  = {Sn       , Pb             , Invar    , Electrum      , EnderiumBase   , Enderium, TungstenCarbide, TungstenCarbide, TungstenCarbide, TungstenCarbide, TungstenCarbide, TungstenCarbide, TungstenCarbide, TungstenCarbide, TungstenCarbide, TungstenCarbide};
 	}
 	
 	/** The Section where I place regular Ores that are only used in advanced processing anyways due to complexity. */

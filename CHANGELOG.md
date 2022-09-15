@@ -1,19 +1,32 @@
 This is the most recent Changelog. It also contains some of the changes inside the >>>UPCOMING<<< Versions (most of the time). This is for 1.7.10 btw.
 
 
+6.15.08: (Not released yet, released whenever it needs to be)
+Nothing (I tend to only add finished Stuff to the Changelog).
+
+
+6.15.07: (Not released yet, released whenever it needs to be)
+Nothing (I tend to only add finished Stuff to the Changelog).
+
+
 6.15.06: (Not released yet, released whenever it needs to be)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
 6.15.05: (Not released yet, released whenever it needs to be)
-Nothing (I tend to only add finished Stuff to the Changelog).
+[CHANGED] Scythes now count as Weapons, just like Axes do. So you can make use of corresponding Material Enchants.
+[CHANGED] Enriched Naquadah will no longer generate. Also some Recipes to get that Stuff are now also Reactor Only.
+[ADDED] Naquadah Breeder Rod which breeds into the new Enriched Naquadah Enriched Rod, allowing enrichment of Naquadah.
 
 
-6.15.04: (Not released yet, released whenever it needs to be)
-[FIXED] Scythe on Hunger Overhaul modified Crops. Requires Default Config Pack or setting "enableRightClickHarvesting=false" in the Hunger Overhaul Config.
+6.15.04:
 [FIXED] Creepers crashing Servers.
+[FIXED] A Crash with ForgeMultiPart that somehow happens for some Modpacks and some Launchers for no good damn reason.
+[FIXED] Scythe on Hunger Overhaul modified Crops. Requires Default Config Pack or setting "enableRightClickHarvesting=false" in the Hunger Overhaul Config.
 [FIXED] The Storage Drawers Mod was not working in Adventure Mode, unless you had an Axe or so in Hand while leftclicking the Drawers.
+[CHANGED] Bathing Pot and Mixing Bowl should now output Items more nicely.
 [CHANGED] Seed Oils and the likes have a Burn Value similar to Biomass now, making them actually worth processing in the first place.
+[CHANGED] Radioactive Ore Byproducts got mostly removed or replaced. You will need to use the Reactor to get most of that Stuff now.
 
 
 6.15.03:
