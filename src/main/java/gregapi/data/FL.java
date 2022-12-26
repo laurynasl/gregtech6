@@ -116,9 +116,9 @@ public enum FL {
 	, Water_Hot                 ("ic2hotwater"                                              , SIMPLE, LIQUID, FOOD, WATER, BATH, THERMOS)
 	, Water_Boiling             ("boilingwater"                                             , SIMPLE, LIQUID, FOOD, WATER, BATH, THERMOS)
 	, Water_Geothermal          ("watergeothermal"                                          , SIMPLE, LIQUID, FOOD, WATER, BATH, THERMOS)
+	, MnWtr                     ("potion.mineralwater"                                      , SIMPLE, LIQUID, FOOD, WATER)
 	, Ice                       ("ice"                                                      , SIMPLE, LIQUID, FOOD, WATER, BATH, THERMOS)
 	, Heavy_Reiker              ("rc heavy water"                                           , SIMPLE, LIQUID)
-	, Mineralwater              ("potion.mineralwater"                                      , SIMPLE, LIQUID, FOOD)
 	, Mineralsoda               ("mineralsoda"                                              , SIMPLE, LIQUID, FOOD)
 	, Soda                      ("soda"                                                     , SIMPLE, LIQUID, FOOD)
 	, Tropics_Water             ("tropicswater"                                             , SIMPLE, LIQUID)
@@ -781,14 +781,14 @@ public enum FL {
 		return aFluid.getFluid().getTemperature(aFluid);
 	}
 	
-	public static FluidStack make (int aFluid, long aAmount) {return aFluid < 0 ? null : new FluidStack(fluid(aFluid), Code.bindInt(aAmount));}
+	public static FluidStack make (int aFluid, long aAmount) {return aFluid < 0 ? null : make(fluid(aFluid), Code.bindInt(aAmount));}
 	public static FluidStack make (Fluid aFluid, long aAmount) {return aFluid == null ? null : new FluidStack(aFluid, Code.bindInt(aAmount));}
 	public static FluidStack make (String aFluidName, long aAmount) {return make(fluid(aFluidName), aAmount);}
 	public static FluidStack make (String aFluidName, long aAmount, String aReplacementFluidName) {FluidStack rFluid = make(aFluidName, aAmount); return rFluid == null ? make(aReplacementFluidName, aAmount) : rFluid;}
 	public static FluidStack make (String aFluidName, long aAmount, String aReplacementFluidName, long aReplacementAmount) {FluidStack rFluid = make(aFluidName, aAmount); return rFluid == null ? make(aReplacementFluidName, aReplacementAmount) : rFluid;}
 	public static FluidStack make (String aFluidName, long aAmount, FluidStack aReplacementFluid) {FluidStack rFluid = make(aFluidName, aAmount); return rFluid == null ? aReplacementFluid : rFluid;}
 	
-	public static FluidStack make_(int aFluid, long aAmount) {return aFluid < 0 ? FL.Error.make(0) : new FluidStack(fluid(aFluid), Code.bindInt(aAmount));}
+	public static FluidStack make_(int aFluid, long aAmount) {return aFluid < 0 ? FL.Error.make(0) : make(fluid(aFluid), Code.bindInt(aAmount));}
 	public static FluidStack make_(Fluid aFluid, long aAmount) {return aFluid == null ? FL.Error.make(0) : new FluidStack(aFluid, Code.bindInt(aAmount));}
 	public static FluidStack make_(String aFluidName, long aAmount) {return make_(fluid(aFluidName), aAmount);}
 	public static FluidStack make_(String aFluidName, long aAmount, String aReplacementFluidName) {FluidStack rFluid = make(aFluidName, aAmount); return rFluid == null ? make_(aReplacementFluidName, aAmount) : rFluid;}

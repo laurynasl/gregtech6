@@ -20,6 +20,7 @@
 package gregapi.block;
 
 import cpw.mods.fml.common.FMLLog;
+import forestry.apiculture.tiles.TileCandle;
 import gregapi.data.*;
 import gregapi.item.multiitem.MultiItemTool;
 import gregapi.lang.LanguageHandler;
@@ -135,6 +136,7 @@ public class ToolCompat {
 			}
 			if (!rReturn && BlocksGT.Beam3 != null) {
 				if (IL.TC_Greatwood_Log.equal(aBlock)) {
+					if ((aMeta & 3) < 2)
 					rReturn = aWorld.setBlock(aX, aY, aZ, BlocksGT.Beam3, aMeta, 3);
 				} else if (IL.AETHER_Skyroot_Log.equal(aBlock)) {
 					rReturn = aWorld.setBlock(aX, aY, aZ, BlocksGT.Beam3, (aMeta&12)|2, 3);
@@ -193,12 +195,18 @@ public class ToolCompat {
 				return tDamage;
 			}
 		}
-		if (aTool.equals(TOOL_igniter) && (aStack == null || aStack.getItem() != Items.flint_and_steel)) {
+		if (aTool.equals(TOOL_igniter) && ST.item(aStack) != Items.flint_and_steel) {
 			// Ignite any TNT Blocks.
 			if (aBlock instanceof BlockTNT) {
 				((BlockTNT)aBlock).func_150114_a(aWorld, aX, aY, aZ, 1, aEntityLiving);
 				aWorld.setBlockToAir(aX, aY, aZ);
 				return 10000;
+			}
+			// Ignite Forestry Candles.
+			if (IL.FR_Candle.equal(aBlock) && aTileEntity instanceof TileCandle) {
+				((TileCandle)aTileEntity).setLit(T);
+				aWorld.markBlockForUpdate(aX, aY, aZ);
+				return 1;
 			}
 			// This thing has a special Functionality, which should override spawning Fire Blocks.
 			if (!IL.TF_Lamp_of_Cinders.equal(aStack, T, T)) {
