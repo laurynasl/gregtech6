@@ -3127,8 +3127,11 @@ public class MT {
 			Electrum                        .ores(Au                        , Ag                        );
 			Bronze                          .ores(Cu                        , Sn                        );
 			Brass                           .ores(Cu                        , Zn                        );
-			Coal                            .ores(Lignite                   , S                         );
+			Coal                            .ores(Lignite                   , S                         , Anthracite            );
 			Lignite                         .ores(Coal                      , S                         , Ge                    );
+			Anthracite                      .ores(Prismane                  , Lonsdaleite               , Th                    );
+			Prismane                        .ores(Lonsdaleite               , Th                        , OREMATS.Pitchblende   );
+			Lonsdaleite                     .ores(Th                        , OREMATS.Uraninite         , U_238                 );
 			
 			Al2O3                           .ores(OREMATS.Bauxite           , Al2O3                     , AlO3H3                );
 			Bi                              .ores(OREMATS.Russellite        , OREMATS.Galena            , OREMATS.Kesterite     );
