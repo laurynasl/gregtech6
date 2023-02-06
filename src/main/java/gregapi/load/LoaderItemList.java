@@ -2145,6 +2145,20 @@ public class LoaderItemList implements Runnable {
 		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.paa_plate"                       , 1, W));
 		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.paa_legs"                        , 1, W));
 		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.paa_boots"                       , 1, W));
+
+		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.liquidator_helmet"                   , 1, W));
+		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.liquidator_plate"                    , 1, W));
+		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.liquidator_legs"                     , 1, W));
+		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.liquidator_boots"                    , 1, W));
+		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.schrabidium_helmet"                   , 1, W));
+		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.schrabidium_plate"                    , 1, W));
+		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.schrabidium_legs"                     , 1, W));
+		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.schrabidium_boots"                    , 1, W));
+		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.euphemium_helmet"                   , 1, W));
+		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.euphemium_plate"                    , 1, W));
+		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.euphemium_legs"                     , 1, W));
+		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.HBM, "item.euphemium_boots"                    , 1, W));
+
 		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.ATSCI, "hazmat_helm"                        , 1, W));
 		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.ATSCI, "hazmat_chest"                       , 1, W));
 		ArmorsGT.HAZMATS_RADIOACTIVE            .add(ST.make(MD.ATSCI, "hazmat_legs"                        , 1, W));
