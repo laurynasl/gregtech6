@@ -25,13 +25,20 @@ import java.util.List;
 
 import gregapi.block.multitileentity.IMultiTileEntity.IMTE_GetLightValue;
 import gregapi.code.TagData;
+import gregapi.data.CS.SFX;
+import gregapi.data.CS.ToolsGT;
 import gregapi.data.LH;
+import gregapi.data.MT;
+import gregapi.data.OP;
 import gregapi.old.Textures.BlockIcons;
 import gregapi.render.BlockTextureDefault;
 import gregapi.render.ITexture;
 import gregapi.tileentity.energy.TileEntityBase08Battery;
+import gregapi.util.ST;
 import gregapi.util.UT;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -41,6 +48,20 @@ import net.minecraft.world.World;
  * @author Gregorius Techneticies
  */
 public class MultiTileEntityZPM extends TileEntityBase08Battery implements IMTE_GetLightValue {
+	@Override
+	public long onToolClick2(String aTool, long aRemainingDurability, long aQuality, Entity aPlayer, List<String> aChatReturn, IInventory aPlayerInventory, boolean aSneaking, ItemStack aStack, byte aSide, float aHitX, float aHitY, float aHitZ) {
+		long rReturn = super.onToolClick2(aTool, aRemainingDurability, aQuality, aPlayer, aChatReturn, aPlayerInventory, aSneaking, aStack, aSide, aHitX, aHitY, aHitZ);
+		if (rReturn > 0 || isClientSide()) return rReturn;
+
+		if (mEnergy == 0 && aTool.equals(TOOL_hammer)) {
+			UT.Sounds.send(SFX.MC_BREAK, this);
+			ST.drop(worldObj, getCoords(), OP.scrapGt.mat(MT.Nq, 4));
+			setToAir();
+			return 10000;
+		}
+		return 0;
+	}
+
 	@Override
 	public void addToolTips(List<String> aList, ItemStack aStack, boolean aF3_H) {
 		if (UT.Code.inside(1, mCapacity-1, mEnergy)) {

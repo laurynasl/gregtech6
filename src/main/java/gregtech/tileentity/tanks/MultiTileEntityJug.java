@@ -23,12 +23,20 @@ import gregapi.block.multitileentity.IMultiTileEntity.IMTE_GetFoodValues;
 import gregapi.block.multitileentity.IMultiTileEntity.IMTE_GetItemUseAction;
 import gregapi.block.multitileentity.IMultiTileEntity.IMTE_GetMaxItemUseDuration;
 import gregapi.block.multitileentity.IMultiTileEntity.IMTE_OnEaten;
+import gregapi.block.multitileentity.MultiTileEntityRegistry;
+import gregapi.data.MT;
+import gregapi.data.OP;
 import gregapi.data.TD;
 import gregapi.old.Textures;
 import gregapi.render.*;
+import gregapi.util.OM;
+import gregapi.util.ST;
+import gregapi.util.UT;
 import gregapi.tileentity.ITileEntityTapFillable;
 import gregapi.tileentity.tank.TileEntityBase10FluidContainerSyncSmall;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 
 import static gregapi.data.CS.*;
@@ -37,6 +45,22 @@ import static gregapi.data.CS.*;
  * @author Gregorius Techneticies
  */
 public class MultiTileEntityJug extends TileEntityBase10FluidContainerSyncSmall implements ITileEntityTapFillable, IMTE_GetFoodValues, IMTE_OnEaten, IMTE_GetItemUseAction, IMTE_GetMaxItemUseDuration {
+	@Override
+	public boolean onBlockActivated3(EntityPlayer aPlayer, byte aSide, float aHitX, float aHitY, float aHitZ) {
+		if (isServerSide()) {
+			ItemStack aStack = aPlayer.getCurrentEquippedItem();
+			if (aStack == null || !UT.Entities.isPlayer(aPlayer)) {
+				return T;
+			}
+			if (OM.is(OP.stick.dat(MT.Nq_522), aStack) && mTank.isFull() && mTank.contains(MT.Mcg.fluid(U, T))) {
+				ST.use(aPlayer, aStack);
+				MultiTileEntityRegistry tRegistry = MultiTileEntityRegistry.getRegistry("gt.multitileentity");
+				tRegistry.mBlock.placeBlock(getWorld(), getX(), getY(), getZ(), SIDE_UNKNOWN, (short)14999, UT.NBT.make(NBT_ACTIVE_ENERGY, T), T, T);
+			}
+		}
+		return T;
+	}
+
 	@Override
 	public int getRenderPasses2(Block aBlock, boolean[] aShouldSideBeRendered) {
 		return mTank.has() ? 6 : 5;
