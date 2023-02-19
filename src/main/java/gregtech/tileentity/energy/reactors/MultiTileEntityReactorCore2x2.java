@@ -202,6 +202,7 @@ public class MultiTileEntityReactorCore2x2 extends MultiTileEntityReactorCore im
 				if (tIsExploding && !invempty()) {
 					// TODO proper explosion.
 					// explode(10); // TODO Keep commented out until Reactor System has been tested well enough.
+					dumpToLog();
 					slotKill(0); slotKill(1); slotKill(2); slotKill(3);
 					UT.Sounds.send(SFX.MC_EXPLODE, this);
 					tCalc *= 2;

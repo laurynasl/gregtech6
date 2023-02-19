@@ -61,6 +61,19 @@ public abstract class MultiTileEntityReactorCore extends TileEntityBase10FacingD
 	public boolean mRunning = F, mStopped = F;
 	public FluidTankGT[] mTanks = {new FluidTankGT(64000), new FluidTankGT(64000)};
 
+	protected void dumpToLog() {
+		OUT.println("reactor core dumpToLog");
+		OUT.println("mNeutronCounts: " + mNeutronCounts[0] + " " + mNeutronCounts[1] + " " + mNeutronCounts[2] + " " + mNeutronCounts[3]);
+		OUT.println("oNeutronCounts: " + oNeutronCounts[0] + " " + oNeutronCounts[1] + " " + oNeutronCounts[2] + " " + oNeutronCounts[3]);
+		OUT.println("mEnergy: " + mEnergy);
+		OUT.println("oEnergy: " + oEnergy);
+		OUT.println("mMode: " + mMode);
+		OUT.println("mRunning: " + mRunning);
+		OUT.println("mStopped: " + mStopped);
+		OUT.println("mTanks[0]: " + mTanks[0].content());
+		OUT.println("mTanks[1]: " + mTanks[1].content());
+	}
+
 	@Override
 	public void readFromNBT2(NBTTagCompound aNBT) {
 		super.readFromNBT2(aNBT);
