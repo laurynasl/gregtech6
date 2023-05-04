@@ -1,16 +1,35 @@
 This is the most recent Changelog. It also contains some of the changes inside the >>>UPCOMING<<< Versions (most of the time). This is for 1.7.10 btw.
 
 
-6.15.13: (Not released yet)
+6.16.02: (Not released yet)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.15.12: (Not released yet)
+6.16.01: (Not released yet)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.15.11: (Not released yet)
-Nothing (I tend to only add finished Stuff to the Changelog).
+6.16.00: (Not released yet)
+[IMPORTANT] I removed ".name" from pretty much all Lang File Entries, because it was absolutely redundant and caused duplicate Entries at times. A simple Search&Replace with ".name=" and "=" BEFORE loading Minecraft, should fix it.
+[FIXED] Et Futurum Paths being converted to GT6 Paths shouldn't make you fall through the ground all that hard anymore.
+[FIXED] Weight-O-Meter now works on Raw Ore Items in Chests and Stuff.
+[FIXED] The Fluid Filter Block was slightly bugged in regards of its GUI. It should now work and have the same special cases as the Fluid Filter Cover.
+[FIXED] Basic Machines outputted Items in a bad way, resulting in them getting stuck with their Garbage in the Output Slots.
+[FIXED] Extruder Recipes now have two Output Slots in case of certain Recipes that output more than one Stack worth of Stuff.
+[FIXED] Ender Garbage Bin did not respect its Redstoned State in regards to preventing Fluid Input.
+[FIXED] Botania Tools sometimes being eaten by Botania Flowers that happen to consume Furnace Fuel, due to me adding Furnace Fuel Data to their Livingwood Handles.
+[FIXED] The RF to GT Converters should work slightly less overloady now.
+[FIXED] Language File shouldn't show certain "localized fluid name to localized fluid name" Entries anymore.
+[FIXED] High End Extreme Nuclear Reactors were causing severe Lag due to the absurd range of their Radiation Damage ending up in loading Chunks.
+[CHANGED] A bunch of Plastic and Rubber consuming Recipes are now more oredict sensitive. If anything went wrong with the conversion please report.
+[CHANGED] Gibbl-O-Meter can now read how many Nuggets worth of Material are in a Crucible. It rounds up for partial Nuggets. Yes Multiblock Crucible works too for this.
+[ADDED] Leather Armor + Knife = some Leather, in the Crafting Table.
+[ADDED] You can generify the different Mineral Oil Types into Basic Buildcraft Oil at a loss.
+[ADDED] Config to make GT6 Tree Leaves decay a lot slower. Don't know why anyone would want it but apparently this would fix Steves Carts Tree Automation.
+[ADDED] Small Item Casing Recipe using Tiny Plates on the Crafting Table or the Boxinator.
+
+
+//=== Version Number Jump due to changes to the Lang File. To Fix your custom Lang File just follow above Instructions. ===//
 
 
 6.15.10:

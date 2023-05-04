@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2022 GregTech-6 Team
+ * Copyright (c) 2023 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -1621,43 +1621,43 @@ public class LoaderItemData implements Runnable {
 		OM.data(MD.MaCu, "tanks"                            , 1,   7, MT.Ti                 ,  U * 8, MT.Al                 ,  U *54, ANY.Fe                ,  U * 4, ANY.Quartz        ,  U *18);
 		
 		
-		OM.data(MD.MFR, "upgrade.radius"                    , 1,   0, MT.Lapis              ,  U * 3, MT.Plastic            ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
-		OM.data(MD.MFR, "upgrade.radius"                    , 1,   1, MT.Sn                 ,  U * 3, MT.Plastic            ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
-		OM.data(MD.MFR, "upgrade.radius"                    , 1,   2, ANY.Fe                ,  U * 3, MT.Plastic            ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
-		OM.data(MD.MFR, "upgrade.radius"                    , 1,   3, ANY.Cu                ,  U * 3, MT.Plastic            ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
-		OM.data(MD.MFR, "upgrade.radius"                    , 1,   4, MT.Bronze             ,  U * 3, MT.Plastic            ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
-		OM.data(MD.MFR, "upgrade.radius"                    , 1,   5, MT.Ag                 ,  U * 3, MT.Plastic            ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
-		OM.data(MD.MFR, "upgrade.radius"                    , 1,   6, MT.Au                 , 28* U9, MT.Plastic            ,  U * 3, MT.Redstone           ,  U * 2);
-		OM.data(MD.MFR, "upgrade.radius"                    , 1,   7, ANY.Quartz            ,  U * 3, MT.Plastic            ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
-		OM.data(MD.MFR, "upgrade.radius"                    , 1,   8, ANY.Diamond           ,  U * 3, MT.Plastic            ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
-		OM.data(MD.MFR, "upgrade.radius"                    , 1,   9, MT.Pt                 ,  U * 3, MT.Plastic            ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
-		OM.data(MD.MFR, "upgrade.radius"                    , 1,  10, ANY.Emerald           ,  U * 3, MT.Plastic            ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
-		OM.data(MD.MFR, "upgrade.radius"                    , 1,  11, ANY.Stone             ,  U * 3, MT.Plastic            ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
-		OM.data(MD.MFR, "syringe.empty"                     , 1,   0, ANY.Fe                ,  U * 1, MT.Plastic            ,  U * 4, MT.Rubber             ,  U * 1);
-		OM.data(MD.MFR, "syringe.health"                    , 1,   0, ANY.Fe                ,  U * 1, MT.Plastic            ,  U * 4, MT.Rubber             ,  U * 1);
-		OM.data(MD.MFR, "syringe.growth"                    , 1,   0, ANY.Fe                ,  U * 1, MT.Plastic            ,  U * 4, MT.Rubber             ,  U * 1);
-		OM.data(MD.MFR, "syringe.cure"                      , 1,   0, ANY.Fe                ,  U * 1, MT.Plastic            ,  U * 4, MT.Rubber             ,  U * 1);
-		OM.data(MD.MFR, "syringe.slime"                     , 1,   0, ANY.Fe                ,  U * 1, MT.Plastic            ,  U * 4, MT.Rubber             ,  U * 1);
-		OM.data(MD.MFR, "syringe.zombie"                    , 1,   0, ANY.Fe                ,  U * 1, MT.Plastic            ,  U * 4, MT.Rubber             ,  U * 1);
-		OM.data(MD.MFR, "needlegun.ammo.empty"              , 1,   0, ANY.Fe                ,  U4   , MT.Plastic            ,  7* U4);
-		OM.data(MD.MFR, "needlegun.ammo.fire"               , 1,   0, ANY.Fe                ,  U4   , MT.Plastic            ,  7* U4);
-		OM.data(MD.MFR, "needlegun.ammo.lava"               , 1,   0, ANY.Fe                ,  U4   , MT.Plastic            ,  7* U4);
-		OM.data(MD.MFR, "needlegun.ammo.pierce"             , 1,   0, ANY.Fe                ,  U4   , MT.Plastic            ,  7* U4);
-		OM.data(MD.MFR, "needlegun.ammo.standard"           , 1,   0, ANY.Fe                ,  U4   , MT.Plastic            ,  7* U4);
-		OM.data(MD.MFR, "needlegun.ammo.anvil"              , 1,   0, ANY.Fe                ,  U4   , MT.Plastic            ,  7* U4);
-		OM.data(MD.MFR, "needlegun.ammo.sewage"             , 1,   0, ANY.Fe                ,  U4   , MT.Plastic            ,  7* U4);
-		OM.data(MD.MFR, "needlegun.ammo.sludge"             , 1,   0, ANY.Fe                ,  U4   , MT.Plastic            ,  7* U4);
-		OM.data(MD.MFR, "record.blank"                      , 1,   0, MT.Plastic            ,  U * 8, MT.Paper              ,  U * 1);
-		OM.data(MD.MFR, "ruler"                             , 1,   0, MT.Plastic            ,  U * 2, MT.Paper              ,  U * 1);
-		OM.data(MD.MFR, "straw"                             , 1,   0, MT.Plastic            ,  U * 4);
-		OM.data(MD.MFR, "tank"                              , 1,   0, MT.Plastic            ,  U * 7);
-		OM.data(MD.MFR, "plastic.bag"                       , 1,   0, MT.Plastic            ,  U * 2);
-		OM.data(MD.MFR, "plastic.cup"                       , 1,   0, MT.Plastic            , 3* U16);
-		OM.dat2(MD.MFR, "plastic.helm"                      , 1     , MT.Plastic            ,  U * 5);
-		OM.dat2(MD.MFR, "plastic.chest"                     , 1     , MT.Plastic            ,  U * 8);
-		OM.dat2(MD.MFR, "plastic.legs"                      , 1     , MT.Plastic            ,  U * 7);
-		OM.dat2(MD.MFR, "plastic.boots"                     , 1     , MT.Plastic            ,  U * 4);
-		OM.dat2(MD.MFR, "hammer"                            , 1     , MT.Plastic            ,  U * 3, ANY.Wood      ,  U * 1);
+		OM.data(MD.MFR, "upgrade.radius"                    , 1,   0, MT.Lapis              ,  U * 3, ANY.Plastic           ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
+		OM.data(MD.MFR, "upgrade.radius"                    , 1,   1, MT.Sn                 ,  U * 3, ANY.Plastic           ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
+		OM.data(MD.MFR, "upgrade.radius"                    , 1,   2, ANY.Fe                ,  U * 3, ANY.Plastic           ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
+		OM.data(MD.MFR, "upgrade.radius"                    , 1,   3, ANY.Cu                ,  U * 3, ANY.Plastic           ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
+		OM.data(MD.MFR, "upgrade.radius"                    , 1,   4, MT.Bronze             ,  U * 3, ANY.Plastic           ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
+		OM.data(MD.MFR, "upgrade.radius"                    , 1,   5, MT.Ag                 ,  U * 3, ANY.Plastic           ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
+		OM.data(MD.MFR, "upgrade.radius"                    , 1,   6, MT.Au                 , 28* U9, ANY.Plastic           ,  U * 3, MT.Redstone           ,  U * 2);
+		OM.data(MD.MFR, "upgrade.radius"                    , 1,   7, ANY.Quartz            ,  U * 3, ANY.Plastic           ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
+		OM.data(MD.MFR, "upgrade.radius"                    , 1,   8, ANY.Diamond           ,  U * 3, ANY.Plastic           ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
+		OM.data(MD.MFR, "upgrade.radius"                    , 1,   9, MT.Pt                 ,  U * 3, ANY.Plastic           ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
+		OM.data(MD.MFR, "upgrade.radius"                    , 1,  10, ANY.Emerald           ,  U * 3, ANY.Plastic           ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
+		OM.data(MD.MFR, "upgrade.radius"                    , 1,  11, ANY.Stone             ,  U * 3, ANY.Plastic           ,  U * 3, MT.Redstone           ,  U * 2, MT.Au             ,  U9);
+		OM.data(MD.MFR, "syringe.empty"                     , 1,   0, ANY.Fe                ,  U * 1, ANY.Plastic           ,  U * 4, ANY.Rubber            ,  U * 1);
+		OM.data(MD.MFR, "syringe.health"                    , 1,   0, ANY.Fe                ,  U * 1, ANY.Plastic           ,  U * 4, ANY.Rubber            ,  U * 1);
+		OM.data(MD.MFR, "syringe.growth"                    , 1,   0, ANY.Fe                ,  U * 1, ANY.Plastic           ,  U * 4, ANY.Rubber            ,  U * 1);
+		OM.data(MD.MFR, "syringe.cure"                      , 1,   0, ANY.Fe                ,  U * 1, ANY.Plastic           ,  U * 4, ANY.Rubber            ,  U * 1);
+		OM.data(MD.MFR, "syringe.slime"                     , 1,   0, ANY.Fe                ,  U * 1, ANY.Plastic           ,  U * 4, ANY.Rubber            ,  U * 1);
+		OM.data(MD.MFR, "syringe.zombie"                    , 1,   0, ANY.Fe                ,  U * 1, ANY.Plastic           ,  U * 4, ANY.Rubber            ,  U * 1);
+		OM.data(MD.MFR, "needlegun.ammo.empty"              , 1,   0, ANY.Fe                ,  U4   , ANY.Plastic           ,  7* U4);
+		OM.data(MD.MFR, "needlegun.ammo.fire"               , 1,   0, ANY.Fe                ,  U4   , ANY.Plastic           ,  7* U4);
+		OM.data(MD.MFR, "needlegun.ammo.lava"               , 1,   0, ANY.Fe                ,  U4   , ANY.Plastic           ,  7* U4);
+		OM.data(MD.MFR, "needlegun.ammo.pierce"             , 1,   0, ANY.Fe                ,  U4   , ANY.Plastic           ,  7* U4);
+		OM.data(MD.MFR, "needlegun.ammo.standard"           , 1,   0, ANY.Fe                ,  U4   , ANY.Plastic           ,  7* U4);
+		OM.data(MD.MFR, "needlegun.ammo.anvil"              , 1,   0, ANY.Fe                ,  U4   , ANY.Plastic           ,  7* U4);
+		OM.data(MD.MFR, "needlegun.ammo.sewage"             , 1,   0, ANY.Fe                ,  U4   , ANY.Plastic           ,  7* U4);
+		OM.data(MD.MFR, "needlegun.ammo.sludge"             , 1,   0, ANY.Fe                ,  U4   , ANY.Plastic           ,  7* U4);
+		OM.data(MD.MFR, "record.blank"                      , 1,   0, ANY.Plastic           ,  U * 8, MT.Paper              ,  U * 1);
+		OM.data(MD.MFR, "ruler"                             , 1,   0, ANY.Plastic           ,  U * 2, MT.Paper              ,  U * 1);
+		OM.data(MD.MFR, "straw"                             , 1,   0, ANY.Plastic           ,  U * 4);
+		OM.data(MD.MFR, "tank"                              , 1,   0, ANY.Plastic           ,  U * 7);
+		OM.data(MD.MFR, "plastic.bag"                       , 1,   0, ANY.Plastic           ,  U * 2);
+		OM.data(MD.MFR, "plastic.cup"                       , 1,   0, ANY.Plastic           , 3* U16);
+		OM.dat2(MD.MFR, "plastic.helm"                      , 1     , ANY.Plastic           ,  U * 5);
+		OM.dat2(MD.MFR, "plastic.chest"                     , 1     , ANY.Plastic           ,  U * 8);
+		OM.dat2(MD.MFR, "plastic.legs"                      , 1     , ANY.Plastic           ,  U * 7);
+		OM.dat2(MD.MFR, "plastic.boots"                     , 1     , ANY.Plastic           ,  U * 4);
+		OM.dat2(MD.MFR, "hammer"                            , 1     , ANY.Plastic           ,  U * 3, ANY.Wood      ,  U * 1);
 		
 		
 		OM.data(MD.RC, "part.gear"                          , 1,   3, MT.Sn                 ,  U * 2);
@@ -2008,9 +2008,9 @@ public class LoaderItemData implements Runnable {
 		OM.data(MD.BOTA, "livingrock1Stairs"                , 1,   W, MT.STONES.Livingrock  ,  U2* 3);
 		OM.data(MD.BOTA, "livingrock0Slab"                  , 1,   W, MT.STONES.Livingrock  ,  U2);
 		OM.data(MD.BOTA, "livingrock1Slab"                  , 1,   W, MT.STONES.Livingrock  ,  U2);
-		OM.dat2(MD.BOTA, "terraAxe"                         , 1     , MT.Terrasteel         ,  U * 4, OM.stack(MT.Livingwood, OP.stick.mAmount * 2), OM.stack(ANY.Glowstone, U * 4));
+		OM.dat2(MD.BOTA, "terraAxe"                         , 1     , MT.Terrasteel         ,  U * 4, OM.stack(MT.Livingwood, OP.stick.mAmount * 2), OM.stack(ANY.Glowstone       , U * 4));
 		OM.dat2(MD.BOTA, "terraPick"                        , 1     , MT.Terrasteel         ,  U * 4, OM.stack(MT.Livingwood, OP.stick.mAmount * 2), OM.stack(MT.STONES.Livingrock, U * 8));
-		OM.dat2(MD.BOTA, "glassPick"                        , 1     , MT.Manasteel          ,  U * 1, OM.stack(MT.Livingwood, OP.stick.mAmount * 2), OM.stack(MT.Glass, U * 2));
+		OM.dat2(MD.BOTA, "glassPick"                        , 1     , MT.Manasteel          ,  U * 1, OM.stack(MT.Livingwood, OP.stick.mAmount * 2), OM.stack(MT.Glass            , U * 2));
 		
 		
 		OM.data(MD.WTCH, "perpetualice"                     , 1,   W, MT.Ice                ,  U);
@@ -2250,7 +2250,7 @@ public class LoaderItemData implements Runnable {
 		OM.data(ST.make(Items.speckled_melon, 1, 0)                 , MT.Au                 ,  OP.nugget.mAmount * 8);
 		OM.data(ST.make(Items.bucket, 1, W)                         , ANY.Fe                ,  U * 3);
 		OM.data(ST.make(Items.minecart, 1, 0)                       , ANY.Fe                ,  U * 5);
-		OM.data(ST.make(Items.iron_door, 1, W)                      , ANY.Fe                ,  U * 6);
+		OM.data(ST.make(Items.iron_door, 1, W)                      , ANY.Fe                ,  U * (MD.EtFu.mLoaded?2:6));
 		OM.data(ST.make(Items.cauldron, 1, W)                       , ANY.Fe                ,  U * 7);
 		OM.data(ST.make(Blocks.iron_bars, 1, W)                     , ANY.Fe                ,  3* U8);
 		OM.data(ST.make(Blocks.light_weighted_pressure_plate, 1, W) , MT.Au                 ,  U * 2);
