@@ -43,6 +43,7 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		CR.remove(ST.make(Items.reeds, 1, 0));
 		CR.remove(ST.make(Items.reeds, 1, 0), ST.make(Items.reeds, 1, 0), ST.make(Items.reeds, 1, 0));
 		CR.remove(ST.make(Blocks.cobblestone, 1, 0), ST.make(Items.quartz, 1, 0), NI, ST.make(Items.quartz, 1, 0), ST.make(Blocks.cobblestone, 1, 0));
+		CR.remove(ST.make(Blocks.glass, 1, 0), NI, ST.make(Blocks.glass, 1, 0), NI, ST.make(Blocks.glass, 1, 0));
 		CR.remove(ST.make(Items.blaze_rod, 1, 0));
 		CR.remove(ST.make(Items.bone, 1, 0));
 		
@@ -53,6 +54,8 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		CR.shaped(ST.make(Blocks.furnace, 1, 0), DEF_NCC, "XXX", "XFX", "XXX", 'X', cobblestone                , 'F', OD.craftingFirestarter);
 		CR.shaped(ST.make(Blocks.furnace, 1, 0), DEF_NCC, "XXX", "XFX", "XXX", 'X', stone.dat(MT.STONES.Basalt), 'F', OD.craftingFirestarter);
 		CR.shaped(ST.make(Blocks.furnace, 1, 0), DEF_NCC, "XXX", "XFX", "XXX", 'X', rockGt.dat(ANY.Stone)      , 'F', OD.craftingFirestarter);
+		
+		CR.shaped(ST.make(Items.glass_bottle, 3, 0), DEF_NCC, "G G", " G ", 'G', OD.glassColorless);
 		
 		CR.delate(ST.make(Blocks.enchanting_table, 1, 0));
 		CR.delate(ST.make(Blocks.ender_chest, 1, 0));
@@ -240,6 +243,7 @@ public class Loader_Recipes_Vanilla implements Runnable {
 			
 			CR.shaped(tItems[i].get(6), DEF, "X", "S", 'S', tSticks[i], 'X', IL.TF_Torchberries);
 			CR.shaped(tItems[i].get(4), DEF, "X", "S", 'S', tSticks[i], 'X', IL.NeLi_ShroomLight);
+			CR.shaped(tItems[i].get(4), DEF, "X", "S", 'S', tSticks[i], 'X', OD.itemTar);
 			CR.shaped(tItems[i].get(4), DEF, "X", "S", 'S', tSticks[i], 'X', OD.itemResin);
 			CR.shaped(tItems[i].get(1), DEF, "X", "S", 'S', tSticks[i], 'X', OD.itemGrassDry);
 			
@@ -369,6 +373,7 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		CR.shaped(ST.make(Items.leather                 , 2, 0), DEF                            ,         "Ak"       , 'A', ST.make(Items.leather_chestplate, 1, W));
 		CR.shaped(ST.make(Items.leather                 , 2, 0), DEF                            ,         "Ak"       , 'A', ST.make(Items.leather_leggings  , 1, W));
 		CR.shaped(ST.make(Items.leather                 , 1, 0), DEF                            ,         "Ak"       , 'A', ST.make(Items.leather_boots     , 1, W));
+		CR.shaped(ST.make(Items.leather                 , 1, 0), DEF                            ,         "Ak"       , 'A', OD.craftingFur);
 		
 		CR.shaped(ST.make(Items.lead                    , 1, 0), DEF_MIR                        , " SS", " GS", "S  ", 'S', OD.itemString, 'G', OD.itemTar);
 		CR.shaped(ST.make(Items.lead                    , 1, 0), DEF_MIR                        , " SS", " GS", "S  ", 'S', OD.itemString, 'G', OD.itemGlue);
@@ -466,6 +471,9 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		CR.delate(ST.make(Items.golden_carrot, 1, 0));
 		
 		CR.shapeless(ST.make(Items.arrow, 1, 0), DEF_NCC, new Object[] {OD.itemFlint, arrowGtWood.dat(MT.Empty)});
+		CR.shapeless(ST.make(Items.arrow, 2, 0), DEF_NCC, new Object[] {OD.itemFlint, arrowGtWood.dat(MT.Empty), arrowGtWood.dat(MT.Empty)});
+		CR.shapeless(ST.make(Items.arrow, 3, 0), DEF_NCC, new Object[] {OD.itemFlint, arrowGtWood.dat(MT.Empty), arrowGtWood.dat(MT.Empty), arrowGtWood.dat(MT.Empty)});
+		CR.shapeless(ST.make(Items.arrow, 4, 0), DEF_NCC, new Object[] {OD.itemFlint, arrowGtWood.dat(MT.Empty), arrowGtWood.dat(MT.Empty), arrowGtWood.dat(MT.Empty), arrowGtWood.dat(MT.Empty)});
 		CR.shapeless(arrowGtWood .mat(MT.Empty, 1), DEF_NCC, new Object[] {Items.arrow});
 		
 		CR.shaped(arrowGtWood    .mat(MT.Empty, 1), CR.DEF_NCC_MIR, " S", "F ", 'S', stick.dat(ANY.Wood), 'F', OD.craftingFeather);
@@ -501,6 +509,9 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		CR.shapeless(ST.make(Items.dye, 3, DYE_INDEX_LightGray  ), DEF, new Object[] {DYE_OREDICTS_MIXABLE[DYE_INDEX_Black  ], DYE_OREDICTS_MIXABLE[DYE_INDEX_White ], DYE_OREDICTS_MIXABLE[DYE_INDEX_White]});
 		CR.shapeless(ST.make(Items.dye, 3, DYE_INDEX_Magenta    ), DEF, new Object[] {DYE_OREDICTS_MIXABLE[DYE_INDEX_Blue   ], DYE_OREDICTS_MIXABLE[DYE_INDEX_Red   ], DYE_OREDICTS_MIXABLE[DYE_INDEX_Pink]});
 		CR.shapeless(ST.make(Items.dye, 4, DYE_INDEX_Magenta    ), DEF, new Object[] {DYE_OREDICTS_MIXABLE[DYE_INDEX_Blue   ], DYE_OREDICTS_MIXABLE[DYE_INDEX_Red   ], DYE_OREDICTS_MIXABLE[DYE_INDEX_Red], DYE_OREDICTS_MIXABLE[DYE_INDEX_White]});
+		
+		CR.shaped(toolHeadArrow.mat(MT.Steeleaf, 8), DEF, "X ", " x", 'X', ingot.dat(MT.Steeleaf));
+		CR.shaped(toolHeadArrow.mat(MT.Fireleaf, 8), DEF, "X ", " x", 'X', ingot.dat(MT.Fireleaf));
 		
 		CR.shaped(toolHeadArrow.mat(MT.Flint, 6), DEF, "fX", 'X', OD.itemFlint);
 		CR.shaped(toolHeadArrow.mat(MT.Flint, 4), DEF, "RX", 'X', OD.itemFlint, 'R', OD.itemRock);
@@ -538,16 +549,31 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		RM.smash(ST.make(Blocks.glass_pane           , 1, W), OM.dust(MT.Glass, U));
 		RM.smash(ST.make(Blocks.stained_glass_pane   , 1, W), OM.dust(MT.Glass, U));
 		
-		RM.Hammer .addRecipe1(T, 16,  16, ST.make(Blocks.brick_block      , 1, W), ST.make(Items.brick, 3, 0));
-		RM.Hammer .addRecipe1(T, 16,  16, ST.make(Blocks.double_stone_slab, 1, 4), ST.make(Items.brick, 3, 0));
-		RM.Hammer .addRecipe1(T, 16,  16, ST.make(Blocks.brick_stairs     , 1, W), ST.make(Items.brick, 5, 0));
-		RM.Hammer .addRecipe1(T, 16,  16, ST.make(Blocks.stone_slab       , 1, 4), ST.make(Items.brick, 1, 0));
-		RM.Crusher.addRecipe1(T, 16,  64, new long[] {10000, 9000, 8000, 7000}, ST.make(Blocks.brick_block      , 1, W), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0));
-		RM.Crusher.addRecipe1(T, 16,  64, new long[] {10000, 9000, 8000, 7000}, ST.make(Blocks.double_stone_slab, 1, 4), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0));
-		RM.Crusher.addRecipe1(T, 16,  64, new long[] {10000, 9000, 8000, 7000}, ST.make(Blocks.brick_stairs     , 1, W), ST.make(Items.brick, 2, 0), ST.make(Items.brick, 2, 0), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0));
-		RM.Crusher.addRecipe1(T, 16,  32, new long[] {10000, 8000            }, ST.make(Blocks.stone_slab       , 1, 4), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0));
+		RM.Hammer .addRecipe1(T, 16,  16, ST.make(Blocks.brick_block        , 1, W), ST.make(Items.brick, 3, 0));
+		RM.Hammer .addRecipe1(T, 16,  16, ST.make(Blocks.double_stone_slab  , 1, 4), ST.make(Items.brick, 3, 0));
+		RM.Hammer .addRecipe1(T, 16,  16, ST.make(Blocks.brick_stairs       , 1, W), ST.make(Items.brick, 2, 0));
+		RM.Hammer .addRecipe1(T, 16,  16, ST.make(Blocks.stone_slab         , 1, 4), ST.make(Items.brick, 1, 0));
+		RM.Crusher.addRecipe1(T, 16,  64, new long[] {10000, 9000, 8000, 7000}, ST.make(Blocks.brick_block        , 1, W), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0));
+		RM.Crusher.addRecipe1(T, 16,  64, new long[] {10000, 9000, 8000, 7000}, ST.make(Blocks.double_stone_slab  , 1, 4), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0));
+		RM.Crusher.addRecipe1(T, 16,  64, new long[] {10000, 9000, 8000      }, ST.make(Blocks.brick_stairs       , 1, W), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0));
+		RM.Crusher.addRecipe1(T, 16,  32, new long[] {10000, 8000            }, ST.make(Blocks.stone_slab         , 1, 4), ST.make(Items.brick, 1, 0), ST.make(Items.brick, 1, 0));
+		
+		RM.Hammer .addRecipe1(T, 16,  16, ST.make(Blocks.nether_brick       , 1, W), ST.make(Items.netherbrick, 3, 0));
+		RM.Hammer .addRecipe1(T, 16,  16, ST.make(Blocks.double_stone_slab  , 1, 6), ST.make(Items.netherbrick, 3, 0));
+		RM.Hammer .addRecipe1(T, 16,  16, ST.make(Blocks.nether_brick_stairs, 1, W), ST.make(Items.netherbrick, 2, 0));
+		RM.Hammer .addRecipe1(T, 16,  16, ST.make(Blocks.nether_brick_fence , 1, W), ST.make(Items.netherbrick, 2, 0));
+		RM.Hammer .addRecipe1(T, 16,  16, ST.make(Blocks.stone_slab         , 1, 6), ST.make(Items.netherbrick, 1, 0));
+		RM.Crusher.addRecipe1(T, 16,  64, new long[] {10000, 9000, 8000, 7000}, ST.make(Blocks.nether_brick       , 1, W), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0));
+		RM.Crusher.addRecipe1(T, 16,  64, new long[] {10000, 9000, 8000, 7000}, ST.make(Blocks.double_stone_slab  , 1, 6), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0));
+		RM.Crusher.addRecipe1(T, 16,  64, new long[] {10000, 9000, 8000      }, ST.make(Blocks.nether_brick_stairs, 1, W), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0));
+		RM.Crusher.addRecipe1(T, 16,  64, new long[] {10000, 9000, 8000      }, ST.make(Blocks.nether_brick_fence , 1, W), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0));
+		RM.Crusher.addRecipe1(T, 16,  32, new long[] {10000, 8000            }, ST.make(Blocks.stone_slab         , 1, 6), ST.make(Items.netherbrick, 1, 0), ST.make(Items.netherbrick, 1, 0));
 		
 		RM.glowstone(ST.make(Blocks.glowstone, 1, 0), MT.Glowstone);
+		
+		RM.moss    (ST.make(Blocks.cobblestone, 1, 0), ST.make(Blocks.mossy_cobblestone, 1, 0));
+		RM.moss    (ST.make(Blocks.stonebrick , 1, 0), ST.make(Blocks.stonebrick, 1, 1));
+		RM.growmoss(ST.make(Blocks.stonebrick , 1, 2), ST.make(Blocks.stonebrick, 1, 1));
 		
 		for (OreDictMaterial tMaterial : ANY.Wood.mToThis) {
 		RM.sawing(16,  16, F,   3, stick.mat(tMaterial, 1), bolt.mat(tMaterial, 4));
@@ -732,7 +758,7 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		for (OreDictMaterial tMat2 : ANY.Fe.mToThis) if (tMat2 != MT.Enori)
 		RM.RollBender   .addRecipe1(T, 16,  256, plateCurved.mat(tMat2, 3), ST.make(Items.bucket, 1, 0));
 		
-		RM.Chisel       .addRecipe1(T, 16,   16, ST.make(Blocks.stone, 1, W), ST.make(Blocks.stonebrick, 1, 3));
+		RM.Chisel       .addRecipe1(T, 16,   16, ST.make(Blocks.stone     , 1, W), ST.make(Blocks.stonebrick, 1, 3));
 		RM.Chisel       .addRecipe1(T, 16,   16, ST.make(Blocks.stonebrick, 1, 0), ST.make(Blocks.stonebrick, 1, 2));
 		
 		
@@ -926,8 +952,13 @@ public class Loader_Recipes_Vanilla implements Runnable {
 		
 		RM.unbox(IL.Plank.get(3), ST.make(Blocks.bookshelf, 1, W), ST.make(Items.book, 3, 0));
 		
-		RM.pack(ST.make(Items.brick, 4, W), ST.make(Blocks.brick_block, 1, 0));
-		RM.pack(ST.make(Items.netherbrick, 4, W), ST.make(Blocks.nether_brick, 1, 0));
+		RM.pack(ST.make(Items.brick      , 2, W), ST.make(Blocks.stone_slab         , 1, 4));
+		RM.pack(ST.make(Items.brick      , 3, W), ST.make(Blocks.brick_stairs       , 1, 0));
+		RM.pack(ST.make(Items.brick      , 4, W), ST.make(Blocks.brick_block        , 1, 0));
+		
+		RM.pack(ST.make(Items.netherbrick, 2, W), ST.make(Blocks.stone_slab         , 1, 6));
+		RM.pack(ST.make(Items.netherbrick, 3, W), ST.make(Blocks.nether_brick_stairs, 1, 0));
+		RM.pack(ST.make(Items.netherbrick, 4, W), ST.make(Blocks.nether_brick       , 1, 0));
 		
 		RM.generify(plantGtFiber.mat(MT.Black    , 1), ST.make(Items.string, 1, 0));
 		RM.generify(plantGtFiber.mat(MT.Red      , 1), ST.make(Items.string, 1, 0));

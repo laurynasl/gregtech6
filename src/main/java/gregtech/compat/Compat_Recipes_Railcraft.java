@@ -85,11 +85,17 @@ public class Compat_Recipes_Railcraft extends CompatMods {
 		CR.shaped(ST.make(MD.RC, "machine.beta"           , 1,  8), tBits | MIR                                           , "PPP"          , tHammer+"G"+tWrench, "OTO"              , 'P', OP.plate.dat(ANY.Fe)                     , 'O', ST.make(MD.RC, "part.gear", 1, 1), 'G', OD.blockGlassColorless, 'T', OD.craftingPiston);
 		CR.shaped(ST.make(MD.RC, "machine.beta"           , 1,  9), tBits | MIR                                           , "PPP"          , tHammer+"G"+tWrench, "OTO"              , 'P', OP.plate.dat(ANY.Steel)                  , 'O', ST.make(MD.RC, "part.gear", 1, 2), 'G', OD.blockGlassColorless, 'T', OD.craftingPiston);
 		CR.shaped(ST.make(MD.RC, "machine.beta"           , 1, 10), tBits                                                 , " E "          , " O "              , "OIO"              , 'I', tIngot.dat(MT.Au)                        , 'E', OP.gem.dat(MT.EnderPearl), 'O', OP.blockSolid.dat(MT.Obsidian));
-		CR.shaped(ST.make(MD.RC, "machine.beta"           , 1, 11), tBits                                                 , "OOO"          , "OEO"              , "OOO"              , 'E', OP.gem.dat(MT.EnderPearl)                , 'O', OP.blockSolid.dat(MT.Obsidian));
 		CR.shaped(ST.make(MD.RC, "machine.beta"           , 1, 12), tBits                                                 , "GPG"          , "PAP"              , "GPG"              , 'P', OD.craftingPiston                        , 'A', OD.craftingAnvil, 'G', ST.make(MD.RC, "part.gear", 1, 2));
 		CR.shaped(ST.make(MD.RC, "machine.beta"           , 8, 13), tBits | DEL_IF_NO_DYES                                , tHammer+"PP"   , tWrench+"PP"                            , 'P', OP.plate.dat(ANY.Steel)                  );
 		CR.shaped(ST.make(MD.RC, "machine.beta"           , 8, 14), tBits | DEL_IF_NO_DYES                                , "GPG"          , "PGP"              , "GPG"              , 'P', OP.plate.dat(ANY.Steel)                  , 'G', OD.paneGlassColorless);
 		CR.shaped(ST.make(MD.RC, "machine.beta"           , 8, 15), tBits | DEL_IF_NO_DYES                                , "BPB"          , "PLP"              , "BPB"              , 'P', OP.plate.dat(ANY.Steel)                  , 'B', Blocks.iron_bars, 'L', OD.lever);
+		
+		if (ConfigsGT.RECIPES.get(ConfigCategories.Recipes.disabledrecipes, "railcraft-void-chests", T)) {
+			ItemsGT.RECIPE_REMOVED_USE_TRASH_BIN_INSTEAD.add(ST.make(MD.RC, "machine.beta", 1, 11));
+			CR.delate(MD.RC, "machine.beta", 11);
+		} else {
+			CR.shaped(ST.make(MD.RC, "machine.beta", 1, 11), tBits, "OOO", "OEO", "OOO", 'E', OP.gem.dat(MT.EnderPearl), 'O', OP.blockSolid.dat(MT.Obsidian));
+		}
 		
 		CR.shaped(IL.RC_ShuntingWire.get(1)                       , DEF_REV                                               , "P"+tHammer    , "WI"                                    , 'P', OP.casingSmall.dat(MT.Pb)                , 'W', OP.wireGt01.dat(ANY.Cu), 'I', OD.itemInsulator);
 		CR.shaped(IL.RC_ShuntingWire.get(1)                       , DEF                                                   , "P"+tHammer    , "W "                                    , 'P', OP.casingSmall.dat(MT.Pb)                , 'W', OP.cableGt01.dat(ANY.Cu));
@@ -143,11 +149,17 @@ public class Compat_Recipes_Railcraft extends CompatMods {
 		
 		RM.Injector.addRecipe1(T, 16, 4096, IL.RC_Firestone_Refined.getWithMeta(1, 5000), FL.Coolant_IC2_Hot.make(20000000), FL.Coolant_IC2  .make(20000000), IL.RC_Firestone_Refined.get(1));
 		RM.Injector.addRecipe1(T, 16, 8192, IL.RC_Firestone_Cracked.getWithMeta(1, 5000), FL.Coolant_IC2_Hot.make(20000000), FL.Coolant_IC2  .make(20000000), IL.RC_Firestone_Cracked.get(1));
+		RM.Injector.addRecipe1(T, 16, 4096, IL.RC_Firestone_Refined.getWithMeta(1, 4999), FL.Coolant_IC2_Hot.make(19996000), FL.Coolant_IC2  .make(19996000), IL.RC_Firestone_Refined.get(1));
+		RM.Injector.addRecipe1(T, 16, 8192, IL.RC_Firestone_Cracked.getWithMeta(1, 4999), FL.Coolant_IC2_Hot.make(19996000), FL.Coolant_IC2  .make(19996000), IL.RC_Firestone_Cracked.get(1));
 		RM.Injector.addRecipe1(T, 16, 2048, IL.RC_Firestone_Refined.getWithMeta(1, 5000), FL.Lava           .make( 5000000), FL.Lava_Pahoehoe.make( 5000000), IL.RC_Firestone_Refined.get(1));
 		RM.Injector.addRecipe1(T, 16, 4096, IL.RC_Firestone_Cracked.getWithMeta(1, 5000), FL.Lava           .make( 5000000), FL.Lava_Pahoehoe.make( 5000000), IL.RC_Firestone_Cracked.get(1));
+		RM.Injector.addRecipe1(T, 16, 2048, IL.RC_Firestone_Refined.getWithMeta(1, 4999), FL.Lava           .make( 4999000), FL.Lava_Pahoehoe.make( 4999000), IL.RC_Firestone_Refined.get(1));
+		RM.Injector.addRecipe1(T, 16, 4096, IL.RC_Firestone_Cracked.getWithMeta(1, 4999), FL.Lava           .make( 4999000), FL.Lava_Pahoehoe.make( 4999000), IL.RC_Firestone_Cracked.get(1));
 		if (FL.Lava_Volcanic.exists()) {
 		RM.Injector.addRecipe1(T, 16,  128, IL.RC_Firestone_Refined.getWithMeta(1, 5000), FL.Lava_Volcanic  .make(  312500), FL.Lava_Pahoehoe.make(  312500), IL.RC_Firestone_Refined.get(1));
 		RM.Injector.addRecipe1(T, 16,  256, IL.RC_Firestone_Cracked.getWithMeta(1, 5000), FL.Lava_Volcanic  .make(  312500), FL.Lava_Pahoehoe.make(  312500), IL.RC_Firestone_Cracked.get(1));
+		RM.Injector.addRecipe1(T, 16,  128, IL.RC_Firestone_Refined.getWithMeta(1, 4999), FL.Lava_Volcanic  .make(  312500), FL.Lava_Pahoehoe.make(  312500), IL.RC_Firestone_Refined.get(1));
+		RM.Injector.addRecipe1(T, 16,  256, IL.RC_Firestone_Cracked.getWithMeta(1, 4999), FL.Lava_Volcanic  .make(  312500), FL.Lava_Pahoehoe.make(  312500), IL.RC_Firestone_Cracked.get(1));
 		}
 		
 		

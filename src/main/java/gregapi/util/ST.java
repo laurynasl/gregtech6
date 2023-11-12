@@ -21,10 +21,7 @@ package gregapi.util;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import gregapi.block.ItemBlockBase;
-import gregapi.code.IItemContainer;
-import gregapi.code.ItemStackContainer;
-import gregapi.code.ItemStackSet;
-import gregapi.code.ModData;
+import gregapi.code.*;
 import gregapi.data.IL;
 import gregapi.data.MD;
 import gregapi.data.MT;
@@ -38,6 +35,7 @@ import gregapi.oredict.OreDictItemData;
 import gregapi.oredict.OreDictManager;
 import gregapi.tileentity.delegate.DelegatorTileEntity;
 import gregapi.tileentity.delegate.ITileEntityCanDelegate;
+import gregtech.worldgen.TwilightTreasureReplacer;
 import ic2.api.item.IC2Items;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -51,18 +49,19 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.IFluidContainerItem;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 import static gregapi.data.CS.*;
 
@@ -70,7 +69,7 @@ import static gregapi.data.CS.*;
  * @author Gregorius Techneticies
  */
 public class ST {
-	public static boolean TE_PIPES = F, BC_PIPES = F;
+	public static boolean TE_PIPES = F, BC_PIPES = F, TF_TREASURE = F;
 	
 	@SuppressWarnings("ResultOfMethodCallIgnored")
 	public static void checkAvailabilities() {
@@ -81,6 +80,10 @@ public class ST {
 		try {
 			buildcraft.api.transport.IInjectable.class.getCanonicalName();
 			BC_PIPES = T;
+		} catch(Throwable e) {/**/}
+		try {
+			twilightforest.TFTreasure.class.getCanonicalName();
+			TF_TREASURE = T;
 		} catch(Throwable e) {/**/}
 	}
 	
@@ -160,9 +163,11 @@ public class ST {
 	public static ItemStack meta (ItemStack aStack, long aMeta) {return aStack == null ? null : meta_(aStack, aMeta);}
 	public static ItemStack meta_(ItemStack aStack, long aMeta) {Items.feather.setDamage(aStack, (short)aMeta); return aStack;}
 	
-	public static byte size (ItemStack aStack) {return aStack == null || item_(aStack) == null || aStack.stackSize < 0 ? 0 : UT.Code.bindByte(aStack.stackSize);}
+	public static byte      size (ItemStack aStack) {return aStack == null || item_(aStack) == null || aStack.stackSize < 0 ? 0 : UT.Code.bindByte(aStack.stackSize);}
 	public static ItemStack size (long aSize, ItemStack aStack) {return aStack == null || item_(aStack) == null ? null : size_(aSize, aStack);}
 	public static ItemStack size_(long aSize, ItemStack aStack) {aStack.stackSize = (int)aSize; return aStack;}
+	
+	public static byte maxsize(ItemStack aStack) {return (byte)(aStack == null || item_(aStack) == null ? 64 : item_(aStack).getItemStackLimit(aStack));}
 	
 	public static ItemStack copy (ItemStack aStack) {return aStack == null || item_(aStack) == null ? null : copy_(aStack);}
 	public static ItemStack copy_(ItemStack aStack) {return aStack.copy();}
@@ -204,6 +209,11 @@ public class ST {
 	public static String regName (Block     aBlock) {return regName(item(aBlock));}
 	public static String regName (Item      aItem ) {return aItem == null ? null : regName_(aItem);}
 	public static String regName_(Item      aItem ) {return Item.itemRegistry.getNameForObject(aItem);}
+	
+	public static String regMeta (ItemStack aStack) {return invalid(aStack) ? "" : regName(item_(aStack))+":"+meta_(aStack);}
+	public static String regMeta (Block     aBlock) {return aBlock  == null ? "" : regName(item_(aBlock))+":0";}
+	public static String regMeta (Item      aItem ) {return aItem   == null ? "" : regName(aItem)+":0";}
+	public static String regMeta_(Item      aItem ) {return regName(aItem)+":0";}
 	
 	public static boolean ownedBy (ModData aMod, IBlockAccess aWorld, int aX, int aY, int aZ) {return aMod.mLoaded && ownedBy(aMod.mID, aWorld, aX, aY, aZ);}
 	public static boolean ownedBy (ModData aMod, ItemStack    aStack                        ) {return aMod.mLoaded && ownedBy(aMod.mID, aStack);}
@@ -267,21 +277,24 @@ public class ST {
 	}
 	
 	public static boolean use(Entity aPlayer, ItemStack aStack) {
-		return use(aPlayer, F, aStack, 1);
+		return use(aPlayer, F, T, aStack, 1);
 	}
 	public static boolean use(Entity aPlayer, ItemStack aStack, long aAmount) {
-		return use(aPlayer, F, aStack, aAmount);
+		return use(aPlayer, F, T, aStack, aAmount);
 	}
 	public static boolean use(Entity aPlayer, boolean aRemove, ItemStack aStack) {
-		return use(aPlayer, aRemove, aStack, 1);
+		return use(aPlayer, aRemove, T, aStack, 1);
 	}
 	public static boolean use(Entity aPlayer, boolean aRemove, ItemStack aStack, long aAmount) {
+		return use(aPlayer, aRemove, T, aStack, aAmount);
+	}
+	public static boolean use(Entity aPlayer, boolean aRemove, boolean aTriggerEvent, ItemStack aStack, long aAmount) {
 		if (UT.Entities.hasInfiniteItems(aPlayer)) return T;
 		if (aStack.stackSize < aAmount) return F;
 		aStack.stackSize -= aAmount;
 		if (!(aPlayer instanceof EntityPlayer)) return T;
 		if (aStack.stackSize <= 0) {
-			ForgeEventFactory.onPlayerDestroyItem((EntityPlayer)aPlayer, aStack);
+			if (aTriggerEvent) ForgeEventFactory.onPlayerDestroyItem((EntityPlayer)aPlayer, aStack);
 			if (aRemove) for (int i = 0; i < ((EntityPlayer)aPlayer).inventory.mainInventory.length; i++) {
 				if (((EntityPlayer)aPlayer).inventory.mainInventory[i] == aStack) {
 					((EntityPlayer)aPlayer).inventory.mainInventory[i] = null;
@@ -323,6 +336,8 @@ public class ST {
 	public static boolean hasValid(ItemStack... aStacks) {if (aStacks != null) for (ItemStack aStack : aStacks) if (valid(aStack)) return T; return F;}
 	
 	
+	public static ItemStackSet<ItemStackContainer> hashset(ItemStack... aStacks) {return new ItemStackSet<>(aStacks);}
+	public static ArrayListNoNulls<ItemStack> arraylist(ItemStack... aStacks) {return new ArrayListNoNulls<>(F, aStacks);}
 	public static ItemStack[] array(ItemStack... aStacks) {return aStacks;}
 	
 	public static ItemStack make_(Item  aItem , long aSize, long aMeta) {return new ItemStack(aItem , UT.Code.bindInt(aSize), UT.Code.bindShort(aMeta));}
@@ -781,7 +796,7 @@ public class ST {
 		return torch(aBlock, 1); // that "1" is totally not hacky at all. XD
 	}
 	public static boolean torch(Block aBlock, long aMeta) {
-		if (IL.TFC_Torch.equal(aBlock) || IL.NePl_Torch.equal(aBlock) || IL.GC_Torch_Glowstone.equal(aBlock) || IL.AETHER_Torch_Ambrosium.equal(aBlock) || (aMeta == 1 && IL.TC_Block_Air.equal(aBlock))) return T;
+		if (IL.TFC_Torch.equal(aBlock) || IL.NePl_Torch.equal(aBlock) || IL.GC_Torch_Glowstone.equal(aBlock) || IL.AETHER_Torch_Ambrosium.equal(aBlock) || IL.AE_Torch_Quartz.equal(aBlock) || IL.TF_Firefly_Jar.equal(aBlock) || IL.TF_Firefly.equal(aBlock) || (aMeta == 1 && IL.TC_Block_Air.equal(aBlock))) return T;
 		return aBlock instanceof BlockTorch && !(aBlock instanceof BlockRedstoneTorch);
 	}
 	public static boolean torch(ItemStack aStack) {
@@ -791,13 +806,13 @@ public class ST {
 	public static boolean ammo(ItemStack aStack) {
 		if (ItemsGT.AMMO_ITEMS.contains(aStack, T)) return T;
 		OreDictItemData tData = OM.anydata(aStack);
-		return tData != null && tData.mPrefix != null && tData.mPrefix.contains(TD.Prefix.AMMO_ALIKE);
+		return tData != null && tData.nonemptyData() && tData.mPrefix.contains(TD.Prefix.AMMO_ALIKE);
 	}
 	
 	public static boolean nonautoinsert(ItemStack aStack) {
 		if (ItemsGT.NON_AUTO_INSERT_ITEMS.contains(aStack, T) || torch(aStack)) return T;
 		OreDictItemData tData = OM.anydata(aStack);
-		return tData != null && tData.mPrefix != null && tData.mPrefix.contains(TD.Prefix.AMMO_ALIKE);
+		return tData != null && tData.nonemptyData() && tData.mPrefix.contains(TD.Prefix.AMMO_ALIKE);
 	}
 	
 	public static boolean listed(Collection<ItemStack> aList, ItemStack aStack, boolean aTrueIfListEmpty, boolean aInvertFilter) {
@@ -809,6 +824,17 @@ public class ST {
 		ItemStack tStack = null;
 		while (tIterator.hasNext()) if ((tStack = tIterator.next())!= null && equal(aStack, tStack)) return !aInvertFilter;
 		return aInvertFilter;
+	}
+	
+	public static boolean ingredable(ItemStack aStack) {
+		if (invalid(aStack)) return F;
+		if (item_(aStack) instanceof IItemGTContainerTool) return F;
+		if (item_(aStack) instanceof IFluidContainerItem && ((IFluidContainerItem)item_(aStack)).getCapacity(aStack) > 0) return F;
+		if (item_(aStack).hasContainerItem(aStack)) return F;
+		if (ItemsGT.CONTAINER_DURABILITY.contains(aStack, T)) return F;
+		if (IL.Cell_Empty.equal(aStack, F, T) || IL.SC2_Teapot_Empty.equal(aStack, F, T) || IL.SC2_Teacup_Empty.equal(aStack, F, T)) return T;
+		if (IL.Cell_Empty.equal(aStack, T, T) || IL.SC2_Teapot_Empty.equal(aStack, T, T) || IL.SC2_Teacup_Empty.equal(aStack, T, T)) return F;
+		return T;
 	}
 	
 	public static ItemStack container(ItemStack aStack, boolean aCheckIFluidContainerItems) {
@@ -854,6 +880,11 @@ public class ST {
 		return item_(aStack) == Items.rotten_flesh || OM.materialcontained(aStack, MT.MeatRotten, MT.FishRotten);
 	}
 	
+	public static boolean edible(ItemStack aStack) {
+		if (invalid(aStack)) return F;
+		if (item_(aStack) instanceof MultiItemRandom) return ((MultiItemRandom)item_(aStack)).mFoodStats.get(meta_(aStack)) != null;
+		return item_(aStack) instanceof ItemFood;
+	}
 	public static int food(ItemStack aStack) {
 		if (invalid(aStack)) return 0;
 		if (item_(aStack) instanceof ItemFood) {try {return ((ItemFood)item_(aStack)).func_150905_g(aStack);} catch(Throwable e) {return 1;}}
@@ -955,6 +986,62 @@ public class ST {
 	}
 	public static void hide(ItemStack aStack) {
 		if (aStack != null) try {codechicken.nei.api.API.hideItem(aStack);} catch(Throwable e) {/**/}
+	}
+	
+	public static boolean forceProperMaxStacksizes() {
+		Items.potionitem        .setMaxStackSize( 1);
+		Items.glass_bottle      .setMaxStackSize(64);
+		Items.bed               .setMaxStackSize(64);
+		Items.cake              .setMaxStackSize(64);
+		Items.wooden_door       .setMaxStackSize( 8);
+		Items.iron_door         .setMaxStackSize( 8);
+		Items.written_book      .setMaxStackSize(64);
+		Items.writable_book     .setMaxStackSize(64);
+		Items.enchanted_book    .setMaxStackSize(64);
+		return T;
+	}
+	
+	public static final List<String> LOOT_TABLES = new ArrayList<>();
+	
+	public static boolean generateLoot(Random aRandom, String aLoot, IInventory aInventory) {
+		try {
+			if (aLoot.startsWith("twilightforest:")) {
+				if (!TF_TREASURE) return F;
+				TwilightTreasureReplacer.generate(aInventory, aLoot);
+			} else {
+				WeightedRandomChestContent.generateChestContents(aRandom, ChestGenHooks.getItems(aLoot, aRandom), aInventory, ChestGenHooks.getCount(aLoot, aRandom));
+			}
+			for (int i = 0, j = aInventory.getSizeInventory(); i < j; i++) {
+				ItemStack tStack = aInventory.getStackInSlot(i);
+				if (invalid(tStack)) continue;
+				if (IL.TC_Gold_Coin.exists()) {
+					if (item_(tStack) == Items.gold_nugget) {
+						set(tStack, IL.TC_Gold_Coin.get(tStack.stackSize));
+					}
+					if (item_(tStack) == Items.gold_ingot && tStack.stackSize <= 7) {
+						set(tStack, IL.TC_Gold_Coin.get(tStack.stackSize * 9L));
+					}
+				}
+				if (IL.EtFu_Sus_Stew.exists() && item_(tStack) == Items.mushroom_stew) {
+					NBTTagList tList = new NBTTagList();
+					switch(RNGSUS.nextInt(9)) {
+					case  1: tList.appendTag(UT.NBT.make("EffectId", Potion.field_76443_y .id, "EffectDuration",   7)); break;
+					case  2: tList.appendTag(UT.NBT.make("EffectId", Potion.fireResistance.id, "EffectDuration",  80)); break;
+					case  3: tList.appendTag(UT.NBT.make("EffectId", Potion.nightVision   .id, "EffectDuration", 100)); break;
+					case  4: tList.appendTag(UT.NBT.make("EffectId", Potion.weakness      .id, "EffectDuration", 180)); break;
+					case  5: tList.appendTag(UT.NBT.make("EffectId", Potion.regeneration  .id, "EffectDuration", 160)); break;
+					case  6: tList.appendTag(UT.NBT.make("EffectId", Potion.jump          .id, "EffectDuration", 120)); break;
+					case  7: tList.appendTag(UT.NBT.make("EffectId", Potion.poison        .id, "EffectDuration", 240)); break;
+					case  8: tList.appendTag(UT.NBT.make("EffectId", Potion.wither        .id, "EffectDuration", 160)); break;
+					default: tList.appendTag(UT.NBT.make("EffectId", Potion.blindness     .id, "EffectDuration", 160)); break;
+					}
+					nbt(set(tStack, IL.EtFu_Sus_Stew.get(tStack.stackSize)), UT.NBT.make("Effects", tList));
+				}
+				aInventory.setInventorySlotContents(i, update_(OM.get_(tStack)));
+			}
+			return T;
+		} catch(Throwable e) {e.printStackTrace(ERR);}
+		return F;
 	}
 	
 	/** Loads an ItemStack properly. */

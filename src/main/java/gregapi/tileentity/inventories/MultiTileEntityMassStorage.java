@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2022 GregTech-6 Team
+ * Copyright (c) 2023 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -107,6 +107,7 @@ public abstract class MultiTileEntityMassStorage extends TileEntityBase09FacingS
 		if (slotHas(1)) aList.add(Chat.YELLOW + slot(1).getDisplayName() + Chat.GRAY + ": " + Chat.WHITE + slot(1).stackSize);
 		aList.add(Chat.CYAN + LH.get("gt.multitileentity.massstorage.tooltip.1") + UT.Code.makeString(mMaxStorage));
 		aList.add(Chat.CYAN + LH.get("gt.multitileentity.massstorage.tooltip.2"));
+		aList.add(Chat.DGRAY + LH.get(LH.TOOL_TO_TAKE_PINCERS));
 		aList.add(Chat.DGRAY + LH.get(LH.TOOL_TO_TOGGLE_CUTTER));
 		aList.add(Chat.DGRAY + LH.get(LH.TOOL_TO_TOGGLE_SCREWDRIVER));
 		aList.add(Chat.DGRAY + LH.get(LH.TOOL_TO_TOGGLE_AUTO_OUTPUTS_MONKEY_WRENCH));
@@ -125,6 +126,32 @@ public abstract class MultiTileEntityMassStorage extends TileEntityBase09FacingS
 		long rReturn = super.onToolClick2(aTool, aRemainingDurability, aQuality, aPlayer, aChatReturn, aPlayerInventory, aSneaking, aStack, aSide, aHitX, aHitY, aHitZ);
 		if (rReturn > 0) return rReturn;
 		if (isClientSide()) return 0;
+		if (aTool.equals(TOOL_pincers)) {
+			if ((mMode & B[3]) != 0) return 0;
+			long rCount = 0;
+			if (mPartialUnits > 0) {
+				UT.Inventories.addStackToPlayerInventoryOrDrop(aPlayer instanceof EntityPlayer ? (EntityPlayer)aPlayer : null, getPartialStack(), worldObj, xCoord + OFFX[mFacing], yCoord, zCoord + OFFZ[mFacing]);
+				mPartialUnits = 0;
+				rCount += 10;
+			}
+			if (slotHas(0)) for (int j = 9; j < 36; j++) {
+				rCount += ST.move(this, aPlayerInventory, 0, j);
+				if (!slotHas(0)) break;
+			}
+			if (slotHas(1)) for (int j = 9; j < 36; j++) {
+				rCount += ST.move(this, aPlayerInventory, 0, j);
+				if (!slotHas(1)) break;
+			}
+			// Nothing was done.
+			if (rCount <= 0) return 1;
+			// Make Sound and update Player Inventory if Items got transferred.
+			UT.Sounds.send(SFX.MC_COLLECT, this);
+			ST.update(aPlayer);
+			// Update Mass Storage itself too.
+			updateClientData();
+			updateInventory();
+			return rCount;
+		}
 		if (aTool.equals(TOOL_softhammer)) {
 			if ((mMode & B[3]) != 0) return 0;
 			if (slotHas(0)) {
@@ -414,9 +441,9 @@ public abstract class MultiTileEntityMassStorage extends TileEntityBase09FacingS
 	public ItemStackSet<ItemStackContainer> getLogisticsFilter(byte aSide) {
 		if (!slotHas(1)) return mLogisticsCache = null;
 		if (mLogisticsCache != null) return mLogisticsCache;
-		mLogisticsCache = new ItemStackSet<>(slot(1));
+		mLogisticsCache = ST.hashset(slot(1));
 		OreDictItemData tData = OM.data_(slot(1));
-		if (tData != null && tData.hasValidPrefixMaterialData()) {
+		if (tData != null && tData.validData()) {
 			if (tData.mPrefix.contains(TD.Prefix.DUST_BASED)) {
 				for (ItemStack tStack : OreDictManager.getOres(OP.blockDust             , tData.mMaterial, F)) mLogisticsCache.add(tStack);
 				for (ItemStack tStack : OreDictManager.getOres(OP.dust                  , tData.mMaterial, F)) mLogisticsCache.add(tStack);
@@ -568,7 +595,7 @@ public abstract class MultiTileEntityMassStorage extends TileEntityBase09FacingS
 	public ItemStack getPartialStack() {
 		if (mPartialUnits <= 0) return NI;
 		OreDictItemData mData = OM.anydata(slot(1));
-		if (mData == null || !mData.hasValidPrefixData()) return NI;
+		if (mData == null || !mData.validPrefix()) return NI;
 		
 		if (mData.mPrefix.contains(TD.Prefix.DUST_BASED)) return OM.dust(mData.mMaterial.mMaterial, mPartialUnits);
 		if (mData.mPrefix.contains(TD.Prefix.INGOT_BASED)) return OM.ingot(mData.mMaterial.mMaterial, mPartialUnits);
@@ -604,7 +631,7 @@ public abstract class MultiTileEntityMassStorage extends TileEntityBase09FacingS
 	
 	public long getUnitAmount(ItemStack aStack) {
 		OreDictItemData mData = OM.anydata_(slot(1)), aData = OM.anydata_(aStack);
-		if (mData != null && aData != null && mData.hasValidPrefixData() && aData.hasValidPrefixData() && mData.mMaterial.mMaterial == aData.mMaterial.mMaterial && mPartialUnits < getUnitAmount(mData.mPrefix)) {
+		if (mData != null && aData != null && mData.validPrefix() && aData.validPrefix() && mData.mMaterial.mMaterial == aData.mMaterial.mMaterial && mPartialUnits < getUnitAmount(mData.mPrefix)) {
 			if (mData.mPrefix.contains(TD.Prefix.DUST_BASED)) {
 				return aData.mPrefix.contains(TD.Prefix.DUST_BASED) ? aData.mPrefix.mAmount : 0;
 			}
@@ -656,7 +683,7 @@ public abstract class MultiTileEntityMassStorage extends TileEntityBase09FacingS
 		ItemStack tContent = slot(1);
 		if (mPartialUnits > 0 && slotHas(1) && tContent.stackSize < tMaxStorage) {
 			OreDictItemData mData = OM.anydata_(tContent);
-			if (mData != null && mData.hasValidPrefixData()) {
+			if (mData != null && mData.validPrefix()) {
 				long tTargetAmount = getUnitAmount(mData.mPrefix);
 				if (mPartialUnits >= tTargetAmount) {
 					ItemStack tStack = ST.amount(mPartialUnits / tTargetAmount, tContent);

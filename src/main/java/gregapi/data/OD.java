@@ -20,7 +20,14 @@
 package gregapi.data;
 
 import gregapi.oredict.OreDictManager;
+import gregapi.util.ST;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.List;
+
+import static gregapi.data.CS.F;
+import static gregapi.data.CS.T;
 
 /**
  * @author Gregorius Techneticies
@@ -63,6 +70,8 @@ public enum OD {
 	, container250soymilk
 	, container1000honey
 	, container250honey
+	, container1000juice
+	, container250juice
 	, container1000seedoil
 	, container250seedoil
 	, container1000creosote
@@ -93,6 +102,8 @@ public enum OD {
 	, container250slimeblue
 	, container250slimepink
 	, container250slime
+	, container1000tar
+	, container250tar
 	, aquaRegia
 	, sulfuricAcid
 	, enderChest
@@ -143,6 +154,9 @@ public enum OD {
 	, flowerWither
 	, bamboo
 	, record
+	, dropHoney
+	, dropHoneydew
+	, dropRoyalJelly
 	, beeComb
 	, beeCombCrossbred
 	, hardenedClay
@@ -153,19 +167,23 @@ public enum OD {
 	, slimeballRice
 	, slimeballSwet
 	, slimeballBorax
+	, slimeballAnimal
 	, itemGrassTall
 	, itemGrass
 	, itemGrassDry
 	, itemGrassMoldy
 	, itemGrassRotten
+	, cropGrain
 	, baleGrass
 	, baleGrassDry
 	, baleGrassMoldy
 	, baleGrassRotten
 	, itemKey
 	, itemMud
+	, itemMudBrick
 	, itemTar
 	, itemMoss
+	, itemCoral
 	, itemSlag
 	, itemGlue
 	, itemBlood
@@ -187,7 +205,7 @@ public enum OD {
 	, itemCompressedCarbon
 	, itemClay
 	, itemEgg
-	, itemFeather
+	, itemFeather, chocobofeather
 	, itemLeather
 	, itemLeatherTreated
 	, itemLeatherHardened
@@ -195,6 +213,12 @@ public enum OD {
 	, itemSkin
 	, itemFur
 	, itemPelt
+	, itemTusk
+	, itemHoof
+	, itemHorn
+	, itemAntler
+	, itemMulch
+	, itemCompost
 	, itemFertilizer
 	, itemPlantRemains
 	, itemGhastTear
@@ -207,10 +231,14 @@ public enum OD {
 	, fishtrapBait
 	, obsidian
 	, cryingObsidian
+	, glass
+	, glassColorless
 	, paneGlass
 	, paneGlassColorless
 	, blockGlass
 	, blockGlassColorless
+	, blockMud
+	, blockMudBricks
 	, blockClay
 	, blockCandle
 	, blockTorch
@@ -220,10 +248,18 @@ public enum OD {
 	, listAllmeatsubstitute
 	;
 	
+	public final List<ItemStack> mItems;
+	
 	OD() {
 		OreDictManager.INSTANCE.addKnownName(name());
+		mItems = OreDictionary.getOres(name());
 	}
 	
-	public boolean is (ItemStack aStack) {return OreDictManager.isItemStackInstanceOf (aStack, name());}
-	public boolean is_(ItemStack aStack) {return OreDictManager.isItemStackInstanceOf_(aStack, name());}
+	public boolean is(ItemStack aStack) {
+		return ST.valid(aStack) && is_(aStack);
+	}
+	public boolean is_(ItemStack aStack) {
+		for (ItemStack tOreStack : mItems) if (ST.equal(tOreStack, aStack, T)) return T;
+		return F;
+	}
 }

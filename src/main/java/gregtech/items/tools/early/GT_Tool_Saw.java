@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2022 GregTech-6 Team
+ * Copyright (c) 2023 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -21,8 +21,8 @@ package gregtech.items.tools.early;
 
 import gregapi.block.MaterialAdventure;
 import gregapi.block.misc.BlockBaseBars;
-import gregapi.data.CS.*;
 import gregapi.data.IL;
+import gregapi.data.MD;
 import gregapi.data.MT;
 import gregapi.data.OP;
 import gregapi.item.multiitem.MultiItemTool;
@@ -148,6 +148,12 @@ public class GT_Tool_Saw extends ToolStats {
 			aEvent.dropChance = 1.0F;
 			return 0;
 		}
+		if (aBlock == Blocks.bookshelf) {
+			aDrops.clear();
+			aDrops.add(ST.make(Blocks.bookshelf, 1, 0));
+			aEvent.dropChance = 1.0F;
+			return 0;
+		}
 		if ((aBlock.getMaterial() == Material.ice || aBlock.getMaterial() == Material.packedIce) && aDrops.isEmpty()) {
 			aDrops.add(ST.make(aBlock, 1, aMetaData));
 			aEvent.dropChance = 1.0F;
@@ -159,7 +165,7 @@ public class GT_Tool_Saw extends ToolStats {
 	@Override
 	public boolean isMinableBlock(Block aBlock, byte aMetaData) {
 		String tTool = aBlock.getHarvestTool(aMetaData);
-		return (tTool != null && (tTool.equalsIgnoreCase(TOOL_axe) || tTool.equalsIgnoreCase(TOOL_saw))) || aBlock instanceof BlockBaseBars || (aBlock instanceof BlockPane && aBlock.getMaterial() == Material.iron) || aBlock.getMaterial() == Material.leaves || aBlock.getMaterial() == Material.vine || aBlock.getMaterial() == Material.plants || aBlock.getMaterial() == Material.gourd || aBlock.getMaterial() == Material.wood || aBlock.getMaterial() == MaterialAdventure.WOOD || aBlock.getMaterial() == Material.cactus || aBlock.getMaterial() == Material.ice || aBlock.getMaterial() == Material.packedIce || aBlock.getMaterial() == Material.coral;
+		return (tTool != null && (tTool.equalsIgnoreCase(TOOL_axe) || tTool.equalsIgnoreCase(TOOL_saw))) || aBlock instanceof BlockBaseBars || (aBlock instanceof BlockPane && aBlock.getMaterial() == Material.iron) || aBlock.getMaterial() == Material.leaves || aBlock.getMaterial() == Material.vine || aBlock.getMaterial() == Material.plants || aBlock.getMaterial() == Material.gourd || aBlock.getMaterial() == Material.wood || aBlock.getMaterial() == MaterialAdventure.WOOD || aBlock.getMaterial() == Material.cactus || aBlock.getMaterial() == Material.ice || aBlock.getMaterial() == Material.packedIce || aBlock.getMaterial() == Material.coral || MD.CARP.owns(aBlock);
 	}
 	
 	@Override

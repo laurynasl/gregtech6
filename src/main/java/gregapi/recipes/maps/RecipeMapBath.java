@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 GregTech-6 Team
+ * Copyright (c) 2023 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -19,17 +19,9 @@
 
 package gregapi.recipes.maps;
 
-import static gregapi.data.CS.*;
-
-import java.util.Collection;
-
-import gregapi.data.ANY;
-import gregapi.data.CS.FluidsGT;
-import gregapi.data.FL;
-import gregapi.data.IL;
-import gregapi.data.MD;
-import gregapi.data.MT;
+import gregapi.data.*;
 import gregapi.item.IItemColorableRGB;
+import gregapi.item.IItemProjectile;
 import gregapi.random.IHasWorldAndCoords;
 import gregapi.recipes.Recipe;
 import gregapi.recipes.Recipe.RecipeMap;
@@ -38,6 +30,7 @@ import gregapi.util.ST;
 import gregapi.util.UT;
 import gregapi.wooddict.PlankEntry;
 import gregapi.wooddict.WoodDictionary;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -46,6 +39,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+
+import java.util.Collection;
+
+import static gregapi.data.CS.*;
 
 /**
  * @author Gregorius Techneticies
@@ -136,7 +133,12 @@ public class RecipeMapBath extends RecipeMap {
 					return new Recipe(F, F, F, ST.array(ST.amount(1, aInput)), ST.array(tOutput), null, null, FL.array(FL.mul(aDye, 1, 8, T)), ZL_FS, 512, 0, 0);
 				}
 			}
-			if (ST.food(aInput) > 0 && FL.getFluid(aInput, T) == null) {
+			if (aInput.getItem() instanceof IItemProjectile && ((IItemProjectile)aInput.getItem()).hasProjectile(null, aInput)) {
+				if (FL.Holywater .is(aFluids[0]) && UT.NBT.getEnchantmentLevel(Enchantment.smite     , aInput) < 10) return new Recipe(F, F, F, ST.array(ST.amount(1, aInput)), ST.array(UT.NBT.addEnchantment(ST.update(ST.amount(1, aInput)), Enchantment.smite     , 10)), null, null, FL.array(FL.Holywater .make(25)), ZL_FS, 16, 0, 0);
+				if (FL.FieryBlood.is(aFluids[0]) && UT.NBT.getEnchantmentLevel(Enchantment.fireAspect, aInput) <  3) return new Recipe(F, F, F, ST.array(ST.amount(1, aInput)), ST.array(UT.NBT.addEnchantment(ST.update(ST.amount(1, aInput)), Enchantment.fireAspect,  3)), null, null, FL.array(FL.FieryBlood.make(25)), ZL_FS, 16, 0, 0);
+				if (FL.FieryTears.is(aFluids[0]) && UT.NBT.getEnchantmentLevel(Enchantment.fireAspect, aInput) <  3) return new Recipe(F, F, F, ST.array(ST.amount(1, aInput)), ST.array(UT.NBT.addEnchantment(ST.update(ST.amount(1, aInput)), Enchantment.fireAspect,  3)), null, null, FL.array(FL.FieryTears.make(25)), ZL_FS, 16, 0, 0);
+			}
+			if (ST.edible(aInput) && FL.getFluid(aInput, T) == null) {
 				ItemStack tOutput = ST.amount(1, aInput);
 				NBTTagCompound tNBT = UT.NBT.getNBT(tOutput);
 				tOutput.setTagCompound(tNBT);

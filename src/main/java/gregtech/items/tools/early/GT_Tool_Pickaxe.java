@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 GregTech-6 Team
+ * Copyright (c) 2023 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -19,8 +19,6 @@
 
 package gregtech.items.tools.early;
 
-import static gregapi.data.CS.*;
-
 import gregapi.data.MT;
 import gregapi.data.OP;
 import gregapi.item.multiitem.MultiItemTool;
@@ -31,21 +29,30 @@ import gregapi.render.IIconContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSilverfish;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.AchievementList;
 
+import static gregapi.data.CS.T;
+import static gregapi.data.CS.TOOL_pickaxe;
+
 public class GT_Tool_Pickaxe extends ToolStats {
 	@Override public int getToolDamagePerBlockBreak()                                       {return  25;}
 	@Override public int getToolDamagePerEntityAttack()                                     {return 200;}
-	@Override public float getBaseDamage()                                                  {return 1.5F;}
+	@Override public float getBaseDamage()                                                  {return 3.0F;}
+	@Override public boolean canPenetrate()                                                 {return T;}
 	@Override public boolean isMiningTool()                                                 {return T;}
 	
 	@Override
+	public int getHurtResistanceTime(int aOriginalHurtResistance, Entity aEntity) {
+		return aOriginalHurtResistance * 2;
+	}
+	
+	@Override
 	public boolean isMinableBlock(Block aBlock, byte aMetaData) {
-		String tTool = aBlock.getHarvestTool(aMetaData);
-		return (tTool != null && tTool.equalsIgnoreCase(TOOL_pickaxe)) || aBlock instanceof BlockSilverfish || aBlock.getMaterial() == Material.rock || aBlock.getMaterial() == Material.iron || aBlock.getMaterial() == Material.anvil || aBlock.getMaterial() == Material.glass || aBlock == Blocks.flower_pot;
+		return TOOL_pickaxe.equalsIgnoreCase(aBlock.getHarvestTool(aMetaData)) || aBlock instanceof BlockSilverfish || aBlock.getMaterial() == Material.rock || aBlock.getMaterial() == Material.iron || aBlock.getMaterial() == Material.anvil || aBlock.getMaterial() == Material.glass || aBlock.getMaterial() == Material.packedIce || aBlock.getMaterial() == Material.ice || aBlock == Blocks.flower_pot;
 	}
 	
 	@Override
