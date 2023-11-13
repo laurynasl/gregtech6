@@ -70,7 +70,6 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.Fe2O3                                   , F, U16,  0, 32, ST.block(MD.EtFu, "deepslate_iron_ore"), BIOMES_WOODS)
 		, new StoneLayerOres(MT.OREMATS.Garnierite                      , F, U16,  0, 32, ST.block(MD.EtFu, "modded_deepslate_ore"), 4, BIOMES_SHROOM)
 		, new StoneLayerOres(MT.OREMATS.Pentlandite                     , F, U16,  0, 32, ST.block(MD.EtFu, "modded_deepslate_ore"), 4, BIOMES_SWAMP)
-		, MD.Salt    .mLoaded ? new StoneLayerOres(MT.NaCl              , F, U32, 20, 32, ST.block(MD.Salt, "saltDeepslateOre")) : null
 		,!MT.Nikolite.mHidden ? new StoneLayerOres(MT.Nikolite          , F, U32,  0, 20) : null
 		, MD.HEX     .mLoaded ? new StoneLayerOres(MT.HexoriumBlack     , F, U32,  0, 16) : null
 		, MD.HEX     .mLoaded ? new StoneLayerOres(MT.HexoriumWhite     , F, U32,  0, 16) : null
@@ -145,7 +144,6 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.Fe                      , F, U16, 40, 80, Blocks.iron_ore)
 		, new StoneLayerOres(MT.Coal                    , F, U8 , 60,100, Blocks.coal_ore)
 		, new StoneLayerOres(MT.Stone                   , F, U48,  0,255, Blocks.monster_egg)
-		, new StoneLayerOres(MT.NaCl                    , F, U32, 50, 80, ST.block(MD.Salt, "saltOre"), 0)
 		, MD.DRPG    .mLoaded ? new StoneLayerOres(MT.UNUSED.Rupee      , U96,  5, 60, ST.block(MD.DRPG, "rupeeOre"            )) : null
 		, MD.DRPG    .mLoaded ? new StoneLayerOres(MT.UNUSED.Arlemite   , U96,  5, 60, ST.block(MD.DRPG, "arlemiteOre"         )) : null
 		, MD.DRPG    .mLoaded ? new StoneLayerOres(MT.UNUSED.Realmite   , U96,  5, 60, ST.block(MD.DRPG, "realmiteOre"         )) : null
