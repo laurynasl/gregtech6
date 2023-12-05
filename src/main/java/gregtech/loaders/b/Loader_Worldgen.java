@@ -585,7 +585,7 @@ public class Loader_Worldgen implements Runnable {
 		tBlock = BlocksGT.RockOres;
 		if (tBlock != null && tBlock != NB) {
 		//new WorldgenOresVanilla("twilight.ore.anthracite"       , T, tBlock,  0,  1, 50, 100, 16, 32, null                  , 0, null               , F, GEN_TWILIGHT);
-		//new WorldgenOresVanilla("twilight.ore.lignite"          , T, tBlock,  1,  1, 50, 100, 16, 32, null                  , 0, null               , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.lignite"          , T, tBlock,  1,  1, 50, 100, 16, 32, null                  , 0, null               , F, GEN_TWILIGHT);
 		//new WorldgenOresVanilla("twilight.ore.salt"             , T, tBlock,  2,  1, 50, 100, 16, 32, null                  , 0, null               , F, GEN_TWILIGHT);
 		//new WorldgenOresVanilla("twilight.ore.rocksalt"         , T, tBlock,  3,  1, 50, 100, 16, 32, null                  , 0, null               , F, GEN_TWILIGHT);
 		//new WorldgenOresVanilla("twilight.ore.bauxite"          , T, tBlock,  4,  1, 50, 100, 16, 32, null                  , 0, null               , F, GEN_TWILIGHT);
@@ -595,22 +595,22 @@ public class Loader_Worldgen implements Runnable {
 		}
 		tBlock = BlocksGT.VanillaOresA;
 		if (tBlock != null && tBlock != NB) {
-		new WorldgenOresVanilla("twilight.ore.sulfur"           , T, tBlock,  0,  1, 16,   1,  0,  8, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.apatite"          , T, tBlock,  1,  1, 16,   2, 24, 32, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.ruby"             , T, tBlock,  2,  1, 12,   1, 40, 52, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.amber"            , T, tBlock,  3,  1, 12,   1, 40, 52, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.amethyst"         , T, tBlock,  4,  1, 12,   1, 40, 52, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.galena"           , T, tBlock,  5,  1, 24,   4,  8, 32, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.tetrahedrite"     , T, tBlock,  6,  1, 24,   4,  8, 32, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.cassiterite"      , T, tBlock,  7,  1, 24,   4,  8, 32, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.cooperite"        , T, tBlock,  8,  1,  6,   1, 40, 52, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.pentlandite"      , T, tBlock,  9,  1, 16,   4,  8, 24, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.scheelite"        , T, tBlock, 10,  1, 12,   4,  8, 24, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.rutile"           , T, tBlock, 11,  1,  6,   1,  8, 24, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.bastnasite"       , T, tBlock, 12,  1, 16,   1, 40, 52, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.graphite"         , T, tBlock, 13,  1,  6,   2,  0,  8, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.pitchblende"      , T, tBlock, 14,  1, 16,   1,  8, 16, null                  , 0, BIOMES_SWAMP       , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.borax"            , T, tBlock, 15,  2,  6,   1,  0, 16, null                  , 0, BIOMES_LAKE        , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.sulfur"               , T, tBlock,  0,  1, 16,   1,  0,  8, null                  , 0, null               , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.apatite"              , T, tBlock,  1,  1, 16,   2, 24, 32, null                  , 0, null               , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.ruby"                 , T, tBlock,  2,  1, 12,   1, 40, 52, null                  , 0, null               , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.amber"                , T, tBlock,  3,  1, 12,   1, 40, 52, null                  , 0, null               , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.amethyst"             , T, tBlock,  4,  1, 12,   1, 40, 52, null                  , 0, null               , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.galena"               , T, tBlock,  5,  1, 24,   4,  8, 32, null                  , 0, null               , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.prismane"             , T, tBlock,  6,  1, 24,   4,  8, 32, null                  , 0, BIOMES_TAIGA       , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.cassiterite"          , T, tBlock,  7,  1, 24,   4,  8, 32, null                  , 0, null               , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.cooperite"            , T, tBlock,  8,  1,  6,   1, 40, 52, null                  , 0, null               , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.pentlandite"          , T, tBlock,  9,  1, 16,   4,  8, 24, null                  , 0, null               , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.duranium_hexaastatide", T, tBlock, 10,  1, 12,   4,  8, 24, null                  , 0, BIOMES_FROZEN      , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.duranium_hexaiodide"  , T, tBlock, 11,  1,  6,   1,  8, 24, null                  , 0, null               , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.bastnasite"           , T, tBlock, 12,  1, 16,   1, 40, 52, null                  , 0, null               , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.graphite"             , T, tBlock, 13,  1,  6,   2,  0,  8, null                  , 0, null               , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.anthracite"           , T, tBlock, 14,  1, 16,   1,  8, 16, null                  , 0, BIOMES_SWAMP       , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.borax"                , T, tBlock, 15,  2,  6,   1,  0, 16, null                  , 0, BIOMES_LAKE        , F, GEN_TWILIGHT);
 		}
 		tBlock = ST.block(MD.TC, "blockCustomOre", null);
 		if (tBlock != null && tBlock != NB) {
