@@ -2982,7 +2982,8 @@ public class MT {
 			OREMATS.Uraninite               .ores(Pb                        , Ra                        , RareEarth             , Th                    );
 			Yellorite                       .ores(Pb                        , Ra                        , RareEarth             , Th                    );
 			
-			Th                              .ores(Pb                        , Ra                        , RareEarth             );
+			Th                              .ores(Ra, OREMATS.DuraniumHexaastatide, OREMATS.TritaniumHexaastatide);
+
 			Cyanite                         .ores(Pb                        , Ra                        , RareEarth             );
 			U_238                           .ores(Pb                        , Ra                        , RareEarth             );
 			Yellorium                       .ores(Pb                        , Ra                        , RareEarth             );
@@ -3217,8 +3218,8 @@ public class MT {
 			Coal                            .ores(Lignite                   , S                         , Anthracite            );
 			Lignite                         .ores(Coal                      , S                         , Ge                    );
 			Anthracite                      .ores(Prismane                  , Lonsdaleite               , Th                    );
-			Prismane                        .ores(Lonsdaleite               , Th                        , OREMATS.Pitchblende   );
-			Lonsdaleite                     .ores(Th                        , OREMATS.Uraninite         , U_238                 );
+			Prismane                        .ores(Lonsdaleite               , Th                        , OREMATS.TritaniumHexaastatide );
+			Lonsdaleite                     .ores(Th                      , OREMATS.DuraniumHexaastatide, OREMATS.TritaniumHexaastatide );
 			
 			Al2O3                           .ores(OREMATS.Bauxite           , Al2O3                     , AlO3H3                );
 			Bi                              .ores(OREMATS.Russellite        , OREMATS.Galena            , OREMATS.Kesterite     );
