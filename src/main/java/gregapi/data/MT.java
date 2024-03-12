@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2023 GregTech-6 Team
+ * Copyright (c) 2024 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -594,7 +594,7 @@ public class MT {
 	Rb      = rubidium       (),
 	Sr      = strontium      (),
 	Y       = yttrium        (),
-	Zr      = zirconium      ().qual(3,  6.0,  512, 3).lens(DYE_INDEX_White),
+	Zr      = zirconium      ().qual(3,  8.0, 1280, 3).lens(DYE_INDEX_White),
 	Nb      = niobium        (),
 	Mo      = molybdenum     ().qual(3,  7.0,  512, 2),
 	Tc      = technetium     ().qual(3, 10.0, 1280, 1), Gregorium=Tc,
@@ -1127,7 +1127,7 @@ public class MT {
 	
 	
 	NaCl                    = oredustdcmp   ( 8204, "Salt"                  , SET_CUBE              , 250, 250, 250, 255, BRITTLE, MORTAR, FOOD)                                                                                                                    .uumMcfg( 0, Na             , 1*U, Cl               , 1*U)                                                                                                  .aspects(TC.FAMES, 1).addSourceOf(Na).setPriorityPrefix(2).heat(1074, 1686),
-	NaNO3                   = oredustelec   ( 8019, "Sodium Nitrate"        , SET_FINE              , 230, 230, 230, 255, FLAMMABLE, BRITTLE, MORTAR)                                                                                                               .uumMcfg( 0, Na             , 1*U, N                , 1*U, O                , 3*U)                                                                          .aspects(TC.IGNIS, 2).addSourceOf(Na).setPriorityPrefix(2).heat(607),
+	NaNO3                   = oredustelec   ( 8019, "Sodium Nitrate"        , SET_FINE              , 230, 230, 230, 255, FLAMMABLE, BRITTLE, MORTAR)                                                                                                               .uumMcfg( 0, Na             , 1*U, N                , 1*U, O                , 3*U)                                                                          .aspects(TC.IGNIS, 2).setPriorityPrefix(2).heat(607),
 	NaOH                    = dustelec      ( 8268, "Sodium Hydroxide"      , SET_CUBE              , 220, 250, 220, 255)                                                                                                                                           .uumMcfg( 0, Na             , 1*U, O                , 1*U, H                , 1*U)                                                                          .heat( 596, 1661),
 	NaHCO3                  = oredustdcmp   ( 8039, "Sodium Hydrogencarbonate", SET_FINE            , 230, 235, 240, 255, "Soda").setLocal("Soda")                                                                                                                  .uumMcfg( 0, Na             , 1*U, H                , 1*U, C                , 1*U, O                , 3*U)                                                  , Soda = NaHCO3,
 	NaHSO4                  = dustdcmp      ( 8230, "Sodium Bisulfate"      , SET_FINE              , 240, 240, 255, 255, "SodiumBisulphate", "SodiumHydrogenSulfate", "SodiumHydrogenSulphate")                                                                    .uumMcfg( 0, Na             , 1*U, H                , 1*U, S                , 1*U, O                , 4*U)                                                  ,
@@ -1145,7 +1145,7 @@ public class MT {
 	
 	KIO3                    = oredustelec   ( 8242, "Iodine Salt"           , SET_CUBE              , 240, 200, 240, 255, BRITTLE, MORTAR)                                                                                                                          .uumMcfg( 0, K              , 1*U, I                , 1*U, O                , 3*U)                                                                          .aspects(TC.TEMPESTAS, 1).addSourceOf(K).heat(300, 370), IodineSalt = KIO3,
 	KCl                     = oredustdcmp   ( 8203, "Rock Salt"             , SET_CUBE              , 240, 200, 200, 255, BRITTLE, MORTAR)                                                                                                                          .uumMcfg( 0, K              , 1*U, Cl               , 1*U)                                                                                                  .aspects(TC.FAMES, 1).addSourceOf(K).setPriorityPrefix(2).heat(1040, 1690),
-	KNO3                    = oredustelec   ( 8205, "Potassium Nitrate"     , SET_FINE              , 230, 230, 230, 255, FLAMMABLE, BRITTLE, MORTAR, "Saltpeter", "Nitrate", "Salpeter")                                                                           .uumMcfg( 0, K              , 1*U, N                , 1*U, O                , 3*U)                                                                          .aspects(TC.IGNIS, 2).addSourceOf(K).setPriorityPrefix(2).heat(607),
+	KNO3                    = oredustelec   ( 8205, "Potassium Nitrate"     , SET_FINE              , 230, 230, 230, 255, FLAMMABLE, BRITTLE, MORTAR, "Saltpeter", "Nitrate", "Salpeter")                                                                           .uumMcfg( 0, K              , 1*U, N                , 1*U, O                , 3*U)                                                                          .aspects(TC.IGNIS, 2).setPriorityPrefix(2).heat(607),
 	KOH                     = dustelec      ( 8015, "Potassium Hydroxide"   , SET_CUBE              , 250, 220, 220, 255)                                                                                                                                           .uumMcfg( 0, K              , 1*U, O                , 1*U, H                , 1*U)                                                                          .heat( 633, 1600),
 	KHSO4                   = dustdcmp      ( 8232, "Potassium Bisulfate"   , SET_FINE              , 255, 240, 240, 255, "PotassiumBisulphate")                                                                                                                    .uumMcfg( 0, K              , 1*U, H                , 1*U, S                , 1*U, O                , 4*U)                                                  ,
 	KSO4                    = dustdcmp      ( 8022, "Potassium Persulfate"  , SET_CUBE              , 250, 180, 130, 255, "PotassiumPersulphate")                                                                                                                   .uumMcfg( 0, K              , 1*U, S                , 1*U, O                , 4*U)                                                                          ,
@@ -1640,9 +1640,9 @@ public class MT {
 	
 	
 	Stone                   = stone         ( 8500, "Stone"                                         , 205, 205, 205, 255, MELTING, MOLTEN, UNRECYCLABLE)                                                                                                                                                                                                                                                                        .aspects(TC.TERRA       , 1).qual(1, 2.0, 16, 1).heat(1100).setRGBaLiquid(192,  96,  64, 255), Gravel = Stone,
-	Concrete                = stone         ( 8501, "Concrete"                                      , 100, 100, 100, 255, MELTING)                                                                                                                                  .setMcfg( 0, Stone          , 1*U)                                                                                                                          .aspects(TC.TERRA       , 1).qual(1, 2.5, 32, 0).heat(500).setSmelting(Stone, U),
+	Concrete                = stone         ( 8501, "Concrete"              , SET_BRICK             , 100, 100, 100, 255, MELTING)                                                                                                                                  .setMcfg( 0, Stone          , 1*U)                                                                                                                          .aspects(TC.TERRA       , 1).qual(1, 2.5, 32, 0).heat(500).setSmelting(Stone, U),
 	Netherrack              = stone         ( 8502, "Netherrack"                                    , 200,   0,   0, 255, UNBURNABLE, FLAMMABLE, BLACKLISTED_SMELTER)                                                                                                                                                                                                                                                           .aspects(TC.IGNIS       , 1).qual(1, 2.0,  8, 0).heat(1500, 3000),
-	NetherBrick             = stone         ( 8503, "Nether Brick"                                  , 100,   0,   0, 255, UNBURNABLE, "BrickNether")                                                                                                                                                                                                                                                                            .aspects(TC.IGNIS       , 1).qual(1, 2.0, 24, 1).heat(1800, 3000).setPulver(Netherrack, U),
+	NetherBrick             = stone         ( 8503, "Nether Brick"          , SET_BRICK             , 100,   0,   0, 255, UNBURNABLE, "BrickNether")                                                                                                                                                                                                                                                                            .aspects(TC.IGNIS       , 1).qual(1, 2.0, 24, 1).heat(1800, 3000).setPulver(Netherrack, U),
 	Endstone                = stone         ( 8504, "Endstone"                                      , 217, 222, 158, 255, ENDER_DRAGON_PROOF)                                                                                                                                                                                                                                                                                   .aspects(TC.TENEBRAE    , 1).qual(1, 3.0, 16, 1).heat(1200).addSourceOf(He,He_3),
 	
 	PrismarineLight         = stone         ( 9219, "Prismarine"            , SET_PRISMARINE        , 110, 178, 165, 255, G_GEM_ORES, CRYSTAL, CRYSTALLISABLE)                                                                                                                                                                                                                                                                  .aspects(TC.TEMPESTAS   , 1).qual(1, 4.0, 48, 1).setLocal("Light Prismarine"),
@@ -1970,8 +1970,6 @@ public class MT {
 			OreDictMaterial.MATERIAL_ARRAY[8339] = Nikolite;
 			OreDictMaterial.MATERIAL_ARRAY[8359] = Nikolite;
 			OreDictMaterial.MATERIAL_ARRAY[8510] = Stone;
-			
-			
 			
 			
 			Ad                      .setOreMultiplier( 2).setCrushing(Adamantine, U);
@@ -2973,6 +2971,11 @@ public class MT {
 			Amordrine               .addEnchantmentForArmors(Enchantment.blastProtection, 5);
 			RedMatter               .addEnchantmentForArmors(Enchantment.blastProtection, 5);
 			Infinity                .addEnchantmentForArmors(Enchantment.blastProtection,10);
+			
+			
+			NaNO3.addSourceOf(Niter, KNO3, K);
+			KNO3.addSourceOf(Niter, NaNO3, Na);
+			Niter.addSourceOf(KNO3, NaNO3, K, Na);
 			
 			
 			OREMATS.Pitchblende             .ores(Pb                        , Ra                        , RareEarth             , Th                    );
