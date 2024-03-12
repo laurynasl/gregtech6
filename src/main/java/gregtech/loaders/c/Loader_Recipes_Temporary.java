@@ -74,6 +74,7 @@ public class Loader_Recipes_Temporary implements Runnable {
 		RM.Injector.addRecipe1(T, 16, 16, OM.dust(MT.Sodalite, 2*U), FL.MnWtr.make(1000), FL.Coolant_IC2.make(1000), ZL_IS);
 		RM.Injector.addRecipe1(T, 16, 16, OM.dust(MT.Sodalite, 2*U), FL.Water.make(1000), FL.Coolant_IC2.make(1000), ZL_IS);
 		
+		RM.lathing(16, 64, ST.make(Items.quartz, 1, 0), OP.stick.mat(MT.NetherQuartz, 1), OM.dust(MT.NetherQuartz, 2*U4));
 		
 		if (MD.MET.mLoaded) {
 			CR.delate(MD.MET, "alloyer");
