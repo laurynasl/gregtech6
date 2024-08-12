@@ -599,7 +599,7 @@ public class Loader_Worldgen implements Runnable {
 		new WorldgenOresVanilla("twilight.ore.ruby"                 , T, tBlock,  2,  1, 12,   1, 40, 52, null                  , 0, null               , F, GEN_TWILIGHT);
 		new WorldgenOresVanilla("twilight.ore.amber"                , T, tBlock,  3,  1, 12,   1, 40, 52, null                  , 0, null               , F, GEN_TWILIGHT);
 		new WorldgenOresVanilla("twilight.ore.amethyst"             , T, tBlock,  4,  1, 12,   1, 40, 52, null                  , 0, null               , F, GEN_TWILIGHT);
-		new WorldgenOresVanilla("twilight.ore.dolamide"             , T, tBlock,  5,  1, 24,   4,  8, 32, null                  , 0, null               , F, GEN_TWILIGHT);
+		new WorldgenOresVanilla("twilight.ore.magnetite"            , T, tBlock,  5,  1, 24,   4,  8, 32, null                  , 0, null               , F, GEN_TWILIGHT);
 		new WorldgenOresVanilla("twilight.ore.scheelite"            , T, tBlock,  6,  1, 24,   4,  8, 32, null                  , 0, BIOMES_TAIGA       , F, GEN_TWILIGHT);
 		new WorldgenOresVanilla("twilight.ore.cassiterite"          , T, tBlock,  7,  1, 24,   4,  8, 32, null                  , 0, null               , F, GEN_TWILIGHT);
 		new WorldgenOresVanilla("twilight.ore.cooperite"            , T, tBlock,  8,  1,  6,   1, 40, 52, null                  , 0, null               , F, GEN_TWILIGHT);
