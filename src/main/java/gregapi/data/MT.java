@@ -3019,7 +3019,7 @@ public class MT {
 			Fe2O3                           .ores(OREMATS.Ilmenite          , OREMATS.GraniticMineralSand, MnO2                 , ClayRed               );
 			OREMATS.Galena                  .ores(OREMATS.Sphalerite        , Ag                        , Pb                    , Se                    , FluoriteRed           , CaCO3);
 			OREMATS.Arsenopyrite            .ores(Au                        , OREMATS.Realgar           , FluoriteOrange        , OREMATS.Cassiterite   , OREMATS.Huebnerite    );
-			OREMATS.Cobaltite               .ores(Co                        , OREMATS.Realgar           , FluoriteOrange        , OREMATS.Pentlandite   , OREMATS.YellowLimonite);
+			OREMATS.Cobaltite               .ores(OREMATS.Realgar           , FluoriteOrange            , OREMATS.Pentlandite   , OREMATS.YellowLimonite);
 			Co_60                           .ores(OREMATS.Cobaltite         , OREMATS.Realgar           , FluoriteOrange        , OREMATS.Pentlandite   , OREMATS.YellowLimonite);
 			Co                              .ores(OREMATS.Cobaltite         , OREMATS.Realgar           , FluoriteOrange        , OREMATS.Pentlandite   , OREMATS.YellowLimonite);
 			OREMATS.Realgar                 .ores(OREMATS.Cobaltite         , OREMATS.Arsenopyrite      );
@@ -3212,7 +3212,7 @@ public class MT {
 			Brass                           .ores(Cu                        , Zn                        , As                    );
 			Coal                            .ores(Lignite                   , S                         , Anthracite            );
 			Lignite                         .ores(Coal                      , S                         , Ge                    );
-			Anthracite                      .ores(Prismane                  , Lonsdaleite               , Co                    );
+			Anthracite                      .ores(Prismane                  , Lonsdaleite               );
 			Prismane                        .ores(Lonsdaleite               , Th                        , OREMATS.TritaniumHexaastatide );
 			Lonsdaleite                     .ores(Th                      , OREMATS.DuraniumHexaastatide, OREMATS.TritaniumHexaastatide );
 			
