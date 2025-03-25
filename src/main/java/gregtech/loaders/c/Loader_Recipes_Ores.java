@@ -40,7 +40,15 @@ import static gregapi.data.TD.Properties.MAGNETIC_PASSIVE;
 
 public class Loader_Recipes_Ores implements Runnable {
 	@Override public void run() {
-		RM.Centrifuge       .addRecipe1(T, 64,  144, OM.dust(MT.DarkAsh, U*2), OM.dust(MT.Ash), IL.TE_Slag.get(1, IL.IE_Slag.get(1, IL.FZ_Sludge.get(1, OM.dust(MT.Ash)))));
+		//RM.Centrifuge       .addRecipe1(T, 64,  144, OM.dust(MT.DarkAsh, U*2), OM.dust(MT.Ash), IL.TE_Slag.get(1, IL.IE_Slag.get(1, IL.FZ_Sludge.get(1, OM.dust(MT.Ash)))));
+		RM.Centrifuge.addRecipe1(T, 64, 144, new long[] { 10000, 100, 66, 33, 10, 3 }, OM.dust(MT.DarkAsh)
+			,OM.dust(MT.Ash)
+			,crushedCentrifugedTiny.mat(MT.Th, 1)
+			,crushedCentrifugedTiny.mat(MT.OREMATS.Pitchblende, 1)
+			,crushedCentrifugedTiny.mat(MT.OREMATS.Uraninite, 1)
+			,crushedCentrifugedTiny.mat(MT.Pu, 1)
+			,crushedCentrifugedTiny.mat(MT.Am, 1)
+		);
 		
 		for (FluidStack tWater : FL.waters(1000)) {
 		RM.Mixer            .addRecipe1(T, 16,   16, OM.dust(MT.SluiceSand, U9), FL.mul(tWater, 1,10, T), FL.Sluice.make(100), ZL_IS);
