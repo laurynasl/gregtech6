@@ -96,7 +96,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.*;
-import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -237,6 +237,9 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void onServerTick(ServerTickEvent aEvent) {
 		TOOL_SOUNDS = TOOL_SOUNDS_SETTING;
+		
+		// Fixing a Thaumcraft Bug in its Loot Bags.
+		ST.fixBookStacks();
 		
 		if (aEvent.side.isServer()) {
 			// Try acquiring the Lock within 10 Milliseconds. Otherwise fuck anyone who locks it up for too long, or any other faulty reason MC doesn't work.
@@ -554,6 +557,13 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 					aEvent.entityLiving.worldObj.setBlock(tX, tY, tZ, Blocks.dirt, 0, 3);
 					UT.Sounds.send(aEvent.entityLiving.worldObj, SFX.MC_DIG_GRAVEL, 1.0F, 1.0F, tX, tY, tZ);
 				}
+				// Big Animals break regular tall Grass, but not super tall Grass.
+				if (aEvent.entityLiving instanceof EntityPig || aEvent.entityLiving instanceof EntitySheep || aEvent.entityLiving instanceof EntityCow || aEvent.entityLiving instanceof EntityHorse) {
+					if (aEvent.entityLiving.worldObj.getBlock(tX, tY+1, tZ) == Blocks.tallgrass) {
+						aEvent.entityLiving.worldObj.setBlock(tX, tY+1, tZ, NB, 0, 3);
+						UT.Sounds.send(aEvent.entityLiving.worldObj, SFX.MC_DIG_GRASS, 0.5F, 0.5F, tX, tY, tZ);
+					}
+				}
 				// Area of Effect Block Destruction Ability of certain Mobs.
 				if (aEvent.entityLiving.hurtResistantTime > 0) {
 					// Minoshroom
@@ -705,8 +715,10 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 					if (ADVENTURE_MODE_KIT) {
 						if (MD.GT.mLoaded) {
 							UT.Entities.sendchat(aEvent.player, CHAT_GREG + "Thank you for choosing the GregTech-6 Adventure Mode Starter Kit.");
-							ST.drop(aEvent.player, IL.Bottle_Purple_Drink.get(6));
-							ST.drop(aEvent.player, IL.Grass_Dry.get(8));
+							
+							MultiTileEntityRegistry tRegistry = MultiTileEntityRegistry.getRegistry("gt.multitileentity");
+							ST.drop(aEvent.player, tRegistry == null ? IL.Bottle_Purple_Drink.get(6) : tRegistry.getItem(8762, 1, UT.NBT.make(NBT_INV_LIST, UT.NBT.makeInv(IL.Bottle_Purple_Drink.get(1), IL.Bottle_Empty.get(1), IL.Bottle_Purple_Drink.get(1), IL.Bottle_Purple_Drink.get(1), IL.Bottle_Empty.get(1), IL.Bottle_Purple_Drink.get(1), IL.Bottle_Purple_Drink.get(1), IL.Bottle_Purple_Drink.get(1), IL.Bottle_Empty.get(1)))));
+							ST.drop(aEvent.player, IL.Grass_Dry.get(9));
 							ST.drop(aEvent.player, IL.Stick.get(16));
 							ST.drop(aEvent.player, Items.flint, 12, 0);
 							ST.drop(aEvent.player, Blocks.dirt, 16, 0);
@@ -962,6 +974,10 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 		if (aEvent.entityPlayer == null || aEvent.entityPlayer.worldObj == null || aEvent.action == null || aEvent.world.provider == null) return;
 		
 		PLAYER_LAST_CLICKED.put(aEvent.entityPlayer, new ChunkCoordinates(aEvent.x, aEvent.y, aEvent.z));
+		
+		// If a Player rightclicks something, then that Chunk gotta be marked as modified, even if nothing happens.
+		// There has been plenty of Bugs in various Mods, because of forgetting to mark things.
+		WD.mark(aEvent.world, aEvent.x, aEvent.z);
 		
 		ItemStack aStack = aEvent.entityPlayer.inventory.getCurrentItem();
 		Block aBlock = WD.block(aEvent.world, aEvent.x, aEvent.y, aEvent.z);

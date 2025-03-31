@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2023 GregTech-6 Team
+ * Copyright (c) 2024 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -934,6 +934,7 @@ public class LoaderItemList implements Runnable {
 		IL.TC_Knowledge_Fragment                .set(ST.make(MD.TC, "ItemResource"                          , 1, 9), new OreDictItemData(MT.Paper, U9), "paperResearchFragment");
 		IL.TC_Thaumonomicon                     .set(ST.make(MD.TC, "ItemThaumonomicon"                     , 1, 0), new OreDictItemData(MT.Paper, 9*U));
 		IL.TC_Crimson_Rites                     .set(ST.make(MD.TC, "ItemEldritchObject"                    , 1, 1), new OreDictItemData(MT.Paper, 9*U));
+		IL.TC_Primordial_Pearl                  .set(ST.make(MD.TC, "ItemEldritchObject"                    , 1, 3));
 		IL.TC_Flux_Goo                          .set(ST.make(MD.TC, "blockFluxGoo"                          , 1, 0));
 		IL.TC_Flux_Gas                          .set(ST.make(MD.TC, "blockFluxGas"                          , 1, 0));
 		IL.TC_Bucket_Death                      .set(ST.make(MD.TC, "ItemBucketDeath"                       , 1, 0), new OreDictItemData(ANY.Fe, U*3), OD.itemPoison);
@@ -1417,9 +1418,11 @@ public class LoaderItemList implements Runnable {
 		IL.EtFu_Beet_Seeds                      .set(ST.make(MD.EtFu, "beetroot_seeds"                      , 1, 0), null, "seedBeet");
 		IL.EtFu_Sus_Stew                        .set(ST.make(MD.EtFu, "suspicious_stew"                     , 1, 0));
 		IL.EtFu_Bottle_Honey                    .set(ST.make(MD.EtFu, "honey_bottle"                        , 1, 0), null, OD.container250honey);
+		IL.EtFu_Block_Honey                     .set(ST.make(MD.EtFu, "honey_block"                         , 1, 0));
 		IL.EtFu_Dragon_Breath                   .set(ST.make(MD.EtFu, "dragon_breath"                       , 1, 0));
 		IL.EtFu_Lingering_Potion                .set(ST.make(MD.EtFu, "lingering_potion"                    , 1, 0));
 		IL.EtFu_Wither_Rose                     .set(ST.make(MD.EtFu, "wither_rose"                         , 1, 0), null, OD.flower, OD.flowerWither);
+		IL.EtFu_Bamboo                          .set(ST.make(MD.EtFu, "bamboo"                              , 1, 0), OP.stick.dat(MT.Bamboo), OD.bamboo);
 		IL.EtFu_Bark_Oak                        .set(ST.make(MD.EtFu, "bark"                                , 1, 0), new OreDictItemData(MT.WOODS.Oak    , U*8, MT.Bark, U), OD.logWood);
 		IL.EtFu_Bark_Spruce                     .set(ST.make(MD.EtFu, "bark"                                , 1, 1), new OreDictItemData(MT.WOODS.Spruce , U*8, MT.Bark, U), OD.logWood);
 		IL.EtFu_Bark_Birch                      .set(ST.make(MD.EtFu, "bark"                                , 1, 2), new OreDictItemData(MT.WOODS.Birch  , U*8, MT.Bark, U), OD.logWood);

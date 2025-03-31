@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2023 GregTech-6 Team
+ * Copyright (c) 2024 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -96,8 +96,8 @@ public enum IL implements IItemContainer {
 	NeLi_Torch_Soul, NeLi_Torch_Fox, NeLi_Torch_Shadow, NeLi_Bonetorch, NeLi_Bonetorch_Soul, NeLi_Bonetorch_Fox, NeLi_Bonetorch_Shadow, NeLi_Fire_Soul, NeLi_Fire_Shadow, NeLi_Fire_Fox, NeLi_Obsidian, NeLi_Blackstone_Crying, NeLi_Bowl_DevilishMaize, NeLi_Bowl_DevilishPopcorn, NeLi_Bowl_CrimsonStew, NeLi_Bowl_WarpedStew, NeLi_Bowl_FoxfireStew, NeLi_Bottle_Hellderberryjuice, NeLi_Bucket_Spectral_Dew, NeLi_ShroomLight, NeLi_Gloomstone, NeLi_Reed, NeLi_Gloom_Hibiscus, NeLi_Wither_Rose, NeLi_Bone_Rose, NeLi_Soul_Rose, NeLi_Foxfire_Lily, NeLi_Foxfire_Powder, NeLi_Wart_Crimson, NeLi_Wart_Warped, NeLi_Wart_Soggy, NeLi_Wart_Block_Nether, NeLi_Wart_Block_Crimson, NeLi_Wart_Block_Warped, NeLi_Wart_Block_Soggy, NeLi_Bread, NeLi_Cookie, NeLi_Ash, NeLi_SoulSoil, NeLi_SoulFarm, NeLi_Gravel, NeLi_Magmatic_Netherrack, NeLi_Magmatic_Blackstone, NeLi_Strider_Flank_Raw, NeLi_Strider_Flank_Cooked,
 	NeLi_Quartz_Bricks, NeLi_Quartz_Smooth, NeLi_Quartz_Chiseled_Pillar, NeLi_Void_Block, NeLi_Void_Bricks, NeLi_Void_Smooth, NeLi_Void_Chiseled, NeLi_Void_Pillar, NeLi_Void_Chiseled_Pillar,
 	NeLi_Stem_Crimson, NeLi_Stem_Warped, NeLi_Stem_FoxFire, NeLi_Beam1_Crimson, NeLi_Beam1_Warped, NeLi_Beam1_FoxFire, NeLi_Hyphae_Crimson, NeLi_Hyphae_Warped, NeLi_Hyphae_FoxFire, NeLi_Beam2_Crimson, NeLi_Beam2_Warped, NeLi_Beam2_FoxFire,
-	EtFu_Chorus_Flower, EtFu_Chorus_Fruit, EtFu_Chorus_Popped, EtFu_Rabbit_Foot, EtFu_Beet_Seeds, EtFu_Sus_Stew, EtFu_Bottle_Honey, EtFu_Dragon_Breath, EtFu_Lingering_Potion, EtFu_Path, EtFu_Dirt, EtFu_Gravel, EtFu_Sandstone, EtFu_Obsidian, EtFu_Ancient_Debris, EtFu_Quartz_Bricks, EtFu_Magmatic_Netherrack, EtFu_Wart_Block_Nether, EtFu_Barrel, EtFu_Wither_Rose,
-	EtFu_Bark_Oak, EtFu_Bark_Spruce, EtFu_Bark_Birch, EtFu_Bark_Jungle, EtFu_Bark_Acacia, EtFu_Bark_DarkOak, EtFu_Beam1_Oak, EtFu_Beam1_Spruce, EtFu_Beam1_Birch, EtFu_Beam1_Jungle, EtFu_Beam1_Acacia, EtFu_Beam1_DarkOak, EtFu_Beam2_Oak, EtFu_Beam2_Spruce, EtFu_Beam2_Birch, EtFu_Beam2_Jungle, EtFu_Beam2_Acacia, EtFu_Beam2_DarkOak,
+	EtFu_Chorus_Flower, EtFu_Chorus_Fruit, EtFu_Chorus_Popped, EtFu_Rabbit_Foot, EtFu_Beet_Seeds, EtFu_Sus_Stew, EtFu_Bottle_Honey, EtFu_Block_Honey, EtFu_Dragon_Breath, EtFu_Lingering_Potion, EtFu_Path, EtFu_Dirt, EtFu_Gravel, EtFu_Sandstone, EtFu_Obsidian, EtFu_Ancient_Debris, EtFu_Quartz_Bricks, EtFu_Magmatic_Netherrack, EtFu_Wart_Block_Nether, EtFu_Barrel, EtFu_Wither_Rose,
+	EtFu_Bark_Oak, EtFu_Bark_Spruce, EtFu_Bark_Birch, EtFu_Bark_Jungle, EtFu_Bark_Acacia, EtFu_Bark_DarkOak, EtFu_Beam1_Oak, EtFu_Beam1_Spruce, EtFu_Beam1_Birch, EtFu_Beam1_Jungle, EtFu_Beam1_Acacia, EtFu_Beam1_DarkOak, EtFu_Beam2_Oak, EtFu_Beam2_Spruce, EtFu_Beam2_Birch, EtFu_Beam2_Jungle, EtFu_Beam2_Acacia, EtFu_Beam2_DarkOak, EtFu_Bamboo,
 	EtFu_Block_Copper, EtFu_Block_Copper_Exposed, EtFu_Block_Copper_Weathered, EtFu_Block_Copper_Oxidized, EtFu_Block_Copper_Waxed, EtFu_Block_Copper_Exposed_Waxed, EtFu_Block_Copper_Weathered_Waxed, EtFu_Block_Copper_Oxidized_Waxed,
 	EtFu_Block_Copper_Cut, EtFu_Block_Copper_Cut_Exposed, EtFu_Block_Copper_Cut_Weathered, EtFu_Block_Copper_Cut_Oxidized, EtFu_Block_Copper_Cut_Waxed, EtFu_Block_Copper_Cut_Exposed_Waxed, EtFu_Block_Copper_Cut_Weathered_Waxed, EtFu_Block_Copper_Cut_Oxidized_Waxed,
 	EtFu_Slabs_Copper_Cut, EtFu_Slabs_Copper_Cut_Exposed, EtFu_Slabs_Copper_Cut_Weathered, EtFu_Slabs_Copper_Cut_Oxidized, EtFu_Slabs_Copper_Cut_Waxed, EtFu_Slabs_Copper_Cut_Exposed_Waxed, EtFu_Slabs_Copper_Cut_Weathered_Waxed, EtFu_Slabs_Copper_Cut_Oxidized_Waxed,
@@ -131,7 +131,7 @@ public enum IL implements IItemContainer {
 	TC_Loot_Common, TC_Loot_Uncommon, TC_Loot_Rare,
 	TC_Thaumonomicon, TC_Crimson_Rites, TC_Knowledge_Fragment,
 	TC_Block_Flesh, TC_Block_Tallow, TC_Block_Amber, TC_Block_Amber_Bricks,
-	TC_Nitor, TC_Alumentum, TC_Tallow, TC_Phial, TC_Gold_Coin, TC_Gold_Ring,
+	TC_Nitor, TC_Alumentum, TC_Tallow, TC_Phial, TC_Gold_Coin, TC_Gold_Ring, TC_Primordial_Pearl,
 	TC_Bucket_Death, TC_Bucket_Pure,
 	TC_Flux_Goo, TC_Flux_Gas,
 	TF_Roots, TF_Liveroots, TF_Firefly, TF_Firefly_Jar,
@@ -268,7 +268,7 @@ public enum IL implements IItemContainer {
 	Antler, Antler_Deer,
 	Cerublossom, DesertNova, Resin, Sticky_Goo,
 	Comb_Honey, Comb_Water, Comb_Magic, Comb_Nether, Comb_End, Comb_Rock, Comb_Jungle, Comb_Frozen, Comb_Shroom, Comb_Sandy, Comb_Clay, Comb_Sticky, Comb_Royal, Comb_Soul, Comb_Amnesic, Comb_Military, Comb_Pyro, Comb_Cryo, Comb_Aero, Comb_Tera,
-	PlasticCan, Crate, Crate_Fireproof,
+	PlasticCan, Crate, Crate_Fireproof, Crate_Loot,
 	ThermosCan_Empty,
 	ThermosCan_Dark_Coffee, ThermosCan_Dark_Cafe_au_lait, ThermosCan_Coffee, ThermosCan_Cafe_au_lait, ThermosCan_Lait_au_cafe, ThermosCan_Dark_Chocolate_Milk,
 	ThermosCan_Chocolate_Milk,

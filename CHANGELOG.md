@@ -1,21 +1,38 @@
 This is the most recent Changelog. It also contains some of the changes inside the >>>UPCOMING<<< Versions (most of the time). This is for 1.7.10 btw.
 
 
+6.17.04: (Not released yet)
+Nothing (I tend to only add finished Stuff to the Changelog).
+
+
 6.17.03: (Not released yet)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.17.02: (Not released yet)
+6.17.02:
+[COMPAT] Et Futurum Wood Data for Cherry and Bamboo.
+[COMPAT] Unboxinator can now unbox Thaumcraft Loot Bags. I am glad Azanor arbitrarily decided to have a maximum of 12 Items outputted by those, otherwise I would've had trouble fitting it into the Unboxinators output slots.
+[FIXED] Thaumcraft Loot Bags are now actually randomizing the Enchantments on the Books they drop instead of repeating the exact same Enchantment over and over until you relaunch the Game.
 [FIXED] A bunch of Bugs related to saving and loading Worlds, in regards to GT6 Specific Data.
 [FIXED] Some Bug with Bukkit/Cauldron/etc. where things like Mini Portals and Ender Garbage Bins did not work correctly because of certain Events being thrown with weird Paths, triggering "loaded a different Save File" detection, which for Servers should flat out not be possible in the first place.
 [FIXED] Rivers, Lakes, Oceans and Beaches do no longer dry placed Grass Bales.
 [FIXED] Air vents were collecting Air even when submerged in Liquids or other Gasses.
-[FIXED] Somethign that made Mass Storages jam somehow, I think. I dont know how to repliciate it, so I dont know if it's fixed.
+[FIXED] Something that made Mass Storages jam somehow, I think. I dont know how to replicate it, so I dont know if it's fixed.
 [FIXED] Potion Fluids now use the Potion's getLiquidColor() instead of a hardcoded Texture.
+[CHANGED] Cows, Sheep, Pigs and Horses break Tall Grass that they walk through.
 [CHANGED] Platinum Group Metals, their Sludge and Rare Earth now have better Thaumcraft Aspects.
 [CHANGED] Roasters of higher Tiers no longer have overclocking penalty.
 [CHANGED] Zirconium now has durability and speed identical to Diamonds.
 [CHANGED] Rock Salt is mostly named Sylvite now, except in its Dust form.
+[ADDED] Extruder Recipe for Redstone Dust to Obsidian Block using the Cobble Generator Item. Yes this is a vanilla exploit I turned into a Recipe.
+[ADDED]
+Loot Crates, which can be made from about 3 Units of tediously crafted Gold, and look exactly like all the other Wooden Crates.
+Each Loot Crate will net you 1 random Stack of Vanilla Loot Table Loot when Unboxinated or rightclicked with a Crowbar.
+The primary purpose is to ensure you dont need to constantly explore to get certain things, while not making it too easy.
+Also this does serve as a more complicated version of IC2s Scrapbox Mechanic, where here you need Gold instead of Garbage to do this.
+I chose Gold because it is the most common useless Metal in Modded Minecraft, especially since you can melt down Notch Apples and such.
+I made sure all its ingredients are automatable without the Crucible, but it still requires a big Setup if you really want to automate this.
+Yes, it is possible for Loot Crates to drop a stack of GregTech Crates. See it like buying a bunch of cheaper Metal for Gold or so.
 
 
 6.17.01:

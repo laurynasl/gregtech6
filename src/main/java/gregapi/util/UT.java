@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2023 GregTech-6 Team
+ * Copyright (c) 2024 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -2968,6 +2968,7 @@ public class UT {
 			
 			public PlayedSound(String aSoundName, int aX, int aY, int aZ, int aTimer) {
 				mSoundName = aSoundName==null?"":aSoundName;
+				mTimer = aTimer;
 				mX = aX;
 				mY = aY;
 				mZ = aZ;
@@ -3269,6 +3270,11 @@ public class UT {
 		/** checks if a Player is actually a Player and not a FakePlayer or something. */
 		public static boolean isPlayer(Object aPlayer) {
 			return aPlayer instanceof EntityPlayerMP && !(aPlayer instanceof FakePlayer);
+		}
+		
+		/** only works serverside for now */
+		public static boolean isSpectator(Object aPlayer) {
+			return aPlayer instanceof EntityPlayerMP && ((EntityPlayerMP)aPlayer).theItemInWorldManager.getGameType().getName().equalsIgnoreCase("spectator");
 		}
 		
 		public static boolean isCreative(Object aPlayer) {
