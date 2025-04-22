@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2024 GregTech-6 Team
+ * Copyright (c) 2025 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -862,7 +862,7 @@ public class CS {
 	public static final double WEIGHT_AIR_KG_PER_UNIT = WEIGHT_AIR_KG_PER_CUBIC_METER / 9;
 	
 	/** Not really Constants, but they set using the Config and therefore should be constant. */
-	public static boolean D1 = F, D2 = F, D3 = F, ALWAYS_TRUE = T, ALWAYS_FALSE = F, EXPERIMENTS = F, CLIENT_BLOCKUPDATE_SOUNDS = F, NEI = F, TOOL_SOUNDS = T, TOOL_SOUNDS_SETTING = T, EMIT_EU_AS_RF = F, DISABLE_GT6_CRAFTING_RECIPES = F, ENABLE_ADDING_IC2_MACERATOR_RECIPES = T, DISABLE_ALL_IC2_MACERATOR_RECIPES = F, ENABLE_ADDING_IC2_EXTRACTOR_RECIPES = T, DISABLE_ALL_IC2_EXTRACTOR_RECIPES = F, ENABLE_ADDING_IC2_COMPRESSOR_RECIPES = T, DISABLE_ALL_IC2_COMPRESSOR_RECIPES = F, ENABLE_ADDING_IC2_OREWASHER_RECIPES = T, DISABLE_ALL_IC2_OREWASHER_RECIPES = F, ENABLE_ADDING_IC2_CENTRIFUGE_RECIPES = T, DISABLE_ALL_IC2_CENTRIFUGE_RECIPES = F, SLOW_LEAF_DECAY = F, FAST_LEAF_DECAY = T, FORCE_GRAVEL_NO_FLINT = F, NERFED_WOOD = T, FOOD_OVERDOSE_DEATH = T, NUTRITION_SYSTEM = T, OBSTRUCTION_CHECKS = T, OWNERSHIP_RESET = F, SPAWN_ZONE_MOB_PROTECTION = T, SPAWN_NO_BATS = T, SPAWN_HOSTILES_ONLY_IN_DARKNESS = T, CONSTANT_ENERGY = T, RAIN_EXPLOSIONS = F, WATER_EXPLOSIONS = F, THUNDER_EXPLOSIONS = F, FIRE_EXPLOSIONS = F, OVERCHARGE_EXPLOSIONS = F, FIRE_BREAKING = F, RAIN_BREAKING = F, WATER_BREAKING = F, THUNDER_BREAKING = F, OVERCHARGE_BREAKING = F, SHOW_MICROBLOCKS = F, SHOW_CHEM_FORMULAS = T, SHOW_INTERNAL_NAMES = F, SHOW_HIDDEN_MATERIALS = F, SHOW_HIDDEN_PREFIXES = F, SHOW_ORE_BLOCK_PREFIXES = F, SHOW_HIDDEN_ITEMS = F, SHOW_BUMBLEBEES = F, DRINKS_ALWAYS_DRINKABLE = F, HUNGER_BY_INVENTORY_WEIGHT = F, TOOL_BREAK_FATIQUE = T, INVENTORY_UNIFICATION = T, XP_ORB_COMBINING = T, ADVENTURE_MODE_KIT = F, SURVIVAL_INTO_ADVENTURE_MODE = F, MOBS_DROP_LEAD = T, MOBS_DROP_MEAT = T, MOBS_DROP_JUNK = T, MOBS_DROP_BOOK = T, MOBS_DROP_NAME = T, ZOMBIES_DIG_WITH_TOOLS = F, ZOMBIES_DIG_TILEENTITIES = F, ZOMBIES_HOLD_PICKAXES = T, ZOMBIES_HOLD_TNT = T, ZOMBIES_IGNITE_HELD_TNT = T, DISPLAY_TEMP_TOOLTIP = T, GENERATE_STONE = T, GENERATE_STREETS = F, GENERATE_NEXUS = F, GENERATE_TESTING = F, GENERATE_BEACON = F, GENERATE_BIOMES = F, GENERATING_SPECIAL = F;
+	public static boolean D1 = F, D2 = F, D3 = F, ALWAYS_TRUE = T, ALWAYS_FALSE = F, EXPERIMENTS = F, CLIENT_BLOCKUPDATE_SOUNDS = F, NEI = F, NEI_NH = F, TOOL_SOUNDS = T, TOOL_SOUNDS_SETTING = T, EMIT_EU_AS_RF = F, DISABLE_GT6_CRAFTING_RECIPES = F, ENABLE_ADDING_IC2_MACERATOR_RECIPES = T, DISABLE_ALL_IC2_MACERATOR_RECIPES = F, ENABLE_ADDING_IC2_EXTRACTOR_RECIPES = T, DISABLE_ALL_IC2_EXTRACTOR_RECIPES = F, ENABLE_ADDING_IC2_COMPRESSOR_RECIPES = T, DISABLE_ALL_IC2_COMPRESSOR_RECIPES = F, ENABLE_ADDING_IC2_OREWASHER_RECIPES = T, DISABLE_ALL_IC2_OREWASHER_RECIPES = F, ENABLE_ADDING_IC2_CENTRIFUGE_RECIPES = T, DISABLE_ALL_IC2_CENTRIFUGE_RECIPES = F, SLOW_LEAF_DECAY = F, FAST_LEAF_DECAY = T, FORCE_GRAVEL_NO_FLINT = F, NERFED_WOOD = T, FOOD_OVERDOSE_DEATH = T, NUTRITION_SYSTEM = T, OBSTRUCTION_CHECKS = T, OWNERSHIP_RESET = F, SPAWN_ZONE_MOB_PROTECTION = T, SPAWN_NO_BATS = T, SPAWN_HOSTILES_ONLY_IN_DARKNESS = T, CONSTANT_ENERGY = T, RAIN_EXPLOSIONS = F, WATER_EXPLOSIONS = F, THUNDER_EXPLOSIONS = F, FIRE_EXPLOSIONS = F, OVERCHARGE_EXPLOSIONS = F, FIRE_BREAKING = F, RAIN_BREAKING = F, WATER_BREAKING = F, THUNDER_BREAKING = F, OVERCHARGE_BREAKING = F, SHOW_MICROBLOCKS = F, SHOW_CHEM_FORMULAS = T, SHOW_INTERNAL_NAMES = F, SHOW_HIDDEN_MATERIALS = F, SHOW_HIDDEN_PREFIXES = F, SHOW_ORE_BLOCK_PREFIXES = F, SHOW_HIDDEN_ITEMS = F, SHOW_BUMBLEBEES = F, DRINKS_ALWAYS_DRINKABLE = F, HUNGER_BY_INVENTORY_WEIGHT = F, TOOL_BREAK_FATIQUE = T, INVENTORY_UNIFICATION = T, XP_ORB_COMBINING = T, ADVENTURE_MODE_KIT = F, SURVIVAL_INTO_ADVENTURE_MODE = F, MOBS_DROP_LEAD = T, MOBS_DROP_MEAT = T, MOBS_DROP_JUNK = T, MOBS_DROP_BOOK = T, MOBS_DROP_NAME = T, ZOMBIES_DIG_WITH_TOOLS = F, ZOMBIES_DIG_TILEENTITIES = F, ZOMBIES_HOLD_PICKAXES = T, ZOMBIES_HOLD_TNT = T, ZOMBIES_IGNITE_HELD_TNT = T, DISPLAY_TEMP_TOOLTIP = T, GENERATE_STONE = T, GENERATE_STREETS = F, GENERATE_NEXUS = F, GENERATE_TESTING = F, GENERATE_BEACON = F, GENERATE_BIOMES = F, GENERATING_SPECIAL = F;
 	/** Date based Shenanigans */
 	@SuppressWarnings("deprecation")
 	public static boolean
@@ -1064,6 +1064,7 @@ public class CS {
 	, TOOL_plasmatorch      = "plasmatorch"
 	, TOOL_solderingtool    = "solderingtool"
 	, TOOL_solderingmetal   = "solderingmetal"
+	, TOOL_builderwand      = "builderwand"
 	, TOOL_thermometer      = "thermometer"
 	, TOOL_magnifyingglass  = "magnifyingglass"
 	, TOOL_geigercounter    = "geigercounter"
@@ -1107,6 +1108,7 @@ public class CS {
 		LH.add(TOOL_LOCALISER_PREFIX + TOOL_plasmatorch     , "Plasma Torch");
 		LH.add(TOOL_LOCALISER_PREFIX + TOOL_solderingtool   , "Soldering Tool");
 		LH.add(TOOL_LOCALISER_PREFIX + TOOL_solderingmetal  , "Soldering Metal");
+		LH.add(TOOL_LOCALISER_PREFIX + TOOL_builderwand     , "Builder Wand");
 		LH.add(TOOL_LOCALISER_PREFIX + TOOL_thermometer     , "Thermometer");
 		LH.add(TOOL_LOCALISER_PREFIX + TOOL_magnifyingglass , "Magnifying Glass");
 		LH.add(TOOL_LOCALISER_PREFIX + TOOL_geigercounter   , "Geiger Counter");
@@ -1509,19 +1511,20 @@ public class CS {
 		  SIMPLE           = new HashSetNoNulls<>(F, "poison")
 		, ACID             = new HashSetNoNulls<>(F, "fluxgoo", "fluxgas", "acid", "acid_fluid", "creeper_acid", "schrabidic_fluid", "sulfuricacid", "sulfuric_acid_fluid", "nitricacid", "nitric_acid_fluid", "aquaregia", "hydrochloricacid", "mutagen", "liquiddna", "binnie.dna.raw", "binnie.bacteriavector", "binnie.bacteriapoly", "binnie.bacteria")
 		, TOXIC            = new HashSetNoNulls<>(F, "fluxgoo", "fluxgas", "poison", "toxic_fluid", "mud_fluid", "bacterialsludge", "sludge", "fluiddeath")
-		, MAGIC            = new HashSetNoNulls<>(F, "fluxgoo", "fluxgas", "fluiddeath", "fluidpure")
+		, MAGIC            = new HashSetNoNulls<>(F, "fluxgoo", "fluxgas", "fluiddeath", "fluidpure", "liquidessence")
 		, THAUMIC_FLUX     = new HashSetNoNulls<>(F, "fluxgoo", "fluxgas")
-		, LIQUID           = new HashSetNoNulls<>(F, "fluxgoo", "fluiddeath", "fluidpure", "poison", "liquidnitrogen", "liquiddna")
+		, LIQUID           = new HashSetNoNulls<>(F, "fluxgoo", "fluiddeath", "fluidpure", "poison", "liquidnitrogen", "liquiddna", "liquidessence")
 		, GAS              = new HashSetNoNulls<>(F, "fluxgas")
 		, PLASMA           = new HashSetNoNulls<>(F, "heliumplasma", "nitrogenplasma", "rc fusion plasma")
 		, HIDDEN           = new HashSetNoNulls<>(F, "heliumplasma", "nitrogenplasma")
 		, AIR              = new HashSetNoNulls<>()
 		, OXYGEN           = new HashSetNoNulls<>()
 		, LIQUID_OXYGEN    = new HashSetNoNulls<>()
-		, ENCHANTED_EFFECT = new HashSetNoNulls<>(F, "fluidpure")
+		, ENCHANTED_EFFECT = new HashSetNoNulls<>(F, "fluidpure", "liquidessence")
 		, VOID_OVERFLOW    = new HashSetNoNulls<>()
 		, NONSTANDARD      = new HashSetNoNulls<>()
 		, BROKEN           = new HashSetNoNulls<>()
+		, BORKEN           = new HashSetNoNulls<>(F, "liquidessence")
 		, INFINITE         = new HashSetNoNulls<>() // Marks things that are stupidly easy to obtain, except Water and Milk.
 		, BATH             = new HashSetNoNulls<>()
 		, DYE              = new HashSetNoNulls<>()
@@ -1698,7 +1701,7 @@ public class CS {
 		
 		@Deprecated public static BlockBase Sapling = Saplings_AB, Leaves = Leaves_AB;
 	}
-
+	
 	public static class ArmorsGT {
 		/** The List of Hazmat Armors */
 		public static final ItemStackSet<ItemStackContainer>
@@ -1964,6 +1967,7 @@ public class CS {
 		, ATUM              = "atum"
 		, BTL               = "thebetweenlands"
 		, AETHER            = "aether"
+		, AETHEL            = "aether_legacy"
 		, TROPIC            = "tropicraft"
 		, MYST              = "Mystcraft"
 		, WARPBOOK          = "warpbook"
@@ -2183,9 +2187,14 @@ public class CS {
 		, MD8               = "Micdoodlecore"
 		;
 	}
-
+	
 	/** Class Containing Sound Strings used in GT. */
 	public static class SFX {
+		public static float RANDOM_PITCH = Float.NaN;
+		/** Certain Sounds need a bit of pitch variation to them, so I decided to put a <tt>High Quality Video Game Rip</tt> into them. */
+		public static final float[] _7_GRAND_DAD_ = {1.0F, 0.8F, 1.0F, 0.9F, 0.9F, 0.8F, 1.0F, 0.9F, 0.8F, 0.8F, 0.8F, 0.9F, 0.7F, 0.8F, 0.9F, 1.0F, 0.8F, 1.0F, 0.9F, 0.9F, 0.8F, 1.0F, 0.9F, 0.8F, 0.8F, 0.8F, 0.9F, 0.7F, 0.9F, 0.7F};
+		public static int PITCH_INDEX = -1;
+		
 		/** Sound Strings */
 		public static final String
 		  MC_BREAK              = "random.break"

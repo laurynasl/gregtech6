@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2024 GregTech-6 Team
+ * Copyright (c) 2025 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -39,7 +39,7 @@ import static gregapi.data.CS.W;
 public class LoaderWoodDictionary implements Runnable {
 	@Override
 	public void run() {
-		// 260 is next! There is no Gaps in this List!
+		// 261 is next! There is no Gaps in this List!
 		
 		// Vanilla Trees
 		OreDictionary.registerOre(OD.plankWood.toString(), ST.make(Blocks.planks, 1, 0));
@@ -268,19 +268,23 @@ public class LoaderWoodDictionary implements Runnable {
 			CR.shaped(IL.BTL_Weedwood_Planks.get(1), CR.DEF_NCC, "S", "S", 'S', ST.make(MD.BTL, "Weedwood Planks Slab", 1, 0));
 		}
 		// Aether Trees
-		if (MD.AETHER.mLoaded) {
+		if (!MD.AETHEL.mLoaded && MD.AETHER.mLoaded) {
 			BeamEntry tSkyrootBeam = new BeamEntry(ST.make(BlocksGT.Beam3, 1, 2), new PlankEntry(IL.AETHER_Skyroot_Planks.get(1), ST.make(MD.AETHER, "tile.skyrootSingleSlab", 1, 0), ST.make(MD.AETHER, "skyrootStairs", 1, 0), MT.Skyroot, 124), 1, 200);
 			new BeamEntry(ST.make(BlocksGT.Beam3FireProof, 1, 2), WoodDictionary.PLANKS.get(IL.AETHER_Skyroot_Planks));
 			CR.shaped(IL.AETHER_Skyroot_Planks.get(1), CR.DEF_NCC, "S", "S", 'S', ST.make(MD.AETHER, "tile.skyrootSingleSlab", 1, 0));
 			
 			new WoodEntry(IL.AETHER_Skyroot_Log_Small.wild(1), tSkyrootBeam, 1, 200);
+			new SaplingEntry(IL.AETHER_Skyroot_Sapling_Gold.wild(1), new WoodEntry(IL.AETHER_Skyroot_Log_Gold.get(1), tSkyrootBeam, 1, 300, OP.gem.mat(MT.AmberGolden, 1), MT.AmberGolden), IL.AETHER_Skyroot_Leaves_Gold  .wild(1));
 			
-			WoodEntry tSkyrootWood = new WoodEntry(IL.AETHER_Skyroot_Log.wild(1), tSkyrootBeam, 1, 300);
-			new SaplingEntry(IL.AETHER_Skyroot_Sapling_Blue     .wild(1), tSkyrootWood, IL.AETHER_Skyroot_Leaves_Blue   .wild(1));
-			new SaplingEntry(IL.AETHER_Skyroot_Sapling_Dark     .wild(1), tSkyrootWood, IL.AETHER_Skyroot_Leaves_Dark   .wild(1));
-			new SaplingEntry(IL.AETHER_Skyroot_Sapling_Green    .wild(1), tSkyrootWood, IL.AETHER_Skyroot_Leaves_Green  .wild(1));
-			new SaplingEntry(IL.AETHER_Skyroot_Sapling_Gold     .wild(1), tSkyrootWood, IL.AETHER_Skyroot_Leaves_Gold   .wild(1));
-			new SaplingEntry(IL.AETHER_Skyroot_Sapling_Purple   .wild(1), tSkyrootWood, IL.AETHER_Skyroot_Leaves_Purple .wild(1));
+			WoodEntry tSkyrootWood = 
+			new WoodEntry(IL.AETHER_Skyroot_Log.getWithMeta(1, 0), tSkyrootBeam, 1, 300);
+			new WoodEntry(IL.AETHER_Skyroot_Log.getWithMeta(1, 1), tSkyrootBeam, 1, 300);
+			new WoodEntry(IL.AETHER_Skyroot_Log.getWithMeta(1, 3), tSkyrootBeam, 1, 300);
+			
+			new SaplingEntry(IL.AETHER_Skyroot_Sapling_Blue  .wild(1), tSkyrootWood, IL.AETHER_Skyroot_Leaves_Blue  .wild(1));
+			new SaplingEntry(IL.AETHER_Skyroot_Sapling_Dark  .wild(1), tSkyrootWood, IL.AETHER_Skyroot_Leaves_Dark  .wild(1));
+			new SaplingEntry(IL.AETHER_Skyroot_Sapling_Green .wild(1), tSkyrootWood, IL.AETHER_Skyroot_Leaves_Green .wild(1));
+			new SaplingEntry(IL.AETHER_Skyroot_Sapling_Purple.wild(1), tSkyrootWood, IL.AETHER_Skyroot_Leaves_Purple.wild(1));
 		}
 		// Botania Planks
 		if (MD.BOTA.mLoaded) {

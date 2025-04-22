@@ -54,7 +54,7 @@ public class MultiTileEntityZPM extends TileEntityBase08Battery implements IMTE_
 		if (rReturn > 0 || isClientSide()) return rReturn;
 
 		if (mEnergy == 0 && aTool.equals(TOOL_hammer)) {
-			UT.Sounds.send(SFX.MC_BREAK, this);
+			UT.Sounds.send(SFX.MC_BREAK, this, F);
 			ST.drop(worldObj, getCoords(), OP.scrapGt.mat(MT.Nq, 4));
 			setToAir();
 			return 10000;
