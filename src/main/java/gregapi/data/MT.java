@@ -2984,19 +2984,31 @@ public class MT {
 			Niter.addSourceOf(KNO3, NaNO3, K, Na);
 			
 			
-			OREMATS.Pitchblende             .ores(Pb                        , Ra                        , RareEarth             , Th                    );
-			OREMATS.Uraninite               .ores(Pb                        , Ra                        , RareEarth             , Th                    );
-			Yellorite                       .ores(Pb                        , Ra                        , RareEarth             , Th                    );
+			OREMATS.Pitchblende             .ores(OREMATS.Uraninite         );
+			OREMATS.Uraninite               .ores(OREMATS.Pitchblende       );
 			
-			Th                              .ores(Ra, OREMATS.DuraniumHexaastatide, OREMATS.TritaniumHexaastatide);
+			Th                              .ores(OREMATS.Pitchblende       ); // U_238
+			Ra                              .ores(OREMATS.Pitchblende       , OREMATS.Uraninite         ); // U_238
 
-			Cyanite                         .ores(Pb                        , Ra                        , RareEarth             );
-			U_238                           .ores(Pb                        , Ra                        , RareEarth             );
-			Yellorium                       .ores(Pb                        , Ra                        , RareEarth             );
-			Pu                              .ores(Pb                        , Ra                        , RareEarth             );
-			Blutonium                       .ores(Pb                        , Ra                        , RareEarth             );
-			Am                              .ores(Pb                        , Ra                        , RareEarth             );
-			Ludicrite                       .ores(Pb                        , Ra                        , RareEarth             );
+			U_233                           .ores(Pu_243                    , Pu_241                    ); // Pu_243
+			U_235                           .ores(Pu                        , Pu_241                    ); // Pu
+			U_238                           .ores(Pb                        ); // U_235
+
+			// Pu is Pu_244
+			Pu                              .ores(Ra                        ); // Pu_241
+			Pu_239                          .ores(Pu_241                    ); // Am_241
+			Pu_241                          .ores(Pu_239                    ); // Pu_243
+			// depleted Pu_243 outputs Pu_239                                  // Am
+
+			// Am is Am_245
+			Am                              .ores(Ra                        ); // Am_241
+			Am_241                          .ores(Nq_528                    ); // Nq_528
+
+			//Yellorite                       .ores(Pb                        , Ra                        , RareEarth             , Th                    );
+			//Cyanite                         .ores(Pb                        , Ra                        , RareEarth             );
+			//Yellorium                       .ores(Pb                        , Ra                        , RareEarth             );
+			//Blutonium                       .ores(Pb                        , Ra                        , RareEarth             );
+			//Ludicrite                       .ores(Pb                        , Ra                        , RareEarth             );
 			
 			for (OreDictMaterial tMat : ANY.CaF2.mToThis) tMat.ores(OREMATS.Huebnerite, Y, Ce, Fe2O3, Na, Ba);
 			
@@ -3031,7 +3043,7 @@ public class MT {
 			OREMATS.Galena                  .ores(OREMATS.Sphalerite        , Ag                        , Pb                    , Se                    , FluoriteRed           , CaCO3);
 			OREMATS.Arsenopyrite            .ores(Au                        , OREMATS.Realgar           , FluoriteOrange        , OREMATS.Cassiterite   , OREMATS.Huebnerite    );
 			OREMATS.Cobaltite               .ores(OREMATS.Realgar           , FluoriteOrange            , OREMATS.Pentlandite   , OREMATS.YellowLimonite);
-			Co_60                           .ores(OREMATS.Cobaltite         , OREMATS.Realgar           , FluoriteOrange        , OREMATS.Pentlandite   , OREMATS.YellowLimonite);
+			Co_60                           .ores(Th                        , At                        );
 			Co                              .ores(OREMATS.Cobaltite         , OREMATS.Realgar           , FluoriteOrange        , OREMATS.Pentlandite   , OREMATS.YellowLimonite);
 			OREMATS.Realgar                 .ores(OREMATS.Cobaltite         , OREMATS.Arsenopyrite      );
 			Cu                              .ores(OREMATS.Cobaltite         , Au                        , Ni                    , OREMATS.Malachite     , As                    );
@@ -3293,7 +3305,7 @@ public class MT {
 			OREMATS.DuraniumHexachloride    .ores(OREMATS.DiduraniumTrioxide, NaCl                        , KCl);
 			OREMATS.DuraniumHexabromide     .ores(OREMATS.DiduraniumTrioxide, OREMATS.Bromargyrite        );
 			OREMATS.DuraniumHexaiodide      .ores(OREMATS.DiduraniumTrioxide, KIO3                        );
-			OREMATS.DuraniumHexaastatide    .ores(OREMATS.DiduraniumTrioxide, At                          );
+			OREMATS.DuraniumHexaastatide    .ores(OREMATS.DiduraniumTrioxide, At                          , Ra                          );
 			OREMATS.TritaniumHexafluoride   .ores(OREMATS.TritaniumDioxide  , FluoriteMagenta             );
 			OREMATS.TritaniumHexachloride   .ores(OREMATS.TritaniumDioxide  , NaCl                        , KCl);
 			OREMATS.TritaniumHexabromide    .ores(OREMATS.TritaniumDioxide  , OREMATS.Bromargyrite        );
