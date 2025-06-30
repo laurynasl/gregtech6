@@ -458,6 +458,9 @@ public class Loader_Recipes_Other implements Runnable {
 		for (FluidStack tDye : DYE_FLUIDS[DYE_INDEX_Lime     ]) RM.Bath.addRecipe1(T, 0, 16, ST.make(Blocks.grass, 1, W), FL.mul(tDye, 1, 24, T), NF, ST.make(BlocksGT.Grass, 1, 1));
 		for (FluidStack tDye : DYE_FLUIDS[DYE_INDEX_Black    ]) RM.Bath.addRecipe1(T, 0, 16, ST.make(Blocks.grass, 1, W), FL.mul(tDye, 1, 24, T), NF, ST.make(BlocksGT.Grass, 1, 2));
 		for (FluidStack tDye : DYE_FLUIDS[DYE_INDEX_LightGray]) RM.Bath.addRecipe1(T, 0, 16, ST.make(Blocks.grass, 1, W), FL.mul(tDye, 1, 24, T), NF, ST.make(BlocksGT.Grass, 1, 3));
+
+		RM.Bath.addRecipe1(T, 0, 16, OP.blockDust.mat(MT.SiO2, 64), FL.BiomassIC2.make(8000), NF, ST.make(Blocks.grass, 64, 0));
+		RM.Bath.addRecipe1(T, 0, 16, ST.make(Blocks.sand, 64, W), FL.BiomassIC2.make(8000), NF, ST.make(Blocks.dirt, 64, 0));
 		
 		
 		for (byte i = 0; i < 16; i++) {
