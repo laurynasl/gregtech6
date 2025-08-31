@@ -56,6 +56,9 @@ public class Loader_Recipes_Chem implements Runnable {
 		RM.Mixer        .addRecipe1(T, 16,  272, OM.dust(MT.FeCl3, U*8), FL.array(FL.mul(tWater, 6), MT.SO2.gas(U*3, T)), FL.array(MT.H2SO4.liquid(U*7, F), MT.HCl.fluid (U*4, F)), OM.dust(MT.FeCl2, U*6));
 		RM.Mixer        .addRecipe2(T, 16,  208, OM.dust(MT.FeCl3, U*4), OM.dust(MT.NaOH, U*9), FL.mul(tWater, 18), MT.SaltWater  .liquid(U*24, F), OM.dust(MT.FeO3H3, U*7));
 		RM.Mixer        .addRecipe2(T, 16,  208, OM.dust(MT.FeCl3, U*4), OM.dust(MT.KOH , U*9), FL.mul(tWater, 18), MT.SaltedWater.liquid(U*24, F), OM.dust(MT.FeO3H3, U*7));
+
+		// synthetic talc
+		RM.Mixer        .addRecipe2(T, 16,  512, OM.dust(MT.Mg, U), OM.dust(MT.SiO2, U*4), FL.mul(tWater, 4), MT.H.gas(U*2, F), OM.dust(MT.Talc, U*7));
 		
 		RM.Mixer        .addRecipe0(T, 16,   64, FL.array(FL.mul(tWater, 3), MT.Cl .gas(U*2, T)), MT.HCl  .fluid (U* 4, F), MT.O.gas(U, F));
 		RM.Mixer        .addRecipe0(T, 16,   64, FL.array(FL.mul(tWater, 3), MT.SO3.gas(U*4, T)), MT.H2SO4.liquid(U* 7, F), ZL_IS);
