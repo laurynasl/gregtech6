@@ -3238,7 +3238,8 @@ public class MT {
 			Bronze                          .ores(Cu                        , Sn                        , As                    );
 			Brass                           .ores(Cu                        , Zn                        , As                    );
 			Coal                            .ores(Lignite                   , Anthracite                , Oilshale              , S                     );
-			Lignite                         .ores(Coal                      , S                         , Ge                    );
+			Lignite                         .ores(Coal                      , Ge                        , Oilshale              , S                     );
+			Oilshale                        .ores(Prismane                  , Lonsdaleite               , Coal                  );
 			Anthracite                      .ores(Prismane                  , Lonsdaleite               , OREMATS.DuraniumHexaastatide);
 			Prismane                        .ores(Lonsdaleite               , Th                        , OREMATS.TritaniumHexaastatide );
 			Lonsdaleite                     .ores(Th                      , OREMATS.DuraniumHexaastatide, OREMATS.TritaniumHexaastatide );
