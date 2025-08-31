@@ -461,7 +461,9 @@ public class Loader_Recipes_Other implements Runnable {
 
 		RM.Bath.addRecipe1(T, 0, 16, OP.blockDust.mat(MT.SiO2, 64), FL.BiomassIC2.make(8000), NF, ST.make(Blocks.grass, 64, 0));
 		RM.Bath.addRecipe1(T, 0, 16, ST.make(Blocks.sand, 64, W), FL.BiomassIC2.make(8000), NF, ST.make(Blocks.dirt, 64, 0));
-		
+
+		for (FluidStack tDye : DYE_FLUIDS[DYE_INDEX_Yellow   ]) RM.Bath.addRecipe1(T, 0, 16, ST.make(Blocks.grass, 1, W), FL.mul(tDye, 1, 24, T), NF, ST.make(BlocksGT.Grass, 1, 4));
+		for (FluidStack tDye : DYE_FLUIDS[DYE_INDEX_Brown    ]) RM.Bath.addRecipe1(T, 0, 16, ST.make(Blocks.grass, 1, W), FL.mul(tDye, 1, 24, T), NF, ST.make(BlocksGT.Grass, 1, 5));
 		
 		for (byte i = 0; i < 16; i++) {
 		for (FluidStack tDye : DYE_FLUIDS[i]) if (tDye.getFluid() != DYE_FLUIDS_CHEMICAL[i].getFluid()) {
@@ -760,6 +762,8 @@ public class Loader_Recipes_Other implements Runnable {
 		RM.Loom    .addRecipe2(T, 16,   16, ST.tag(10), ST.make(Items.string, 4, W), IL.Rope_Silk.get(1));
 		RM.Loom    .addRecipe2(T, 16,   16, ST.tag(10), wireFine.mat(MT.Plastic, 4), IL.Rope_Plastic.get(1));
 		RM.Loom    .addRecipe2(T, 16,   16, ST.tag(10), ST.make(Blocks.vine, 4, W), IL.Rope_Vine.get(1));
+		for (OreDictMaterial tMat : ANY.Steel.mToThis)
+		RM.Loom    .addRecipe2(T, 16,   64, ST.tag(10), wireFine.mat(tMat, 4), IL.Rope_Steel.get(1));
 		
 		RM.CokeOven.addRecipe1(T,  0,  3600, gem                   .mat(MT.Coal    , 1), NF, MT.Creosote.liquid(   U2, F), gem       .mat(MT.CoalCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0,  3600, nugget                .mat(MT.Coal    , 9), NF, MT.Creosote.liquid(   U2, F), ingot     .mat(MT.CoalCoke, 1));
@@ -793,15 +797,15 @@ public class Loader_Recipes_Other implements Runnable {
 		RM.CokeOven.addRecipe1(T,  0, 32400, blockIngot            .mat(MT.Lignite , 1), NF, MT.Creosote.liquid(27*U4, F), blockIngot.mat(MT.LigniteCoke, 1));
 		RM.CokeOven.addRecipe1(T,  0, 32400, blockGem              .mat(MT.Lignite , 1), NF, MT.Creosote.liquid(27*U4, F), blockGem  .mat(MT.LigniteCoke, 1));
 		
-		RM.CokeOven.addRecipe1(T,  0,  3600, dust                  .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(  U40, F), dustTiny  .mat(MT.Asphalt, 1));
-		RM.CokeOven.addRecipe1(T,  0,  7200, oreRaw                .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(  U20, F), dustTiny  .mat(MT.Asphalt, 2));
-		RM.CokeOven.addRecipe1(T,  0,  3600, crushed               .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(  U40, F), dustTiny  .mat(MT.Asphalt, 1));
-		RM.CokeOven.addRecipe1(T,  0,  3600, crushedTiny           .mat(MT.Oilshale, 9), NF, MT.Oil     .liquid(  U40, F), dustTiny  .mat(MT.Asphalt, 1));
-		RM.CokeOven.addRecipe1(T,  0,  3600, crushedPurified       .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(  U40, F), dustTiny  .mat(MT.Asphalt, 1));
-		RM.CokeOven.addRecipe1(T,  0,  3600, crushedPurifiedTiny   .mat(MT.Oilshale, 9), NF, MT.Oil     .liquid(  U40, F), dustTiny  .mat(MT.Asphalt, 1));
-		RM.CokeOven.addRecipe1(T,  0,  3600, crushedCentrifuged    .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(  U40, F), dustTiny  .mat(MT.Asphalt, 1));
-		RM.CokeOven.addRecipe1(T,  0,  3600, crushedCentrifugedTiny.mat(MT.Oilshale, 9), NF, MT.Oil     .liquid(  U40, F), dustTiny  .mat(MT.Asphalt, 1));
-		RM.CokeOven.addRecipe1(T,  0, 32400, blockDust             .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(9*U40, F), dust      .mat(MT.Asphalt, 1));
+		RM.CokeOven.addRecipe1(T,  0,  3600, dust                  .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(   U4, F), dustTiny  .mat(MT.Asphalt, 1));
+		RM.CokeOven.addRecipe1(T,  0,  7200, oreRaw                .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(   U2, F), dustTiny  .mat(MT.Asphalt, 2));
+		RM.CokeOven.addRecipe1(T,  0,  3600, crushed               .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(   U4, F), dustTiny  .mat(MT.Asphalt, 1));
+		RM.CokeOven.addRecipe1(T,  0,  3600, crushedTiny           .mat(MT.Oilshale, 9), NF, MT.Oil     .liquid(   U4, F), dustTiny  .mat(MT.Asphalt, 1));
+		RM.CokeOven.addRecipe1(T,  0,  3600, crushedPurified       .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(   U4, F), dustTiny  .mat(MT.Asphalt, 1));
+		RM.CokeOven.addRecipe1(T,  0,  3600, crushedPurifiedTiny   .mat(MT.Oilshale, 9), NF, MT.Oil     .liquid(   U4, F), dustTiny  .mat(MT.Asphalt, 1));
+		RM.CokeOven.addRecipe1(T,  0,  3600, crushedCentrifuged    .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid(   U4, F), dustTiny  .mat(MT.Asphalt, 1));
+		RM.CokeOven.addRecipe1(T,  0,  3600, crushedCentrifugedTiny.mat(MT.Oilshale, 9), NF, MT.Oil     .liquid(   U4, F), dustTiny  .mat(MT.Asphalt, 1));
+		RM.CokeOven.addRecipe1(T,  0, 32400, blockDust             .mat(MT.Oilshale, 1), NF, MT.Oil     .liquid( 9*U4, F), dust      .mat(MT.Asphalt, 1));
 		
 		
 		RM.Nanofab.addRecipe2(T, 16,  64, ST.tag( 0), dustDiv72.mat(MT.C,18), foil.mat(MT.Graphene, 1));

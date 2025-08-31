@@ -1,11 +1,22 @@
 This is the most recent Changelog. It also contains some of the changes inside the >>>UPCOMING<<< Versions (most of the time). This is for 1.7.10 btw.
 
 
-6.17.06: (Not released yet)
+6.17.07: (Not released yet)
 Nothing (I tend to only add finished Stuff to the Changelog).
 
 
-6.17.05: (Not released yet)
+6.17.06: (Not released yet)
+[FIXED] GT6 Alexandrite Ore Veins will no longer generate when HBM NTM is installed (balance concerns), it also generally wont be on the "Small Gem Ores List" anymore. You can still use the Matter Replicator to make Alexandrite though, if you find a sample first.
+[CHANGED] GT6 Mossy Cobble (Not Vanilla Mossy Cobble) will make you (and Mobs) slide off if you are not sneaking. This Block spawns Mobs AND makes them slide off if there is space, which is Ideal for Mob Farms.
+[CHANGED] Mobs can no longer drop Wooden or Stone Tools of Vanilla Minecraft and instead will drop Sticks in those cases. This should very much declutter some Mob Farms.
+[CHANGED] Oil Shale in Coke Oven now gives you 10x the Oil, making it actually worthwhile to use at all.
+[ADDED] Steel Rope, which is just another type of Rope.
+[ADDED] Ultimet Boilers corresponding to the TaHFC Burning Boxes.
+[ADDED] Yellow and Brown Grass now indicate Lava, Gas and Oil Springs. Greener Grass indicates Water Springs.
+
+
+6.17.05:
+[FIXED] A rather critical stupidity in the way my Worldgen Random works... I mixed up the Seed and the coordinate parameters...
 [ADDED] Using any of the Cooking Oils in a GT6 Oven will duplicate Meat and Fish Output at the cost of 50L of Cooking Oil.
 [ADDED] Canned Air. As in putting 16000L of Naturally Sparkling, Salt-Free Air into a Food Can. It can be used to replenish Air Underwater and will overfill your Air Bar. Also has Enviromine Heat Stats depending on which type of Air you drink.
 [ADDED] Brass Set of Kinetic Axles and Gearboxes. Also things that handle Rotational Units now make a Minecart noise. This includes Gearboxes, but does not include Basic Machines and Axles (would make too much noise).
@@ -13,7 +24,7 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 Hand Crank to deliver 16 RU/t to a Machine at the cost of your Hunger Bar (may be influenced by Potion/Beacon Effects).
 This might let you make Steel in a Crucible without Machines, if you set it up right.
 Can emit strong Redstone into the Block they are attached to, so they work as Redstone component too (replacing the Buttons in Vault Rooms of GT6 Dungeons).
-They dont use Hunger if they are not emitting Rotational Energy into the Block they are attached to.
+They dont use Hunger if they are not emitting Rotational Energy into the Block they are attached to. (such as when only used for its Redstone Output)
 Also Villagers can operate Cranks at Head Height.
 
 
@@ -22,7 +33,7 @@ Also Villagers can operate Cranks at Head Height.
 [FIXED] Some of the Bird Eggs of the Exotic Birds Mod were missed in my Compat. Also Big Eggs give more White/Yolk now, and if no Egg Shell Item exists, my Recipes will give you a piece of Bonemeal. Also fixed Harvestcraft Eggnog Recipe in my Mixing Bowl.
 [CHANGED] Bushes, Sticks and Rocks now leave behind a Snow Layer when harvested next to Snow.
 [CHANGED] Reactor Cores can now store 160 times more output Steam specifically, fixing an Issue in high capacity Naquadria Steam Reactors.
-[ADDED] Killing Creepers, Zombies, Skeletons, Wither Skeletons or Players with a Scythe/Sense will make them drop a Head. Yes that also makes it a lot less grindy to get a Skull for the Wither. I have no Idea if Player Head Drops work properly as I cant log in to check, so this needs to be done by Bear.
+[ADDED] Killing Creepers, Zombies, Skeletons, Wither Skeletons or Players with a Scythe/Sense will make them drop a Head. Yes that also makes it a lot less grindy to get Skulls for the Wither.
 [ADDED] Aspectonomicon, a Book that when rightclicked, will count as having scanned most Vanilla-ish Items and Blocks with a Thaumometer. Does not contain Aspects for Thaumcraft Items. It is crafted using the 9 different Magic Research Papers.
 
 

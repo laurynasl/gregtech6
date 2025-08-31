@@ -797,7 +797,7 @@ public class CS {
 	, SCAN_NEG_7 = {0, -1, +1, -2, +2, -3, +3, -4, +4, -5, +5, -6, +6, -7, +7}
 	, SCAN_NEG_8 = {0, -1, +1, -2, +2, -3, +3, -4, +4, -5, +5, -6, +6, -7, +7, -8, +8}
 	, SCAN_NEG_9 = {0, -1, +1, -2, +2, -3, +3, -4, +4, -5, +5, -6, +6, -7, +7, -8, +8, -9, +9}
-
+	
 	, SCAN_POS_0 = {0}
 	, SCAN_POS_1 = {0, +1, -1}
 	, SCAN_POS_2 = {0, +1, -1, +2, -2}
@@ -808,11 +808,11 @@ public class CS {
 	, SCAN_POS_7 = {0, +1, -1, +2, -2, +3, -3, +4, -4, +5, -5, +6, -6, +7, -7}
 	, SCAN_POS_8 = {0, +1, -1, +2, -2, +3, -3, +4, -4, +5, -5, +6, -6, +7, -7, +8, -8}
 	, SCAN_POS_9 = {0, +1, -1, +2, -2, +3, -3, +4, -4, +5, -5, +6, -6, +7, -7, +8, -8, +9, -9}
-
+	
 	, SCANS_POS[] = {SCAN_POS_0, SCAN_POS_1, SCAN_POS_2, SCAN_POS_3, SCAN_POS_4, SCAN_POS_5, SCAN_POS_6, SCAN_POS_7, SCAN_POS_8, SCAN_POS_9}
 	, SCANS_NEG[] = {SCAN_NEG_0, SCAN_NEG_1, SCAN_NEG_2, SCAN_NEG_3, SCAN_NEG_4, SCAN_NEG_5, SCAN_NEG_6, SCAN_NEG_7, SCAN_NEG_8, SCAN_NEG_9}
 	;
-
+	
 	/** Zero-Length Array to save on Memory. */ public static final Object                  [] ZL                   = new Object[0], ZL_OBJECT = ZL;
 	/** Zero-Length Array to save on Memory. */ public static final byte                    [] ZL_BYTE              = new byte[0];
 	/** Zero-Length Array to save on Memory. */ public static final short                   [] ZL_SHORT             = new short[0];
@@ -867,10 +867,10 @@ public class CS {
 	/** Date based Shenanigans */
 	@SuppressWarnings("deprecation")
 	public static boolean
-	APRIL_FOOLS      = (new Date().getMonth() ==  3 && new Date().getDate() <=  2),
-	WOODMANS_BDAY    = (new Date().getMonth() ==  5 && new Date().getDate() >= 20),
-	XMAS_IN_JULY     = (new Date().getMonth() ==  6 && new Date().getDate() >= 23),
-	XMAS_IN_DECEMBER = (new Date().getMonth() == 11 && new Date().getDate() >=  6);
+	APRIL_FOOLS      = (new Date().getMonth()+1 ==  4 && new Date().getDate() <=  2),//  1st of April   , first two days of the month
+	WOODMANS_BDAY    = (new Date().getMonth()+1 ==  6 && new Date().getDate() >= 20),// 21st of June    , one day early then til end of month
+	XMAS_IN_JULY     = (new Date().getMonth()+1 ==  7 && new Date().getDate() >= 23),// 24th of July    , one day early then til end of month
+	XMAS_IN_DECEMBER = (new Date().getMonth()+1 == 12 && new Date().getDate() >=  5);//  6th of December, one day early then til end of month
 	/** This means that Client or Server specific Base Files are definitely existing and loaded! Not if the World is actually client side or server side! */
 	public static boolean CODE_UNCHECKED = T, CODE_CLIENT = F, CODE_SERVER = F;
 	

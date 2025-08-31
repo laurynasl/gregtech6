@@ -19,6 +19,7 @@
 
 package gregapi.block.metatype;
 
+import gregapi.block.IBlockOnWalkOver;
 import gregapi.block.IBlockToolable;
 import gregapi.block.ToolCompat;
 import gregapi.code.ItemStackContainer;
@@ -37,6 +38,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
@@ -56,7 +58,7 @@ import static gregapi.data.CS.*;
 import static gregapi.data.OP.gearGtSmall;
 import static gregapi.data.OP.rockGt;
 
-public class BlockStones extends BlockMetaType implements IOreDictListenerEvent, IBlockToolable, IGrowable, Runnable {
+public class BlockStones extends BlockMetaType implements IOreDictListenerEvent, IBlockToolable, IBlockOnWalkOver, IGrowable, Runnable {
 	public static final boolean[]
 	  MOSSY     = {F,F,T,F,F,T,F,F,F,F,F,F,F,F,F,F}
 	, MOSSABLE  = {F,T,F,T,T,F,F,F,F,F,F,F,F,F,F,F}
@@ -641,10 +643,73 @@ public class BlockStones extends BlockMetaType implements IOreDictListenerEvent,
 		}
 	}
 	
+	@Override
+	public void onWalkOver(EntityLivingBase aEntity, World aWorld, int aX, int aY, int aZ) {
+		// Mossy Cobblestone is slightly slippery, unless you sneak on it.
+		if (!aEntity.isInWater() && !aEntity.isSneaking() && WD.meta(aWorld, aX, aY, aZ) == MCOBL) {
+			int tAddX = (aEntity.posX >= aX + 0.5 ? +1 : -1);
+			int tAddZ = (aEntity.posZ >= aZ + 0.5 ? +1 : -1);
+			double tSpeed = 0.15;
+			if (Math.abs(aEntity.motionX) < tSpeed) {
+				if (       !WD.opq(aWorld, aX+tAddX  , aY, aZ, F, F) && !WD.hasCollide(aWorld, aX+tAddX  , aY+1, aZ)) {
+					aEntity.motionX = +tAddX*tSpeed;
+				} else if (!WD.opq(aWorld, aX-tAddX  , aY, aZ, F, F) && !WD.hasCollide(aWorld, aX-tAddX  , aY+1, aZ)) {
+					aEntity.motionX = -tAddX*tSpeed;
+				} else if (!WD.opq(aWorld, aX+tAddX*2, aY, aZ, F, F) && !WD.hasCollide(aWorld, aX+tAddX*2, aY+1, aZ)) {
+					aEntity.motionX = +tAddX*tSpeed;
+				} else if (!WD.opq(aWorld, aX-tAddX*2, aY, aZ, F, F) && !WD.hasCollide(aWorld, aX-tAddX*2, aY+1, aZ)) {
+					aEntity.motionX = -tAddX*tSpeed;
+				}
+			}
+			if (Math.abs(aEntity.motionZ) < tSpeed) {
+				if (       !WD.opq(aWorld, aX, aY, aZ+tAddZ  , F, F) && !WD.hasCollide(aWorld, aX, aY+1, aZ+tAddZ  )) {
+					aEntity.motionZ = +tAddZ*tSpeed;
+				} else if (!WD.opq(aWorld, aX, aY, aZ-tAddZ  , F, F) && !WD.hasCollide(aWorld, aX, aY+1, aZ-tAddZ  )) {
+					aEntity.motionZ = -tAddZ*tSpeed;
+				} else if (!WD.opq(aWorld, aX, aY, aZ+tAddZ*2, F, F) && !WD.hasCollide(aWorld, aX, aY+1, aZ+tAddZ*2)) {
+					aEntity.motionZ = +tAddZ*tSpeed;
+				} else if (!WD.opq(aWorld, aX, aY, aZ-tAddZ*2, F, F) && !WD.hasCollide(aWorld, aX, aY+1, aZ-tAddZ*2)) {
+					aEntity.motionZ = -tAddZ*tSpeed;
+				}
+			}
+			if (Math.abs(aEntity.motionX) < tSpeed && Math.abs(aEntity.motionZ) < tSpeed) {
+				if (       !WD.opq(aWorld, aX+tAddX  , aY, aZ+tAddZ  , F, F) && !WD.hasCollide(aWorld, aX+tAddX  , aY+1, aZ+tAddZ  )) {
+					aEntity.motionX = +tAddX*tSpeed;
+					aEntity.motionZ = +tAddZ*tSpeed;
+				} else if (!WD.opq(aWorld, aX-tAddX  , aY, aZ-tAddZ  , F, F) && !WD.hasCollide(aWorld, aX-tAddX  , aY+1, aZ-tAddZ  )) {
+					aEntity.motionX = -tAddX*tSpeed;
+					aEntity.motionZ = -tAddZ*tSpeed;
+				} else if (!WD.opq(aWorld, aX+tAddX*2, aY, aZ+tAddZ*2, F, F) && !WD.hasCollide(aWorld, aX+tAddX*2, aY+1, aZ+tAddZ*2)) {
+					aEntity.motionX = +tAddX*tSpeed;
+					aEntity.motionZ = +tAddZ*tSpeed;
+				} else if (!WD.opq(aWorld, aX-tAddX*2, aY, aZ-tAddZ*2, F, F) && !WD.hasCollide(aWorld, aX-tAddX*2, aY+1, aZ-tAddZ*2)) {
+					aEntity.motionX = -tAddX*tSpeed;
+					aEntity.motionZ = -tAddZ*tSpeed;
+				}
+			}
+			if (Math.abs(aEntity.motionX) < tSpeed && Math.abs(aEntity.motionZ) < tSpeed) {
+				if (       !WD.opq(aWorld, aX-tAddX  , aY, aZ+tAddZ  , F, F) && !WD.hasCollide(aWorld, aX-tAddX  , aY+1, aZ+tAddZ  )) {
+					aEntity.motionX = -tAddX*tSpeed;
+					aEntity.motionZ = +tAddZ*tSpeed;
+				} else if (!WD.opq(aWorld, aX+tAddX  , aY, aZ-tAddZ  , F, F) && !WD.hasCollide(aWorld, aX+tAddX  , aY+1, aZ-tAddZ  )) {
+					aEntity.motionX = +tAddX*tSpeed;
+					aEntity.motionZ = -tAddZ*tSpeed;
+				} else if (!WD.opq(aWorld, aX-tAddX*2, aY, aZ+tAddZ*2, F, F) && !WD.hasCollide(aWorld, aX-tAddX*2, aY+1, aZ+tAddZ*2)) {
+					aEntity.motionX = -tAddX*tSpeed;
+					aEntity.motionZ = +tAddZ*tSpeed;
+				} else if (!WD.opq(aWorld, aX+tAddX*2, aY, aZ-tAddZ*2, F, F) && !WD.hasCollide(aWorld, aX+tAddX*2, aY+1, aZ-tAddZ*2)) {
+					aEntity.motionX = +tAddX*tSpeed;
+					aEntity.motionZ = -tAddZ*tSpeed;
+				}
+			}
+		}
+	}
+	
 	static {
 		LH.add("gt.tooltip.stone.mushroom.yes", "Mushrooms can spread to this rough Stone");
 		LH.add("gt.tooltip.stone.mushroom.no", "Mushrooms cant spread to smooth Stones!");
 		LH.add("gt.tooltip.stone.moss.bonemeal", "Use Bonemeal or similar to spread the Moss");
+		LH.add("gt.tooltip.stone.moss.slippery", "Slippery when near an Abyss (Ideal for Mob Farms)");
 	}
 	
 	@Override
@@ -657,6 +722,9 @@ public class BlockStones extends BlockMetaType implements IOreDictListenerEvent,
 		}
 		if (MOSSY[aMeta]) {
 			aList.add(LH.Chat.DGREEN + LH.get("gt.tooltip.stone.moss.bonemeal"));
+		}
+		if (aMeta == MCOBL) {
+			aList.add(LH.Chat.ORANGE + LH.get("gt.tooltip.stone.moss.slippery"));
 		}
 	}
 	
