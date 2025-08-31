@@ -921,7 +921,10 @@ public class Loader_Recipes_Other implements Runnable {
 		RM.Massfab   .addRecipe2(T,  16, 144* 648, ST.tag(0), blockIngot.mat(MT.AncientDebris, 1), NF, FL.Ender   .make(  L*  648), ZL_IS);
 		RM.Replicator.addRecipe1(T,  16, 144     , ST.tag(0), FL.Ender   .make(  L), NF, gem.mat(MT.EnderPearl, 1));
 		RM.Lightning .addRecipe1(T, 512, 512, blockSolid.mat(MT.Netherite, 1), FL.array(FL.Ender   .make(L* 4), FL.Oil_Soulsand.make(5000)), ZL_FS, gem.mat(MT.NetherStar, 1));
-		
+
+		RM.replicateFromSeed(ST.make(Items.wheat_seeds, 1, 0), ST.make(Items.wheat, 64, 0));
+		RM.replicateFromSeed(ST.make(Items.pumpkin_seeds, 1, 0), ST.make(Blocks.pumpkin, 16, 0));
+		RM.replicateFromSeed(ST.make(Items.melon_seeds, 1, 0), ST.make(Blocks.melon_block, 8, 0));
 		
 		if (FL.Redstone_TE.exists()) {
 		RM.Replicator.addRecipe1(T,  16,  72/   4, ST.tag(0), FL.Redstone_TE.make( 25), NF, gemChipped  .mat(MT.Redstone, 1));

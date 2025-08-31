@@ -678,6 +678,15 @@ public class RM {
 		return T;
 	}
 	
+	public static boolean replicateFromSeed(ItemStack aInput, ItemStack aOutput) {
+		if (ST.invalid(aInput)) return F;
+		if (ST.invalid(aOutput)) return F;
+		RM.Replicator.addRecipe1(T,  16, 256, aInput, FL.array(FL.MatterNeutral.make(1), FL.MatterCharged.make(1), FL.Biomass   .make(1000)), ZL_FS, aOutput);
+		RM.Replicator.addRecipe1(T,  16, 256, aInput, FL.array(FL.MatterNeutral.make(1), FL.MatterCharged.make(1), FL.BiomassIC2.make(1000)), ZL_FS, aOutput);
+		RM.Replicator.addRecipe1(T, 256, 256, aInput, FL.array(FL.UUM.make(10)                                   , FL.Biomass   .make(1000)), ZL_FS, aOutput);
+		RM.Replicator.addRecipe1(T, 256, 256, aInput, FL.array(FL.UUM.make(10)                                   , FL.BiomassIC2.make(1000)), ZL_FS, aOutput);
+		return T;
+	}
 	
 	public static boolean biomass(ItemStack aBiomass) {return biomass(aBiomass, 64);}
 	public static boolean biomass(ItemStack aBiomass, long aSpeed) {
