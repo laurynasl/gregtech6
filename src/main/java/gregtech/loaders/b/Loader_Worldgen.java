@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2025 GregTech-6 Team
+ * Copyright (c) 2026 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -533,10 +533,11 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.OREMATS.Mirabilite      , U8 , 16, 64)
 		, new StoneLayerOres(MT.OREMATS.Trona           , U8 , 16, 64)
 		);
-		StoneLayer.bothsides(MT.STONES.Gneiss, MT.Gypsum
-		, new StoneLayerOres(MT.OREMATS.Mirabilite      , U8 , 16, 64)
-		, new StoneLayerOres(MT.OREMATS.Trona           , U8 , 16, 64)
-		);
+		// This Line was duplicated and I do not remember which part of it was supposed to be changed to a different Material...
+		//StoneLayer.bothsides(MT.STONES.Gneiss, MT.Gypsum
+		//, new StoneLayerOres(MT.OREMATS.Mirabilite      , U8 , 16, 64)
+		//, new StoneLayerOres(MT.OREMATS.Trona           , U8 , 16, 64)
+		//);
 		StoneLayer.bothsides(MT.STONES.Granite, MT.NaCl
 		, new StoneLayerOres(MT.OREMATS.Zeolite         , U8 , 16, 48)
 		);
