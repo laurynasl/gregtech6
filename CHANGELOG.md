@@ -7,6 +7,7 @@ Nothing (I tend to only add finished Stuff to the Changelog).
 
 6.17.07: (Not released yet)
 [CHANGED] Crucibles are now 100 times harder to break when not empty.
+[CHANGED] Rubber-Tree-Resin-Holes will now always spawn, if there is no other loaded Rubber-Tree-Resin-Holes within 256 Blocks.
 
 
 6.17.06:
