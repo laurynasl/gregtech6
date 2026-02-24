@@ -1580,11 +1580,12 @@ public class CS {
 	
 	public static class BushesGT {
 		public static final ItemStackMap<ItemStackContainer, int[]> MAP = new ItemStackMap<>();
-		public static int[] get(ItemStack aStack) {return MAP.containsKey(aStack, F) ? MAP.get(aStack) : MAP.get(new ItemStackContainer(aStack, 1, W));}
+		public static int[] get(ItemStack aStack) {return UT.Code.getWithDefault(MAP.containsKey(aStack, F) ? MAP.get(aStack) : MAP.get(new ItemStackContainer(aStack, 1, W)), DEFAULT);}
 		/** Bush Color, Stage 1, Stage 2, Stage 3 */
 		public static void put(ItemStack aStack, int aBush, int aBloom, int aImmature, int aBerry) {if (!MAP.containsKey(aStack, F)) MAP.put(aStack, new int[] {aBush, aBloom, aImmature, aBerry});}
 		public static void override(ItemStack aStack, int... aColors) {MAP.put(aStack, aColors);}
 		// Add Cotton as a Default Bush.
+		public static int[] DEFAULT = new int[] {0x22cc22, 0x33cc33, 0x44cc44, 0xeeeeee};
 		static {put(ST.make(Items.string, 1, 0), 0x22cc22, 0x33cc33, 0x44cc44, 0xeeeeee);}
 	}
 	
@@ -1611,6 +1612,7 @@ public class CS {
 		public static final ItemStackSet<ItemStackContainer> CONTAINER_DURABILITY = ST.hashset();
 		public static final ItemStackSet<ItemStackContainer> SPECIAL_CASE_TOOLS = ST.hashset();
 		public static final ItemStackSet<ItemStackContainer> SHOW_RESISTANCE = ST.hashset();
+		public static final ItemStackSet<ItemStackContainer> VOIDING_ITEMS = ST.hashset();
 		public static final ItemStackSet<ItemStackContainer> RECIPE_REMOVED_USE_TRASH_BIN_INSTEAD = ST.hashset();
 		public static final ItemStackSet<ItemStackContainer> NEI_DONT_SHOW_FLUIDS = ST.hashset();
 		

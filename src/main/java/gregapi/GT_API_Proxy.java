@@ -191,7 +191,7 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 		
 		if (tSave && mSaveLocation != null) {
 			// Only print this if it is not the minutely Autosave.
-			if (aSaveLocation == null) OUT.println("Saving  World! " + mSaveLocation);// else DEB.println("Autosave!      " + mSaveLocation);
+			if (aSaveLocation == null) OUT.println("Saving  World! " + mSaveLocation.getName());// else DEB.println("Autosave!      " + mSaveLocation.getName());
 			// Make the Folder to drop the Save Files into.
 			new File(mSaveLocation, "gregtech").mkdirs();
 			// Call the Save Function in all the things that need it.
@@ -200,7 +200,7 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 		}
 		mSaveLocation = aSaveLocation;
 		if (tLoad && mSaveLocation != null) {
-			OUT.println("Loading World! " + mSaveLocation);
+			OUT.println("Loading World! " + mSaveLocation.getName());
 			// Make the Folder to uhh wait why is that needed? Probably helps preventing Issues though, so why not.
 			new File(mSaveLocation, "gregtech").mkdirs();
 			// Call the Load Function in all the things that need it.
@@ -1340,18 +1340,26 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 					boolean aCollectSound = T;
 					aDrops = aEvent.drops.iterator();
 					while (aDrops.hasNext()) {
-						ItemStack aDrop = ST.update(aDrops.next(), aEvent.world, aEvent.x, aEvent.y, aEvent.z);
-						
-						EntityItem tEntity = ST.entity(aEvent.harvester, aDrop);
-						EntityItemPickupEvent tEvent = new EntityItemPickupEvent(aEvent.harvester, tEntity);
-						ST.set(aDrop, tEvent.item.getEntityItem(), T, T);
-						if (MinecraftForge.EVENT_BUS.post(tEvent)) continue;
-						
-						if (tEvent.getResult() == Result.ALLOW || aDrop.stackSize <= 0 || ST.add(aEvent.harvester, aDrop)) {
-							aDrops.remove();
-							if (aCollectSound) {
-								UT.Sounds.send(SFX.MC_COLLECT, 0.2F, ((RNGSUS.nextFloat()-RNGSUS.nextFloat())*0.7F+1.0F)*2.0F, aEvent.harvester);
-								aCollectSound = F;
+						ItemStack aDrop = aDrops.next();
+						if (ST.valid(aDrop)) {
+							aDrop = ST.update(aDrop, aEvent.world, aEvent.x, aEvent.y, aEvent.z);
+							EntityItem tEntity = ST.entity(aEvent.harvester, aDrop);
+							if (tEntity != null) {
+								tEntity.isDead = F;
+								EntityItemPickupEvent tEvent = new EntityItemPickupEvent(aEvent.harvester, tEntity);
+								ST.set(aDrop, tEvent.item.getEntityItem(), T, T);
+								// I have to ignore this event being cancellable because that causes Item Dupes.
+								MinecraftForge.EVENT_BUS.post(tEvent);
+								if (tEvent.getResult() == Result.ALLOW || tEntity.isDead || aDrop.stackSize <= 0 || ST.invalid(aDrop)) {
+									aDrops.remove();
+								} else if (ST.add(aEvent.harvester, aDrop)) {
+									aDrops.remove();
+									if (aCollectSound) {
+										UT.Sounds.send(SFX.MC_COLLECT, 0.2F, ((RNGSUS.nextFloat()-RNGSUS.nextFloat())*0.7F+1.0F)*2.0F, aEvent.harvester);
+										aCollectSound = F;
+									}
+								}
+								tEntity.isDead = T;
 							}
 						}
 					}
@@ -1479,8 +1487,7 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 		
 		if (SPAWN_NO_BATS && aMobClass == EntityBat.class && aWorld.getBlock(aX, aY-2, aZ) != Blocks.stone && aWorld.getBlock(aX, aY+2, aZ) != Blocks.stone) {aEvent.setResult(Result.DENY); return;}
 		
-		if (!WD.dimOverworldLike(aWorld)) return;
-		if (SPAWN_HOSTILES_ONLY_IN_DARKNESS) try {
+		if (SPAWN_HOSTILES_ONLY_IN_DARKNESS && WD.dimOverworldLike(aWorld)) try {
 			Chunk tChunk = aWorld.getChunkFromBlockCoords(aX, aZ);
 			if (tChunk != null && tChunk.getBlockStorageArray() != null && tChunk.getBlockStorageArray()[aY >> 4] != null && tChunk.getBlockStorageArray()[aY >> 4].getExtBlocklightValue(aX & 15, aY & 15, aZ & 15) > 0) {
 				// Vanilla Mobs only, just in case.
@@ -1492,28 +1499,29 @@ public abstract class GT_API_Proxy extends Abstract_Proxy implements IGuiHandler
 			}
 		} catch(Throwable e) {e.printStackTrace(ERR);}
 		
-		if (aWorld.provider.dimensionId != 0 || aY + 16 < WD.waterLevel(aWorld)) return;
-		if (GENERATE_BIOMES) {
-			if (UT.Code.inside(-96,  95, aX) && UT.Code.inside(-96,  95, aZ)) {aEvent.setResult(Result.DENY); return;}
-		} else if (GENERATE_NEXUS) {
-			if (UT.Code.inside(  0,  48, aX) && UT.Code.inside(-64, -16, aZ)) {aEvent.setResult(Result.DENY); return;}
+		if (aWorld.provider.dimensionId == 0 && aY >= WD.waterLevel(aWorld) - 16) {
+			if (GENERATE_BIOMES) {
+				if (UT.Code.inside(-96,  95, aX) && UT.Code.inside(-96,  95, aZ)) {aEvent.setResult(Result.DENY); return;}
+			} else if (GENERATE_NEXUS) {
+				if (UT.Code.inside(  0,  48, aX) && UT.Code.inside(-64, -16, aZ)) {aEvent.setResult(Result.DENY); return;}
+			}
+			if (GENERATE_STREETS && (UT.Code.inside(-48, 48, aX) || UT.Code.inside(-48, 48, aZ))) {aEvent.setResult(Result.DENY); return;}
+			if (SPAWN_ZONE_MOB_PROTECTION && UT.Code.inside(-144, 144, aX-aWorld.getWorldInfo().getSpawnX()) && UT.Code.inside(-144, 144, aZ-aWorld.getWorldInfo().getSpawnZ()) && WD.opq(aWorld, aX, 0, aZ, F, F)) {aEvent.setResult(Result.DENY); return;}
 		}
-		if (GENERATE_STREETS && (UT.Code.inside(-48, 48, aX) || UT.Code.inside(-48, 48, aZ))) {aEvent.setResult(Result.DENY); return;}
-		if (SPAWN_ZONE_MOB_PROTECTION && UT.Code.inside(-144, 144, aX-aWorld.getWorldInfo().getSpawnX()) && UT.Code.inside(-144, 144, aZ-aWorld.getWorldInfo().getSpawnZ()) && WD.opq(aWorld, aX, 0, aZ, F, F)) {aEvent.setResult(Result.DENY); return;}
+		
 		//if (aEvent.entity instanceof EntityMob && !(aEvent.entity instanceof IBossDisplayData) && ((EntityMob)aEvent.entity).getCanSpawnHere()) mMobsToFastDespawn.add((EntityLiving)aEvent.entityLiving);
+		
 		for (int i = 0; i < MOB_SPAWN_INHIBITORS.size(); i++) {
 			ITileEntityMobSpawnInhibitor tTileEntity = MOB_SPAWN_INHIBITORS.get(i);
 			if (tTileEntity.isDead()) {
 				MOB_SPAWN_INHIBITORS.remove(i--);
 				tTileEntity.onUnregisterInhibitor();
-			} else {
-				try {
-					if (tTileEntity.inhibitMobSpawn(aEvent, aWorld, aX, aY, aZ)) {aEvent.setResult(Result.DENY); return;}
-				} catch(Throwable e) {
-					MOB_SPAWN_INHIBITORS.remove(i--);
-					tTileEntity.setError("Mob Spawn Inhibitor - " + e);
-					e.printStackTrace(ERR);
-				}
+			} else try {
+				if (tTileEntity.inhibitMobSpawn(aEvent, aWorld, aX, aY, aZ)) {aEvent.setResult(Result.DENY); return;}
+			} catch(Throwable e) {
+				MOB_SPAWN_INHIBITORS.remove(i--);
+				tTileEntity.setError("Spawn Inhibitor - " + e);
+				e.printStackTrace(ERR);
 			}
 		}
 	}

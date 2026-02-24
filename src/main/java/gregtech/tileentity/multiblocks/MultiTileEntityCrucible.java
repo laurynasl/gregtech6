@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2025 GregTech-6 Team
+ * Copyright (c) 2026 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -701,12 +701,14 @@ public class MultiTileEntityCrucible extends TileEntityBase10MultiBlockBase impl
 	@Override public boolean isEnergyType(TagData aEnergyType, byte aSide, boolean aEmitting) {return !aEmitting && ENERGYTYPES.contains(aEnergyType);}
 	@Override public boolean isEnergyCapacitorType(TagData aEnergyType, byte aSide) {return ENERGYTYPES.contains(aEnergyType);}
 	@Override public boolean isEnergyAcceptingFrom(TagData aEnergyType, byte aSide, boolean aTheoretical) {return ENERGYTYPES.contains(aEnergyType);}
-	@Override public long doInject(TagData aEnergyType, byte aSide, long aSize, long aAmount, boolean aDoInject) {if (aDoInject) {if (aEnergyType == TD.Energy.KU) {if (aSize*aAmount > 0 && WD.oxygen(worldObj, xCoord, yCoord+1, zCoord)) addMaterialStacks(new ArrayListNoNulls<>(F, OM.stack(aSize*aAmount*U1000, MT.Air)), mTemperature);} else if (aEnergyType == TD.Energy.CU) mEnergy -= Math.abs(aAmount * aSize); else mEnergy += Math.abs(aAmount * aSize);} return aAmount;}
+	@Override public long doInject(TagData aEnergyType, byte aSide, long aSize, long aAmount, boolean aDoInject) {if (aDoInject) {if (aEnergyType == TD.Energy.KU) {if (aSize*aAmount > 0 && WD.oxygen(worldObj, xCoord, yCoord+1, zCoord)) addMaterialStacks(new ArrayListNoNulls<>(F, OM.stack(Math.min(MAX_AMOUNT-OM.total(mContent), aSize*aAmount*U1000), MT.Air)), mTemperature);} else if (aEnergyType == TD.Energy.CU) mEnergy -= Math.abs(aAmount * aSize); else mEnergy += Math.abs(aAmount * aSize);} return aAmount;}
 	@Override public long getEnergyDemanded(TagData aEnergyType, byte aSide, long aSize) {return Long.MAX_VALUE - mEnergy;}
 	@Override public long getEnergySizeInputMin(TagData aEnergyType, byte aSide) {return 1;}
 	@Override public long getEnergySizeInputRecommended(TagData aEnergyType, byte aSide) {return 2048;}
 	@Override public long getEnergySizeInputMax(TagData aEnergyType, byte aSide) {return Long.MAX_VALUE;}
 	@Override public Collection<TagData> getEnergyTypes(byte aSide) {return ENERGYTYPES;}
+	
+	@Override public float getBlockHardness() {return mDisplayedHeight != 0 ? super.getBlockHardness() * 100 : super.getBlockHardness();}
 	
 	@Override public String getTileEntityName() {return "gt.multitileentity.multiblock.crucible";}
 }

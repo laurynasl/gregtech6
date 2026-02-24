@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2025 GregTech-6 Team
+ * Copyright (c) 2026 GregTech-6 Team
  *
  * This file is part of GregTech.
  *
@@ -82,6 +82,7 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.OREMATS.Garnierite                      , F, U16,  0, 32, ST.block(MD.EtFu, "modded_deepslate_ore"), 4, BIOMES_SHROOM)
 		, new StoneLayerOres(MT.OREMATS.Pentlandite                     , F, U16,  0, 32, ST.block(MD.EtFu, "modded_deepslate_ore"), 4, BIOMES_SWAMP)
 		,!MT.Nikolite .mHidden ? new StoneLayerOres(MT.Nikolite         , F, U32,  0, 20, ST.block(MD.EtFu, "deepslate_projred_ore"), 3, ST.block(MD.EtFu, "deepslate_bluepower_ore"), 0) : null
+		, MD.DE       .mLoaded ? new StoneLayerOres(MT.Draconium        , F, U64,  0,  7, ST.block(MD.EtFu, "deepslate_draconium_ore"), 0) : null
 		, MD.HEX      .mLoaded ? new StoneLayerOres(MT.HexoriumBlack    , F, U32,  0, 16) : null
 		, MD.HEX      .mLoaded ? new StoneLayerOres(MT.HexoriumWhite    , F, U32,  0, 16) : null
 		, MD.MET      .mLoaded ? new StoneLayerOres(MT.DeepIron         , F, U16,  0, 16) : null
@@ -464,10 +465,11 @@ public class Loader_Worldgen implements Runnable {
 		, new StoneLayerOres(MT.OREMATS.Mirabilite      , U8 , 16, 64)
 		, new StoneLayerOres(MT.OREMATS.Trona           , U8 , 16, 64)
 		);
-		StoneLayer.bothsides(MT.STONES.Gneiss, MT.Gypsum
-		, new StoneLayerOres(MT.OREMATS.Mirabilite      , U8 , 16, 64)
-		, new StoneLayerOres(MT.OREMATS.Trona           , U8 , 16, 64)
-		);
+		// This Line was duplicated and I do not remember which part of it was supposed to be changed to a different Material...
+		//StoneLayer.bothsides(MT.STONES.Gneiss, MT.Gypsum
+		//, new StoneLayerOres(MT.OREMATS.Mirabilite      , U8 , 16, 64)
+		//, new StoneLayerOres(MT.OREMATS.Trona           , U8 , 16, 64)
+		//);
 		StoneLayer.bothsides(MT.STONES.Granite, MT.NaCl
 		, new StoneLayerOres(MT.OREMATS.Zeolite         , U8 , 16, 48)
 		);
